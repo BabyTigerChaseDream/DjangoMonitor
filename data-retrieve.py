@@ -1,7 +1,6 @@
 #!/usr/local/bin/python3
 import urllib.request 
 import requests
-### M3 Cookie 
 from http.cookies import SimpleCookie
 
 #from urllib.request import urlopen
@@ -14,6 +13,12 @@ from http.cookies import SimpleCookie
 
 header = {'Content-Type': 'text/html; charset=UTF-8'}
 top_level_url = "https://android-crashes.prod.booking.com/crash/"
+
+# user input parameter :
+#date = // date format: 2021-03-02 
+#platform = 
+
+# version = -> get from url webpage 
 
 # create a password manager
 # password manager
@@ -39,7 +44,7 @@ urllib.request.install_opener(opener)
 #r = requests.post(top_level_url, auth=(username, password))
 
 ### M3 : use cookie for access
-rawdata='bkng_iam_rt=CAESQ1JB_M2hHrcYPhNV9cwECxzG3eiOqFK564LPKr0RWqzr2ercawsIy4hEp_ZmRvG-3laxwjRggQDrW44x1LxH6Wsg1HY'
+rawdata='bkng_iam_rt=CAESQ1JB0J-xgah5W7za2qAGdxMAEHJi4yyM0ywpbYI5exzDuBMoqXTzqBrWl04q8LpM66QQvbvOfkTXXRRvb742tmm7tPk'
 cookie=SimpleCookie()
 cookie.load(rawdata)
 
@@ -48,3 +53,4 @@ r=requests.get(top_level_url,cookies=cookies)
 r.status_code # 200 
 
 # refer to coding notes for html parsing 
+
