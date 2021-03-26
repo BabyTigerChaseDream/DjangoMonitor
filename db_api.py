@@ -49,16 +49,16 @@ sql_insert_to_table = '''
     (id, crash_date, platform, is_new, is_blacklist, is_oom, has_jira, JIRA, content, team, owner, ignore) \
     values({id},{crash_date},{platform},{is_new},{is_blacklist},{is_oom},{has_jira},{JIRA},{content},{team},{owner},{ignore});
 '''
-
+# Collect ALL data and put in DB 
 try:
-    # define namedtuple 
-     single_commit_info_nt  = namedtuple('single_commit_info_nt',['id','author_name','author_email','committed_date','additionlines','deletionlines','changedfiles','web_url','project_id'])  
-     for commit_id in commit_id_list:
+    # define namedtuple crash_id_list 
+     crash_item  = namedtuple('crash_item',['id','crash_date','platform','is_new','is_blacklist','is_oom','has_jira','JIRA','content','team','owner','ignore'])  
+     for crash_id in crash_id_list:
         get_single_commit_requests = get_single_commit_url.format(branch_id=branch_id,private_token=private_token,commit_id=commit_id)
         # get single commit 
         single_commit_detail_info = requests.get(get_single_commit_requests).json() 
         # assign json data to namedtuple 
-        single_commit_info = single_commit_info_nt(id=json.dumps(single_commit_detail_info['id']),
+        single_commit_info = crash_item(id=json.dumps(single_commit_detail_info['id']),
                                                    author_name=json.dumps(single_commit_detail_info['author_name']),
                                                    author_email=json.dumps(single_commit_detail_info['author_email']),
                                                    committed_date=json.dumps(single_commit_detail_info['committed_date']),
