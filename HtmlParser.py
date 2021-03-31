@@ -59,4 +59,25 @@ class Html:
                 TextList.append(Text)
 
         return TextList
+
+    def getDivClass(self, classname):
+        ClassList = [] 
+        #tree.xpath("//div[@class='panel panel-primary crash-item active-crash-panel']")
+        for t in self.tree.xpath("//div[@class='{classname}']".format(classname=classname)):
+            ClassList.append(t)
+        return ClassList 
+    
+    def getPreClassTextByID(self, classname, crash_id):
+        crash_content = ''
+        #tree.xpath("//div[@class='panel panel-primary crash-item active-crash-panel']")
+        for t in self.tree.xpath("//pre[@class='{classname}']".format(classname=classname)):
+            print("[DBG] id is : {myid}".format(myid=t.get('id')))
+            if t.get('id') == crash_id:
+                crash_content = t.text_content()
+                break
+        else:
+            #url = self.url
+            raise Exception(" no crash match your ID:{crash_id} \n at {url} , please check".format(crash_id=crash_id, url=self.url))
+
+        return crash_content 
         

@@ -4,7 +4,8 @@ from http.cookies import SimpleCookie
 class Cookie:
 
     def __init__(self):
-        self.cookie_string='bkng_iam_rt=CAESQ1JBTUBQH8XxERi6le8xVFEbjNsocZrFLUhF6cE2D6_MDy1GHq0a8iPh13V9u8hurnJzcqGMTMtFQXCmmUACIaEQziE'
+        self.cookie_string='bkng_iam_rt=CAESQ1JBE7aiDXrRNcssLzeS0CfRKB-Wd_Y59JOKDbyJj1xGJFCH706oia0tSmp6W1QB1cS304SbL9zIAClZd5GXzV32XAg'
+        # CAESQ1JBE7aiDXrRNcssLzeS0CfRKB
         self.cookie=SimpleCookie()
         self.cookies =  None
 

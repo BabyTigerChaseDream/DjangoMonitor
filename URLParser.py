@@ -2,9 +2,11 @@
 import requests
 from lxml import html
 import re
+from collections import namedtuple
 
 import CookieHelp
 import HtmlParser
+import RegexHelp
 
 class Reports:
     # Static data structure , single crash shares same url template 
@@ -94,5 +96,153 @@ class Reports:
         return all_reports_url 
 
 
+'''
+[Calling instruct]
 
+>>> import URLParser
+>>> C=URLParser.Crashes()
+>>> C.get_max_pages()
+>>> page_urls_list=C.get_page_urls_list()
+>>> C.get_pageHtml_cache(url)
+'''
+
+crash_url_debug = "https://android-crashes.prod.booking.com/crash/report/2021-03-23/26.5/android/page/1"
+
+# need page number to locate url contains crash element
+crash_element_info = namedtuple('crash_element_info',['element','pnum'])  
+crash_elements_detail = namedtuple('crash_elements_detail',['crash_id','is_new', 'is_oom', 'is_blacklisted', 'has_jira', 'crash_count', 'contents'])  
+
+class Crashes:
+    # assign default url : https://android-crashes.prod.booking.com/crash/report/2021-03-23/26.5/android/page/1
+    page_url_temp ='https://android-crashes.prod.booking.com/crash/report/{daily}/{version}/{platform}/page/{pnum}'
+    # divclass names
+
+    def __init__(self, url=crash_url_debug):
+        self.url = url
+        self.timestamp = RegexHelp.getDate(url)
+        self.version = RegexHelp.getVersion(url)
+        self.platform = RegexHelp.getPlatform(url)
+        # crash page url is at 
+        self.current_page = None
+        self.max_pages = 1
+
+        # pageHtml cache 
+        self.pageHtmlCache = {} 
+
+        # crash_id_list attached per crash
+        # ==> namedtuple('crash_element_info',['element','pnum'])
+        self.crash_elements = [] 
+        # ==> namedtuple('crash_elements_detail',['element','id','is_new', 'is_oom', 'is_blacklisted', 'has_jira', 'crash_count', 'contents'])
+        self.crash_elements_detail = [] 
+
+        # crash_id_list attached per crash
+        self.crash_id_list = [] 
+
+    def get_max_pages(self):
+        # strip page info only
+        url_strip_page_key= self.url.rsplit('/',1)[0]
+
+        url = self.url
+        pageHtml = HtmlParser.Html(url)
+        url_list = pageHtml.getHref()
+
+        # get page url
+        page_url_str_list = []
+        for u in url_list:
+            if u and (url_strip_page_key in u):
+                page_url_str_list.append(u)
+
+        # get max page 
+        self.max_pages = max(str(RegexHelp.getPage(u)) for u in page_url_str_list)
+        return self.max_pages
         
+    def get_page_urls_list(self, max_pages=None):
+        max_pages = int(max_pages or self.max_pages)
+
+        page_url_list=[]
+        # range: 
+        for n in range(1, max_pages+1):
+            page_url_list.append( self.page_url_temp.format(daily=self.timestamp, platform=self.platform, version=self.version, pnum=n) )
+        return page_url_list
+
+    def get_pnum_url(self, pnum):
+        return self.page_url_temp.format( daily=self.timestamp, platform=self.platform, version=self.version, pnum=pnum) 
+
+    def get_pageHtml_cache(self, url):
+        pnum = RegexHelp.getPage(url)
+        pageHtml = HtmlParser.Html(url) 
+        self.pageHtmlCache[pnum] = pageHtml
+        print("Page{pnum} cached \n".format(pnum=pnum) )
+
+        return pageHtml
+
+    # crash IDs is retreived per page url 
+    def get_crash_elements(self):
+        for pnum,pageHtml in self.pageHtmlCache.items():
+            elements = pageHtml.getDivClass(classname="panel panel-primary crash-item active-crash-panel")
+
+            for ce in elements:
+                # avoid dup when repeatedly calling this function 
+                if ce is not None:
+                    self.crash_elements.append( crash_element_info(element=ce, pnum=pnum) )
+
+        return self.crash_elements
+
+    # crash IDs is retreived per page url 
+    def get_crash_elements_detail(self):
+        if not self.crash_elements:
+           raise Exception(" no crash elements , please call \'get_crash_elements()\' \n") 
+        for ce in self.crash_elements:
+            element = ce.element
+            pnum = ce.pnum
+
+            crash_id = element.get('id')
+            is_new = element.get('is_new')
+            is_oom = element.get('is_oom')
+            is_blacklisted = element.get('is_blacklisted')
+            has_jira = element.get('has_jira')
+            crash_count = element.get('crash_count')
+            
+            contents = self.get_crash_id_contents(crash_id=crash_id,pnum=pnum)
+
+            # avoid dup when repeatedly calling this function 
+            self.crash_elements_detail.append( 
+                crash_elements_detail(
+                    crash_id=crash_id,
+                    is_new=is_new,
+                    is_oom=is_oom,
+                    is_blacklisted=is_blacklisted,
+                    has_jira=has_jira,
+                    crash_count=crash_count,
+                    contents = contents
+                ) 
+            )
+
+        return self.crash_elements_detail
+
+    # get crash IDs list
+    def get_crash_ids(self,crash_elements):
+        
+        if not crash_elements:
+            raise Exception(" no crash elements , please check")
+        for ce in crash_elements:
+            self.crash_id_list.append(ce.element.get('id'))
+
+        return self.crash_id_list
+
+    # get each crash item's content
+    def get_crash_id_contents(self, crash_id, pnum):
+        pageHtml = self.pageHtmlCache[pnum] 
+        pageHtml.getPreClassTextByID(classname="stacktrace", crash_id=crash_id)
+
+        return content 
+
+    # get each crash blocks data 
+    def get_crash_data_object(self, crash_id):
+        pass
+
+    '''
+    # TODO : match JIRA to crash element blocks 
+    def get_jira_maps_to_crash(self, crash_id):
+        pass
+    '''

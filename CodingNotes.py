@@ -53,3 +53,8 @@ filter_new_crashes='https://android-crashes.prod.booking.com/crash/report/2021-0
 
 # TODO: Get a single crash session data from "crash ID"
 
+########## Notification ########### 
+# >>> how to : click "Slack" btn 
+# get network request from browser window 
+# temp=https://android-crashes.prod.booking.com/crash/slack-send-crash?stacktrace_id={crash_id}&version={version}&date={date}
+# https://android-crashes.prod.booking.com/crash/slack-send-crash?stacktrace_id=5755595&version=26.5&date=2021-03-23
