@@ -8,7 +8,7 @@ import CookieHelp
 import HtmlParser
 import RegexHelp
 
-class Reports:
+class Report:
     # Static data structure , single crash shares same url template 
     host_url='https://android-crashes.prod.booking.com/crash/'
     platform_url_temp = 'https://android-crashes.prod.booking.com/crash/{platform}' 
@@ -64,11 +64,12 @@ class Reports:
 
     # https://android-crashes.prod.booking.com/crash/daily/2021-03-23/ios 
     # [TODO] version is timestamp sensitive 
+    # [TODO][2021-04-06][Bugs] version reporting from this func is fix ?
     def get_available_version(self,daily_url):
         Regex = '(\d+\.\d+)'
         pattern = re.compile(Regex)
         # get Html source 
-        pageHtml = HtmlParser.Html(daily_url)
+        pageHtml = HtmlParser.Html(url=daily_url)
         version_list = pageHtml.getText(pattern)
         return version_list
 
@@ -98,26 +99,28 @@ class Reports:
 
 '''
 [Calling instruct]
-
 >>> import URLParser
 >>> C=URLParser.Crashes()
 >>> C.get_max_pages()
 >>> page_urls_list=C.get_page_urls_list()
->>> C.get_pageHtml_cache(url)
+>>> for url in page_urls_list : C.get_pageHtml_cache(url)
+>>> C.get_crash_elements()
+>>> C.get_crash_elements_detail()
 '''
 
-crash_url_debug = "https://android-crashes.prod.booking.com/crash/report/2021-03-23/26.5/android/page/1"
+#crash_url_debug = "https://android-crashes.prod.booking.com/crash/report/2021-03-23/26.5/android/page/1"
 
 # need page number to locate url contains crash element
 crash_element_info = namedtuple('crash_element_info',['element','pnum'])  
-crash_elements_detail = namedtuple('crash_elements_detail',['crash_id','is_new', 'is_oom', 'is_blacklisted', 'has_jira', 'crash_count', 'contents'])  
+crash_elements_detail = namedtuple('crash_elements_detail',['timestamp','platform','version','crash_id','is_new','is_oom','is_blacklisted','has_jira','crash_count','contents'])  
 
 class Crashes:
     # assign default url : https://android-crashes.prod.booking.com/crash/report/2021-03-23/26.5/android/page/1
     page_url_temp ='https://android-crashes.prod.booking.com/crash/report/{daily}/{version}/{platform}/page/{pnum}'
     # divclass names
 
-    def __init__(self, url=crash_url_debug):
+    #def __init__(self, url=crash_url_debug):
+    def __init__(self, url):
         self.url = url
         self.timestamp = RegexHelp.getDate(url)
         self.version = RegexHelp.getVersion(url)
@@ -169,6 +172,8 @@ class Crashes:
         return self.page_url_temp.format( daily=self.timestamp, platform=self.platform, version=self.version, pnum=pnum) 
 
     def get_pageHtml_cache(self, url):
+        print("start parsing: \n\t {url}".format(url=url))
+
         pnum = RegexHelp.getPage(url)
         pageHtml = HtmlParser.Html(url) 
         self.pageHtmlCache[pnum] = pageHtml
@@ -181,17 +186,24 @@ class Crashes:
         for pnum,pageHtml in self.pageHtmlCache.items():
             elements = pageHtml.getDivClass(classname="panel panel-primary crash-item active-crash-panel")
 
+            if not elements:
+                print("no crash elements on page : {url}".format(url=pageHtml.url)) 
+
             for ce in elements:
                 # avoid dup when repeatedly calling this function 
                 if ce is not None:
                     self.crash_elements.append( crash_element_info(element=ce, pnum=pnum) )
 
+
         return self.crash_elements
 
     # crash IDs is retreived per page url 
     def get_crash_elements_detail(self):
-        if not self.crash_elements:
-           raise Exception(" no crash elements , please call \'get_crash_elements()\' \n") 
+
+        platform = self.platform
+        version =  self.version
+        timestamp = self.timestamp
+
         for ce in self.crash_elements:
             element = ce.element
             pnum = ce.pnum
@@ -201,13 +213,16 @@ class Crashes:
             is_oom = element.get('is_oom')
             is_blacklisted = element.get('is_blacklisted')
             has_jira = element.get('has_jira')
-            crash_count = element.get('crash_count')
+            crash_count = element.get('crashes')
             
             contents = self.get_crash_id_contents(crash_id=crash_id,pnum=pnum)
 
             # avoid dup when repeatedly calling this function 
             self.crash_elements_detail.append( 
                 crash_elements_detail(
+                    timestamp = timestamp,
+                    platform = platform,
+                    version = self.version,
                     crash_id=crash_id,
                     is_new=is_new,
                     is_oom=is_oom,
@@ -233,15 +248,16 @@ class Crashes:
     # get each crash item's content
     def get_crash_id_contents(self, crash_id, pnum):
         pageHtml = self.pageHtmlCache[pnum] 
-        pageHtml.getPreClassTextByID(classname="stacktrace", crash_id=crash_id)
+        crash_trace_id= crash_id.replace("crash","crash-trace")
+        contents =pageHtml.getPreClassTextByID(classname="stacktrace", crash_trace_id=crash_trace_id)
 
-        return content 
+        return contents
 
+    '''
     # get each crash blocks data 
     def get_crash_data_object(self, crash_id):
         pass
 
-    '''
     # TODO : match JIRA to crash element blocks 
     def get_jira_maps_to_crash(self, crash_id):
         pass

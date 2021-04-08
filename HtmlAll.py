@@ -178,8 +178,9 @@ def get_crashtrace_data_and_id(version_url, crashtrace_id, keyword=null):
     crashtrace_data = False 
     
     for c in tree.xpath("//pre[@class='stacktrace']"): 
+        print('[DBG] crash id: ',c.get('id'))
     # regex match on id ?  
-        if c.get('id') == crashtrace_id:
+        if crashtrace_id in c.get('id') :
             crashtrace_element = c
             crashtrace_data = crashtrace_element.text_content()
             break

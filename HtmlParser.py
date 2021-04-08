@@ -14,6 +14,8 @@ class Html:
     def __init__(self, url):
         self.url = url
         self.tree = None
+
+        print("Init Html for {url} \n".format(url=url))
         try:
             r = requests.get(self.url, cookies=self.cookies)
             r.raise_for_status()
@@ -67,17 +69,18 @@ class Html:
             ClassList.append(t)
         return ClassList 
     
-    def getPreClassTextByID(self, classname, crash_id):
+    def getPreClassTextByID(self, classname, crash_trace_id):
         crash_content = ''
         #tree.xpath("//div[@class='panel panel-primary crash-item active-crash-panel']")
         for t in self.tree.xpath("//pre[@class='{classname}']".format(classname=classname)):
-            print("[DBG] id is : {myid}".format(myid=t.get('id')))
-            if t.get('id') == crash_id:
+            #print("[DBG] id is : {myid}".format(myid=t.get('id')))
+            if  crash_trace_id in t.get('id'):
                 crash_content = t.text_content()
                 break
         else:
             #url = self.url
-            raise Exception(" no crash match your ID:{crash_id} \n at {url} , please check".format(crash_id=crash_id, url=self.url))
+            raise Exception(" no crash match your ID:{crash_trace_id} \n at {url} , \
+                please check".format(crash_trace_id=crash_trace_id, url=self.url))
 
         return crash_content 
         
