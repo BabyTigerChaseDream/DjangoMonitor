@@ -112,11 +112,14 @@ class Report:
 
 # need page number to locate url contains crash element
 crash_element_info = namedtuple('crash_element_info',['element','pnum'])  
-crash_elements_detail = namedtuple('crash_elements_detail',['timestamp','platform','version','crash_id','is_new','is_oom','is_blacklisted','has_jira','crash_count','contents'])  
+crash_elements_detail = namedtuple('crash_elements_detail',['timestamp','platform','version','crash_id','is_new','is_oom','is_blacklisted','has_jira','crash_count','contents','devices'])  
 
 class Crashes:
     # assign default url : https://android-crashes.prod.booking.com/crash/report/2021-03-23/26.5/android/page/1
     page_url_temp ='https://android-crashes.prod.booking.com/crash/report/{daily}/{version}/{platform}/page/{pnum}'
+    # https://android-crashes.prod.booking.com/crash/report/2021-04-08/26.7.1/5815275/android
+    crash_id_url_temp = 'https://android-crashes.prod.booking.com/crash/report/{daily}/{version}/{crash_id}/{platform}'
+    
     # divclass names
 
     #def __init__(self, url=crash_url_debug):
@@ -217,6 +220,9 @@ class Crashes:
             
             contents = self.get_crash_id_contents(crash_id=crash_id,pnum=pnum)
 
+            # get crash device number
+            devices = self.get_crash_devices(crash_id=crash_id)
+
             # avoid dup when repeatedly calling this function 
             self.crash_elements_detail.append( 
                 crash_elements_detail(
@@ -229,7 +235,8 @@ class Crashes:
                     is_blacklisted=is_blacklisted,
                     has_jira=has_jira,
                     crash_count=crash_count,
-                    contents = contents
+                    contents = contents,
+                    devices = devices
                 ) 
             )
 
@@ -252,6 +259,26 @@ class Crashes:
         contents =pageHtml.getPreClassTextByID(classname="stacktrace", crash_trace_id=crash_trace_id)
 
         return contents
+
+    def get_crash_devices(self, crash_id):
+
+        c_id = crash_id.replace("crash-","")
+        print(" Crash ID : {c_id}".format(c_id = c_id) )
+
+        Regex ='(\d+) devices'
+        pattern = re.compile(Regex)
+
+        # generate crash_id url 
+        pageHtml = HtmlParser.Html(self.crash_id_url_temp.format(daily=self.timestamp, platform=self.platform, version=self.version, crash_id=c_id) )
+        pageHtmlString =  pageHtml.content.decode('utf-8')
+
+        G = pattern.search(pageHtmlString)
+        if G:
+            devices = G.groups()[0]
+        else:
+            devices = 0
+
+        return str(devices)
 
     '''
     # get each crash blocks data 
