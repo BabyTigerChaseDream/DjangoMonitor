@@ -5,6 +5,7 @@ import re
 from dbApi import MonitorDB
 from URLParser import Report,Crashes
 
+
 #######################################
 #     Glue logic to retrieve data 
 #######################################
@@ -85,4 +86,3 @@ class Record:
     def insert_crash_elements_to_db(self, keyword=None):
         self.monitor.create_table()
         self.monitor.insert_crash_elements(crash_elements_detail_list=self.crash_element_detail_lists)
-

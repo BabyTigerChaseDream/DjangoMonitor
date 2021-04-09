@@ -58,3 +58,15 @@ filter_new_crashes='https://android-crashes.prod.booking.com/crash/report/2021-0
 # get network request from browser window 
 # temp=https://android-crashes.prod.booking.com/crash/slack-send-crash?stacktrace_id={crash_id}&version={version}&date={date}
 # https://android-crashes.prod.booking.com/crash/slack-send-crash?stacktrace_id=5755595&version=26.5&date=2021-03-23
+
+### Pickle data 
+# namedtuple 
+'''
+    fname = 'crash_elements.txt'
+>>> with open(fname, 'ab') as f:
+...     for ce in R.crash_element_detail_lists:
+...             pickle.dump(ce,f)
+... 
+>>> with open(fname, 'rb') as f:
+...     data=pickle.load(f)
+...     print(data

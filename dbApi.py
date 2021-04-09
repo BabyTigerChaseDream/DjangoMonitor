@@ -31,12 +31,13 @@ class MonitorDB:
                 timestamp date,
                 version varchar(50),
                 crash_id varchar(50), 
+                devices int, 
                 is_new boolean default false,
                 is_oom boolean default false,
                 is_blacklisted boolean default false,
                 has_jira boolean default false,
                 crash_count int,
-                contents varchar(300),
+                contents text,
                 team varchar(50) default "",
                 owner varchar(50) default "",
                 mute boolean default false,
@@ -56,8 +57,8 @@ class MonitorDB:
 
         sql_insert_to_table = '''
             insert ignore into DailyCrashes \
-            (platform, timestamp, version, crash_id, is_new, is_oom, is_blacklisted, has_jira, crash_count, contents) \
-            values( \'{platform}\',\'{timestamp}\',\'{version}\',\'{crash_id}\',\'{is_new}\',\'{is_oom}\',\'{is_blacklisted}\',\'{has_jira}\',\'{crash_count}\',\'{contents}\');
+            (platform, timestamp, version, crash_id, devices, is_new, is_oom, is_blacklisted, has_jira, crash_count, contents) \
+            values( \'{platform}\',\'{timestamp}\',\'{version}\',\'{crash_id}\',\'{devices}\',\'{is_new}\',\'{is_oom}\',\'{is_blacklisted}\',\'{has_jira}\',\'{crash_count}\',\'{contents}\');
             '''
 
         if not len(crash_elements_detail_list):
@@ -73,7 +74,9 @@ class MonitorDB:
                 self.mydb.execute(sql_cmd)
                 #exit()
             except Exception as exp:
-                print("Failed on {sql_cmd} with err {exp}".format(sql_cmd=sql_cmd,exp=exp) )
+                #print("Failed on {sql_cmd} with err {exp}".format(sql_cmd=sql_cmd,exp=exp) )
+                print("Failed on {sql_cmd} ".format(sql_cmd=sql_cmd) )
+                exit()
 
     def fetch_crash_record(self, sql_cmd):
         try:

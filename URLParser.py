@@ -3,6 +3,7 @@ import requests
 from lxml import html
 import re
 from collections import namedtuple
+import pickle
 
 import CookieHelp
 import HtmlParser
@@ -112,7 +113,7 @@ class Report:
 
 # need page number to locate url contains crash element
 crash_element_info = namedtuple('crash_element_info',['element','pnum'])  
-crash_elements_detail = namedtuple('crash_elements_detail',['timestamp','platform','version','crash_id','is_new','is_oom','is_blacklisted','has_jira','crash_count','contents','devices'])  
+crash_elements_detail = namedtuple('crash_elements_detail',['timestamp','platform','version','crash_id','devices','is_new','is_oom','is_blacklisted','has_jira','crash_count','contents'])  
 
 class Crashes:
     # assign default url : https://android-crashes.prod.booking.com/crash/report/2021-03-23/26.5/android/page/1
@@ -201,11 +202,13 @@ class Crashes:
         return self.crash_elements
 
     # crash IDs is retreived per page url 
-    def get_crash_elements_detail(self):
+    def get_crash_elements_detail(self, infile=True):
 
         platform = self.platform
         version =  self.version
         timestamp = self.timestamp
+
+        fname = 'crash_element_cache.txt'
 
         for ce in self.crash_elements:
             element = ce.element
@@ -218,14 +221,13 @@ class Crashes:
             has_jira = element.get('has_jira')
             crash_count = element.get('crashes')
             
-            contents = self.get_crash_id_contents(crash_id=crash_id,pnum=pnum)
+            # convert "<class 'lxml.etree._ElementUnicodeResult'>" into string 
+            contents = repr(self.get_crash_id_contents(crash_id=crash_id,pnum=pnum))
 
             # get crash device number
             devices = self.get_crash_devices(crash_id=crash_id)
 
-            # avoid dup when repeatedly calling this function 
-            self.crash_elements_detail.append( 
-                crash_elements_detail(
+            crash_element_detail_unit = crash_elements_detail(
                     timestamp = timestamp,
                     platform = platform,
                     version = self.version,
@@ -237,8 +239,13 @@ class Crashes:
                     crash_count=crash_count,
                     contents = contents,
                     devices = devices
-                ) 
-            )
+                )  
+            # avoid dup when repeatedly calling this function 
+            self.crash_elements_detail.append(crash_element_detail_unit)
+
+            if(infile):
+                with open(fname, 'ab') as f:
+                    pickle.dump(crash_element_detail_unit, f)
 
         return self.crash_elements_detail
 
