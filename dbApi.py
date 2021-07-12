@@ -2,6 +2,10 @@
 from collections import namedtuple
 from db_helper import DBHelper
 
+#### 
+from sqlalchemy import create_engine, Table, Column, Integer, String, Date, Text, MetaData, ForeignKey, desc
+from sqlalchemy.orm import sessionmaker, relationship, backref, scoped_session
+
 #######################################
 ###     Database class  
 #######################################
@@ -9,9 +13,6 @@ from db_helper import DBHelper
 class MonitorDB:
     def __init__(self):
         self.mydb = DBHelper()
-        self.mydb.connect_db()
-
-        # connect to db
         self.mydb.connect_db()
 
         # check current database info / table 
@@ -51,14 +52,12 @@ class MonitorDB:
         except Exception as exp:
             print("Failed to exec {sql_create_cmd} with {exp}\n".format(sql_create_cmd=sql_create_cmd, exp=exp))
 
-    def insert_crash_elements(self, crash_elements_detail_list, table=None):
-        # TODO : table as parameter 
-        #table = table or self.table
+    def insert_crash_elements(self, crash_elements_detail_list):
 
         sql_insert_to_table = '''
             insert ignore into DailyCrashes \
             (platform, timestamp, version, crash_id, devices, is_new, is_oom, is_blacklisted, has_jira, crash_count, contents) \
-            values( \'{platform}\',\'{timestamp}\',\'{version}\',\'{crash_id}\',\'{devices}\',\'{is_new}\',\'{is_oom}\',\'{is_blacklisted}\',\'{has_jira}\',\'{crash_count}\',\'{contents}\');
+            values( \'{platform}\',\'{timestamp}\',\'{version}\',\'{crash_id}\',\'{devices}\',\'{is_new}\',\'{is_oom}\',\'{is_blacklisted}\',\'{has_jira}\',\'{crash_count}\', {contents});
             '''
 
         if not len(crash_elements_detail_list):
@@ -70,13 +69,15 @@ class MonitorDB:
             #print(**(ce._asdict()) )
             try:
                 sql_cmd = sql_insert_to_table.format (**(ce._asdict())) 
-                #print( "[DBG Sql cmd] ", sql_cmd )
+                print( "### SQL cmd :  ", sql_cmd )
+                print("\n ----------- \n")
                 self.mydb.execute(sql_cmd)
                 #exit()
             except Exception as exp:
                 #print("Failed on {sql_cmd} with err {exp}".format(sql_cmd=sql_cmd,exp=exp) )
                 print("Failed on {sql_cmd} ".format(sql_cmd=sql_cmd) )
                 exit()
+                #print(" ------ > BYE ")
 
     def fetch_crash_record(self, sql_cmd):
         try:
@@ -86,3 +87,33 @@ class MonitorDB:
             print("Failed to execute cmd :", sql_cmd)
 
         return results
+
+    def select_crash_elements_from_db(self, sql_cmd):
+        # TODO : table as parameter 
+        #table = table or self.table
+
+        sql_select_from_table = '''
+            insert ignore into DailyCrashes \
+            (platform, timestamp, version, crash_id, devices, is_new, is_oom, is_blacklisted, has_jira, crash_count, contents) \
+            values( \'{platform}\',\'{timestamp}\',\'{version}\',\'{crash_id}\',\'{devices}\',\'{is_new}\',\'{is_oom}\',\'{is_blacklisted}\',\'{has_jira}\',\'{crash_count}\', {contents});
+            '''
+
+        if not len(crash_elements_detail_list):
+            raise Exception("crash elements is empty \n")
+        else:
+            print("### Total element to insert {num} ###\n".format(num = len(crash_elements_detail_list) ))
+
+        for ce in crash_elements_detail_list:
+            #print(**(ce._asdict()) )
+            try:
+                sql_cmd = sql_insert_to_table.format (**(ce._asdict())) 
+                print( "### SQL cmd :  ", sql_cmd )
+                print("\n ----------- \n")
+                self.mydb.execute(sql_cmd)
+                #exit()
+            except Exception as exp:
+                #print("Failed on {sql_cmd} with err {exp}".format(sql_cmd=sql_cmd,exp=exp) )
+                print("Failed on {sql_cmd} ".format(sql_cmd=sql_cmd) )
+                exit()
+                #print(" ------ > BYE ")
+

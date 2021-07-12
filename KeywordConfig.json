@@ -1,0 +1,23 @@
+[
+
+    {
+        "date": "2021-04-13",
+        "platform": "android",
+        "version": "26.7.1",
+        "devicesBar": "5",
+        "crashesBar": "234",
+        "contentkey": "['GC','QA']",
+        "team": "['GC','QA']",
+        "owner": "KK"
+    },
+    {
+        "date": "2021-04-12",
+        "platform": "android",
+        "version": "26.7",
+        "devicesBar": "1",
+        "crashesBar": "92",
+        "contentkey": "['QA']",
+        "team": "GC",
+        "owner": "Jia"
+    }
+]
