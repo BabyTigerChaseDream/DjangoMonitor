@@ -1,7 +1,0 @@
-{
-    "host": "localhost",
-    "port": "3306",
-    "user": "django",
-    "password": "123456",
-    "db": "qa"
-}

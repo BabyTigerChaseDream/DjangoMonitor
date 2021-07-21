@@ -2,35 +2,11 @@
 
 import pymysql
 from sshtunnel import SSHTunnelForwarder
-import os
-import json
 
 
 class DBHelper:
 
-    def __init__(self):
-        curPath = os.path.abspath(os.path.dirname(__file__))
-        configPath = curPath + "/dbConfig.json"
-        f = open(configPath,encoding='utf-8')
-        config = json.load(f)
-        host = config['host']
-        port = int(config['port'])
-        user = config['user']
-        password = config['password']
-        db = config['db']
-        self.initialize(host,user,password,port,db)
-
-    def initialize(self, host, user, password, port, db):
-        self.host = host
-        self.user = user
-        self.password = password
-        self.port = port
-        self.db = db
-        self.conn = None
-        self.cur = None
-        self.svr = None
-
-    def initializeSsh(self, host, user, password, port, db, ssh_server, ssh_port, ssh_username):
+    def __init__(self, host, user, password, port, db, ssh_server, ssh_port, ssh_username):
         self.host = host
         self.user = user
         self.password = password
@@ -97,16 +73,15 @@ class DBHelper:
         try:
             self.cur.execute(sql_str, params)
             self.conn.commit()
-            print("Execution Done: ", sql_str.encode('utf-8'))
+            print("Execution Done: ", sql_str)
         except Exception as exp:
-            print("Execution Failed when running: ", sql_str.encode('utf-8'), " Error: ", exp)
+            print("Execution Failed when running: ", sql_str, " Error: ", exp)
 
     def query(self, sql_str, params=None):
         try:
             self.cur.execute(sql_str, params)
             results = self.cur.fetchall()
-            print("Query Done: ", sql_str.encode('utf-8'))
+            print("Query Done: ", sql_str)
             return results
         except Exception as exp:
-            print("Query Failed when running: ", sql_str.encode('utf-8'), " Error: ", exp)
-            return None
+            print("Query Failed when running: ", sql_str, " Error: ", exp)
