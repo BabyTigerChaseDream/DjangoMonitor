@@ -1,0 +1,123 @@
+>>> android_rw.table_names()
+['AggregationAppStatsDaily', 'AggregationAppVersionDaily', 'AggregationCrashDaily', 'AnalyzerExperimentSettings', 'AnalyzerExperimentSettingsAudit', 'AnalyzerMetrics', 'AnalyzerNotifications', 'AppReleaseManagerCandidates', 'A
+ppType', 'AppVersion', 'Build', 'BuildByType', 'BuildPrimaryTask', 'Committer', 'Crash', 'CrashExpServer', 'Device', 'Environment', 'ExpServer', 'FileStorage', 'GitlabBuildNumber', 'IOSAppRawCrash', 'IosSymbolicationStatus', '
+IosSymbolicationStatusRaw', 'LastRunTime', 'ModulePackageMapping', 'NoteType', 'PostBookingUsersDaily', 'ReleaseClientOutput', 'ReleaseConfig', 'ReleaseExperimentNote', 'ReleaseNote', 'ReleaseNoteType', 'ReleaseProcess', 'Rele
+aseProcessManagers', 'ReleaseProcessStep', 'ReleaseProcessStepLog', 'ReleaseRegressionTesters', 'ReleaseStep', 'ReleaseStepAttachments', 'ReleaseTeam', 'ReleaseType', 'ReleaseVersion', 'SqueakName', 'SqueakType', 'Stacktrace',
+ 'StacktraceGit', 'StacktraceJira', 'StacktraceOwnable', 'StacktraceRaw', 'db_waypoint', 'firebase_crashlytics_com_booking_ANDROID', 'firebase_crashlytics_com_booking_ANDROID_sync', 'firebase_crashlytics_com_booking_BookingApp
+_IOS', 'firebase_crashlytics_com_booking_hotelmanager_ANDROID', 'firebase_crashlytics_com_booking_pulse_IOS', 'firebase_crashlytics_jira_sync', 'release_page_kvstore']
+>>>
+>>> from sqlalchemy.orm import sessionmaker, scoped_session
+>>> from sqlalchemy import MetaData
+>>>
+>>> MetaData.tables
+MetaData.tables
+>>> MetaData.tables
+>>> from sqlalchemy.ext.declarative import declarative_base
+>>>
+>>> Base = sqlalchemy.ext.declarative.declarative_base()
+>>> Base.metadata
+MetaData()
+>>> Base.metadata.reflect(bind=android_rw)
+>>>
+>>> type(android_rw)
+<class 'sqlalchemy.engine.base.Engine'>
+>>>
+>>> metadata=MetaData()
+>>> metadata.reflect(bind=android_rw)
+>>> for t in metadata.sorted_tables:
+...     print(t)
+...
+firebase_crashlytics_com_booking_ANDROID
+firebase_crashlytics_com_booking_ANDROID_sync
+firebase_crashlytics_com_booking_BookingApp_IOS
+firebase_crashlytics_jira_sync
+>>>
+>>> metadata.tables
+'# skip all table other than android crash '
+FacadeDict({'firebase_crashlytics_com_booking_ANDROID': Table('firebase_crashlytics_com_booking_ANDROID', MetaData(), Column('platform', VAR
+CHAR(length=255), table=<firebase_crashlytics_com_booking_ANDROID>), Column('bundle_identifier', VARCHAR(length=255), table=<firebase_crashlytics_com_booking_ANDROID>), Column('event_id', VARCHAR(length=255), table=<firebase_c
+rashlytics_com_booking_ANDROID>, primary_key=True, nullable=False), Column('is_fatal', TINYINT(display_width=1), table=<firebase_crashlytics_com_booking_ANDROID>), Column('issue_id', VARCHAR(length=255), table=<firebase_crashl
+ytics_com_booking_ANDROID>), Column('issue_title', VARCHAR(length=255), table=<firebase_crashlytics_com_booking_ANDROID>), Column('issue_subtitle', VARCHAR(length=255), table=<firebase_crashlytics_com_booking_ANDROID>), Column
+('event_timestamp', TIMESTAMP(), table=<firebase_crashlytics_com_booking_ANDROID>), Column('received_timestamp', TIMESTAMP(), table=<firebase_crashlytics_com_booking_ANDROID>), Column('device', JSON(), table=<firebase_crashlyt
+ics_com_booking_ANDROID>), Column('_memory', JSON(), table=<firebase_crashlytics_com_booking_ANDROID>), Column('_storage', JSON(), table=<firebase_crashlytics_com_booking_ANDROID>), Column('operating_system', JSON(), table=<fi
+rebase_crashlytics_com_booking_ANDROID>), Column('application', JSON(), table=<firebase_crashlytics_com_booking_ANDROID>), Column('_user', JSON(), table=<firebase_crashlytics_com_booking_ANDROID>), Column('custom_keys', JSON()
+, table=<firebase_crashlytics_com_booking_ANDROID>), Column('installation_uuid', VARCHAR(length=255), table=<firebase_crashlytics_com_booking_ANDROID>), Column('crashlytics_sdk_version', VARCHAR(length=255), table=<firebase_cr
+ashlytics_com_booking_ANDROID>), Column('app_orientation', VARCHAR(length=255), table=<firebase_crashlytics_com_booking_ANDROID>), Column('device_orientation', VARCHAR(length=255), table=<firebase_crashlytics_com_booking_ANDRO
+ID>), Column('process_state', VARCHAR(length=255), table=<firebase_crashlytics_com_booking_ANDROID>), Column('_logs', JSON(), table=<firebase_crashlytics_com_booking_ANDROID>), Column('breadcrumbs', JSON(), table=<firebase_cra
+shlytics_com_booking_ANDROID>), Column('blame_frame', JSON(), table=<firebase_crashlytics_com_booking_ANDROID>), Column('exceptions', JSON(), table=<firebase_crashlytics_com_booking_ANDROID>), Column('_errors', JSON(), table=<
+firebase_crashlytics_com_booking_ANDROID>), Column('threads', JSON(), table=<firebase_crashlytics_com_booking_ANDROID>), Column('experiments', JSON(), table=<firebase_crashlytics_com_booking_ANDROID>), schema=None), 'firebase_
+crashlytics_com_booking_ANDROID_sync': Table('firebase_crashlytics_com_booking_ANDROID_sync', MetaData(), Column('id', INTEGER(unsigned=True), table=<firebase_crashlytics_com_booking_ANDROID_sync>, primary_key=True, nullable=F
+alse), Column('last_sync_start', TIMESTAMP(fsp=6), table=<firebase_crashlytics_com_booking_ANDROID_sync>), Column('local_table', VARCHAR(length=128), table=<firebase_crashlytics_com_booking_ANDROID_sync>), Column('firebase_tab
+le', VARCHAR(length=128), table=<firebase_crashlytics_com_booking_ANDROID_sync>), schema=None)})
+>>>
+>>> for t in metadata.tables:
+...     print(t)
+...     print(type(t))
+...
+firebase_crashlytics_com_booking_ANDROID
+<class 'str'>
+firebase_crashlytics_com_booking_ANDROID_sync
+<class 'str'>
+firebase_crashlytics_com_booking_BookingApp_IOS
+<class 'str'>
+firebase_crashlytics_com_booking_hotelmanager_ANDROID
+<class 'str'>
+firebase_crashlytics_com_booking_pulse_IOS
+<class 'str'>
+firebase_crashlytics_jira_sync
+<class 'str'>
+release_page_kvstore
+<class 'str'>
+>>>
+>>> for t in metadata.tables.:
+metadata.tables.clear(       metadata.tables.fromkeys(    metadata.tables.items(       metadata.tables.pop(         metadata.tables.setdefault(  metadata.tables.values(
+metadata.tables.copy(        metadata.tables.get(         metadata.tables.keys(        metadata.tables.popitem(     metadata.tables.update(
+>>>
+>>> T=metadata.tables
+>>> T.keys()
+dict_keys(['AggregationAppStatsDaily', 'AggregationAppVersionDaily', 'AggregationCrashDaily', 'AnalyzerExperimentSettings', 'AnalyzerExperimentSettingsAudit', 'AnalyzerMetrics', 'AnalyzerNotifications', 'AppReleaseManagerCandi
+dates', 'AppType', 'AppVersion', 'Build', 'BuildByType', 'BuildPrimaryTask', 'Committer', 'Crash', 'CrashExpServer', 'Device', 'Environment', 'ExpServer', 'FileStorage', 'GitlabBuildNumber', 'IOSAppRawCrash', 'IosSymbolication
+Status', 'IosSymbolicationStatusRaw', 'LastRunTime', 'ModulePackageMapping', 'NoteType', 'PostBookingUsersDaily', 'ReleaseClientOutput', 'ReleaseConfig', 'ReleaseExperimentNote', 'ReleaseNote', 'ReleaseNoteType', 'ReleaseProce
+ss', 'ReleaseProcessManagers', 'ReleaseProcessStep', 'ReleaseProcessStepLog', 'ReleaseRegressionTesters', 'ReleaseStep', 'ReleaseStepAttachments', 'ReleaseTeam', 'ReleaseType', 'ReleaseVersion', 'SqueakName', 'SqueakType', 'St
+acktrace', 'StacktraceGit', 'StacktraceJira', 'StacktraceOwnable', 'StacktraceRaw', 'db_waypoint', 'firebase_crashlytics_com_booking_ANDROID', 'firebase_crashlytics_com_booking_ANDROID_sync', 'firebase_crashlytics_com_booking_
+BookingApp_IOS', 'firebase_crashlytics_com_booking_hotelmanager_ANDROID', 'firebase_crashlytics_com_booking_pulse_IOS', 'firebase_crashlytics_jira_sync', 'release_page_kvstore'])
+>>>
+>>> T.
+T.clear(       T.copy(        T.fromkeys(    T.get(         T.items(       T.keys(        T.pop(         T.popitem(     T.setdefault(  T.update(      T.values(
+>>> T.get(
+... 'firebase_crashlytics_com_booking_ANDROID')
+Table('firebase_crashlytics_com_booking_ANDROID', MetaData(), Column('platform', VARCHAR(length=255), table=<firebase_crashlytics_com_booking_ANDROID>), Column('bundle_identifier', VARCHAR(length=255), table=<firebase_crashlyt
+ics_com_booking_ANDROID>), Column('event_id', VARCHAR(length=255), table=<firebase_crashlytics_com_booking_ANDROID>, primary_key=True, nullable=False), Column('is_fatal', TINYINT(display_width=1), table=<firebase_crashlytics_c
+om_booking_ANDROID>), Column('issue_id', VARCHAR(length=255), table=<firebase_crashlytics_com_booking_ANDROID>), Column('issue_title', VARCHAR(length=255), table=<firebase_crashlytics_com_booking_ANDROID>), Column('issue_subti
+tle', VARCHAR(length=255), table=<firebase_crashlytics_com_booking_ANDROID>), Column('event_timestamp', TIMESTAMP(), table=<firebase_crashlytics_com_booking_ANDROID>), Column('received_timestamp', TIMESTAMP(), table=<firebase_
+crashlytics_com_booking_ANDROID>), Column('device', JSON(), table=<firebase_crashlytics_com_booking_ANDROID>), Column('_memory', JSON(), table=<firebase_crashlytics_com_booking_ANDROID>), Column('_storage', JSON(), table=<fire
+base_crashlytics_com_booking_ANDROID>), Column('operating_system', JSON(), table=<firebase_crashlytics_com_booking_ANDROID>), Column('application', JSON(), table=<firebase_crashlytics_com_booking_ANDROID>), Column('_user', JSO
+N(), table=<firebase_crashlytics_com_booking_ANDROID>), Column('custom_keys', JSON(), table=<firebase_crashlytics_com_booking_ANDROID>), Column('installation_uuid', VARCHAR(length=255), table=<firebase_crashlytics_com_booking_
+ANDROID>), Column('crashlytics_sdk_version', VARCHAR(length=255), table=<firebase_crashlytics_com_booking_ANDROID>), Column('app_orientation', VARCHAR(length=255), table=<firebase_crashlytics_com_booking_ANDROID>), Column('dev
+ice_orientation', VARCHAR(length=255), table=<firebase_crashlytics_com_booking_ANDROID>), Column('process_state', VARCHAR(length=255), table=<firebase_crashlytics_com_booking_ANDROID>), Column('_logs', JSON(), table=<firebase_
+crashlytics_com_booking_ANDROID>), Column('breadcrumbs', JSON(), table=<firebase_crashlytics_com_booking_ANDROID>), Column('blame_frame', JSON(), table=<firebase_crashlytics_com_booking_ANDROID>), Column('exceptions', JSON(),
+table=<firebase_crashlytics_com_booking_ANDROID>), Column('_errors', JSON(), table=<firebase_crashlytics_com_booking_ANDROID>), Column('threads', JSON(), table=<firebase_crashlytics_com_booking_ANDROID>), Column('experiments',
+ JSON(), table=<firebase_crashlytics_com_booking_ANDROID>), schema=None)
+>>>
+>>>
+>>> firebase_t_android=T.get('firebase_crashlytics_com_booking_ANDROID')
+>>> firebase_t_android.
+firebase_t_android.add_is_dependent_on(           firebase_t_android.delete(                        firebase_t_android.insert(                        firebase_t_android.replace_selectable(
+firebase_t_android.alias(                         firebase_t_android.description                    firebase_t_android.is_clause_element              firebase_t_android.schema
+firebase_t_android.allows_lambda                  firebase_t_android.dialect_kwargs                 firebase_t_android.is_derived_from(               firebase_t_android.select(
+firebase_t_android.append_column(                 firebase_t_android.dialect_options                firebase_t_android.is_selectable                  firebase_t_android.selectable
+firebase_t_android.append_constraint(             firebase_t_android.dispatch                       firebase_t_android.join(                          firebase_t_android.self_group(
+firebase_t_android.argument_for(                  firebase_t_android.drop(                          firebase_t_android.key                            firebase_t_android.stringify_dialect
+firebase_t_android.bind                           firebase_t_android.entity_namespace               firebase_t_android.kwargs                         firebase_t_android.supports_execution
+firebase_t_android.c                              firebase_t_android.exists(                        firebase_t_android.lateral(                       firebase_t_android.table_valued(
+firebase_t_android.columns                        firebase_t_android.exported_columns               firebase_t_android.memoized_attribute(            firebase_t_android.tablesample(
+firebase_t_android.comment                        firebase_t_android.foreign_key_constraints        firebase_t_android.memoized_instancemethod(       firebase_t_android.to_metadata(
+firebase_t_android.compare(                       firebase_t_android.foreign_keys                   firebase_t_android.metadata                       firebase_t_android.tometadata(
+firebase_t_android.compile(                       firebase_t_android.fullname                       firebase_t_android.name                           firebase_t_android.unique_params(
+firebase_t_android.constraints                    firebase_t_android.get_children(                  firebase_t_android.named_with_column              firebase_t_android.update(
+firebase_t_android.corresponding_column(          firebase_t_android.implicit_returning             firebase_t_android.outerjoin(                     firebase_t_android.uses_inspection
+firebase_t_android.create(                        firebase_t_android.indexes                        firebase_t_android.params(
+firebase_t_android.create_drop_stringify_dialect  firebase_t_android.info                           firebase_t_android.primary_key
+>>> firebase_t_android.columns
+<sqlalchemy.sql.base.ImmutableColumnCollection object at 0x10712c1d0>
+>>>

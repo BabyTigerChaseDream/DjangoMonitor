@@ -1,0 +1,3 @@
+pip3 install schedule
+pip3 install bkng-infra-libs
+pip3 install bkng-infra-db

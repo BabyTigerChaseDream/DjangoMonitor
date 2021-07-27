@@ -1,0 +1,73 @@
+android(ro)>
+Goodbye!
+[jiaguo@jiaguo-devcronapp-01 (cron) ~]$
+[jiaguo@jiaguo-devcronapp-01 (cron) ~]$ mysqly --fancy android -u devcronapp_cron_android65 -p bNWGiboBmRzQj9o2
+mysql 8.0.23-SR3
+mycli 1.19.0
+Chat: https://gitter.im/dbcli/mycli
+Mail: https://groups.google.com/forum/#!forum/mycli-users
+Home: http://mycli.net
+Thanks to the contributor - Terseus
+android(ro)>
+android(ro)> select issue_id,application, array_agg(count(distinct application.display_version)) as app_versions, count(distinct event_id) as total_events, count(distinct installation_uui
+             d) as total_users from `firebase_crashlytics_com_booking_ANDROID` where event_timestamp >= '2021-07-25 09:58:50' and event_timestamp <= '2021-07-25 19:58:50' limit 3;
+(1370, "execute command denied to user 'devcronapp_cron_android54'@'10.%' for routine 'android.array_agg'")
+android(ro)>
+android(ro)>
+Goodbye!
+[jiaguo@jiaguo-devcronapp-01 (cron) ~]$
+[jiaguo@jiaguo-devcronapp-01 (cron) ~]$ mysqly --fancy android -u devcronapp_cron_android65 -p bNWGiboBmRzQj9o2 -h dev-androidmdb-vip.lhr4.dqs.booking.com
+mysql 8.0.23-SR3
+mycli 1.19.0
+Chat: https://gitter.im/dbcli/mycli
+Mail: https://groups.google.com/forum/#!forum/mycli-users
+Home: http://mycli.net
+Thanks to the contributor - Darik Gamble
+android(ro)>
+Goodbye!
+[jiaguo@jiaguo-devcronapp-01 (cron) ~]$
+[jiaguo@jiaguo-devcronapp-01 (cron) ~]$ mysqly --fancy android -u devcronapp_cron_android65 -h dev-androidmdb-vip.lhr4.dqs.booking.com
+mysql 8.0.23-SR3
+mycli 1.19.0
+Chat: https://gitter.im/dbcli/mycli
+Mail: https://groups.google.com/forum/#!forum/mycli-users
+Home: http://mycli.net
+Thanks to the contributor - Martijn Engler
+android(ro)>
+Goodbye!
+[jiaguo@jiaguo-devcronapp-01 (cron) ~]$ ssh dev-androidmdb-vip.lhr4.dqs.booking.com
+The authenticity of host 'dev-androidmdb-vip.lhr4.dqs.booking.com (10.221.81.112)' can't be established.
+RSA key fingerprint is SHA256:BOJoUUWxc6G3th2CgjtJQ0x9C46ecbAgKT8yXlS2Qqc.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added 'dev-androidmdb-vip.lhr4.dqs.booking.com' (RSA) to the list of known hosts.
+
+You are connecting from an unauthorized part of the network!
+
+In order to access this server, please use the citadel servers as
+jump host as documented here:
+
+  https://docs.booking.com/security-services/ssh/index.html
+
+Goodbye
+Received disconnect from 10.221.81.112 port 22:2: no authentication methods enabled
+Disconnected from 10.221.81.112 port 22
+[jiaguo@jiaguo-devcronapp-01 (cron) ~]$
+[jiaguo@jiaguo-devcronapp-01 (cron) ~]$
+[jiaguo@jiaguo-devcronapp-01 (cron) ~]$
+[jiaguo@jiaguo-devcronapp-01 (cron) ~]$ mysqly --fancy android
+mysql 8.0.23-SR3
+mycli 1.19.0
+Chat: https://gitter.im/dbcli/mycli
+Mail: https://groups.google.com/forum/#!forum/mycli-users
+Home: http://mycli.net
+Thanks to the contributor - Kacper Kwapisz
+android(ro)> select issue_id,application, array_agg(count(distinct application.display_version)) as app_versions, count(distinct event_id) as total_events, count(distinct installation_uuid)
+             as total_users from `firebase_crashlytics_com_booking_ANDROID` where event_timestamp >= '2021-07-25 09:58:50' and event_timestamp <= '2021-07-25 19:58:50' limit 3;
+
+
+
+
+
+
+ [F3] Multiline: OFF    Right-arrow to complete suggestion
