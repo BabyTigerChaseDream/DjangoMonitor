@@ -3,7 +3,7 @@
 ###################################
 
 [Table 1 : collect all ios/android crash data]
-issue_id, issue_title, issue_subtitle, total_users, crash_count, exceptions(blame_frame), last_retrieve_date, [app version list ?]
+issue_id, issue_title, issue_subtitle, total_users, crash_count, exceptions(blame_frame), event_timestamp, [app version list ?]
 	>>> exceptions(blame_frame): just leave fields we need in table from orignal data  
 
 [Table 2 : tag issue id with teams]

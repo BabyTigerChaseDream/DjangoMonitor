@@ -99,7 +99,6 @@ crashlytics_com_booking_ANDROID>), Column('breadcrumbs', JSON(), table=<firebase
 table=<firebase_crashlytics_com_booking_ANDROID>), Column('_errors', JSON(), table=<firebase_crashlytics_com_booking_ANDROID>), Column('threads', JSON(), table=<firebase_crashlytics_com_booking_ANDROID>), Column('experiments',
  JSON(), table=<firebase_crashlytics_com_booking_ANDROID>), schema=None)
 >>>
->>>
 >>> firebase_t_android=T.get('firebase_crashlytics_com_booking_ANDROID')
 >>> firebase_t_android.
 firebase_t_android.add_is_dependent_on(           firebase_t_android.delete(                        firebase_t_android.insert(                        firebase_t_android.replace_selectable(

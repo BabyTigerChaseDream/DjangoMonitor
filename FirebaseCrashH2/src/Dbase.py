@@ -2,64 +2,89 @@ from sqlalchemy import create_engine, Table, Column, Integer, String, Date, Text
 
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, relationship, backref
-from sqlalchemy.sql import insert, select, update, delete
-from sqlalchemy.sql import or_, and_, any_, not_
-
+#from sqlalchemy.sql import insert, select, update, delete
+#from sqlalchemy.sql import or_, and_, any_, not_
+from sqlalchemy.types import JSON 
 
 Base = declarative_base()
 
-class Changlist(Base):
-    __tablename__ = 'Changelist'
+'''
+class ReservedDB(Base):
+    __tablename__ = 'ReservedDB'
 
     id = Column(Integer, primary_key=True)
-    CL = Column(String(20))
-    version = Column(String(20))
-    date = Column(Date)
-    test_type = Column(String(10))
-    status = Column(String(16))
+    issue_id = Column(String(20))
+    event_timestamp = Column(Date)
 
-    triageData_list = relationship("TriageData", backref="Changelist")
+    triageData_list = relationship("FirebaseCrashes", backref="ReservedDB")
 
     def __str__(self):
-        return str(self.id)
+        return ':'.join(str(self.id), str(self.version), str(self.date))
 
     def to_json(self):
         return {
             'id': self.id,
-            'CL': self.CL,
-            "version": self.version,
-            "date": self.date,
-            "type": self.test_type
+            'issue_id': self.issue_id,
+            "event_timestamp": self.event_timestamp
         }
+'''
 
 class Dbase:
-    conn_string = 'mysql+pymysql://root:123456@10.19.193.83:3306/cudnn_auto_triage'
+    conn_string = 'mysql+pymysql://root:123456@localhost:3306/FirebaseCrashes'
     connection = None
     engine = None
-    database = "try"
+    database = "FirebaseCrashes"
     # TODO: create DB
     # conn_string = None
     metadata = Base.metadata
 
-    # UUID table:store each UUID daily
-    submission = Table('Submission',
+    # android crash : android daily crash data
+    submission = Table('firebase_crashlytics_android',
                        metadata,
-                       Column('subm_id', Integer(),
+                       Column('id', Integer(),
                               primary_key=True, autoincrement=True),
-                       Column('uuid', String(50), index=True,
+                       Column('issue_id', String(50), index=True,
                               nullable=False, unique=True),
-                       Column('date', DateTime()),
-                       Column('changelist', Integer(), index=True),
-                       Column('tag', String(300)),
-                       UniqueConstraint('uuid')
+                       Column('issue_title', String(500)),
+                       Column('issue_subtitle', String(500)),
+                       Column('total_user', Integer()),
+                       Column('crash_count', Integer()),
+					   # TODO: string to datetime
+                       Column('event_timestamp', DateTime()),
+                       Column('platform', String(50),default='android'),
+                       Column('app_version', String(50)),
+					   Column('crashframes',JSON),
+                       UniqueConstraint('issue_id')
                        )
 
+    # ios crash : ios daily crash data
+    submission = Table('firebase_crashlytics_ios',
+                       metadata,
+                       Column('id', Integer(),
+                              primary_key=True, autoincrement=True),
+                       Column('issue_id', String(50), index=True,
+                              nullable=False, unique=True),
+                       Column('issue_title', String(500)),
+                       Column('issue_subtitle', String(500)),
+                       Column('total_user', Integer()),
+                       Column('crash_count', Integer()),
+					   # TODO: string to datetime
+                       Column('event_timestamp', DateTime()),
+                       Column('platform', String(50),default='ios'),
+                       Column('app_version', String(50)),
+					   Column('crashframes',JSON),
+                       UniqueConstraint('issue_id')
+                       )
     # test resus matrix
-    test = Table('Test',
+    test = Table('firebase_crashlytics_jira',
                  metadata,
                  Column('id', Integer(), primary_key=True, autoincrement=True),
-                 Column('hw', String(30)),
-                 UniqueConstraint('TBD')
+				 # issue_id in firebase_crashlytics_'platform'
+                 Column('issue_id', String(50), index=True, nullable=False, unique=True),
+                 Column('ticket_id', String(50), index=True, nullable=False, unique=True),
+				 # TODO : check logic of jira filed date
+                 #Column('file_timestamp', DateTime()),
+                 UniqueConstraint('issue_id')
                  )
 
  
