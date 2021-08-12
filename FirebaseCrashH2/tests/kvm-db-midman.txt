@@ -1,0 +1,65 @@
+warning: reattach-to-user-namespace: unsupported new OS, trying as if it were 10.10
+
+The default interactive shell is now zsh.
+To update your account to use zsh, please run `chsh -s /bin/zsh`.
+For more details, please visit https://support.apple.com/kb/HT208050.
+C02ZL0QPLVDN:~ jiaguo$ nslookup dc801experiencesdbrdb-01.fab4.dqs.booking.com
+Server:         10.126.193.10
+Address:        10.126.193.10#53
+
+Non-authoritative answer:
+Name:   dc801experiencesdbrdb-01.fab4.dqs.booking.com
+Address: 10.221.46.223
+
+C02ZL0QPLVDN:~ jiaguo$ nslookup 10.221.46.223
+Server:         10.126.193.10
+Address:        10.126.193.10#53
+
+Non-authoritative answer:
+223.46.221.10.in-addr.arpa      name = dc801experiencesdbrdb-01.fab4.dqs.booking.com.
+
+Authoritative answers can be found from:
+
+C02ZL0QPLVDN:~ jiaguo$
+C02ZL0QPLVDN:~ jiaguo$
+C02ZL0QPLVDN:~ jiaguo$
+C02ZL0QPLVDN:~ jiaguo$ nslookup 10.199.15.94
+Server:         10.126.193.10
+Address:        10.126.193.10#53
+
+Non-authoritative answer:
+94.15.199.10.in-addr.arpa       name = dc101androiddbrdb-01.ams4.dqs.booking.com.
+
+Authoritative answers can be found from:
+
+C02ZL0QPLVDN:~ jiaguo$ nslookup dc101androiddbrdb-01.ams4.dqs.booking.com
+Server:         10.126.193.10
+Address:        10.126.193.10#53
+
+Non-authoritative answer:
+Name:   dc101androiddbrdb-01.ams4.dqs.booking.com
+Address: 10.199.15.94
+
+C02ZL0QPLVDN:~ jiaguo$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

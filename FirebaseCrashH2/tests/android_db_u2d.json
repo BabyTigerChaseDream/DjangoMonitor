@@ -1,0 +1,4213 @@
+{
+    "cassandra": {
+        "cas_account_security": {
+            "client_recommended_versions": [
+                "java-3.3.3",
+                "perl-1.005"
+            ],
+            "keyspace": "account_security",
+            "password": "dummy",
+            "port": 10000,
+            "username": "s2s-cronapp",
+            "zk_pool": "cas_dqs"
+        },
+        "cas_barbedwirefence": {
+            "client_recommended_versions": [
+                "java-3.3.3",
+                "perl-1.005"
+            ],
+            "keyspace": "barbedwirefence",
+            "password": "dummy",
+            "port": 10000,
+            "username": "s2s-cronapp",
+            "zk_pool": "cas_dqs"
+        },
+        "cas_camel": {
+            "client_recommended_versions": [
+                "java-3.3.3",
+                "perl-1.005"
+            ],
+            "keyspace": "camel",
+            "password": "dummy",
+            "port": 10000,
+            "username": "s2s-cronapp",
+            "zk_pool": "cas_dqs"
+        },
+        "cas_emk": {
+            "client_recommended_versions": [
+                "java-3.3.3",
+                "perl-1.005"
+            ],
+            "keyspace": "emk",
+            "password": "dummy",
+            "port": 10000,
+            "username": "s2s-cronapp",
+            "zk_pool": "cas_dqs"
+        },
+        "cas_resnote": {
+            "client_recommended_versions": [
+                "java-3.3.3",
+                "perl-1.005"
+            ],
+            "keyspace": "resnote",
+            "password": "dummy",
+            "port": 10000,
+            "username": "s2s-cronapp",
+            "zk_pool": "cas_dqs"
+        },
+        "cas_riskengine": {
+            "client_recommended_versions": [
+                "java-3.3.3",
+                "perl-1.005"
+            ],
+            "keyspace": "riskengine",
+            "password": "dummy",
+            "port": 10000,
+            "username": "s2s-cronapp",
+            "zk_pool": "cas_dqs"
+        }
+    },
+    "database": {
+        "accommodation_facilities": {
+            "ro": {
+                "database": "accommodation_facilities",
+                "driver": "mysql",
+                "password": "AAI4LD1prgdHhiU7",
+                "rdbprod_roster": "bpdb-rdbprod",
+                "roster": "bpdb-dqs_set",
+                "username": "devcronap_cron_accommodation_f20"
+            },
+            "rw": {
+                "database": "accommodation_facilities",
+                "driver": "mysql",
+                "host": "dev-bpmdb-vip.lhr4.dqs.booking.com",
+                "password": "4R447KZCA28tnqn4",
+                "username": "devcronap_cron_accommodation_f47"
+            }
+        },
+        "acquisition": {
+            "ro": {
+                "database": "acq",
+                "driver": "mysql",
+                "password": "0dhlTG_y_6gIvTuJ",
+                "rdbprod_roster": "acqdb-rdbprod",
+                "roster": "acqdb-dqs_set",
+                "username": "devcronapp_cron_acquisition24"
+            },
+            "rw": {
+                "database": "acq",
+                "driver": "mysql",
+                "host": "dev-acqmdb-vip.lhr4.dqs.booking.com",
+                "password": "i43SLu4BNqmqW9Jd",
+                "username": "devcronapp_cron_acquisition99"
+            }
+        },
+        "acquisition_archive": {
+            "ro": {
+                "database": "acq_arc",
+                "driver": "mysql",
+                "password": "3QvLlwKGIQUCgW_k",
+                "rdbprod_roster": "acqdb-rdbprod",
+                "roster": "acqdb-dqs_set",
+                "username": "devcronap_cron_acquisition_arc92"
+            },
+            "rw": {
+                "database": "acq_arc",
+                "driver": "mysql",
+                "host": "dev-acqmdb-vip.lhr4.dqs.booking.com",
+                "password": "9VNtSKukZu3OGr7?",
+                "username": "devcronap_cron_acquisition_arc3"
+            }
+        },
+        "agency": {
+            "ro": {
+                "database": "agency",
+                "driver": "mysql",
+                "password": "MVyyjrbDGdCFWgGn",
+                "rdbprod_roster": "conagencydb-rdbprod",
+                "roster": "conagencydb-dqs_set",
+                "username": "devcronapp_cron_agency42"
+            },
+            "rw": {
+                "database": "agency",
+                "driver": "mysql",
+                "host": "dev-conagencymdb-vip.lhr4.dqs.booking.com",
+                "password": "oSf4RI1yB7vA6_SF",
+                "username": "devcronapp_cron_agency75"
+            }
+        },
+        "analyticspipeline": {
+            "ro": {
+                "database": "analyticspipeline",
+                "driver": "mysql",
+                "password": "_cCoqykFBxPrA5p4",
+                "rdbprod_roster": "incubatordb-rdbprod",
+                "roster": "incubatordb-dqs_set",
+                "username": "devcronap_cron_analytics10"
+            },
+            "rw": {
+                "database": "analyticspipeline",
+                "driver": "mysql",
+                "host": "dev-incubatormdb-vip.lhr4.dqs.booking.com",
+                "password": "85KUvF37d1WtIrky",
+                "username": "devcronap_cron_analytics31"
+            }
+        },
+        "android": {
+            "ro": {
+                "database": "android",
+                "driver": "mysql",
+                "password": "CDy4u_z9Vos7XamL",
+                "rdbprod_roster": "androiddb-rdbprod",
+                "roster": "androiddb-dqs_set",
+                "username": "devcronapp_cron_android54"
+            },
+            "rw": {
+                "database": "android",
+                "driver": "mysql",
+                "host": "dev-androidmdb-vip.lhr4.dqs.booking.com",
+                "password": "bNWGiboBmRzQj9o2",
+                "username": "devcronapp_cron_android65"
+            }
+        },
+        "apasscore": {
+            "ro": {
+                "database": "apasscore",
+                "driver": "mysql",
+                "password": "nRkwKTa?IhcvjyWD",
+                "rdbprod_roster": "apasscoredb-rdbprod",
+                "roster": "apasscoredb-dqs_set",
+                "username": "devcronapp_cron_apasscore8"
+            },
+            "rw": {
+                "database": "apasscore",
+                "driver": "mysql",
+                "host": "dev-apasscoremdb-vip.dev.booking.com",
+                "password": "PuvbFZIFEJZ_4eAc",
+                "username": "devcronapp_cron_apasscore41"
+            }
+        },
+        "apayin": {
+            "ro": {
+                "database": "apayin",
+                "driver": "mysql",
+                "password": "Iwjkmz67jkwrDM_M",
+                "rdbprod_roster": "apaymentsdb-rdbprod",
+                "roster": "apaymentsdb-dqs_set",
+                "username": "devcronap_cron_apayin46"
+            },
+            "rw": {
+                "database": "apayin",
+                "driver": "mysql",
+                "host": "dev-apaymentsmdb-vip.lhr4.dqs.booking.com",
+                "password": "wQesX5ZAj6d7r3tG",
+                "username": "devcronap_cron_apayin43"
+            }
+        },
+        "apayout": {
+            "ro": {
+                "database": "apayout",
+                "driver": "mysql",
+                "password": "2L1CFxHCHmyhOC0U",
+                "rdbprod_roster": "apaymentsdb-rdbprod",
+                "roster": "apaymentsdb-dqs_set",
+                "username": "devcronap_cron_apayout76"
+            },
+            "rw": {
+                "database": "apayout",
+                "driver": "mysql",
+                "host": "dev-apaymentsmdb-vip.lhr4.dqs.booking.com",
+                "password": "GrOmDNA3p94hakOP",
+                "username": "devcronap_cron_apayout9"
+            }
+        },
+        "app": {
+            "ro": {
+                "database": "app",
+                "driver": "mysql",
+                "password": "uwiQuqMnxavNHTBm",
+                "rdbprod_roster": "appdbapp1-rdbprod",
+                "roster": "appdbapp1-dqs_set",
+                "username": "devcronapp_cron_app26"
+            },
+            "rw": {
+                "database": "app",
+                "driver": "mysql",
+                "host": "dev-app1mdb-vip.lhr4.dqs.booking.com",
+                "password": "dwrDSLCyIKOjM3BO",
+                "username": "devcronapp_cron_app65"
+            }
+        },
+        "app2": {
+            "ro": {
+                "database": "app2",
+                "driver": "mysql",
+                "password": "uwiQuqMnxavNHTBm",
+                "rdbprod_roster": "appdbapp2-rdbprod",
+                "roster": "appdbapp2-dqs_set",
+                "username": "devcronapp_cron_app26"
+            },
+            "rw": {
+                "database": "app2",
+                "driver": "mysql",
+                "host": "dev-app2mdb-vip.lhr4.dqs.booking.com",
+                "password": "dwrDSLCyIKOjM3BO",
+                "username": "devcronapp_cron_app65"
+            }
+        },
+        "app3": {
+            "ro": {
+                "database": "app3",
+                "driver": "mysql",
+                "password": "uwiQuqMnxavNHTBm",
+                "rdbprod_roster": "appdbapp3-rdbprod",
+                "roster": "appdbapp3-dqs_set",
+                "username": "devcronapp_cron_app26"
+            },
+            "rw": {
+                "database": "app3",
+                "driver": "mysql",
+                "host": "dev-app3mdb-vip.lhr4.dqs.booking.com",
+                "password": "dwrDSLCyIKOjM3BO",
+                "username": "devcronapp_cron_app65"
+            }
+        },
+        "appsec": {
+            "ro": {
+                "database": "appsec",
+                "driver": "mysql",
+                "password": "9YP5lza54P8VuIT7",
+                "rdbprod_roster": "sectoolsdb-rdbprod",
+                "roster": "sectoolsdb-dqs_set",
+                "username": "devcronap_cron_appsec0"
+            },
+            "rw": {
+                "database": "appsec",
+                "driver": "mysql",
+                "host": "dev-sectoolsmdb-vip.lhr4.dqs.booking.com",
+                "password": "JbevfvW4DyNGanmg",
+                "rdbprod_roster": "sectoolsdb-rdbprod",
+                "username": "devcronap_cron_appsec87"
+            }
+        },
+        "aseclogdb": {
+            "ro": {
+                "database": "aseclogdb",
+                "driver": "mysql",
+                "password": "NiR1vNX7xmh9hFei",
+                "rdbprod_roster": "sectoolsdb-rdbprod",
+                "roster": "sectoolsdb-dqs_set",
+                "username": "devcronapp_aseclogdb_ro0"
+            }
+        },
+        "assetcom": {
+            "ro": {
+                "database": "assetcom",
+                "driver": "mysql",
+                "host": "dev-commissionmdb-vip.lhr4.dqs.booking.com",
+                "password": "Avgi_CLw82bTnuD_",
+                "rdbprod_roster": "commissiondb-rdbprod",
+                "username": "devcronapp_assetcom_ro0"
+            },
+            "rw": {
+                "database": "assetcom",
+                "driver": "mysql",
+                "host": "dev-commissionmdb-vip.lhr4.dqs.booking.com",
+                "password": "k2RhztkNkIDozpVl",
+                "username": "devcronapp_assetcom_rw0"
+            }
+        },
+        "av_common": {
+            "ro": {
+                "database": "av_common",
+                "driver": "mysql",
+                "password": "RNJ7wCuWloVM6mii",
+                "rdbprod_roster": "bpdb-rdbprod",
+                "roster": "bpdb-dqs_set",
+                "username": "devcronap_cron_av_common16"
+            },
+            "rw": {
+                "database": "av_common",
+                "driver": "mysql",
+                "host": "dev-bpmdb-vip.lhr4.dqs.booking.com",
+                "password": "h6lFyuJzEYoXex?P",
+                "username": "devcronap_cron_av_common53"
+            }
+        },
+        "av_shard_01": {
+            "ro": {
+                "database": "av",
+                "driver": "mysql",
+                "password": "bgZAB?Sh8w1Upmcn",
+                "rdbprod_roster": "shardedavav1-rdbprod",
+                "roster": "shardedavav1-dqs_set",
+                "username": "devcronap_cron_av50"
+            },
+            "rw": {
+                "database": "av",
+                "driver": "mysql",
+                "host": "dev-av1mdb-vip.lhr4.dqs.booking.com",
+                "password": "QmNOt2WCA_T_cvHv",
+                "username": "devcronap_cron_av31"
+            }
+        },
+        "av_shard_02": {
+            "ro": {
+                "database": "av",
+                "driver": "mysql",
+                "password": "bgZAB?Sh8w1Upmcn",
+                "rdbprod_roster": "shardedavav2-rdbprod",
+                "roster": "shardedavav2-dqs_set",
+                "username": "devcronap_cron_av50"
+            },
+            "rw": {
+                "database": "av",
+                "driver": "mysql",
+                "host": "dev-av2mdb-vip.lhr4.dqs.booking.com",
+                "password": "QmNOt2WCA_T_cvHv",
+                "username": "devcronap_cron_av31"
+            }
+        },
+        "av_shard_03": {
+            "ro": {
+                "database": "av",
+                "driver": "mysql",
+                "password": "bgZAB?Sh8w1Upmcn",
+                "rdbprod_roster": "shardedavav3-rdbprod",
+                "roster": "shardedavav3-dqs_set",
+                "username": "devcronap_cron_av50"
+            },
+            "rw": {
+                "database": "av",
+                "driver": "mysql",
+                "host": "dev-av3mdb-vip.lhr4.dqs.booking.com",
+                "password": "QmNOt2WCA_T_cvHv",
+                "username": "devcronap_cron_av31"
+            }
+        },
+        "av_shard_04": {
+            "ro": {
+                "database": "av",
+                "driver": "mysql",
+                "password": "bgZAB?Sh8w1Upmcn",
+                "rdbprod_roster": "shardedavav4-rdbprod",
+                "roster": "shardedavav4-dqs_set",
+                "username": "devcronap_cron_av50"
+            },
+            "rw": {
+                "database": "av",
+                "driver": "mysql",
+                "host": "dev-av4mdb-vip.lhr4.dqs.booking.com",
+                "password": "QmNOt2WCA_T_cvHv",
+                "username": "devcronap_cron_av31"
+            }
+        },
+        "avx": {
+            "ro": {
+                "database": "avx",
+                "driver": "mysql",
+                "password": "zavEbcRqAruLAzfQ",
+                "rdbprod_roster": "incubator2db-rdbprod",
+                "roster": "incubator2db-dqs_set",
+                "username": "devcronap_cron_avx56"
+            },
+            "rw": {
+                "database": "avx",
+                "driver": "mysql",
+                "host": "dev-incubator2mdb-vip.lhr4.dqs.booking.com",
+                "password": "WxMgcUy_eaOBFobd",
+                "username": "devcronap_cron_avx99"
+            }
+        },
+        "badmin": {
+            "ro": {
+                "database": "dbang",
+                "driver": "mysql",
+                "password": "ktvClsU76UcGgQjq",
+                "rdbprod_roster": "badmindb-rdbprod",
+                "roster": "badmindb-dqs_set",
+                "username": "devcronap_cron_badmin88"
+            }
+        },
+        "balancer": {
+            "ro": {
+                "database": "balancer",
+                "driver": "mysql",
+                "password": "lVHpTLWAn3NGMqBM",
+                "rdbprod_roster": "balancerdb-rdbprod",
+                "roster": "balancerdb-dqs_set",
+                "username": "devcronap_cron_balancer96"
+            },
+            "rw": {
+                "database": "balancer",
+                "driver": "mysql",
+                "host": "dev-balancermdb-vip.lhr4.dqs.booking.com",
+                "password": "F2PHe5TiLZJ?cR8X",
+                "username": "devcronap_cron_balancer81"
+            }
+        },
+        "balancer_dqs": {
+            "ro": {
+                "database": "balancer_dqs",
+                "driver": "mysql",
+                "host": "dev-balancerrdb-vip.lhr4.dqs.booking.com",
+                "password": "r6O8pXfZKzgIYvvy",
+                "rdbprod_roster": "balancerdb-rdbprod",
+                "username": "devcronap_cron_balancer_26"
+            },
+            "rw": {
+                "database": "balancer_dqs",
+                "driver": "mysql",
+                "host": "dev-balancermdb-vip.lhr4.dqs.booking.com",
+                "password": "AZ4CCHN7Jdc3gHd3",
+                "username": "devcronap_cron_balancer_9"
+            }
+        },
+        "bbdata": {
+            "ro": {
+                "database": "bbdata",
+                "driver": "mysql",
+                "password": "7Uj44OJJyRvyKx07",
+                "rdbprod_roster": "offlogdb-rdbprod",
+                "roster": "offlogdb-dqs_set",
+                "username": "devcronapp_cron_bbdata20"
+            },
+            "rw": {
+                "database": "bbdata",
+                "driver": "mysql",
+                "host": "dev-offlogmdb-vip.lhr4.dqs.booking.com",
+                "password": "zdSaujDs0HpxHZg5",
+                "username": "devcronapp_cron_bbdata85"
+            }
+        },
+        "bbstats": {
+            "ro": {
+                "database": "bbstats",
+                "driver": "mysql",
+                "password": "XLO8hTeOKJoIk0?P",
+                "rdbprod_roster": "incustatsdb-rdbprod",
+                "roster": "incustatsdb-dqs_set",
+                "username": "devcronapp_cron_bbstats88"
+            },
+            "rw": {
+                "database": "bbstats",
+                "driver": "mysql",
+                "host": "dev-incustatsmdb-vip.lhr4.dqs.booking.com",
+                "password": "LXT9XYZ6?MZpV7Al",
+                "username": "devcronapp_cron_bbstats1"
+            }
+        },
+        "bbtool": {
+            "ro": {
+                "database": "bbtool",
+                "driver": "mysql",
+                "password": "mfPO3pNb0GSYditr",
+                "rdbprod_roster": "userdb-rdbprod",
+                "roster": "userdb-dqs_set",
+                "username": "devcronapp_cron_bbtool92"
+            },
+            "rw": {
+                "database": "bbtool",
+                "driver": "mysql",
+                "host": "dev-usermdb-vip.lhr4.dqs.booking.com",
+                "password": "LKJxJ4UqMdYzW3AQ",
+                "username": "devcronapp_cron_bbtool45"
+            }
+        },
+        "bcp": {
+            "ro": {
+                "database": "bcp",
+                "driver": "mysql",
+                "password": "CFLf4_z_gnfwjUbM",
+                "rdbprod_roster": "bcpdb-rdbprod",
+                "roster": "bcpdb-dqs_set",
+                "username": "devcronap_cron_bcp50"
+            },
+            "rw": {
+                "database": "bcp",
+                "driver": "mysql",
+                "host": "dev-bcpmdb-vip.dev.booking.com",
+                "password": "FONG2wcQMpQoFH3w",
+                "username": "devcronapp_cron_bcp93"
+            }
+        },
+        "bexcouponcode": {
+            "ro": {
+                "database": "bexcouponcode",
+                "driver": "mysql",
+                "password": "AFw_uTW_3mf6LDjA",
+                "rdbprod_roster": "partnershipnosox-rdbprod",
+                "roster": "partnershipnosox-dqs_set",
+                "username": "devcronapp_cron_bexcouponcode46"
+            },
+            "rw": {
+                "database": "bexcouponcode",
+                "driver": "mysql",
+                "host": "dev-partnershipnosoxmdb-vip.dev.booking.com",
+                "password": "C14ZYIJS5YTDRl2m",
+                "username": "devcronapp_cron_bexcouponcode43"
+            }
+        },
+        "bexdecisionapi": {
+            "ro": {
+                "database": "bexdecisionapi",
+                "driver": "mysql",
+                "password": "AiCx0QsNPlaFlYaG",
+                "rdbprod_roster": "partnershipnosox-rdbprod",
+                "roster": "partnershipnosox-dqs_set",
+                "username": "devcronapp_bexdecisionapi_ro0"
+            },
+            "rw": {
+                "database": "bexdecisionapi",
+                "driver": "mysql",
+                "host": "dev-partnershipnosoxmdb-vip.dev.booking.com",
+                "password": "sZm6KwxDrG4bPEHo",
+                "username": "devcronapp_bexdecisionapi_rw0"
+            }
+        },
+        "bexreward": {
+            "ro": {
+                "database": "bexreward",
+                "driver": "mysql",
+                "password": "rVxRPg0ZSoV4Izvd",
+                "rdbprod_roster": "partnershipnosox-rdbprod",
+                "roster": "partnershipnosox-dqs_set",
+                "username": "devcronapp_bexreward_ro0"
+            },
+            "rw": {
+                "database": "bexreward",
+                "driver": "mysql",
+                "host": "dev-partnershipnosoxmdb-vip.dev.booking.com",
+                "password": "tHKbT2hVf9geCnIR",
+                "username": "devcronapp_bexreward_rw0"
+            }
+        },
+        "bhfs": {
+            "ro": {
+                "database": "bhfs",
+                "driver": "mysql",
+                "password": "BrHVJP3czyPvNjCO",
+                "rdbprod_roster": "bpdb-rdbprod",
+                "roster": "bpdb-dqs_set",
+                "username": "devcronapp_cron_bhfs70"
+            },
+            "rw": {
+                "database": "bhfs",
+                "driver": "mysql",
+                "host": "dev-bpmdb-vip.lhr4.dqs.booking.com",
+                "password": "aXSTtJlU6qJNbeeN",
+                "username": "devcronapp_cron_bhfs5"
+            }
+        },
+        "bizcomm": {
+            "ro": {
+                "database": "bizcomm",
+                "driver": "mysql",
+                "password": "LdGE0?IcUlG7fmkq",
+                "rdbprod_roster": "bizcommdb-rdbprod",
+                "roster": "bizcommdb-dqs_set",
+                "username": "devcronapp_cron_bizcomm26"
+            },
+            "rw": {
+                "database": "bizcomm",
+                "driver": "mysql",
+                "host": "dev-bizcommmdb-vip.lhr4.dqs.booking.com",
+                "password": "2j38IAnRMdtFS?_n",
+                "username": "devcronapp_cron_bizcomm23"
+            }
+        },
+        "bizcommq": {
+            "ro": {
+                "database": "bizcommq",
+                "driver": "mysql",
+                "password": "5oFgnVKsUfxsEPbK",
+                "rdbprod_roster": "bizcommdb-rdbprod",
+                "roster": "bizcommdb-dqs_set",
+                "username": "devcronapp_cron_bizcommq12"
+            },
+            "rw": {
+                "database": "bizcommq",
+                "driver": "mysql",
+                "host": "dev-bizcommmdb-vip.lhr4.dqs.booking.com",
+                "password": "kcAZXyUai5WAQLug",
+                "username": "devcronapp_cron_bizcommq65"
+            }
+        },
+        "bksdata": {
+            "ro": {
+                "database": "bksdata",
+                "driver": "mysql",
+                "password": "WlZvB68geMts66MZ",
+                "rdbprod_roster": "bksdatadb-rdbprod",
+                "roster": "bksdatadb-dqs_set",
+                "username": "devcronapp_bksdata_ro0"
+            }
+        },
+        "bkspartner": {
+            "ro": {
+                "database": "bkspartner",
+                "driver": "mysql",
+                "password": "ybHxaTHkc0iEpQ5z",
+                "rdbprod_roster": "bkspartnerdb-rdbprod",
+                "roster": "bkspartnerdb-dqs_set",
+                "username": "devcronapp_cron_bkspartner46"
+            },
+            "rw": {
+                "database": "bkspartner",
+                "driver": "mysql",
+                "host": "dev-bkspartnermdb-vip.lhr4.dqs.booking.com",
+                "password": "S3FvQ9ZjUk?321hd",
+                "username": "devcronapp_cron_bkspartner89"
+            }
+        },
+        "bkspartnerpub": {
+            "ro": {
+                "database": "bkspartnerpub",
+                "driver": "mysql",
+                "password": "fK9duRPFPgMP9i5e",
+                "rdbprod_roster": "bkspartnerdb-rdbprod",
+                "roster": "bkspartnerdb-dqs_set",
+                "username": "devcronapp_cron_bkspartnerpub64"
+            },
+            "rw": {
+                "database": "bkspartnerpub",
+                "driver": "mysql",
+                "host": "dev-bkspartnermdb-vip.lhr4.dqs.booking.com",
+                "password": "eX7dooMgXlrYblMq",
+                "username": "devcronapp_cron_bkspartnerpub13"
+            }
+        },
+        "bkspms": {
+            "ro": {
+                "database": "bkspms",
+                "driver": "mysql",
+                "password": "FIl1aoeH0?PEi2RE",
+                "rdbprod_roster": "bkswukongdb-rdbprod",
+                "roster": "bkswukongdb-dqs_set",
+                "username": "devcronapp_cron_bkspms56"
+            },
+            "rw": {
+                "database": "bkspms",
+                "driver": "mysql",
+                "host": "dev-bkswukongmdb-vip.lhr4.dqs.booking.com",
+                "password": "l6sCKj_85aLXt6n_",
+                "username": "devcronapp_cron_bkspms99"
+            }
+        },
+        "bkspmspii": {
+            "ro": {
+                "database": "bkspmspii",
+                "driver": "mysql",
+                "host": "dev-bkswukongmdb-vip.lhr4.dqs.booking.com",
+                "password": "S7WB1ydSSakXJvDM",
+                "rdbprod_roster": "bkswukongdb-rdbprod",
+                "username": "devcronapp_bkspmspii_ro0"
+            },
+            "rw": {
+                "database": "bkspmspii",
+                "driver": "mysql",
+                "host": "dev-bkswukongmdb-vip.lhr4.dqs.booking.com",
+                "password": "9QDf65IGsS5pQAYP",
+                "username": "devcronapp_bkspmspii_rw0"
+            }
+        },
+        "bkswfanalytics": {
+            "ro": {
+                "database": "bkswfanalytics",
+                "driver": "mysql",
+                "password": "hAIVYI2QEKaytCIS",
+                "rdbprod_roster": "incustatsdb-rdbprod",
+                "roster": "incustatsdb-dqs_set",
+                "username": "devcronapp_bkswfanalytics_ro0"
+            },
+            "rw": {
+                "database": "bkswfanalytics",
+                "driver": "mysql",
+                "host": "dev-incustatsmdb-vip.lhr4.dqs.booking.com",
+                "password": "oDJR8cUF1u8FEVdf",
+                "username": "devcronapp_bkswfanalytics_rw0"
+            }
+        },
+        "booking_home_property": {
+            "ro": {
+                "database": "booking_home_property",
+                "driver": "mysql",
+                "password": "VMsglTJHrEFS53Dh",
+                "rdbprod_roster": "bpdb-rdbprod",
+                "roster": "bpdb-dqs_set",
+                "username": "devcronapp_booking_home_pro_ro0"
+            },
+            "rw": {
+                "database": "booking_home_property",
+                "driver": "mysql",
+                "host": "dev-bpmdb-vip.lhr4.dqs.booking.com",
+                "password": "JZCX1pb1unlRk6YX",
+                "username": "devcronapp_booking_home_pro_rw0"
+            }
+        },
+        "bookingads": {
+            "ro": {
+                "database": "bookingads",
+                "driver": "mysql",
+                "password": "5XC9HS4Vc_J53_8x",
+                "rdbprod_roster": "incubator2db-rdbprod",
+                "roster": "incubator2db-dqs_set",
+                "username": "devcronapp_cron_bookingads4"
+            },
+            "rw": {
+                "database": "bookingads",
+                "driver": "mysql",
+                "host": "dev-incubator2mdb-vip.lhr4.dqs.booking.com",
+                "password": "i?wSBaEHEKnSJ0c7",
+                "username": "devcronapp_cron_bookingads83"
+            }
+        },
+        "bookinggo": {
+            "ro": {
+                "database": "bookinggo",
+                "driver": "mysql",
+                "password": "qer8EKq95a8qem4P",
+                "rdbprod_roster": "incubatordb-rdbprod",
+                "roster": "incubatordb-dqs_set",
+                "username": "devcronap_cron_bookinggo18"
+            },
+            "rw": {
+                "database": "bookinggo",
+                "driver": "mysql",
+                "host": "dev-incubatormdb-vip.lhr4.dqs.booking.com",
+                "password": "zo8A02upzSfGVXdt",
+                "username": "devcronap_cron_bookinggo17"
+            }
+        },
+        "bp": {
+            "ro": {
+                "database": "bp",
+                "driver": "mysql",
+                "password": "oPITJRcBVBxuS5xb",
+                "rdbprod_roster": "bpdb-rdbprod",
+                "roster": "bpdb-dqs_set",
+                "username": "devcronap_cron_bp56"
+            },
+            "rw": {
+                "database": "bp",
+                "driver": "mysql",
+                "host": "dev-bpmdb-vip.lhr4.dqs.booking.com",
+                "password": "ODk0DHAD4MWCbE9F",
+                "username": "devcronap_cron_bp15"
+            }
+        },
+        "bpm": {
+            "ro": {
+                "database": "bpm",
+                "driver": "mysql",
+                "password": "MTPBotHEBhwdz_7I",
+                "rdbprod_roster": "bpmdb-rdbprod",
+                "roster": "bpmdb-dqs_set",
+                "username": "devcronap_cron_bpm96"
+            },
+            "rw": {
+                "database": "bpm",
+                "driver": "mysql",
+                "host": "dev-bpmmdb-vip.dev.booking.com",
+                "password": "Rbqf?0DW4HL3rsEq",
+                "username": "devcronap_cron_bpm89"
+            }
+        },
+        "bproductive": {
+            "ro": {
+                "database": "bproductive",
+                "driver": "mysql",
+                "password": "sbV9HxOOkfXN1kFD",
+                "rdbprod_roster": "staffdb-rdbprod",
+                "roster": "staffdb-dqs_set",
+                "username": "devcronapp_cron_bproductive64"
+            }
+        },
+        "bsb": {
+            "ro": {
+                "database": "bsb",
+                "driver": "mysql",
+                "password": "R_E64SLsnUy8kufs",
+                "rdbprod_roster": "incubator2db-rdbprod",
+                "roster": "incubator2db-dqs_set",
+                "username": "devcronap_cron_bsb36"
+            },
+            "rw": {
+                "database": "bsb",
+                "driver": "mysql",
+                "host": "dev-incubator2mdb-vip.lhr4.dqs.booking.com",
+                "password": "I1mE2A5IQASxri8g",
+                "username": "devcronap_cron_bsb21"
+            }
+        },
+        "bt_bp": {
+            "ro": {
+                "database": "bt_bp",
+                "driver": "mysql",
+                "password": "lYUkD4uSziSnLxu5",
+                "rdbprod_roster": "bpdb-rdbprod",
+                "roster": "bpdb-dqs_set",
+                "username": "devcronapp_bt_bp_ro0"
+            },
+            "rw": {
+                "database": "bt_bp",
+                "driver": "mysql",
+                "host": "dev-bpmdb-vip.lhr4.dqs.booking.com",
+                "password": "q3VMuncuvDVLX3su",
+                "username": "devcronapp_bt_bp_rw0"
+            }
+        },
+        "btm": {
+            "ro": {
+                "database": "btm",
+                "driver": "mysql",
+                "password": "VLVW3EW9pX0OyS_N",
+                "rdbprod_roster": "btmdb-rdbprod",
+                "roster": "btmdb-dqs_set",
+                "username": "devcronapp_cron_btm78"
+            },
+            "rw": {
+                "database": "btm",
+                "driver": "mysql",
+                "host": "dev-btmmdb-vip.lhr4.dqs.booking.com",
+                "password": "9UvjtWj857L4gMOP",
+                "username": "devcronapp_cron_btm75"
+            }
+        },
+        "btmarc": {
+            "ro": {
+                "database": "btmarc",
+                "driver": "mysql",
+                "password": "Ws6yjma1D18JGRfB",
+                "rdbprod_roster": "btmarc-rdbprod",
+                "roster": "btmarc-dqs_set",
+                "username": "devcronapp_cron_btmarc20"
+            },
+            "rw": {
+                "database": "btmarc",
+                "driver": "mysql",
+                "host": "dev-btmarcmdb-vip.lhr4.dqs.booking.com",
+                "password": "VIAsfHlAVvO0RgpS",
+                "username": "devcronapp_cron_btmarc89"
+            }
+        },
+        "btq101": {
+            "ro": {
+                "database": "btqueue",
+                "driver": "mysql",
+                "password": "?IKl9epWQZbJCpR2",
+                "rdbprod_roster": "btqdbbtq101-rdbprod",
+                "roster": "btqdbbtq101-dqs_set",
+                "username": "devcronapp_btq_ro0"
+            },
+            "rw": {
+                "database": "btqueue",
+                "driver": "mysql",
+                "host": "dev-btq101mdb-vip.lhr4.dqs.booking.com",
+                "password": "GGmMSl7ZfV3rsrbR",
+                "username": "devcronapp_btq_rw0"
+            }
+        },
+        "btq201": {
+            "ro": {
+                "database": "btqueue",
+                "driver": "mysql",
+                "password": "?IKl9epWQZbJCpR2",
+                "rdbprod_roster": "btqdbbtq201-rdbprod",
+                "roster": "btqdbbtq201-dqs_set",
+                "username": "devcronapp_btq_ro0"
+            },
+            "rw": {
+                "database": "btqueue",
+                "driver": "mysql",
+                "host": "dev-btq201mdb-vip.lhr4.dqs.booking.com",
+                "password": "GGmMSl7ZfV3rsrbR",
+                "username": "devcronapp_btq_rw0"
+            }
+        },
+        "btqueue": {
+            "ro": {
+                "database": "btqueue",
+                "driver": "mysql",
+                "password": "tu16JdlDaCV_qh6d",
+                "rdbprod_roster": "btqdb-rdbprod",
+                "roster": "btqdb-dqs_set",
+                "username": "devcronapp_cron_btqueue78"
+            },
+            "rw": {
+                "database": "btqueue",
+                "driver": "mysql",
+                "host": "dev-btqmdb-vip.lhr4.dqs.booking.com",
+                "password": "HjDa0XZM?RKyR9yV",
+                "username": "devcronapp_cron_btqueue59"
+            }
+        },
+        "buddybot": {
+            "ro": {
+                "database": "buddybot",
+                "driver": "mysql",
+                "host": "dev-incubator3mdb-vip.lhr4.dqs.booking.com",
+                "password": "5nG5yvzaap270XTp",
+                "rdbprod_roster": "incubator3db-rdbprod",
+                "username": "devcronapp_buddybot_ro0"
+            },
+            "rw": {
+                "database": "buddybot",
+                "driver": "mysql",
+                "host": "dev-incubator3mdb-vip.lhr4.dqs.booking.com",
+                "password": "uC4zxQ2AGgopQ34C",
+                "username": "devcronapp_buddybot_rw0"
+            }
+        },
+        "cancellation": {
+            "ro": {
+                "database": "cancellation",
+                "driver": "mysql",
+                "password": "hI2gkkMnWkuCAT_A",
+                "rdbprod_roster": "findb-rdbprod",
+                "roster": "findb-dqs_set",
+                "username": "devcronapp_cancellation_ro0"
+            },
+            "rw": {
+                "database": "cancellation",
+                "driver": "mysql",
+                "host": "dev-finmdb-vip.lhr4.dqs.booking.com",
+                "password": "pr6orPbmLQ?6I9qS",
+                "username": "devcronapp_cancellation_rw0"
+            }
+        },
+        "cdf": {
+            "ro": {
+                "database": "cdf",
+                "driver": "mysql",
+                "password": "nS7gia?3Loj40LYb",
+                "rdbprod_roster": "bpdb-rdbprod",
+                "roster": "bpdb-dqs_set",
+                "username": "devcronapp_cdf_ro0"
+            }
+        },
+        "cdrt": {
+            "ro": {
+                "database": "cdrt",
+                "driver": "mysql",
+                "password": "1PSTQKMDfvJnm91q",
+                "rdbprod_roster": "cdrtdb-rdbprod",
+                "roster": "cdrtdb-dqs_set",
+                "username": "devcronapp_cron_cdrt82"
+            },
+            "rw": {
+                "database": "cdrt",
+                "driver": "mysql",
+                "host": "dev-cdrtmdb-vip.lhr4.dqs.booking.com",
+                "password": "lhuyy6hQgs4THBEt",
+                "username": "devcronapp_cron_cdrt39"
+            }
+        },
+        "cdw": {
+            "ro": {
+                "database": "cdw",
+                "driver": "mysql",
+                "password": "zfSUcXBj6ckLq?eF",
+                "rdbprod_roster": "cdwdb-rdbprod",
+                "roster": "cdwdb-dqs_set",
+                "username": "devcronapp_cron_cdw62"
+            },
+            "rw": {
+                "database": "cdw",
+                "driver": "mysql",
+                "host": "dev-cdwmdb-vip.lhr4.dqs.booking.com",
+                "password": "FBsqWDcP?NatEZTh",
+                "username": "devcronapp_cron_cdw19"
+            }
+        },
+        "chains": {
+            "ro": {
+                "database": "chains",
+                "driver": "mysql",
+                "password": "elqTyU4n3nHtWHXg",
+                "rdbprod_roster": "bpdb-rdbprod",
+                "roster": "bpdb-dqs_set",
+                "username": "devcronapp_chains_ro0"
+            },
+            "rw": {
+                "database": "chains",
+                "driver": "mysql",
+                "host": "dev-bpmdb-vip.lhr4.dqs.booking.com",
+                "password": "HaSk1bLR6UafNgFE",
+                "username": "devcronapp_chains_rw0"
+            }
+        },
+        "chef": {
+            "ro": {
+                "database": "chef",
+                "driver": "mysql",
+                "password": "fw46JxqnWYKDO?b1",
+                "rdbprod_roster": "chefdb-rdbprod",
+                "roster": "chefdb-dqs_set",
+                "username": "devcronapp_cron_chef14"
+            },
+            "rw": {
+                "database": "chef",
+                "driver": "mysql",
+                "host": "dev-chefmdb-vip.dev.booking.com",
+                "password": "_gij32qlMlc56vYB",
+                "username": "devcronapp_cron_chef71"
+            }
+        },
+        "cipi": {
+            "ro": {
+                "database": "cipi",
+                "driver": "mysql",
+                "password": "9XjXxey6SQ49RL5B",
+                "rdbprod_roster": "cipidb-rdbprod",
+                "roster": "cipidb-dqs_set",
+                "username": "devcronapp_cron_cipi96"
+            },
+            "rw": {
+                "database": "cipi",
+                "driver": "mysql",
+                "host": "dev-cipimdb-vip.lhr4.dqs.booking.com",
+                "password": "HK_OjC9s9bQtjBJ_",
+                "username": "devcronapp_cipi_rw0"
+            }
+        },
+        "cnbu": {
+            "ro": {
+                "database": "cnbu",
+                "driver": "mysql",
+                "password": "79EJddVX2CNP9tiQ",
+                "rdbprod_roster": "incubatordb-rdbprod",
+                "roster": "incubatordb-dqs_set",
+                "username": "devcronap_cron_cnbu10"
+            },
+            "rw": {
+                "database": "cnbu",
+                "driver": "mysql",
+                "host": "dev-incubatormdb-vip.lhr4.dqs.booking.com",
+                "password": "N1P4xoh8ZmI_dkVR",
+                "username": "devcronap_cron_cnbu21"
+            }
+        },
+        "codeowners": {
+            "ro": {
+                "database": "codeowners",
+                "driver": "mysql",
+                "password": "30gxa9xnLc68mfst",
+                "rdbprod_roster": "incusoxdb-rdbprod",
+                "roster": "incusoxdb-dqs_set",
+                "username": "devcronapp_codeowners_ro0"
+            },
+            "rw": {
+                "database": "codeowners",
+                "driver": "mysql",
+                "host": "dev-incusoxmdb-vip.lhr4.dqs.booking.com",
+                "password": "9Hv0E2ubzZP9X9jl",
+                "username": "devcronapp_codeowners_rw0"
+            }
+        },
+        "com_ser": {
+            "ro": {
+                "database": "commission",
+                "driver": "mysql",
+                "password": "_nDm0SC0m9tzyg?A",
+                "rdbprod_roster": "commissiondb-rdbprod",
+                "roster": "commissiondb-dqs_set",
+                "username": "devcronapp_cron_com_ser80"
+            },
+            "rw": {
+                "database": "commission",
+                "driver": "mysql",
+                "host": "dev-commissionmdb-vip.lhr4.dqs.booking.com",
+                "password": "_Vhz12y61PrsCD7b",
+                "username": "devcronapp_cron_com_ser61"
+            }
+        },
+        "commission": {
+            "ro": {
+                "database": "commission",
+                "driver": "mysql",
+                "password": "CuFK2Hrolmy?DOPW",
+                "rdbprod_roster": "incusoxdb-rdbprod",
+                "roster": "incusoxdb-dqs_set",
+                "username": "devcronap_cron_commissio56"
+            },
+            "rw": {
+                "database": "commission",
+                "driver": "mysql",
+                "host": "dev-incusoxmdb-vip.lhr4.dqs.booking.com",
+                "password": "KpaOkZxbJtW4j1gp",
+                "username": "devcronap_cron_commissio11"
+            }
+        },
+        "commissionlog": {
+            "ro": {
+                "database": "commissionlog",
+                "driver": "mysql",
+                "password": "eYjpBldpQv5xE2uw",
+                "rdbprod_roster": "commissionlogdb-rdbprod",
+                "roster": "commissionlogdb-dqs_set",
+                "username": "devcronapp_cron_commissionlog90"
+            },
+            "rw": {
+                "database": "commissionlog",
+                "driver": "mysql",
+                "host": "dev-commissionlogmdb-vip.lhr4.dqs.booking.com",
+                "password": "R4NtnaOdW20nKlAB",
+                "username": "devcronapp_cron_commissionlog93"
+            }
+        },
+        "connectivity_core": {
+            "ro": {
+                "database": "connectivity_core",
+                "driver": "mysql",
+                "password": "jvKO3ltCye7_YVuG",
+                "rdbprod_roster": "bpdb-rdbprod",
+                "roster": "bpdb-dqs_set",
+                "username": "devcronapp_connectivity_cor_ro0"
+            },
+            "rw": {
+                "database": "connectivity_core",
+                "driver": "mysql",
+                "host": "dev-bpmdb-vip.lhr4.dqs.booking.com",
+                "password": "1ALPCsEkmDT9Dwuv",
+                "username": "devcronapp_connectivity_cor_rw0"
+            }
+        },
+        "connectivity_provdash": {
+            "ro": {
+                "database": "connectivity_provdash",
+                "driver": "mysql",
+                "password": "mC0sv_UMoclQJKHj",
+                "rdbprod_roster": "bpdb-rdbprod",
+                "roster": "bpdb-dqs_set",
+                "username": "devcronapp_connectivity_pro_ro0"
+            }
+        },
+        "connectivity_provider": {
+            "ro": {
+                "database": "connectivity_provider",
+                "driver": "mysql",
+                "password": "o2RzZS7jgQSApV_1",
+                "rdbprod_roster": "bpdb-rdbprod",
+                "roster": "bpdb-dqs_set",
+                "username": "devcronapp_connectivity_pro_ro1"
+            },
+            "rw": {
+                "database": "connectivity_provider",
+                "driver": "mysql",
+                "host": "dev-bpmdb-vip.lhr4.dqs.booking.com",
+                "password": "Xr2ookbxBvowSMih",
+                "username": "devcronapp_connectivity_pro_rw0"
+            }
+        },
+        "connectivity_supply": {
+            "ro": {
+                "database": "connectivity_supply",
+                "driver": "mysql",
+                "password": "Ftm0aEbi7Ll4i2y5",
+                "rdbprod_roster": "bpdb-rdbprod",
+                "roster": "bpdb-dqs_set",
+                "username": "devcronapp_connectivity_sup_ro0"
+            },
+            "rw": {
+                "database": "connectivity_supply",
+                "driver": "mysql",
+                "host": "dev-bpmdb-vip.lhr4.dqs.booking.com",
+                "password": "p34lZDCzhlgBO2ML",
+                "username": "devcronapp_connectivity_sup_rw0"
+            }
+        },
+        "contentapi": {
+            "ro": {
+                "database": "contentapi",
+                "driver": "mysql",
+                "password": "KbZiftZDeDuDgzru",
+                "rdbprod_roster": "incubator2db-rdbprod",
+                "roster": "incubator2db-dqs_set",
+                "username": "devcronap_cron_contentap30"
+            },
+            "rw": {
+                "database": "contentapi",
+                "driver": "mysql",
+                "host": "dev-incubator2mdb-vip.lhr4.dqs.booking.com",
+                "password": "6wMXYSiKypB0KLZv",
+                "username": "devcronap_cron_contentap17"
+            }
+        },
+        "continuity": {
+            "ro": {
+                "database": "continuity",
+                "driver": "mysql",
+                "password": "YDKi60b76_?ROmw6",
+                "rdbprod_roster": "incubatordb-rdbprod",
+                "roster": "incubatordb-dqs_set",
+                "username": "devcronapp_cron_continuity18"
+            },
+            "rw": {
+                "database": "continuity",
+                "driver": "mysql",
+                "host": "dev-incubatormdb-vip.lhr4.dqs.booking.com",
+                "password": "sRjsoOvtjWiYdcIO",
+                "username": "devcronapp_cron_continuity21"
+            }
+        },
+        "controlrooms": {
+            "ro": {
+                "database": "ctrlrooms",
+                "driver": "mysql",
+                "password": "rKTRoap8jM8PAUu7",
+                "rdbprod_roster": "ctrlroomsdb-rdbprod",
+                "roster": "ctrlroomsdb-dqs_set",
+                "username": "devcronapp_cron_controlrooms50"
+            },
+            "rw": {
+                "database": "ctrlrooms",
+                "driver": "mysql",
+                "host": "dev-ctrlroomsmdb-vip.lhr4.dqs.booking.com",
+                "password": "Ma9oWJSod?9qNPGH",
+                "username": "devcronapp_cron_controlrooms65"
+            }
+        },
+        "csdata": {
+            "ro": {
+                "database": "csdata",
+                "driver": "mysql",
+                "password": "alr24_5YqH_gcYiL",
+                "rdbprod_roster": "csdatadb-rdbprod",
+                "roster": "csdatadb-dqs_set",
+                "username": "devcronapp_cron_csdata40"
+            },
+            "rw": {
+                "database": "csdata",
+                "driver": "mysql",
+                "host": "dev-csdatamdb-vip.lhr4.dqs.booking.com",
+                "password": "KYDYCvKkqKL4CYm6",
+                "username": "devcronapp_cron_csdata45"
+            }
+        },
+        "csinfra": {
+            "ro": {
+                "database": "csinfra",
+                "driver": "mysql",
+                "password": "39T4sTXQ6AVmXFVr",
+                "rdbprod_roster": "csdatadb-rdbprod",
+                "roster": "csdatadb-dqs_set",
+                "username": "devcronapp_cron_csinfra6"
+            },
+            "rw": {
+                "database": "csinfra",
+                "driver": "mysql",
+                "host": "dev-csdatamdb-vip.lhr4.dqs.booking.com",
+                "password": "CKArkpZH7YafrJd7",
+                "username": "devcronapp_cron_csinfra99"
+            }
+        },
+        "csmail": {
+            "ro": {
+                "database": "ops",
+                "driver": "mysql",
+                "password": "pDhjFTL5uoYMCsni",
+                "rdbprod_roster": "csdb-rdbprod",
+                "roster": "csdb-dqs_set",
+                "username": "devcronapp_cron_csmail34"
+            },
+            "rw": {
+                "database": "ops",
+                "driver": "mysql",
+                "host": "dev-csmdb-vip.lhr4.dqs.booking.com",
+                "password": "SKaCg_ddBpsJtv5_",
+                "username": "devcronapp_cron_csmail43"
+            }
+        },
+        "csstats": {
+            "ro": {
+                "database": "csstats",
+                "driver": "mysql",
+                "password": "OjcX1lqJIeHU5hwx",
+                "rdbprod_roster": "csstatsdb-rdbprod",
+                "roster": "csstatsdb-dqs_set",
+                "username": "devcronapp_cron_csstats54"
+            },
+            "rw": {
+                "database": "csstats",
+                "driver": "mysql",
+                "host": "dev-csstatsmdb-vip.lhr4.dqs.booking.com",
+                "password": "rcQFqDj9u1Q1qMiD",
+                "username": "devcronapp_cron_csstats27"
+            }
+        },
+        "damagedeposit": {
+            "ro": {
+                "database": "damagedeposit",
+                "driver": "mysql",
+                "password": "ML6o7PQoLUqS8Qvc",
+                "rdbprod_roster": "incubator2db-rdbprod",
+                "roster": "incubator2db-dqs_set",
+                "username": "devcronap_cron_damagedep18"
+            },
+            "rw": {
+                "database": "damagedeposit",
+                "driver": "mysql",
+                "host": "dev-incubator2mdb-vip.lhr4.dqs.booking.com",
+                "password": "K0FSEZk0jVQZe4WN",
+                "username": "devcronap_cron_damagedep61"
+            }
+        },
+        "dataloader": {
+            "ro": {
+                "database": "dataloader",
+                "driver": "mysql",
+                "password": "8SJYrYk4TIk1Q9Dz",
+                "rdbprod_roster": "dataloaderdb-rdbprod",
+                "roster": "dataloaderdb-dqs_set",
+                "username": "devcronap_cron_dataloade24"
+            },
+            "rw": {
+                "database": "dataloader",
+                "driver": "mysql",
+                "host": "dev-dataloadermdb-vip.lhr4.dqs.booking.com",
+                "password": "efmbmVgM7hlBjAmR",
+                "username": "devcronap_cron_dataloade37"
+            }
+        },
+        "dataquality": {
+            "ro": {
+                "database": "dataquality",
+                "driver": "mysql",
+                "password": "VY2f7oiXe7?qTqio",
+                "rdbprod_roster": "inttooldb-rdbprod",
+                "roster": "inttooldb-dqs_set",
+                "username": "devcronap_cron_dataquali92"
+            },
+            "rw": {
+                "database": "dataquality",
+                "driver": "mysql",
+                "host": "dev-inttoolmdb-vip.lhr4.dqs.booking.com",
+                "password": "HqNyqh0yS_UcXc9r",
+                "username": "devcronap_cron_dataquali47"
+            }
+        },
+        "dba": {
+            "ro": {
+                "database": "dba",
+                "driver": "mysql",
+                "password": "?md9kBi_NgQYSEJG",
+                "rdbprod_roster": "dbadb-rdbprod",
+                "roster": "dbadb-dqs_set",
+                "username": "devcronap_cron_dba86"
+            }
+        },
+        "demandapi": {
+            "ro": {
+                "database": "demandapi",
+                "driver": "mysql",
+                "password": "voXLfH3qSpDSTF6K",
+                "rdbprod_roster": "xmlmatdb-rdbprod",
+                "roster": "xmlmatdb-dqs_set",
+                "username": "devcronap_cron_demandapi0"
+            },
+            "rw": {
+                "database": "demandapi",
+                "driver": "mysql",
+                "host": "dev-xmlmatmdb-vip.lhr4.dqs.booking.com",
+                "password": "UdsNCmt6weKh4PZM",
+                "username": "devcronap_cron_demandapi65"
+            }
+        },
+        "dw": {
+            "ro": {
+                "database": "dw",
+                "driver": "mysql",
+                "password": "L6jHaufIuAdUH0DB",
+                "rdbprod_roster": "dwdb-rdbprod",
+                "roster": "dwdb-dqs_set",
+                "username": "devcronap_cron_dw74"
+            },
+            "rw": {
+                "database": "dw",
+                "driver": "mysql",
+                "host": "dev-dwmdb-vip.lhr4.dqs.booking.com",
+                "password": "Y8_P_kEdp0IgWu8B",
+                "username": "devcronap_cron_dw47"
+            }
+        },
+        "ed": {
+            "ro": {
+                "database": "ed",
+                "driver": "mysql",
+                "password": "cQeVQ9HGQ7e_B86S",
+                "rdbprod_roster": "eddb-rdbprod",
+                "roster": "eddb-dqs_set",
+                "username": "devcronapp_cron_ed76"
+            },
+            "rw": {
+                "database": "ed",
+                "driver": "mysql",
+                "host": "dev-edmdb-vip.lhr4.dqs.booking.com",
+                "password": "jpxdA93fOCcyCzCu",
+                "username": "devcronapp_ed_rw0"
+            }
+        },
+        "emk": {
+            "ro": {
+                "database": "emk",
+                "driver": "mysql",
+                "password": "twIjpU3hkuelV2ak",
+                "rdbprod_roster": "emkdb-rdbprod",
+                "roster": "emkdb-dqs_set",
+                "username": "devcronapp_cron_emk52"
+            },
+            "rw": {
+                "database": "emk",
+                "driver": "mysql",
+                "host": "dev-emkmdb-vip.lhr4.dqs.booking.com",
+                "password": "QLDgAGtb3fhEToZI",
+                "username": "devcronapp_cron_emk25"
+            }
+        },
+        "emkcamp": {
+            "ro": {
+                "database": "emkcamp",
+                "driver": "mysql",
+                "password": "QTX?80ipc5GkQH82",
+                "rdbprod_roster": "emkcampdb-rdbprod",
+                "roster": "emkcampdb-dqs_set",
+                "username": "devcronapp_cron_emkcamp62"
+            },
+            "rw": {
+                "database": "emkcamp",
+                "driver": "mysql",
+                "host": "dev-emkcampmdb-vip.lhr4.dqs.booking.com",
+                "password": "f3eNnPLPV1y?4w40",
+                "username": "devcronapp_cron_emkcamp47"
+            }
+        },
+        "emksub": {
+            "ro": {
+                "database": "emksub",
+                "driver": "mysql",
+                "password": "HQ_LPOyRU6e5xeWi",
+                "rdbprod_roster": "emksubdb-rdbprod",
+                "roster": "emksubdb-dqs_set",
+                "username": "devcronapp_cron_emksub42"
+            },
+            "rw": {
+                "database": "emksub",
+                "driver": "mysql",
+                "host": "dev-emksubmdb-vip.lhr4.dqs.booking.com",
+                "password": "Q1t?ADqN1_b_lLtx",
+                "username": "devcronapp_cron_emksub79"
+            }
+        },
+        "entertainment": {
+            "ro": {
+                "database": "entertainment",
+                "driver": "mysql",
+                "password": "SjmOufum_lWgKp3E",
+                "rdbprod_roster": "experiencesdb-rdbprod",
+                "roster": "experiencesdb-dqs_set",
+                "username": "devcronap_cron_entertain46"
+            },
+            "rw": {
+                "database": "entertainment",
+                "driver": "mysql",
+                "host": "dev-experiencesmdb-vip.lhr4.dqs.booking.com",
+                "password": "6KF5BNKFD_qIqv1q",
+                "username": "devcronap_cron_entertain55"
+            }
+        },
+        "etdb": {
+            "ro": {
+                "database": "etdb",
+                "driver": "mysql",
+                "password": "?llciTMG_2ATPeJ_",
+                "rdbprod_roster": "etdb-rdbprod",
+                "roster": "etdb-dqs_set",
+                "username": "devcronapp_cron_etdb22"
+            },
+            "rw": {
+                "database": "etdb",
+                "driver": "mysql",
+                "host": "dev-etdbmdb-vip.lhr4.dqs.booking.com",
+                "password": "KHbJJmu3F3BhfWwY",
+                "username": "devcronapp_cron_etdb1"
+            }
+        },
+        "exp": {
+            "ro": {
+                "database": "exp",
+                "driver": "mysql",
+                "password": "bY3xcBZR_eyhiSpX",
+                "rdbprod_roster": "expdb-rdbprod",
+                "roster": "expdb-dqs_set",
+                "username": "devcronapp_cron_exp54"
+            },
+            "rw": {
+                "database": "exp",
+                "driver": "mysql",
+                "host": "dev-expmdb-vip.lhr4.dqs.booking.com",
+                "password": "z5vAutBOEt?uLObl",
+                "username": "devcronapp_cron_exp65"
+            }
+        },
+        "experiencesapi": {
+            "ro": {
+                "database": "experiencesapi",
+                "driver": "mysql",
+                "password": "?ofzgdAIy6gAD1ip",
+                "rdbprod_roster": "experiencesdb-rdbprod",
+                "roster": "experiencesdb-dqs_set",
+                "username": "devcronap_cron_experienc0"
+            },
+            "rw": {
+                "database": "experiencesapi",
+                "driver": "mysql",
+                "host": "dev-experiencesmdb-vip.lhr4.dqs.booking.com",
+                "password": "ktdmlIDfVjjOuyF4",
+                "username": "devcronap_cron_experienc99"
+            }
+        },
+        "extrans": {
+            "ro": {
+                "database": "extrans",
+                "driver": "mysql",
+                "password": "6gSordOHZLY4l59d",
+                "rdbprod_roster": "conagencydb-rdbprod",
+                "roster": "conagencydb-dqs_set",
+                "username": "devcronapp_cron_extrans24"
+            },
+            "rw": {
+                "database": "extrans",
+                "driver": "mysql",
+                "host": "dev-conagencymdb-vip.lhr4.dqs.booking.com",
+                "password": "iFQac_rCI9thQUWP",
+                "username": "devcronapp_cron_extrans15"
+            }
+        },
+        "faq": {
+            "ro": {
+                "database": "queue",
+                "driver": "mysql",
+                "host": "dev-faqmdb-vip.lhr4.dqs.booking.com",
+                "password": "FE0HvQkON2TT3vde",
+                "rdbprod_roster": "faqdb-rdbprod",
+                "username": "devcronapp_faq_ro0"
+            },
+            "rw": {
+                "database": "queue",
+                "driver": "mysql",
+                "host": "dev-faqmdb-vip.lhr4.dqs.booking.com",
+                "password": "ndsSFHN_h49wFTih",
+                "username": "devcronapp_faq_rw0"
+            }
+        },
+        "fin": {
+            "ro": {
+                "database": "fin",
+                "driver": "mysql",
+                "password": "50HJZDIvHkxSma6F",
+                "rdbprod_roster": "findb-rdbprod",
+                "roster": "findb-dqs_set",
+                "username": "devcronap_cron_fin88"
+            },
+            "rw": {
+                "database": "fin",
+                "driver": "mysql",
+                "host": "dev-finmdb-vip.lhr4.dqs.booking.com",
+                "password": "pAJUmO014rs0Ik?o",
+                "username": "devcronap_cron_fin87"
+            }
+        },
+        "fin_ar": {
+            "ro": {
+                "database": "finarc",
+                "driver": "mysql",
+                "password": "mlLewdyYKLxDn5No",
+                "rdbprod_roster": "finarc-rdbprod",
+                "roster": "finarc-dqs_set",
+                "username": "devcronapp_cron_fin_ar84"
+            },
+            "rw": {
+                "database": "finarc",
+                "driver": "mysql",
+                "host": "dev-finarcmdb-vip.lhr4.dqs.booking.com",
+                "password": "ox6D?LDiyUVVhTS8",
+                "username": "devcronapp_cron_fin_ar11"
+            }
+        },
+        "fin_bp": {
+            "ro": {
+                "database": "fin_bp",
+                "driver": "mysql",
+                "password": "ErgxDLnETIpqpcvC",
+                "rdbprod_roster": "bpdb-rdbprod",
+                "roster": "bpdb-dqs_set",
+                "username": "devcronapp_fin_bp_ro0"
+            },
+            "rw": {
+                "database": "fin_bp",
+                "driver": "mysql",
+                "host": "dev-bpmdb-vip.lhr4.dqs.booking.com",
+                "password": "qpG05tv3f8PCRcke",
+                "username": "devcronapp_fin_bp_rw0"
+            }
+        },
+        "finlog": {
+            "ro": {
+                "database": "finlog",
+                "driver": "mysql",
+                "password": "shYoaZNCf5PsbUUh",
+                "rdbprod_roster": "findb-rdbprod",
+                "roster": "findb-dqs_set",
+                "username": "devcronap_cron_finlog50"
+            },
+            "rw": {
+                "database": "finlog",
+                "driver": "mysql",
+                "host": "dev-finmdb-vip.lhr4.dqs.booking.com",
+                "password": "XngkdyNwk4Iur?1m",
+                "username": "devcronap_cron_finlog71"
+            }
+        },
+        "flights": {
+            "ro": {
+                "database": "flights",
+                "driver": "mysql",
+                "password": "FQblG11AsVK56V?r",
+                "rdbprod_roster": "experiencesdb-rdbprod",
+                "roster": "experiencesdb-dqs_set",
+                "username": "devcronap_cron_flights30"
+            },
+            "rw": {
+                "database": "flights",
+                "driver": "mysql",
+                "host": "dev-experiencesmdb-vip.lhr4.dqs.booking.com",
+                "password": "wvFEmQthUUWKE4Gq",
+                "username": "devcronap_cron_flights67"
+            }
+        },
+        "flog": {
+            "ro": {
+                "database": "flog",
+                "driver": "mysql",
+                "password": "eI6nGbyJKU90wGNq",
+                "rdbprod_roster": "incubatordb-rdbprod",
+                "roster": "incubatordb-dqs_set",
+                "username": "devcronap_cron_flog48"
+            },
+            "rw": {
+                "database": "flog",
+                "driver": "mysql",
+                "host": "dev-incubatormdb-vip.lhr4.dqs.booking.com",
+                "password": "tqA366GxQy0oKKsr",
+                "username": "devcronap_cron_flog69"
+            }
+        },
+        "flog_dqs": {
+            "ro": {
+                "database": "flog_dqs",
+                "driver": "mysql",
+                "password": "50TLAtlMacdvbFS9",
+                "rdbprod_roster": "incubator2db-rdbprod",
+                "roster": "incubator2db-dqs_set",
+                "username": "devcronapp_cron_flog_dqs48"
+            },
+            "rw": {
+                "database": "flog_dqs",
+                "driver": "mysql",
+                "host": "dev-incubator2mdb-vip.lhr4.dqs.booking.com",
+                "password": "zfv_s5GmentjhUD6",
+                "username": "devcronapp_cron_flog_dqs55"
+            }
+        },
+        "fpa": {
+            "ro": {
+                "database": "fpa",
+                "driver": "mysql",
+                "password": "toD8s6?UbIC4iIud",
+                "rdbprod_roster": "incusoxdb-rdbprod",
+                "roster": "incusoxdb-dqs_set",
+                "username": "devcronap_cron_fpa4"
+            },
+            "rw": {
+                "database": "fpa",
+                "driver": "mysql",
+                "host": "dev-incusoxmdb-vip.lhr4.dqs.booking.com",
+                "password": "CPCui5HxNImaRshW",
+                "username": "devcronap_cron_fpa25"
+            }
+        },
+        "fraud": {
+            "ro": {
+                "database": "fraud",
+                "driver": "mysql",
+                "password": "G82kEFIwZe2CAVGh",
+                "rdbprod_roster": "incubatordb-rdbprod",
+                "roster": "incubatordb-dqs_set",
+                "username": "devcronap_cron_fraud58"
+            },
+            "rw": {
+                "database": "fraud",
+                "driver": "mysql",
+                "host": "dev-incubatormdb-vip.lhr4.dqs.booking.com",
+                "password": "gw8?qzdBmo3avQ5K",
+                "username": "devcronapp_cron_fraud17"
+            }
+        },
+        "gaf": {
+            "ro": {
+                "database": "gaf",
+                "driver": "mysql",
+                "password": "WA8wlX_fMXnaSGMU",
+                "rdbprod_roster": "bpdb-rdbprod",
+                "roster": "bpdb-dqs_set",
+                "username": "devcronapp_cron_gaf92"
+            },
+            "rw": {
+                "database": "gaf",
+                "driver": "mysql",
+                "host": "dev-bpmdb-vip.lhr4.dqs.booking.com",
+                "password": "?rwSqkV8phUHl9Tx",
+                "username": "devcronapp_cron_gaf47"
+            }
+        },
+        "gdpr": {
+            "ro": {
+                "database": "gdpr",
+                "driver": "mysql",
+                "password": "4oDsPgWXygJ3ckAk",
+                "rdbprod_roster": "gdprdb-rdbprod",
+                "roster": "gdprdb-dqs_set",
+                "username": "devcronapp_cron_gdpr14"
+            },
+            "rw": {
+                "database": "gdpr",
+                "driver": "mysql",
+                "host": "dev-gdprmdb-vip.lhr4.dqs.booking.com",
+                "password": "gmd7xIoSCds?HTPc",
+                "username": "devcronapp_cron_gdpr17"
+            }
+        },
+        "generaldeliveryterms": {
+            "ro": {
+                "database": "generaldeliveryterms",
+                "driver": "mysql",
+                "password": "KjFHGgHyQnwowiRQ",
+                "rdbprod_roster": "findb-rdbprod",
+                "roster": "findb-dqs_set",
+                "username": "devcronap_cron_generalde42"
+            },
+            "rw": {
+                "database": "generaldeliveryterms",
+                "driver": "mysql",
+                "host": "dev-finmdb-vip.lhr4.dqs.booking.com",
+                "password": "YP7kA5lFCHKKwIUL",
+                "username": "devcronap_cron_generalde9"
+            }
+        },
+        "genius": {
+            "ro": {
+                "database": "genius",
+                "driver": "mysql",
+                "password": "EzJP_OPm8_vzXwGG",
+                "rdbprod_roster": "geniusdb-rdbprod",
+                "roster": "geniusdb-dqs_set",
+                "username": "devcronap_cron_genius64"
+            },
+            "rw": {
+                "database": "genius",
+                "driver": "mysql",
+                "host": "dev-geniusmdb-vip.dev.booking.com",
+                "password": "qA10ZPHjcCxURFc9",
+                "username": "devcronap_cron_genius35"
+            }
+        },
+        "geniuspartner": {
+            "ro": {
+                "database": "geniuspartner",
+                "driver": "mysql",
+                "password": "SumgC_43kmTfVLD3",
+                "rdbprod_roster": "incubator2db-rdbprod",
+                "roster": "incubator2db-dqs_set",
+                "username": "devcronapp_cron_geniuspartner26"
+            },
+            "rw": {
+                "database": "geniuspartner",
+                "driver": "mysql",
+                "host": "dev-incubator2mdb-vip.lhr4.dqs.booking.com",
+                "password": "XZmCuF24L_I0HM2n",
+                "username": "devcronapp_cron_geniuspartner41"
+            }
+        },
+        "geo": {
+            "ro": {
+                "database": "geo",
+                "driver": "mysql",
+                "password": "xA1vz62g7tKkMWa3",
+                "rdbprod_roster": "geodb-rdbprod",
+                "roster": "geodb-dqs_set",
+                "username": "devcronapp_cron_geo48"
+            },
+            "rw": {
+                "database": "geo",
+                "driver": "mysql",
+                "host": "dev-geomdb-vip.lhr4.dqs.booking.com",
+                "password": "Q0EIb76COzOKj1RN",
+                "username": "devcronapp_cron_geo27"
+            }
+        },
+        "gitlab": {
+            "ro": {
+                "database": "gitlab",
+                "driver": "mysql",
+                "password": "7Ie9TDAuBw3GBsA?",
+                "rdbprod_roster": "incusoxdb-rdbprod",
+                "roster": "incusoxdb-dqs_set",
+                "username": "devcronap_cron_gitlab22"
+            }
+        },
+        "guest_insights": {
+            "ro": {
+                "database": "guest_insights",
+                "driver": "mysql",
+                "password": "q6ZTV9QAnDdyiwlQ",
+                "rdbprod_roster": "hextranetdb-rdbprod",
+                "roster": "hextranetdb-dqs_set",
+                "username": "devcronapp_guest_insights_ro0"
+            }
+        },
+        "hadoop_resources_stats": {
+            "ro": {
+                "database": "hadoop_resources_stats",
+                "driver": "mysql",
+                "password": "TqDU3yNYDG?mhSX2",
+                "rdbprod_roster": "hastatsdb-rdbprod",
+                "roster": "hastatsdb-dqs_set",
+                "username": "devcronap_cron_hadoop_re46"
+            }
+        },
+        "hextranet": {
+            "ro": {
+                "database": "hextranet",
+                "driver": "mysql",
+                "password": "295ly1fEwXlTtlUe",
+                "rdbprod_roster": "hextranetdb-rdbprod",
+                "roster": "hextranetdb-dqs_set",
+                "username": "devcronapp_cron_hextranet80"
+            },
+            "rw": {
+                "database": "hextranet",
+                "driver": "mysql",
+                "host": "dev-hextranetmdb-vip.lhr4.dqs.booking.com",
+                "password": "ouhg3PFuHvSrvdcK",
+                "username": "devcronapp_cron_hextranet83"
+            }
+        },
+        "host_content": {
+            "ro": {
+                "database": "host_content",
+                "driver": "mysql",
+                "password": "Fn7VaVDB3HO2B63_",
+                "rdbprod_roster": "bpdb-rdbprod",
+                "roster": "bpdb-dqs_set",
+                "username": "devcronapp_host_content_ro0"
+            },
+            "rw": {
+                "database": "host_content",
+                "driver": "mysql",
+                "host": "dev-bpmdb-vip.lhr4.dqs.booking.com",
+                "password": "xEmzBZA72Ny2NmkR",
+                "username": "devcronapp_host_content_rw0"
+            }
+        },
+        "hotelaccounts": {
+            "ro": {
+                "database": "hotelaccounts",
+                "driver": "mysql",
+                "password": "FCLRIbRS6txg9dDX",
+                "rdbprod_roster": "bpdb-rdbprod",
+                "roster": "bpdb-dqs_set",
+                "username": "devcronapp_hotelaccounts_ro0"
+            },
+            "rw": {
+                "database": "hotelaccounts",
+                "driver": "mysql",
+                "host": "dev-bpmdb-vip.lhr4.dqs.booking.com",
+                "password": "EUi?N3Hee_KfndH5",
+                "username": "devcronapp_hotelaccounts_rw0"
+            }
+        },
+        "insights": {
+            "ro": {
+                "database": "insights",
+                "driver": "mysql",
+                "password": "KJN0qE18I8_OoPhh",
+                "rdbprod_roster": "insightsdb-rdbprod",
+                "roster": "insightsdb-dqs_set",
+                "username": "devcronapp_cron_insights24"
+            },
+            "rw": {
+                "database": "insights",
+                "driver": "mysql",
+                "host": "dev-insightsmdb-vip.lhr4.dqs.booking.com",
+                "password": "fuF50FNAz7iRXlp7",
+                "username": "devcronapp_cron_insights77"
+            }
+        },
+        "insightstats": {
+            "ro": {
+                "database": "insightstats",
+                "driver": "mysql",
+                "password": "cpaMA3kDirlRIU8x",
+                "rdbprod_roster": "incustatsdb-rdbprod",
+                "roster": "incustatsdb-dqs_set",
+                "username": "devcronapp_cron_insightstats6"
+            },
+            "rw": {
+                "database": "insightstats",
+                "driver": "mysql",
+                "host": "dev-incustatsmdb-vip.lhr4.dqs.booking.com",
+                "password": "8u3jN7gNbShCUj7Q",
+                "username": "devcronapp_cron_insightstats7"
+            }
+        },
+        "inttool": {
+            "ro": {
+                "database": "inttool",
+                "driver": "mysql",
+                "password": "FGB8cMFKBnpeZaz8",
+                "rdbprod_roster": "inttooldb-rdbprod",
+                "roster": "inttooldb-dqs_set",
+                "username": "devcronapp_cron_inttool70"
+            },
+            "rw": {
+                "database": "inttool",
+                "driver": "mysql",
+                "host": "dev-inttoolmdb-vip.lhr4.dqs.booking.com",
+                "password": "DDa4fNYnrRyDnnZ7",
+                "username": "devcronapp_cron_inttool75"
+            }
+        },
+        "invoiceapi": {
+            "ro": {
+                "database": "invoiceapi",
+                "driver": "mysql",
+                "password": "FNiNwV1c_RY6LRnN",
+                "rdbprod_roster": "incubator2db-rdbprod",
+                "roster": "incubator2db-dqs_set",
+                "username": "devcronap_cron_invoiceap94"
+            },
+            "rw": {
+                "database": "invoiceapi",
+                "driver": "mysql",
+                "host": "dev-incubator2mdb-vip.lhr4.dqs.booking.com",
+                "password": "wV3JFEy9Sgc5tIn?",
+                "username": "devcronap_cron_invoiceap91"
+            }
+        },
+        "iocrepo": {
+            "ro": {
+                "database": "iocrepo",
+                "driver": "mysql",
+                "password": "G8bNmdGM5Q9T3b55",
+                "rdbprod_roster": "sectoolsdb-rdbprod",
+                "roster": "sectoolsdb-dqs_set",
+                "username": "devcronapp_cron_iocrepo2"
+            },
+            "rw": {
+                "database": "iocrepo",
+                "driver": "mysql",
+                "host": "dev-sectoolsmdb-vip.lhr4.dqs.booking.com",
+                "password": "pzfM?N_EX2DZTCA5",
+                "username": "devcronapp_cron_iocrepo81"
+            }
+        },
+        "ios": {
+            "ro": {
+                "database": "ios",
+                "driver": "mysql",
+                "password": "STLdCF9HybX423w5",
+                "rdbprod_roster": "androiddb-rdbprod",
+                "roster": "androiddb-dqs_set",
+                "username": "devcronapp_cron_ios46"
+            },
+            "rw": {
+                "database": "ios",
+                "driver": "mysql",
+                "host": "dev-androidmdb-vip.lhr4.dqs.booking.com",
+                "password": "0LR30jU7znWj4Fey",
+                "username": "devcronapp_cron_ios59"
+            }
+        },
+        "iss": {
+            "ro": {
+                "database": "iss",
+                "driver": "mysql",
+                "password": "OquxPylx7MvAJDXw",
+                "rdbprod_roster": "experiencesdb-rdbprod",
+                "roster": "experiencesdb-dqs_set",
+                "username": "devcronapp_cron_iss24"
+            },
+            "rw": {
+                "database": "iss",
+                "driver": "mysql",
+                "host": "dev-experiencesmdb-vip.lhr4.dqs.booking.com",
+                "password": "KfvS79KZFuxYClbe",
+                "username": "devcronapp_cron_iss37"
+            }
+        },
+        "itinerary": {
+            "ro": {
+                "database": "itinerary",
+                "driver": "mysql",
+                "password": "JmDtPzSWgJfXajnE",
+                "rdbprod_roster": "incubatordb-rdbprod",
+                "roster": "incubatordb-dqs_set",
+                "username": "devcronapp_cron_itinerary30"
+            },
+            "rw": {
+                "database": "itinerary",
+                "driver": "mysql",
+                "host": "dev-incubatormdb-vip.lhr4.dqs.booking.com",
+                "password": "37o?C_8q4d0NnzEq",
+                "username": "devcronapp_cron_itinerary63"
+            }
+        },
+        "key_collection": {
+            "ro": {
+                "database": "key_collection",
+                "driver": "mysql",
+                "password": "uqyL0lR4yuxjc90L",
+                "rdbprod_roster": "bpdb-rdbprod",
+                "roster": "bpdb-dqs_set",
+                "username": "devcronapp_key_collection_ro0"
+            },
+            "rw": {
+                "database": "key_collection",
+                "driver": "mysql",
+                "host": "dev-bpmdb-vip.lhr4.dqs.booking.com",
+                "password": "ljKgaYIrSVLxtdJr",
+                "username": "devcronapp_key_collection_rw0"
+            }
+        },
+        "krab": {
+            "ro": {
+                "database": "krab",
+                "driver": "mysql",
+                "password": "5kS1gpEWQY_fXVYP",
+                "rdbprod_roster": "incubatordb-rdbprod",
+                "roster": "incubatordb-dqs_set",
+                "username": "devcronap_cron_krab96"
+            },
+            "rw": {
+                "database": "krab",
+                "driver": "mysql",
+                "host": "dev-incubatormdb-vip.lhr4.dqs.booking.com",
+                "password": "ueJcfVp0?kLVi3_k",
+                "username": "devcronap_cron_krab39"
+            }
+        },
+        "landing_pages": {
+            "ro": {
+                "database": "landing_pages",
+                "driver": "mysql",
+                "password": "0r0zuTpjaIfZ3tiC",
+                "rdbprod_roster": "bpdb-rdbprod",
+                "roster": "bpdb-dqs_set",
+                "username": "devcronapp_cron_landing_pages10"
+            },
+            "rw": {
+                "database": "landing_pages",
+                "driver": "mysql",
+                "host": "dev-bpmdb-vip.lhr4.dqs.booking.com",
+                "password": "i0nmVASxNAWT2RuI",
+                "username": "devcronapp_cron_landing_pages85"
+            }
+        },
+        "legacy_eligibility": {
+            "ro": {
+                "database": "legacy_eligibility",
+                "driver": "mysql",
+                "password": "Pajxus7gB7xjMe7O",
+                "rdbprod_roster": "bpdb-rdbprod",
+                "roster": "bpdb-dqs_set",
+                "username": "devcronapp_legacy_eligibili_ro0"
+            },
+            "rw": {
+                "database": "legacy_eligibility",
+                "driver": "mysql",
+                "host": "dev-bpmdb-vip.lhr4.dqs.booking.com",
+                "password": "sw9sSyV?Z4V9AiZ5",
+                "username": "devcronapp_legacy_eligibili_rw0"
+            }
+        },
+        "legalmsg": {
+            "ro": {
+                "database": "legalmsg",
+                "driver": "mysql",
+                "password": "lLOsNOUZXj4ruU4X",
+                "rdbprod_roster": "incubator2db-rdbprod",
+                "roster": "incubator2db-dqs_set",
+                "username": "devcronap_cron_legalmsg58"
+            },
+            "rw": {
+                "database": "legalmsg",
+                "driver": "mysql",
+                "host": "dev-incubator2mdb-vip.lhr4.dqs.booking.com",
+                "password": "130Nf6fLQN3HEz3e",
+                "username": "devcronap_cron_legalmsg81"
+            }
+        },
+        "licensing": {
+            "ro": {
+                "database": "licensing",
+                "driver": "mysql",
+                "password": "bCqtjgXDkRiOsNAr",
+                "rdbprod_roster": "offlogdb-rdbprod",
+                "roster": "offlogdb-dqs_set",
+                "username": "devcronap_cron_licensing86"
+            },
+            "rw": {
+                "database": "licensing",
+                "driver": "mysql",
+                "host": "dev-offlogmdb-vip.lhr4.dqs.booking.com",
+                "password": "vYnPU9sSwbuP72Bc",
+                "username": "devcronap_cron_licensing87"
+            }
+        },
+        "lingo": {
+            "ro": {
+                "database": "lingo",
+                "driver": "mysql",
+                "password": "tIFVek_fMPA6i6Pq",
+                "rdbprod_roster": "conagencydb-rdbprod",
+                "roster": "conagencydb-dqs_set",
+                "username": "devcronapp_cron_lingo64"
+            },
+            "rw": {
+                "database": "lingo",
+                "driver": "mysql",
+                "host": "dev-conagencymdb-vip.lhr4.dqs.booking.com",
+                "password": "AIsVOOiabRzbv_rx",
+                "username": "devcronapp_cron_lingo53"
+            }
+        },
+        "loyalty": {
+            "ro": {
+                "database": "loyalty",
+                "driver": "mysql",
+                "password": "NxUJyuYkOlokv2Nl",
+                "rdbprod_roster": "incubatordb-rdbprod",
+                "roster": "incubatordb-dqs_set",
+                "username": "devcronapp_cron_loyalty98"
+            },
+            "rw": {
+                "database": "loyalty",
+                "driver": "mysql",
+                "host": "dev-incubatormdb-vip.lhr4.dqs.booking.com",
+                "password": "fJBeQAyDVLbiFTHY",
+                "username": "devcronapp_cron_loyalty85"
+            }
+        },
+        "marketingmessaging": {
+            "ro": {
+                "database": "marketingmessaging",
+                "driver": "mysql",
+                "password": "HLD4h1hdY3id4hSz",
+                "rdbprod_roster": "incubatordb-rdbprod",
+                "roster": "incubatordb-dqs_set",
+                "username": "devcronap_cron_marketing68"
+            },
+            "rw": {
+                "database": "marketingmessaging",
+                "driver": "mysql",
+                "host": "dev-incubatormdb-vip.lhr4.dqs.booking.com",
+                "password": "n7ETdGPZiwjTJEnW",
+                "username": "devcronap_cron_marketing95"
+            }
+        },
+        "marketingnotifications": {
+            "ro": {
+                "database": "marketingnotifications",
+                "driver": "mysql",
+                "password": "9ASYeHJH0ahJ9ZHP",
+                "rdbprod_roster": "marketingnotificationsdb-rdbprod",
+                "roster": "marketingnotificationsdb-dqs_set",
+                "username": "devcronap_cron_marketing22"
+            },
+            "rw": {
+                "database": "marketingnotifications",
+                "driver": "mysql",
+                "host": "dev-marketingnotificationsmdb-vip.dev.booking.com",
+                "password": "_oqVpLn7pRVjDPt3",
+                "username": "devcronap_cron_marketing33"
+            }
+        },
+        "marketo": {
+            "ro": {
+                "database": "marketo",
+                "driver": "mysql",
+                "password": "Ewhaje5GD1fHAIwM",
+                "rdbprod_roster": "incubatordb-rdbprod",
+                "roster": "incubatordb-dqs_set",
+                "username": "devcronap_cron_marketo58"
+            },
+            "rw": {
+                "database": "marketo",
+                "driver": "mysql",
+                "host": "dev-incubatormdb-vip.lhr4.dqs.booking.com",
+                "password": "BjV1Jk_mglq9rzjR",
+                "username": "devcronap_cron_marketo19"
+            }
+        },
+        "mktsvc": {
+            "ro": {
+                "database": "marketingservices",
+                "driver": "mysql",
+                "password": "woCaJD5fmCvf_?nO",
+                "rdbprod_roster": "mktsvcdb-rdbprod",
+                "roster": "mktsvcdb-dqs_set",
+                "username": "devcronapp_mktsvc_ro0"
+            },
+            "rw": {
+                "database": "marketingservices",
+                "driver": "mysql",
+                "host": "dev-mktsvcmdb-vip.lhr4.dqs.booking.com",
+                "password": "_2aZUsao6bJZ6XR5",
+                "username": "devcronapp_mktsvc_rw0"
+            }
+        },
+        "mmblacklist": {
+            "ro": {
+                "database": "mmblacklist",
+                "driver": "mysql",
+                "password": "NXySWgJAJKFRnBRo",
+                "rdbprod_roster": "bpdb-rdbprod",
+                "roster": "bpdb-dqs_set",
+                "username": "devcronapp_cron_mmblacklist8"
+            }
+        },
+        "moderation": {
+            "ro": {
+                "database": "moderation",
+                "driver": "mysql",
+                "password": "Wt3i0k_LQHyyfMTS",
+                "rdbprod_roster": "moderationdb-rdbprod",
+                "roster": "moderationdb-dqs_set",
+                "username": "devcronap_cron_moderatio2"
+            },
+            "rw": {
+                "database": "moderation",
+                "driver": "mysql",
+                "host": "dev-moderationmdb-vip.dev.booking.com",
+                "password": "bFgRzWBoxKqASoiX",
+                "username": "devcronap_cron_moderatio71"
+            }
+        },
+        "mtrans": {
+            "ro": {
+                "database": "mtrans",
+                "driver": "mysql",
+                "password": "7VT_PENF40EdjZkY",
+                "rdbprod_roster": "incubator2db-rdbprod",
+                "roster": "incubator2db-dqs_set",
+                "username": "devcronap_cron_mtrans56"
+            },
+            "rw": {
+                "database": "mtrans",
+                "driver": "mysql",
+                "host": "dev-incubator2mdb-vip.lhr4.dqs.booking.com",
+                "password": "zgfkyJ1raZFkIouq",
+                "username": "devcronap_cron_mtrans17"
+            }
+        },
+        "nightcaps": {
+            "ro": {
+                "database": "nightcaps",
+                "driver": "mysql",
+                "password": "JZ6cEIvbVjXubauZ",
+                "rdbprod_roster": "hextranetdb-rdbprod",
+                "roster": "hextranetdb-dqs_set",
+                "username": "devcronap_cron_nightcaps92"
+            },
+            "rw": {
+                "database": "nightcaps",
+                "driver": "mysql",
+                "host": "dev-hextranetmdb-vip.lhr4.dqs.booking.com",
+                "password": "pOuvPoXsnVmr6CjE",
+                "username": "devcronap_cron_nightcaps51"
+            }
+        },
+        "nits": {
+            "ro": {
+                "database": "nits",
+                "driver": "mysql",
+                "password": "10GoYYXqYWTqf6wz",
+                "rdbprod_roster": "incubator2db-rdbprod",
+                "roster": "incubator2db-dqs_set",
+                "username": "devcronapp_cron_nits80"
+            },
+            "rw": {
+                "database": "nits",
+                "driver": "mysql",
+                "host": "dev-incubator2mdb-vip.lhr4.dqs.booking.com",
+                "password": "iuc6OBsFPT7eETyf",
+                "username": "devcronapp_cron_nits7"
+            }
+        },
+        "office": {
+            "ro": {
+                "database": "office",
+                "driver": "mysql",
+                "password": "ZRUCjm9XlW8ysz_X",
+                "rdbprod_roster": "offdb-rdbprod",
+                "roster": "offdb-dqs_set",
+                "username": "devcronap_cron_office66"
+            },
+            "rw": {
+                "database": "office",
+                "driver": "mysql",
+                "host": "dev-offmdb-vip.lhr4.dqs.booking.com",
+                "password": "Zxa4EU6jVPk407n9",
+                "username": "devcronap_cron_office99"
+            }
+        },
+        "offlog": {
+            "ro": {
+                "database": "offlog",
+                "driver": "mysql",
+                "password": "?hYWvdcI?XK9VnV2",
+                "rdbprod_roster": "offlogdb-rdbprod",
+                "roster": "offlogdb-dqs_set",
+                "username": "devcronapp_cron_offlog14"
+            },
+            "rw": {
+                "database": "offlog",
+                "driver": "mysql",
+                "host": "dev-offlogmdb-vip.lhr4.dqs.booking.com",
+                "password": "4bvm8_VLicB_5tZG",
+                "username": "devcronapp_cron_offlog1"
+            }
+        },
+        "online_checkin": {
+            "ro": {
+                "database": "online_checkin",
+                "driver": "mysql",
+                "password": "XDnB_qUvEWEwe4H2",
+                "rdbprod_roster": "incubator2db-rdbprod",
+                "roster": "incubator2db-dqs_set",
+                "username": "devcronap_cron_online_ch30"
+            },
+            "rw": {
+                "database": "online_checkin",
+                "driver": "mysql",
+                "host": "dev-incubator2mdb-vip.lhr4.dqs.booking.com",
+                "password": "aFcykBmawYuaGwhR",
+                "username": "devcronap_cron_online_ch53"
+            }
+        },
+        "ops": {
+            "ro": {
+                "database": "ops",
+                "driver": "mysql",
+                "password": "5zghIkh2csI2kpXh",
+                "rdbprod_roster": "csdb-rdbprod",
+                "roster": "csdb-dqs_set",
+                "username": "devcronapp_cron_ops60"
+            },
+            "rw": {
+                "database": "ops",
+                "driver": "mysql",
+                "host": "dev-csmdb-vip.lhr4.dqs.booking.com",
+                "password": "HbBooNKMVcUpHrEK",
+                "username": "devcronapp_cron_ops81"
+            }
+        },
+        "paas_reward": {
+            "ro": {
+                "database": "paas_reward",
+                "driver": "mysql",
+                "password": "9JpGy27Wv77NibMb",
+                "rdbprod_roster": "prewarddb-rdbprod",
+                "roster": "prewarddb-dqs_set",
+                "username": "devcronap_cron_paas_rewa8"
+            },
+            "rw": {
+                "database": "paas_reward",
+                "driver": "mysql",
+                "host": "dev-prewardmdb-vip.dev.booking.com",
+                "password": "teKjCtHhFPn_YSJH",
+                "username": "devcronap_cron_paas_rewa3"
+            }
+        },
+        "partnerattrib": {
+            "ro": {
+                "database": "partnerattrib",
+                "driver": "mysql",
+                "password": "JzJm0c1fFczMIQnn",
+                "rdbprod_roster": "partnershipsdb-rdbprod",
+                "roster": "partnershipsdb-dqs_set",
+                "username": "devcronap_partnerat_partnerat76"
+            },
+            "rw": {
+                "database": "partnerattrib",
+                "driver": "mysql",
+                "host": "dev-partnershipsmdb-vip.lhr4.dqs.booking.com",
+                "password": "ElqTOegzr4iXPQUC",
+                "username": "devcronap_partnerat_partnerat11"
+            }
+        },
+        "partnermoderation": {
+            "ro": {
+                "database": "partnermoderation",
+                "driver": "mysql",
+                "password": "tCDOgbg7YlwQNuIo",
+                "rdbprod_roster": "incubator2db-rdbprod",
+                "roster": "incubator2db-dqs_set",
+                "username": "devcronap_cron_partnermoderati42"
+            },
+            "rw": {
+                "database": "partnermoderation",
+                "driver": "mysql",
+                "host": "dev-incubator2mdb-vip.lhr4.dqs.booking.com",
+                "password": "9AP4RVapb3oFP3CD",
+                "username": "devcronap_cron_partnermoderati19"
+            }
+        },
+        "partnerpromocodes": {
+            "ro": {
+                "database": "partnerpromocodes",
+                "driver": "mysql",
+                "password": "M6_q0QNNI9_Y7HeX",
+                "rdbprod_roster": "incubatordb-rdbprod",
+                "roster": "incubatordb-dqs_set",
+                "username": "devcronap_cron_partnerpr50"
+            },
+            "rw": {
+                "database": "partnerpromocodes",
+                "driver": "mysql",
+                "host": "dev-incubatormdb-vip.lhr4.dqs.booking.com",
+                "password": "6Muin5YlRjVd8?ri",
+                "username": "devcronap_cron_partnerpr77"
+            }
+        },
+        "partnerships": {
+            "ro": {
+                "database": "partnerships",
+                "driver": "mysql",
+                "password": "F4BP4Hob1T6xIDTe",
+                "rdbprod_roster": "bpdb-rdbprod",
+                "roster": "bpdb-dqs_set",
+                "username": "devcronap_cron_partnersh98"
+            },
+            "rw": {
+                "database": "partnerships",
+                "driver": "mysql",
+                "host": "dev-bpmdb-vip.lhr4.dqs.booking.com",
+                "password": "Y1e7uoOUdHmADx3O",
+                "username": "devcronap_cron_partnersh49"
+            }
+        },
+        "paste": {
+            "ro": {
+                "database": "paste",
+                "driver": "mysql",
+                "password": "_JTKrsU7OCDfq2ck",
+                "rdbprod_roster": "inttooldb-rdbprod",
+                "roster": "inttooldb-dqs_set",
+                "username": "devcronapp_cron_paste40"
+            },
+            "rw": {
+                "database": "paste",
+                "driver": "mysql",
+                "host": "dev-inttoolmdb-vip.lhr4.dqs.booking.com",
+                "password": "slmGoBtHVFaj8OVe",
+                "username": "devcronapp_cron_paste61"
+            }
+        },
+        "pay": {
+            "ro": {
+                "database": "pay",
+                "driver": "mysql",
+                "password": "IFWGBGFDjsda4SeI",
+                "rdbprod_roster": "paydb-rdbprod",
+                "roster": "paydb-dqs_set",
+                "username": "devcronap_cron_pay98"
+            },
+            "rw": {
+                "database": "pay",
+                "driver": "mysql",
+                "host": "dev-paymdb-vip.lhr4.dqs.booking.com",
+                "password": "1JSLnR2UAKdCY?Is",
+                "username": "devcronap_cron_pay59"
+            }
+        },
+        "payalt": {
+            "ro": {
+                "database": "payalt",
+                "driver": "mysql",
+                "password": "MHic2H_bbeqDaVkE",
+                "rdbprod_roster": "payaltdb-rdbprod",
+                "roster": "payaltdb-dqs_set",
+                "username": "devcronap_cron_payalt54"
+            },
+            "rw": {
+                "database": "payalt",
+                "driver": "mysql",
+                "host": "dev-payaltmdb-vip.lhr4.dqs.booking.com",
+                "password": "0X9Br6hGljLAB7fJ",
+                "username": "devcronap_cron_payalt41"
+            }
+        },
+        "payarc": {
+            "ro": {
+                "database": "payarc",
+                "driver": "mysql",
+                "password": "8CJ1rE20peL?GcuV",
+                "rdbprod_roster": "payarcdb-rdbprod",
+                "roster": "payarcdb-dqs_set",
+                "username": "devcronapp_cron_payarc64"
+            },
+            "rw": {
+                "database": "payarc",
+                "driver": "mysql",
+                "host": "dev-payarcmdb-vip.lhr4.dqs.booking.com",
+                "password": "UkW7R6xGIDf5wsRW",
+                "username": "devcronapp_cron_payarc21"
+            }
+        },
+        "paycfg": {
+            "ro": {
+                "database": "paycfg",
+                "driver": "mysql",
+                "password": "K9myLNTtX8cVjeSN",
+                "rdbprod_roster": "incubatordb-rdbprod",
+                "roster": "incubatordb-dqs_set",
+                "username": "devcronapp_cron_paycfg42"
+            },
+            "rw": {
+                "database": "paycfg",
+                "driver": "mysql",
+                "host": "dev-incubatormdb-vip.lhr4.dqs.booking.com",
+                "password": "mohh4TdyZ8B6XbKQ",
+                "username": "devcronapp_cron_paycfg97"
+            }
+        },
+        "paydw": {
+            "ro": {
+                "database": "paydw",
+                "driver": "mysql",
+                "password": "wD61qe9n4Vl9MvLa",
+                "rdbprod_roster": "paydwdb-rdbprod",
+                "roster": "paydwdb-dqs_set",
+                "username": "devcronapp_cron_paydw64"
+            },
+            "rw": {
+                "database": "paydw",
+                "driver": "mysql",
+                "host": "dev-paydwmdb-vip.lhr4.dqs.booking.com",
+                "password": "w4SxutTpML08Lt_g",
+                "username": "devcronapp_cron_paydw97"
+            }
+        },
+        "paymentcomponent": {
+            "ro": {
+                "database": "paymentcomponent",
+                "driver": "mysql",
+                "password": "oij?yyvUzldbR8Y5",
+                "rdbprod_roster": "paycompdb-rdbprod",
+                "roster": "paycompdb-dqs_set",
+                "username": "devcronap_cron_paymentco0"
+            },
+            "rw": {
+                "database": "paymentcomponent",
+                "driver": "mysql",
+                "host": "dev-paycompmdb-vip.lhr4.dqs.booking.com",
+                "password": "MJm1_B6yaQJ9dzIR",
+                "username": "devcronap_cron_paymentco3"
+            }
+        },
+        "payments_experience": {
+            "ro": {
+                "database": "payments_experience",
+                "driver": "mysql",
+                "password": "tHYZYqTL8EvLoUfo",
+                "rdbprod_roster": "paycompdb-rdbprod",
+                "roster": "paycompdb-dqs_set",
+                "username": "devcronap_cron_payments_22"
+            },
+            "rw": {
+                "database": "payments_experience",
+                "driver": "mysql",
+                "host": "dev-paycompmdb-vip.lhr4.dqs.booking.com",
+                "password": "1WvuQX6QSbHaYXXT",
+                "username": "devcronap_cron_payments_89"
+            }
+        },
+        "payq": {
+            "ro": {
+                "database": "payq",
+                "driver": "mysql",
+                "password": "9kR5vn1vtxEQh6Em",
+                "rdbprod_roster": "payqdb-rdbprod",
+                "roster": "payqdb-dqs_set",
+                "username": "devcronap_cron_payq44"
+            },
+            "rw": {
+                "database": "payq",
+                "driver": "mysql",
+                "host": "dev-payqmdb-vip.dev.booking.com",
+                "password": "zQg1ASQ?cGD?sTrE",
+                "username": "devcronap_cron_payq99"
+            }
+        },
+        "payreport": {
+            "ro": {
+                "database": "payreport",
+                "driver": "mysql",
+                "password": "ZsNvZ8E6MNPXauJk",
+                "rdbprod_roster": "payreportdb-rdbprod",
+                "roster": "payreportdb-dqs_set",
+                "username": "devcronap_cron_payreport38"
+            },
+            "rw": {
+                "database": "payreport",
+                "driver": "mysql",
+                "host": "dev-payreportmdb-vip.lhr4.dqs.booking.com",
+                "password": "Cv2fQ5pWwZ7xWgJv",
+                "username": "devcronap_cron_payreport95"
+            }
+        },
+        "pemk": {
+            "ro": {
+                "database": "pemk",
+                "driver": "mysql",
+                "password": "gDTz3ytrWqXLBgWb",
+                "rdbprod_roster": "emkdb-rdbprod",
+                "roster": "emkdb-dqs_set",
+                "username": "devcronapp_cron_pemk96"
+            },
+            "rw": {
+                "database": "pemk",
+                "driver": "mysql",
+                "host": "dev-emkmdb-vip.lhr4.dqs.booking.com",
+                "password": "btHQfJcI3L2Z3PzI",
+                "username": "devcronapp_cron_pemk33"
+            }
+        },
+        "photo": {
+            "ro": {
+                "database": "photo",
+                "driver": "mysql",
+                "password": "h8zplGsc5Uk3Ll5p",
+                "rdbprod_roster": "photodb-rdbprod",
+                "roster": "photodb-dqs_set",
+                "username": "devcronapp_cron_photo44"
+            },
+            "rw": {
+                "database": "photo",
+                "driver": "mysql",
+                "host": "dev-photomdb-vip.lhr4.dqs.booking.com",
+                "password": "wSVGeigNf0Yog1Z3",
+                "username": "devcronapp_cron_photo59"
+            }
+        },
+        "planeta": {
+            "ro": {
+                "database": "planeta",
+                "driver": "mysql",
+                "password": "6T3dmhCaNmWhDA86",
+                "rdbprod_roster": "incubator3db-rdbprod",
+                "roster": "incubator3db-dqs_set",
+                "username": "devcronapp_planeta_ro0"
+            },
+            "rw": {
+                "database": "planeta",
+                "driver": "mysql",
+                "host": "dev-incubator3mdb-vip.lhr4.dqs.booking.com",
+                "password": "sadtTdOwUV5W3wZy",
+                "username": "devcronapp_planeta_rw0"
+            }
+        },
+        "postoffice_arc": {
+            "ro": {
+                "database": "postoffice_arc",
+                "driver": "mysql",
+                "password": "l4qfJdHt4Q3uhwWH",
+                "rdbprod_roster": "csarcdb-rdbprod",
+                "roster": "csarcdb-dqs_set",
+                "username": "devcronapp_cron_postoffice_arc60"
+            },
+            "rw": {
+                "database": "postoffice_arc",
+                "driver": "mysql",
+                "host": "dev-poarcmdb-vip.lhr4.dqs.booking.com",
+                "password": "BHX_W2RfnKAKzFPj",
+                "username": "devcronapp_cron_postoffice_arc25"
+            }
+        },
+        "potsdb": {
+            "ro": {
+                "database": "potsdb",
+                "driver": "mysql",
+                "password": "80HEEdKVckMnDg5g",
+                "rdbprod_roster": "offlogdb-rdbprod",
+                "roster": "offlogdb-dqs_set",
+                "username": "devcronapp_cron_potsdb52"
+            },
+            "rw": {
+                "database": "potsdb",
+                "driver": "mysql",
+                "host": "dev-offlogmdb-vip.lhr4.dqs.booking.com",
+                "password": "XvOVqD6XbvkSxlaJ",
+                "username": "devcronapp_cron_potsdb7"
+            }
+        },
+        "powermarketer": {
+            "ro": {
+                "database": "powermarketer",
+                "driver": "mysql",
+                "password": "HjxMxKn4exboA3cg",
+                "rdbprod_roster": "incubatordb-rdbprod",
+                "roster": "incubatordb-dqs_set",
+                "username": "devcronap_cron_powermark66"
+            },
+            "rw": {
+                "database": "powermarketer",
+                "driver": "mysql",
+                "host": "dev-incubatormdb-vip.lhr4.dqs.booking.com",
+                "password": "K6Y2rOwnBPXdU5b9",
+                "username": "devcronap_cron_powermark27"
+            }
+        },
+        "ppc_bidding": {
+            "ro": {
+                "database": "ppc_bidding",
+                "driver": "mysql",
+                "password": "p7BIT_iHLaqSJH6N",
+                "rdbprod_roster": "incubator2db-rdbprod",
+                "roster": "incubator2db-dqs_set",
+                "username": "devcronap_cron_ppc_biddi34"
+            },
+            "rw": {
+                "database": "ppc_bidding",
+                "driver": "mysql",
+                "host": "dev-incubator2mdb-vip.lhr4.dqs.booking.com",
+                "password": "k5JaIgyv?yLgr?WY",
+                "username": "devcronap_cron_ppc_biddi9"
+            }
+        },
+        "ppromos": {
+            "ro": {
+                "database": "ppromos",
+                "driver": "mysql",
+                "password": "mM4zNJ9ReJuETL2M",
+                "rdbprod_roster": "ppromosdb-rdbprod",
+                "roster": "ppromosdb-dqs_set",
+                "username": "devcronap_cron_ppromos66"
+            },
+            "rw": {
+                "database": "ppromos",
+                "driver": "mysql",
+                "host": "dev-ppromosmdb-vip.dev.booking.com",
+                "password": "bJgb2FeviZDqfoZq",
+                "username": "devcronap_cron_ppromos11"
+            }
+        },
+        "preferred": {
+            "ro": {
+                "database": "preferred",
+                "driver": "mysql",
+                "password": "2QNX8mbmW4?Exp?U",
+                "rdbprod_roster": "bpdb-rdbprod",
+                "roster": "bpdb-dqs_set",
+                "username": "devcronapp_cron_preferred42"
+            },
+            "rw": {
+                "database": "preferred",
+                "driver": "mysql",
+                "host": "dev-bpmdb-vip.lhr4.dqs.booking.com",
+                "password": "rBUTOC?97otm2hu0",
+                "username": "devcronapp_cron_preferred51"
+            }
+        },
+        "pricing_scan": {
+            "ro": {
+                "database": "pricing_scan",
+                "driver": "mysql",
+                "password": "grdTTC_AyS?VlUFg",
+                "rdbprod_roster": "hextranetdb-rdbprod",
+                "roster": "hextranetdb-dqs_set",
+                "username": "devcronap_cron_pricing_s92"
+            },
+            "rw": {
+                "database": "pricing_scan",
+                "driver": "mysql",
+                "host": "dev-hextranetmdb-vip.lhr4.dqs.booking.com",
+                "password": "lve2yMXO7TU0T8ZW",
+                "username": "devcronap_cron_pricing_s51"
+            }
+        },
+        "property_details": {
+            "ro": {
+                "database": "property_details",
+                "driver": "mysql",
+                "password": "Zgng0I_8jnHtRvLP",
+                "rdbprod_roster": "bpdb-rdbprod",
+                "roster": "bpdb-dqs_set",
+                "username": "devcronapp_property_details_ro0"
+            },
+            "rw": {
+                "database": "property_details",
+                "driver": "mysql",
+                "host": "dev-bpmdb-vip.lhr4.dqs.booking.com",
+                "password": "oe1h9VYbW_MZ4VJv",
+                "username": "devcronapp_property_details_rw0"
+            }
+        },
+        "propertystandard": {
+            "ro": {
+                "database": "propertystandard",
+                "driver": "mysql",
+                "password": "Z9IyRmlDxdCrf_sD",
+                "rdbprod_roster": "incubator2db-rdbprod",
+                "roster": "incubator2db-dqs_set",
+                "username": "devcronap_cron_propertys48"
+            },
+            "rw": {
+                "database": "propertystandard",
+                "driver": "mysql",
+                "host": "dev-incubator2mdb-vip.lhr4.dqs.booking.com",
+                "password": "11T5GO4IvHjFZiEo",
+                "username": "devcronap_cron_propertys63"
+            }
+        },
+        "pulse_panda": {
+            "ro": {
+                "database": "pulse_panda",
+                "driver": "mysql",
+                "password": "KhdPmDFJtYOX81Qw",
+                "rdbprod_roster": "pulsedb-rdbprod",
+                "roster": "pulsedb-dqs_set",
+                "username": "devcronapp_cron_pulse_panda0"
+            },
+            "rw": {
+                "database": "pulse_panda",
+                "driver": "mysql",
+                "host": "dev-pulsemdb-vip.lhr4.dqs.booking.com",
+                "password": "qOKkn7XNmKFukYWt",
+                "username": "devcronapp_cron_pulse_panda1"
+            }
+        },
+        "pulsedb": {
+            "ro": {
+                "database": "pulsedb",
+                "driver": "mysql",
+                "password": "qGHkD?ZAHEVUEBII",
+                "rdbprod_roster": "pulsedb-rdbprod",
+                "roster": "pulsedb-dqs_set",
+                "username": "devcronapp_cron_pulsedb36"
+            },
+            "rw": {
+                "database": "pulsedb",
+                "driver": "mysql",
+                "host": "dev-pulsemdb-vip.lhr4.dqs.booking.com",
+                "password": "o1zW2PI2778mFXsq",
+                "username": "devcronapp_cron_pulsedb11"
+            }
+        },
+        "pulselog": {
+            "ro": {
+                "database": "pulselog",
+                "driver": "mysql",
+                "password": "Ojj6hmPy2F5oGGin",
+                "rdbprod_roster": "pulsedb-rdbprod",
+                "roster": "pulsedb-dqs_set",
+                "username": "devcronapp_cron_pulselog40"
+            },
+            "rw": {
+                "database": "pulselog",
+                "driver": "mysql",
+                "host": "dev-pulsemdb-vip.lhr4.dqs.booking.com",
+                "password": "Hqt3YmZcQ48BkIoI",
+                "username": "devcronapp_cron_pulselog83"
+            }
+        },
+        "pver": {
+            "ro": {
+                "database": "pver",
+                "driver": "mysql",
+                "password": "REdVyJ1G?wlEDKVV",
+                "rdbprod_roster": "hextranetdb-rdbprod",
+                "roster": "hextranetdb-dqs_set",
+                "username": "devcronapp_pver_ro0"
+            },
+            "rw": {
+                "database": "pver",
+                "driver": "mysql",
+                "host": "dev-hextranetmdb-vip.lhr4.dqs.booking.com",
+                "password": "GMi3ugn8ypvX99P8",
+                "username": "devcronapp_pver_rw0"
+            }
+        },
+        "questionsandanswers": {
+            "ro": {
+                "database": "questionsandanswers",
+                "driver": "mysql",
+                "password": "18R8tEBK2ET5R5?b",
+                "rdbprod_roster": "incubatordb-rdbprod",
+                "roster": "incubatordb-dqs_set",
+                "username": "devcronap_cron_questions2"
+            },
+            "rw": {
+                "database": "questionsandanswers",
+                "driver": "mysql",
+                "host": "dev-incubatormdb-vip.lhr4.dqs.booking.com",
+                "password": "ufLore4ygwonnkPo",
+                "username": "devcronap_cron_questions89"
+            }
+        },
+        "queue": {
+            "ro": {
+                "database": "queue",
+                "driver": "mysql",
+                "password": "Q5YrKSNMh?AMOh8A",
+                "rdbprod_roster": "queuedb-rdbprod",
+                "roster": "queuedb-dqs_set",
+                "username": "devcronapp_cron_queue40"
+            },
+            "rw": {
+                "database": "queue",
+                "driver": "mysql",
+                "host": "dev-queuemdb-vip.lhr4.dqs.booking.com",
+                "password": "CrQdG8E2?_Ep8vp6",
+                "username": "devcronapp_cron_queue53"
+            }
+        },
+        "rentalcars": {
+            "ro": {
+                "database": "rentalcars",
+                "driver": "mysql",
+                "password": "LOvva8pHeGuqi83P",
+                "rdbprod_roster": "incubatordb-rdbprod",
+                "roster": "incubatordb-dqs_set",
+                "username": "devcronapp_cron_rentalcars44"
+            },
+            "rw": {
+                "database": "rentalcars",
+                "driver": "mysql",
+                "host": "dev-incubatormdb-vip.lhr4.dqs.booking.com",
+                "password": "GghYBFUB_N8aSadc",
+                "username": "devcronapp_cron_rentalcars17"
+            }
+        },
+        "res": {
+            "ro": {
+                "database": "res",
+                "driver": "mysql",
+                "password": "NCphJbwJLl9nwW1R",
+                "rdbprod_roster": "resdb-rdbprod",
+                "roster": "resdb-dqs_set",
+                "username": "devcronap_cron_res82"
+            },
+            "rw": {
+                "database": "res",
+                "driver": "mysql",
+                "host": "dev-resmdb-vip.lhr4.dqs.booking.com",
+                "password": "GRMfqr9H9ofytnXG",
+                "username": "devcronap_cron_res81"
+            }
+        },
+        "res_migration": {
+            "ro": {
+                "database": "res_migration",
+                "driver": "mysql",
+                "password": "z?3FGihZhcxUyVvh",
+                "rdbprod_roster": "resmigrationdb-rdbprod",
+                "roster": "resmigrationdb-dqs_set",
+                "username": "devcronap_cron_res_migra84"
+            },
+            "rw": {
+                "database": "res_migration",
+                "driver": "mysql",
+                "host": "dev-resmigrationmdb-vip.lhr4.dqs.booking.com",
+                "password": "uePXk0W13cU2dUmn",
+                "username": "devcronap_cron_res_migra93"
+            }
+        },
+        "resarc": {
+            "ro": {
+                "database": "resarc",
+                "driver": "mysql",
+                "password": "esRNMvMIpSVPOAPl",
+                "rdbprod_roster": "resarc-rdbprod",
+                "roster": "resarc-dqs_set",
+                "username": "devcronap_cron_resarc50"
+            },
+            "rw": {
+                "database": "resarc",
+                "driver": "mysql",
+                "host": "dev-resarcmdb-vip.lhr4.dqs.booking.com",
+                "password": "1G0hZqRnFpQKJ2Az",
+                "username": "devcronap_cron_resarc17"
+            }
+        },
+        "rescore": {
+            "ro": {
+                "database": "rescore",
+                "driver": "mysql",
+                "password": "NhW0DISJlq8_hHpz",
+                "rdbprod_roster": "rescoredb-rdbprod",
+                "roster": "rescoredb-dqs_set",
+                "username": "devcronap_cron_rescore92"
+            },
+            "rw": {
+                "database": "rescore",
+                "driver": "mysql",
+                "host": "dev-rescoremdb-vip.lhr4.dqs.booking.com",
+                "password": "NvGfNGIPWnGeSr6N",
+                "username": "devcronap_cron_rescore57"
+            }
+        },
+        "reslog": {
+            "ro": {
+                "database": "reslog",
+                "driver": "mysql",
+                "password": "l3qFmpCe3H_BmL__",
+                "rdbprod_roster": "reslog-rdbprod",
+                "roster": "reslog-dqs_set",
+                "username": "devcronap_cron_reslog92"
+            },
+            "rw": {
+                "database": "reslog",
+                "driver": "mysql",
+                "host": "dev-reslogmdb-vip.lhr4.dqs.booking.com",
+                "password": "XDxFkn1KMu0F5D5U",
+                "username": "devcronap_cron_reslog41"
+            }
+        },
+        "resmod": {
+            "ro": {
+                "database": "resmod",
+                "driver": "mysql",
+                "password": "78PyNzwKodDXMlvU",
+                "rdbprod_roster": "bpdb-rdbprod",
+                "roster": "bpdb-dqs_set",
+                "username": "devcronapp_resmod_ro0"
+            },
+            "rw": {
+                "database": "resmod",
+                "driver": "mysql",
+                "host": "dev-bpmdb-vip.lhr4.dqs.booking.com",
+                "password": "gy3A3zSEf?gPyZKO",
+                "username": "devcronapp_resmod_rw0"
+            }
+        },
+        "resmore": {
+            "ro": {
+                "database": "resmore",
+                "driver": "mysql",
+                "password": "EpR8Zl_s7BbrjNbu",
+                "rdbprod_roster": "resmoredb-rdbprod",
+                "roster": "resmoredb-dqs_set",
+                "username": "devcronap_cron_resmore42"
+            },
+            "rw": {
+                "database": "resmore",
+                "driver": "mysql",
+                "host": "dev-resmoremdb-vip.lhr4.dqs.booking.com",
+                "password": "TBzm1LEbYye302sp",
+                "username": "devcronap_cron_resmore15"
+            }
+        },
+        "resmore_migration": {
+            "ro": {
+                "database": "resmore_migration",
+                "driver": "mysql",
+                "password": "_oBMPv8Zd5W1DVPA",
+                "rdbprod_roster": "resmoredb-rdbprod",
+                "roster": "resmoredb-dqs_set",
+                "username": "devcronap_cron_resmore_m26"
+            },
+            "rw": {
+                "database": "resmore_migration",
+                "driver": "mysql",
+                "host": "dev-resmoremdb-vip.lhr4.dqs.booking.com",
+                "password": "F5MeCDSvBCf?E7Dv",
+                "username": "devcronap_cron_resmore_m49"
+            }
+        },
+        "revcollect": {
+            "ro": {
+                "database": "revcollect",
+                "driver": "mysql",
+                "password": "Rj9WUzGJrQrruj9r",
+                "rdbprod_roster": "revcollectdb-rdbprod",
+                "roster": "revcollectdb-dqs_set",
+                "username": "devcronapp_cron_revcollect58"
+            },
+            "rw": {
+                "database": "revcollect",
+                "driver": "mysql",
+                "host": "dev-revcollectmdb-vip.lhr4.dqs.booking.com",
+                "password": "4jXJtGDdWTrDnFI7",
+                "username": "devcronapp_cron_revcollect89"
+            }
+        },
+        "revcore": {
+            "ro": {
+                "database": "revcore",
+                "driver": "mysql",
+                "password": "JcAC6wseGXQVarib",
+                "rdbprod_roster": "revcoredb-rdbprod",
+                "roster": "revcoredb-dqs_set",
+                "username": "devcronapp_cron_revcore8"
+            },
+            "rw": {
+                "database": "revcore",
+                "driver": "mysql",
+                "host": "dev-revcoremdb-vip.dev.booking.com",
+                "password": "Dfzv0bIFjvkUilYd",
+                "username": "devcronapp_cron_revcore29"
+            }
+        },
+        "review": {
+            "ro": {
+                "database": "bp",
+                "driver": "mysql",
+                "password": "rw_6yLbb9NE14cud",
+                "rdbprod_roster": "reviewdb-rdbprod",
+                "roster": "reviewdb-dqs_set",
+                "username": "devcronapp_cron_review28"
+            },
+            "rw": {
+                "database": "bp",
+                "driver": "mysql",
+                "host": "dev-reviewmdb-vip.lhr4.dqs.booking.com",
+                "password": "?3VW3L0StE3pX2fc",
+                "username": "devcronapp_cron_review7"
+            }
+        },
+        "reviewlog": {
+            "ro": {
+                "database": "reviewlog",
+                "driver": "mysql",
+                "password": "3c0xazeNdrrTPAtB",
+                "rdbprod_roster": "reviewdb-rdbprod",
+                "roster": "reviewdb-dqs_set",
+                "username": "devcronapp_cron_reviewlog48"
+            },
+            "rw": {
+                "database": "reviewlog",
+                "driver": "mysql",
+                "host": "dev-reviewmdb-vip.lhr4.dqs.booking.com",
+                "password": "V7YOmKZtjEel_?X0",
+                "username": "devcronapp_cron_reviewlog53"
+            }
+        },
+        "reward": {
+            "ro": {
+                "database": "reward",
+                "driver": "mysql",
+                "password": "bEVFPLCZyfLa?qyv",
+                "rdbprod_roster": "rewarddb-rdbprod",
+                "roster": "rewarddb-dqs_set",
+                "username": "devcronapp_cron_reward30"
+            },
+            "rw": {
+                "database": "reward",
+                "driver": "mysql",
+                "host": "dev-rewardmdb-vip.lhr4.dqs.booking.com",
+                "password": "hry5PU0VIEETWvmY",
+                "username": "devcronapp_cron_reward15"
+            }
+        },
+        "rfopedia": {
+            "ro": {
+                "database": "rfopedia",
+                "driver": "mysql",
+                "password": "_1G42KbHKpIuuWaf",
+                "rdbprod_roster": "inttooldb-rdbprod",
+                "roster": "inttooldb-dqs_set",
+                "username": "devcronapp_cron_rfopedia80"
+            },
+            "rw": {
+                "database": "rfopedia",
+                "driver": "mysql",
+                "host": "dev-inttoolmdb-vip.lhr4.dqs.booking.com",
+                "password": "6HHyaAMvkRWatrpf",
+                "username": "devcronapp_cron_rfopedia75"
+            }
+        },
+        "rmres": {
+            "ro": {
+                "database": "rmres",
+                "driver": "mysql",
+                "password": "dxW6jszSpbrv7k_6",
+                "rdbprod_roster": "incusoxdb-rdbprod",
+                "roster": "incusoxdb-dqs_set",
+                "username": "devcronap_cron_rmres4"
+            },
+            "rw": {
+                "database": "rmres",
+                "driver": "mysql",
+                "host": "dev-incusoxmdb-vip.lhr4.dqs.booking.com",
+                "password": "EHK7lfBsXGLeB17R",
+                "username": "devcronap_cron_rmres5"
+            }
+        },
+        "roomblocks": {
+            "ro": {
+                "database": "roomblocks",
+                "driver": "mysql",
+                "password": "?1Fkohg_C83OBLEY",
+                "rdbprod_roster": "incubator2db-rdbprod",
+                "roster": "incubator2db-dqs_set",
+                "username": "devcronap_cron_roomblock32"
+            },
+            "rw": {
+                "database": "roomblocks",
+                "driver": "mysql",
+                "host": "dev-incubator2mdb-vip.lhr4.dqs.booking.com",
+                "password": "dIgjA1WpsQAAM?1j",
+                "username": "devcronap_cron_roomblock45"
+            }
+        },
+        "roomconfig": {
+            "ro": {
+                "database": "roomconfig",
+                "driver": "mysql",
+                "password": "3lCg02sHdfjRsJcH",
+                "rdbprod_roster": "bpdb-rdbprod",
+                "roster": "bpdb-dqs_set",
+                "username": "devcronapp_roomconfig_ro0"
+            },
+            "rw": {
+                "database": "roomconfig",
+                "driver": "mysql",
+                "host": "dev-bpmdb-vip.lhr4.dqs.booking.com",
+                "password": "iLRd16yG7N9YriSq",
+                "username": "devcronapp_roomconfig_rw0"
+            }
+        },
+        "ruspii": {
+            "ro": {
+                "database": "ruspii",
+                "driver": "mysql",
+                "password": "0GVeJvP05QvVKGRz",
+                "rdbprod_roster": "ruspii-rdbprod",
+                "roster": "ruspii-dqs_set",
+                "username": "devcronapp_cron_ruspii2"
+            },
+            "rw": {
+                "database": "ruspii",
+                "driver": "mysql",
+                "host": "dev-ruspiimdb-vip.lhr4.dqs.booking.com",
+                "password": "2FudmA2Lf32?jFgN",
+                "username": "devcronapp_cron_ruspii15"
+            }
+        },
+        "scrap": {
+            "ro": {
+                "database": "scrap",
+                "driver": "mysql",
+                "password": "q709u02UFaOkdywq",
+                "rdbprod_roster": "scrapdb-rdbprod",
+                "roster": "scrapdb-dqs_set",
+                "username": "devcronap_cron_scrap44"
+            },
+            "rw": {
+                "database": "scrap",
+                "driver": "mysql",
+                "host": "dev-scrapmdb-vip.lhr4.dqs.booking.com",
+                "password": "uAWjfdOfZiW2Ar0?",
+                "username": "devcronap_cron_scrap85"
+            }
+        },
+        "sec_controls": {
+            "ro": {
+                "database": "sec_controls",
+                "driver": "mysql",
+                "password": "FMIlRABjPshYAVaH",
+                "rdbprod_roster": "sectoolsdb-rdbprod",
+                "roster": "sectoolsdb-dqs_set",
+                "username": "devcronap_cron_sec_contr34"
+            },
+            "rw": {
+                "database": "sec_controls",
+                "driver": "mysql",
+                "host": "dev-sectoolsmdb-vip.lhr4.dqs.booking.com",
+                "password": "mfVnRHh8ZymBT7Dm",
+                "username": "devcronap_cron_sec_contr31"
+            }
+        },
+        "seclog": {
+            "ro": {
+                "database": "seclog",
+                "driver": "mysql",
+                "password": "?nVD0ldKg?IY76u?",
+                "rdbprod_roster": "sectoolsdb-rdbprod",
+                "roster": "sectoolsdb-dqs_set",
+                "username": "devcronap_cron_seclog52"
+            },
+            "rw": {
+                "database": "seclog",
+                "driver": "mysql",
+                "host": "dev-sectoolsmdb-vip.lhr4.dqs.booking.com",
+                "password": "KqpWX2YQT2Rr2pO?",
+                "username": "devcronap_cron_seclog33"
+            }
+        },
+        "seclog_haip": {
+            "ro": {
+                "database": "seclog_haip",
+                "driver": "mysql",
+                "password": "HaaGSoXThXHlvL1J",
+                "rdbprod_roster": "haipdb-rdbprod",
+                "roster": "haipdb-dqs_set",
+                "username": "devcronapp_seclog_haip_ro0"
+            },
+            "rw": {
+                "database": "seclog_haip",
+                "driver": "mysql",
+                "host": "dev-haipmdb-vip.lhr4.dqs.booking.com",
+                "password": "iclGEb22Z1Ab8?0b",
+                "username": "devcronapp_seclog_haip_rw0"
+            }
+        },
+        "seclog_ta": {
+            "ro": {
+                "database": "seclog_ta",
+                "driver": "mysql",
+                "password": "fZfSUW3V6GzeYeDJ",
+                "rdbprod_roster": "sectoolsdb-rdbprod",
+                "roster": "sectoolsdb-dqs_set",
+                "username": "devcronapp_cron_seclog_ta44"
+            },
+            "rw": {
+                "database": "seclog_ta",
+                "driver": "mysql",
+                "host": "dev-sectoolsmdb-vip.lhr4.dqs.booking.com",
+                "password": "7SWbtWd1yPeNay60",
+                "username": "devcronapp_cron_seclog_ta31"
+            }
+        },
+        "sectools": {
+            "ro": {
+                "database": "sectools",
+                "driver": "mysql",
+                "password": "D80tXctR74nP3xB8",
+                "rdbprod_roster": "sectoolsdb-rdbprod",
+                "roster": "sectoolsdb-dqs_set",
+                "username": "devcronapp_cron_sectools4"
+            },
+            "rw": {
+                "database": "sectools",
+                "driver": "mysql",
+                "host": "dev-sectoolsmdb-vip.lhr4.dqs.booking.com",
+                "password": "JFnBPrO8eZWhtsRP",
+                "username": "devcronapp_cron_sectools89"
+            }
+        },
+        "sectools_asset": {
+            "ro": {
+                "database": "sectools_asset",
+                "driver": "mysql",
+                "password": "LjoKAqJ_42RfcK0n",
+                "rdbprod_roster": "sectoolsdb-rdbprod",
+                "roster": "sectoolsdb-dqs_set",
+                "username": "devcronapp_cron_sectools_asset34"
+            },
+            "rw": {
+                "database": "sectools_asset",
+                "driver": "mysql",
+                "host": "dev-sectoolsmdb-vip.lhr4.dqs.booking.com",
+                "password": "FQtE9XfKYzgn6mzK",
+                "username": "devcronapp_cron_sectools_asset59"
+            }
+        },
+        "sectools_blacklist": {
+            "ro": {
+                "database": "sectools_blacklist",
+                "driver": "mysql",
+                "password": "HC2IXHp2micVkbDj",
+                "rdbprod_roster": "sectoolsdb-rdbprod",
+                "roster": "sectoolsdb-dqs_set",
+                "username": "devcronap_cron_sectools_blackl56"
+            },
+            "rw": {
+                "database": "sectools_blacklist",
+                "driver": "mysql",
+                "host": "dev-sectoolsmdb-vip.lhr4.dqs.booking.com",
+                "password": "eqj6Wp2y_nAgm6w1",
+                "username": "devcronap_cron_sectools_blackl29"
+            }
+        },
+        "sectools_incidents": {
+            "ro": {
+                "database": "sectools_incidents",
+                "driver": "mysql",
+                "password": "hAe1lpKK1H7J1dvs",
+                "rdbprod_roster": "sectoolsdb-rdbprod",
+                "roster": "sectoolsdb-dqs_set",
+                "username": "devcronap_cron_sectools_incide40"
+            },
+            "rw": {
+                "database": "sectools_incidents",
+                "driver": "mysql",
+                "host": "dev-sectoolsmdb-vip.lhr4.dqs.booking.com",
+                "password": "UqiU?RO7sGGwtRwa",
+                "username": "devcronap_cron_sectools_incide81"
+            }
+        },
+        "sectools_phishing": {
+            "ro": {
+                "database": "sectools_phishing",
+                "driver": "mysql",
+                "password": "ooC1OKibWP?5_qOG",
+                "rdbprod_roster": "sectoolsdb-rdbprod",
+                "roster": "sectoolsdb-dqs_set",
+                "username": "devcronap_cron_sectools_phishi48"
+            },
+            "rw": {
+                "database": "sectools_phishing",
+                "driver": "mysql",
+                "host": "dev-sectoolsmdb-vip.lhr4.dqs.booking.com",
+                "password": "VCAGWmqP3lHbAgZ7",
+                "username": "devcronap_cron_sectools_phishi63"
+            }
+        },
+        "sectools_udp": {
+            "ro": {
+                "database": "sectools_udp",
+                "driver": "mysql",
+                "password": "juOJlMl3oOJYcpII",
+                "rdbprod_roster": "sectoolsdb-rdbprod",
+                "roster": "sectoolsdb-dqs_set",
+                "username": "devcronapp_cron_sectools_udp86"
+            },
+            "rw": {
+                "database": "sectools_udp",
+                "driver": "mysql",
+                "host": "dev-sectoolsmdb-vip.lhr4.dqs.booking.com",
+                "password": "1GqOHobSDAVsm2ge",
+                "username": "devcronapp_cron_sectools_udp55"
+            }
+        },
+        "sectools_vulpix": {
+            "ro": {
+                "database": "sectools_vulpix",
+                "driver": "mysql",
+                "password": "ugMLMtyKymuDeTZ?",
+                "rdbprod_roster": "sectoolsdb-rdbprod",
+                "roster": "sectoolsdb-dqs_set",
+                "username": "devcronap_cron_sectools_vulpi60"
+            },
+            "rw": {
+                "database": "sectools_vulpix",
+                "driver": "mysql",
+                "host": "dev-sectoolsmdb-vip.lhr4.dqs.booking.com",
+                "password": "xumrDpcyvgQFow9y",
+                "username": "devcronap_cron_sectools_vulpi87"
+            }
+        },
+        "seo": {
+            "ro": {
+                "database": "seo",
+                "driver": "mysql",
+                "password": "BJH4tOewL_9MJG8f",
+                "rdbprod_roster": "seodb-rdbprod",
+                "roster": "seodb-dqs_set",
+                "username": "devcronapp_cron_seo54"
+            },
+            "rw": {
+                "database": "seo",
+                "driver": "mysql",
+                "host": "dev-seomdb-vip.lhr4.dqs.booking.com",
+                "password": "HtBVEAWD1Ga2Umgq",
+                "username": "devcronapp_cron_seo17"
+            }
+        },
+        "slackjirabot": {
+            "ro": {
+                "database": "slackjirabot",
+                "driver": "mysql",
+                "host": "dev-inttoolmdb-vip.lhr4.dqs.booking.com",
+                "password": "Sv8XXjOn700LuxrQ",
+                "rdbprod_roster": "inttooldb-rdbprod",
+                "username": "devcronapp_slackjirabot_ro0"
+            },
+            "rw": {
+                "database": "slackjirabot",
+                "driver": "mysql",
+                "host": "dev-inttoolmdb-vip.lhr4.dqs.booking.com",
+                "password": "is5WyYnaLa0kIBl?",
+                "username": "devcronapp_slackjirabot_rw0"
+            }
+        },
+        "slo_report": {
+            "ro": {
+                "database": "slo_report",
+                "driver": "mysql",
+                "password": "6x1qcSIG10S?tuUg",
+                "rdbprod_roster": "inttooldb-rdbprod",
+                "roster": "inttooldb-dqs_set",
+                "username": "devcronapp_cron_slo_report98"
+            },
+            "rw": {
+                "database": "slo_report",
+                "driver": "mysql",
+                "host": "dev-inttoolmdb-vip.lhr4.dqs.booking.com",
+                "password": "zWW6tjNeyMhMFtMJ",
+                "username": "devcronapp_cron_slo_report97"
+            }
+        },
+        "soneco": {
+            "ro": {
+                "database": "soneco",
+                "driver": "mysql",
+                "password": "qxNkV8yVCjhQBpk7",
+                "rdbprod_roster": "soneco2db-rdbprod",
+                "roster": "soneco2db-dqs_set",
+                "username": "devcronapp_cron_soneco50"
+            },
+            "rw": {
+                "database": "soneco",
+                "driver": "mysql",
+                "host": "dev-soneco2mdb-vip.lhr4.dqs.booking.com",
+                "password": "beOkl1flY1BCrO3J",
+                "username": "devcronapp_cron_soneco19"
+            }
+        },
+        "soypii": {
+            "ro": {
+                "database": "soypii",
+                "driver": "mysql",
+                "password": "RIzr?DtyDJHiM7i7",
+                "rdbprod_roster": "soypiidb-rdbprod",
+                "roster": "soypiidb-dqs_set",
+                "username": "devcronapp_cron_soypii14"
+            },
+            "rw": {
+                "database": "soypii",
+                "driver": "mysql",
+                "host": "dev-soypiimdb-vip.lhr4.dqs.booking.com",
+                "password": "nrMu9uv9RIr?QauR",
+                "username": "devcronapp_cron_soypii31"
+            }
+        },
+        "srv": {
+            "ro": {
+                "database": "srv",
+                "driver": "mysql",
+                "password": "MqLSNo38ho9TVz9l",
+                "rdbprod_roster": "srvdb-rdbprod",
+                "roster": "srvdb-dqs_set",
+                "username": "devcronapp_cron_srv48"
+            },
+            "rw": {
+                "database": "srv",
+                "driver": "mysql",
+                "host": "dev-srvmdb-vip.lhr4.dqs.booking.com",
+                "password": "MA0wtzvt08QnEpjl",
+                "username": "devcronapp_cron_srv95"
+            }
+        },
+        "staff": {
+            "ro": {
+                "database": "staff",
+                "driver": "mysql",
+                "password": "AU_djxZkPbRVHfWC",
+                "rdbprod_roster": "staffdb-rdbprod",
+                "roster": "staffdb-dqs_set",
+                "username": "devcronapp_cron_staff24"
+            },
+            "rw": {
+                "database": "staff",
+                "driver": "mysql",
+                "host": "dev-staffmdb-vip.lhr4.dqs.booking.com",
+                "password": "FFyLJvtE5s_lF2vw",
+                "username": "devcronapp_cron_staff23"
+            }
+        },
+        "stats": {
+            "ro": {
+                "database": "stats",
+                "driver": "mysql",
+                "password": "?uL6Jrr6JRmTQDsj",
+                "rdbprod_roster": "statsdb-rdbprod",
+                "roster": "statsdb-dqs_set",
+                "username": "devcronapp_stats_ro0"
+            },
+            "rw": {
+                "database": "stats",
+                "driver": "mysql",
+                "host": "dev-statsmdb-vip.lhr4.dqs.booking.com",
+                "password": "eYFhyJHblaA78t7e",
+                "username": "devcronapp_stats_rw0"
+            }
+        },
+        "streaming_solutions": {
+            "ro": {
+                "database": "streaming_solutions",
+                "driver": "mysql",
+                "password": "vO5j4RbGo5YPwG9B",
+                "rdbprod_roster": "hastatsdb-rdbprod",
+                "roster": "hastatsdb-dqs_set",
+                "username": "devcronap_cron_streaming76"
+            }
+        },
+        "sustainability": {
+            "ro": {
+                "database": "sustainability",
+                "driver": "mysql",
+                "password": "Cw5mnVKo5CHKbDc7",
+                "rdbprod_roster": "incubator2db-rdbprod",
+                "roster": "incubator2db-dqs_set",
+                "username": "devcronapp_cron_sustainability46"
+            },
+            "rw": {
+                "database": "sustainability",
+                "driver": "mysql",
+                "host": "dev-incubator2mdb-vip.lhr4.dqs.booking.com",
+                "password": "s7WBeyN8ZfAWeJdH",
+                "username": "devcronapp_cron_sustainability9"
+            }
+        },
+        "sysctl": {
+            "ro": {
+                "database": "sysctl",
+                "driver": "mysql",
+                "password": "y7Y0NI9dPNprGoEy",
+                "rdbprod_roster": "sysctldb-rdbprod",
+                "roster": "sysctldb-dqs_set",
+                "username": "devcronap_cron_sysctl66"
+            },
+            "rw": {
+                "database": "sysctl",
+                "driver": "mysql",
+                "host": "dev-sysctlmdb-vip.lhr4.dqs.booking.com",
+                "password": "OGea2Lj9YelHm59m",
+                "username": "devcronapp_cron_sysctl73"
+            }
+        },
+        "tix": {
+            "ro": {
+                "database": "tix",
+                "driver": "mysql",
+                "password": "c_hPWWIACoQCIyhV",
+                "rdbprod_roster": "tixdb-rdbprod",
+                "roster": "tixdb-dqs_set",
+                "username": "devcronapp_cron_tix12"
+            },
+            "rw": {
+                "database": "tix",
+                "driver": "mysql",
+                "host": "dev-tixmdb-vip.lhr4.dqs.booking.com",
+                "password": "jl8NIfWAcYzH5r4d",
+                "username": "devcronapp_cron_tix45"
+            }
+        },
+        "token": {
+            "ro": {
+                "database": "token",
+                "driver": "mysql",
+                "password": "eN7C2?syDcdy1d1R",
+                "rdbprod_roster": "tokendb-rdbprod",
+                "roster": "tokendb-dqs_set",
+                "username": "devcronapp_cron_token18"
+            },
+            "rw": {
+                "database": "token",
+                "driver": "mysql",
+                "host": "dev-tokenmdb-vip.lhr4.dqs.booking.com",
+                "password": "MCiROXYOzO5fpmHH",
+                "username": "devcronapp_cron_token65"
+            }
+        },
+        "tokenstats": {
+            "ro": {
+                "database": "tokenstats",
+                "driver": "mysql",
+                "password": "ezatr8z15KBfkVh9",
+                "rdbprod_roster": "incustatsdb-rdbprod",
+                "roster": "incustatsdb-dqs_set",
+                "username": "devcronapp_cron_tokenstats92"
+            },
+            "rw": {
+                "database": "tokenstats",
+                "driver": "mysql",
+                "host": "dev-incustatsmdb-vip.lhr4.dqs.booking.com",
+                "password": "YK1BNJC_Usx8DF?l",
+                "username": "devcronapp_cron_tokenstats3"
+            }
+        },
+        "tpi": {
+            "ro": {
+                "database": "tpi",
+                "driver": "mysql",
+                "password": "pLRgXssTuKKYSUxn",
+                "rdbprod_roster": "incubator2db-rdbprod",
+                "roster": "incubator2db-dqs_set",
+                "username": "devcronap_cron_tpi30"
+            },
+            "rw": {
+                "database": "tpi",
+                "driver": "mysql",
+                "host": "dev-incubator2mdb-vip.lhr4.dqs.booking.com",
+                "password": "or4TYtsm_0gWvV8?",
+                "username": "devcronap_cron_tpi23"
+            }
+        },
+        "trans": {
+            "ro": {
+                "database": "trans",
+                "driver": "mysql",
+                "password": "ZeH9Lq7Kz1vsjpM_",
+                "rdbprod_roster": "transdb-rdbprod",
+                "roster": "transdb-dqs_set",
+                "username": "devcronap_cron_trans0"
+            },
+            "rw": {
+                "database": "trans",
+                "driver": "mysql",
+                "host": "dev-transmdb-vip.lhr4.dqs.booking.com",
+                "password": "OmaVrkS8nltHJMLP",
+                "username": "devcronap_cron_trans13"
+            }
+        },
+        "transport": {
+            "ro": {
+                "database": "transport",
+                "driver": "mysql",
+                "password": "fiuMVZDitGuOatsc",
+                "rdbprod_roster": "incubatordb-rdbprod",
+                "roster": "incubatordb-dqs_set",
+                "username": "devcronapp_cron_transport62"
+            },
+            "rw": {
+                "database": "transport",
+                "driver": "mysql",
+                "host": "dev-incubatormdb-vip.lhr4.dqs.booking.com",
+                "password": "Q?U49nDuU0uhDsyU",
+                "username": "devcronapp_cron_transport85"
+            }
+        },
+        "travelproud": {
+            "ro": {
+                "database": "travelproud",
+                "driver": "mysql",
+                "password": "rxn8lRUrQ4iOSaEh",
+                "rdbprod_roster": "incubator3db-rdbprod",
+                "roster": "incubator3db-dqs_set",
+                "username": "devcronapp_travelproud_ro0"
+            },
+            "rw": {
+                "database": "travelproud",
+                "driver": "mysql",
+                "host": "dev-incubator3mdb-vip.lhr4.dqs.booking.com",
+                "password": "zgB7a6HeRg68d9vi",
+                "username": "devcronapp_travelproud_rw0"
+            }
+        },
+        "trip": {
+            "ro": {
+                "database": "trip",
+                "driver": "mysql",
+                "password": "CnpzPu7sSFSK0KvJ",
+                "rdbprod_roster": "tripdb-rdbprod",
+                "roster": "tripdb-dqs_set",
+                "username": "devcronap_cron_trip86"
+            },
+            "rw": {
+                "database": "trip",
+                "driver": "mysql",
+                "host": "dev-tripmdb-vip.dev.booking.com",
+                "password": "4EYhdBtMsH1Odkw3",
+                "username": "devcronap_cron_trip47"
+            }
+        },
+        "url": {
+            "ro": {
+                "database": "url",
+                "driver": "mysql",
+                "password": "BobmPO0K31y1MZxb",
+                "rdbprod_roster": "urldb-rdbprod",
+                "roster": "urldb-dqs_set",
+                "username": "devcronapp_cron_url58"
+            },
+            "rw": {
+                "database": "url",
+                "driver": "mysql",
+                "host": "dev-urlmdb-vip.lhr4.dqs.booking.com",
+                "password": "1pwFTc7d1_I5wm6W",
+                "username": "devcronapp_cron_url69"
+            }
+        },
+        "urlshortener": {
+            "ro": {
+                "database": "url_shortener",
+                "driver": "mysql",
+                "password": "Fl8P_4m8uMiz3vly",
+                "rdbprod_roster": "incubatordb-rdbprod",
+                "roster": "incubatordb-dqs_set",
+                "username": "devcronapp_cron_urlshortener30"
+            },
+            "rw": {
+                "database": "url_shortener",
+                "driver": "mysql",
+                "host": "dev-incubatormdb-vip.lhr4.dqs.booking.com",
+                "password": "NQbg2gA?PUV_c?tw",
+                "username": "devcronapp_urlshortener_rw0"
+            }
+        },
+        "user": {
+            "ro": {
+                "database": "user",
+                "driver": "mysql",
+                "password": "8nSn0zdlD1TOls_Q",
+                "rdbprod_roster": "userdb-rdbprod",
+                "roster": "userdb-dqs_set",
+                "username": "devcronapp_cron_user0"
+            },
+            "rw": {
+                "database": "user",
+                "driver": "mysql",
+                "host": "dev-usermdb-vip.lhr4.dqs.booking.com",
+                "password": "L8MDHnu58yY5aD??",
+                "username": "devcronapp_cron_user21"
+            }
+        },
+        "usher0": {
+            "ro": {
+                "database": "usher0",
+                "driver": "mysql",
+                "password": "MToosGVs5qHnT3AK",
+                "rdbprod_roster": "usherdbusher0-rdbprod",
+                "roster": "usherdbusher0-dqs_set",
+                "username": "devcronapp_cron_usher40"
+            },
+            "rw": {
+                "database": "usher0",
+                "driver": "mysql",
+                "host": "dev-usher0mdb-vip.lhr4.dqs.booking.com",
+                "password": "ZK?7YlHANoTxooAZ",
+                "username": "devcronapp_cron_usher93"
+            }
+        },
+        "usher1": {
+            "ro": {
+                "database": "usher1",
+                "driver": "mysql",
+                "password": "MToosGVs5qHnT3AK",
+                "rdbprod_roster": "usherdbusher1-rdbprod",
+                "roster": "usherdbusher1-dqs_set",
+                "username": "devcronapp_cron_usher40"
+            },
+            "rw": {
+                "database": "usher1",
+                "driver": "mysql",
+                "host": "dev-usher1mdb-vip.lhr4.dqs.booking.com",
+                "password": "ZK?7YlHANoTxooAZ",
+                "username": "devcronapp_cron_usher93"
+            }
+        },
+        "usher2": {
+            "ro": {
+                "database": "usher2",
+                "driver": "mysql",
+                "password": "MToosGVs5qHnT3AK",
+                "rdbprod_roster": "usherdbusher2-rdbprod",
+                "roster": "usherdbusher2-dqs_set",
+                "username": "devcronapp_cron_usher40"
+            },
+            "rw": {
+                "database": "usher2",
+                "driver": "mysql",
+                "host": "dev-usher2mdb-vip.lhr4.dqs.booking.com",
+                "password": "ZK?7YlHANoTxooAZ",
+                "username": "devcronapp_cron_usher93"
+            }
+        },
+        "usher3": {
+            "ro": {
+                "database": "usher3",
+                "driver": "mysql",
+                "password": "MToosGVs5qHnT3AK",
+                "rdbprod_roster": "usherdbusher3-rdbprod",
+                "roster": "usherdbusher3-dqs_set",
+                "username": "devcronapp_cron_usher40"
+            },
+            "rw": {
+                "database": "usher3",
+                "driver": "mysql",
+                "host": "dev-usher3mdb-vip.lhr4.dqs.booking.com",
+                "password": "ZK?7YlHANoTxooAZ",
+                "username": "devcronapp_cron_usher93"
+            }
+        },
+        "verticals": {
+            "ro": {
+                "database": "verticals",
+                "driver": "mysql",
+                "password": "67OhB_nsPay3GtUC",
+                "rdbprod_roster": "experiencesdb-rdbprod",
+                "roster": "experiencesdb-dqs_set",
+                "username": "devcronap_cron_verticals10"
+            },
+            "rw": {
+                "database": "verticals",
+                "driver": "mysql",
+                "host": "dev-experiencesmdb-vip.lhr4.dqs.booking.com",
+                "password": "k5h9anyNoN8e3ncp",
+                "username": "devcronap_cron_verticals53"
+            }
+        },
+        "virality": {
+            "ro": {
+                "database": "virality",
+                "driver": "mysql",
+                "password": "jXj4iTaz3n7_xpBe",
+                "rdbprod_roster": "incubatordb-rdbprod",
+                "roster": "incubatordb-dqs_set",
+                "username": "devcronapp_cron_virality62"
+            },
+            "rw": {
+                "database": "virality",
+                "driver": "mysql",
+                "host": "dev-incubatormdb-vip.lhr4.dqs.booking.com",
+                "password": "0ne1ACVsLTnwACJZ",
+                "username": "devcronapp_cron_virality47"
+            }
+        },
+        "voice": {
+            "ro": {
+                "database": "voice",
+                "driver": "mysql",
+                "password": "chv9VCm8yk20WTPT",
+                "rdbprod_roster": "incubatordb-rdbprod",
+                "roster": "incubatordb-dqs_set",
+                "username": "devcronapp_cron_voice54"
+            },
+            "rw": {
+                "database": "voice",
+                "driver": "mysql",
+                "host": "dev-incubatormdb-vip.lhr4.dqs.booking.com",
+                "password": "92jXQX4DDzb6BEsl",
+                "username": "devcronapp_cron_voice99"
+            }
+        },
+        "voiceapi": {
+            "ro": {
+                "database": "voiceapi",
+                "driver": "mysql",
+                "password": "AYoOLzrC6p4eCr9f",
+                "rdbprod_roster": "voiceapidb-rdbprod",
+                "roster": "voiceapidb-dqs_set",
+                "username": "devcronapp_cron_voiceapi12"
+            },
+            "rw": {
+                "database": "voiceapi",
+                "driver": "mysql",
+                "host": "dev-voiceapimdb-vip.lhr4.dqs.booking.com",
+                "password": "f1zqzE0BkxkK0xD6",
+                "username": "devcronapp_cron_voiceapi31"
+            }
+        },
+        "voiceofthecustomer": {
+            "ro": {
+                "database": "voiceofthecustomer",
+                "driver": "mysql",
+                "password": "6pDqwlzHjSASfNHr",
+                "rdbprod_roster": "vocdb-rdbprod",
+                "roster": "vocdb-dqs_set",
+                "username": "devcronap_cron_voiceofth0"
+            },
+            "rw": {
+                "database": "voiceofthecustomer",
+                "driver": "mysql",
+                "host": "dev-vocmdb-vip.lhr4.dqs.booking.com",
+                "password": "1InV6k_m83hla1be",
+                "rdbprod_roster": "vocdb-rdbprod",
+                "username": "devcronap_cron_voiceofth53"
+            }
+        },
+        "wallet_new": {
+            "ro": {
+                "database": "wallet",
+                "driver": "mysql",
+                "password": "hXhI5UYs6I0h7apM",
+                "rdbprod_roster": "walletdb-rdbprod",
+                "roster": "walletdb-dqs_set",
+                "username": "devcronapp_cron_wallet_new16"
+            },
+            "rw": {
+                "database": "wallet",
+                "driver": "mysql",
+                "host": "dev-walletmdb-vip.lhr4.dqs.booking.com",
+                "password": "VPMBJYP41IFJ4jfb",
+                "username": "devcronapp_cron_wallet_new11"
+            }
+        },
+        "wbso": {
+            "ro": {
+                "database": "wbso",
+                "driver": "mysql",
+                "password": "Z9ffzUiMYUa4gD5p",
+                "rdbprod_roster": "incubator2db-rdbprod",
+                "roster": "incubator2db-dqs_set",
+                "username": "devcronap_cron_wbso86"
+            },
+            "rw": {
+                "database": "wbso",
+                "driver": "mysql",
+                "host": "dev-incubator2mdb-vip.lhr4.dqs.booking.com",
+                "password": "xD1f_hW2PHYh71kj",
+                "username": "devcronap_cron_wbso25"
+            }
+        },
+        "webmat": {
+            "ro": {
+                "database": "webmat",
+                "driver": "mysql",
+                "password": "bETy9GY9cZOl0rku",
+                "rdbprod_roster": "webmatdb-rdbprod",
+                "roster": "webmatdb-dqs_set",
+                "username": "devcronapp_cron_webmat68"
+            },
+            "rw": {
+                "database": "webmat",
+                "driver": "mysql",
+                "host": "dev-webmatmdb-vip.lhr4.dqs.booking.com",
+                "password": "IExAmNaTmImYtyGu",
+                "username": "devcronapp_cron_webmat83"
+            }
+        },
+        "webpromotion": {
+            "ro": {
+                "database": "webpromotion",
+                "driver": "mysql",
+                "password": "GdVhWPWDGiliL?Xc",
+                "rdbprod_roster": "dwdb-rdbprod",
+                "roster": "dwdb-dqs_set",
+                "username": "devcronap_cron_webpromot58"
+            },
+            "rw": {
+                "database": "webpromotion",
+                "driver": "mysql",
+                "host": "dev-dwmdb-vip.lhr4.dqs.booking.com",
+                "password": "j4Heuk2W?FVSxVfc",
+                "username": "devcronap_cron_webpromot35"
+            }
+        },
+        "wp_gdt": {
+            "ro": {
+                "database": "wp_gdt",
+                "driver": "mysql",
+                "password": "RxRPNnG?W0h8Z8US",
+                "rdbprod_roster": "intdb-rdbprod",
+                "roster": "intdb-dqs_set",
+                "username": "devcronap_cron_wp_gdt24"
+            },
+            "rw": {
+                "database": "wp_gdt",
+                "driver": "mysql",
+                "host": "dev-intmdb-vip.lhr4.dqs.booking.com",
+                "password": "we77cdMIplb?h80y",
+                "username": "devcronap_cron_wp_gdt61"
+            }
+        },
+        "xmlmat": {
+            "ro": {
+                "database": "xmlmat",
+                "driver": "mysql",
+                "password": "9Y9HqpGtkn6XFUVE",
+                "rdbprod_roster": "xmlmatdb-rdbprod",
+                "roster": "xmlmatdb-dqs_set",
+                "username": "devcronapp_cron_xmlmat46"
+            },
+            "rw": {
+                "database": "xmlmat",
+                "driver": "mysql",
+                "host": "dev-xmlmatmdb-vip.lhr4.dqs.booking.com",
+                "password": "ceSFpR_IFYD2xzCY",
+                "username": "devcronapp_cron_xmlmat39"
+            }
+        },
+        "xpricing": {
+            "ro": {
+                "database": "xpricing",
+                "driver": "mysql",
+                "password": "nMtjd1w9uUJefs18",
+                "rdbprod_roster": "xpricingdb-rdbprod",
+                "roster": "xpricingdb-dqs_set",
+                "username": "devcronap_cron_xpricing36"
+            },
+            "rw": {
+                "database": "xpricing",
+                "driver": "mysql",
+                "host": "dev-xpricingmdb-vip.lhr4.dqs.booking.com",
+                "password": "JCDFwTdxGlGbXn2s",
+                "username": "devcronap_cron_xpricing73"
+            }
+        },
+        "yaet": {
+            "ro": {
+                "database": "yaet",
+                "driver": "mysql",
+                "password": "ysaoJEwxIF3Zb3Tu",
+                "rdbprod_roster": "incubatordb-rdbprod",
+                "roster": "incubatordb-dqs_set",
+                "username": "devcronapp_cron_yaet80"
+            },
+            "rw": {
+                "database": "yaet",
+                "driver": "mysql",
+                "host": "dev-incubatormdb-vip.lhr4.dqs.booking.com",
+                "password": "8HB2ON457NhIuAL2",
+                "username": "devcronapp_cron_yaet29"
+            }
+        },
+        "yielding": {
+            "ro": {
+                "database": "yielding",
+                "driver": "mysql",
+                "password": "ZPqVdu50LaZhDqYi",
+                "rdbprod_roster": "bpdb-rdbprod",
+                "roster": "bpdb-dqs_set",
+                "username": "devcronapp_cron_yielding52"
+            },
+            "rw": {
+                "database": "yielding",
+                "driver": "mysql",
+                "host": "dev-bpmdb-vip.lhr4.dqs.booking.com",
+                "password": "98vSgR_YWIfZ0n6f",
+                "username": "devcronapp_cron_yielding43"
+            }
+        }
+    },
+    "mapping": {
+        "app": [
+            "app",
+            "app2",
+            "app3"
+        ],
+        "av": [
+            "av_shard_01",
+            "av_shard_02",
+            "av_shard_03",
+            "av_shard_04"
+        ],
+        "btq": [
+            "btq101",
+            "btq201"
+        ],
+        "usher": [
+            "usher0",
+            "usher1",
+            "usher2",
+            "usher3"
+        ]
+    }
+}
+[jiaguo @jiaguo - devcronapp - 01(cron) ~] $

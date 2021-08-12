@@ -1,0 +1,53 @@
+C02ZL0QPLVDN:BPlatform jiaguo$ sudo ./kubernetes-gitlab-cicd-darwin
+# creating service account:
+$ kubectl create serviceaccount gitlab
+
+# creating a role for shipper objects and a role for kubernetes objects:
+$ kubectl create role gitlab-shipper-editor --namespace=crashmonitor-bot --cluster=bplatform-eu-nl-dqs-m --verb="*" --resource="*.shipper.booking.com"
+$ kubectl create role gitlab-kubernetes-viewer --namespace=crashmonitor-bot --cluster=bplatform-eu-nl-dqs-m --verb=get,list,watch --resource=namespaces. --resource=pods.
+
+# to see the secret name:
+$ kubectl get serviceaccount gitlab --output=jsonpath={.secrets[0].name}
+
+# to see the token (this is encoded, to decode add `| base64 -D` at the end of this command):
+$ kubectl get secret gitlab-token-gcvln --output=jsonpath={.data.token}
+
+# creating role binding for the created roles:
+$ kubectl create rolebinding gitlab-shipper-editor --serviceaccount=crashmonitor-bot:gitlab --role=gitlab-shipper-editor
+$ kubectl create rolebinding gitlab-kubernetes-viewer --serviceaccount=crashmonitor-bot:gitlab --role=gitlab-kubernetes-viewer
+
+If you don't already have a personal Gitlab token, create one here: https://gitlab.booking.com/profile/personal_access_tokens.
+The token must have the "api" permission.
+Enter your Gitlab token (echo disabled):
+Enter your Gitlab project URL: https://gitlab.booking.com/jiaguo/crashmonitor-bot
+
+checking permissions for project "jiaguo/crashmonitor-bot": Get "https://gitlab.booking.com/api/v4/projects/jiaguo%2Fcrashmonitor-bot/": x509: certificate signed by unknown a
+uthority
+C02ZL0QPLVDN:BPlatform jiaguo$ #https://gitlab.booking.com/jiaguo/crashmonitor-bot.git
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$ sudo ./kubernetes-gitlab-cicd-darwin
+Password:
+# creating service account:
+$ kubectl create serviceaccount gitlab
+
+# creating a role for shipper objects and a role for kubernetes objects:
+$ kubectl create role gitlab-shipper-editor --namespace=crashmonitor-bot --cluster=bplatform-eu-nl-dqs-m --verb="*" --resource="*.shipper.booking.com"
+$ kubectl create role gitlab-kubernetes-viewer --namespace=crashmonitor-bot --cluster=bplatform-eu-nl-dqs-m --verb=get,list,watch --resource=namespaces. --resource=pods.
+
+# to see the secret name:
+$ kubectl get serviceaccount gitlab --output=jsonpath={.secrets[0].name}
+
+# to see the token (this is encoded, to decode add `| base64 -D` at the end of this command):
+$ kubectl get secret gitlab-token-gcvln --output=jsonpath={.data.token}
+
+# creating role binding for the created roles:
+$ kubectl create rolebinding gitlab-shipper-editor --serviceaccount=crashmonitor-bot:gitlab --role=gitlab-shipper-editor
+$ kubectl create rolebinding gitlab-kubernetes-viewer --serviceaccount=crashmonitor-bot:gitlab --role=gitlab-kubernetes-viewer
+
+If you don't already have a personal Gitlab token, create one here: https://gitlab.booking.com/profile/personal_access_tokens.
+The token must have the "api" permission.
+Enter your Gitlab token (echo disabled):
+Enter your Gitlab project URL: https://gitlab.booking.com/jiaguo/crashmonitor-bot.git
+
+checking permissions for project "jiaguo/crashmonitor-bot": Get "https://gitlab.booking.com/api/v4/projects/jiaguo%2Fcrashmonitor-bot/": x509: certificate signed by unknown a
+uthority

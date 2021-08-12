@@ -1,0 +1,688 @@
+warning: reattach-to-user-namespace: unsupported new OS, trying as if it were 10.10
+
+The default interactive shell is now zsh.
+To update your account to use zsh, please run `chsh -s /bin/zsh`.
+For more details, please visit https://support.apple.com/kb/HT208050.
+C02ZL0QPLVDN:common_lib jiaguo$ ]bk version
+-bash: ]bk: command not found
+C02ZL0QPLVDN:common_lib jiaguo$ bk version
+@bookingcom/bk/12.1.8-latest-darwin-x64.0 darwin-x64 node-v12.16.1
+C02ZL0QPLVDN:common_lib jiaguo$ which bk
+/usr/local/bin/bk
+C02ZL0QPLVDN:common_lib jiaguo$ bk -h
+Booking-wide CLI
+
+VERSION
+  @bookingcom/bk/12.1.8-latest-darwin-x64.0 darwin-x64 node-v12.16.1
+
+USAGE
+  $ bk [COMMAND]
+
+TOPICS
+  auth     manage authentication
+  cloud    manage B.Platform Kubernetes Infrastructure
+  config   manage bk configuration
+  context  display information about current contexts
+  plugins  manage your CLI plugins
+  sd       manage Service Directory resources
+
+COMMANDS
+  completion  outputs shell completion code for the specified shell (bash or zsh).
+  context     display information about current contexts
+  plugins     list installed plugins
+  support     display who you should contact in case you need support with a command (works with aliases as well)
+  update      update the bk CLI
+
+C02ZL0QPLVDN:common_lib jiaguo$ bk plugins
+@bookingcom/cloud 11.2.8
+@bookingcom/sd 11.0.27
+C02ZL0QPLVDN:common_lib jiaguo$ bk update
+ ›   Notice: Do not forget to refresh your completion cache by restarting your shell or by running
+ ›
+ ›       $ source ~/.bashrc
+ ›       # OR
+ ›       $ source <(bk completion bash)
+
+ ›       # OR
+ ›       $ bk completion bash 1>/dev/null
+ ›       $ source ~/Library/Caches/@bookingcom/bk/completion/functions/bash ›
+ ›    More info for setting up completion on other shells can be found by running `bk completion --help`
+ ›
+Fetching information about CLI update [channel: latest] [dist-tag: latest-darwin-x64]... done
+Restarting CLI to update plugins with the new version
+Updating CLI from 12.1.8-latest-darwin-x64.0 to 13.2.2-latest-darwin-x64.0... done
+ ›   Notice: Do not forget to refresh your completion cache by restarting your shell or by running
+ ›
+ ›       $ source ~/.bashrc
+ ›       # OR
+ ›       $ source <(bk completion bash)
+
+ ›       # OR
+ ›       $ bk completion bash 1>/dev/null
+ ›       $ source ~/Library/Caches/@bookingcom/bk/completion/functions/bash ›
+ ›    More info for setting up completion on other shells can be found by running `bk completion --help`
+ ›
+Fetching information about CLI update [channel: latest] [dist-tag: latest-darwin-x64]... already up-to-date (13.2.2-latest-darwin-x64.0)
+@bookingcom/bk: Updating plugins... done
+C02ZL0QPLVDN:common_lib jiaguo$
+C02ZL0QPLVDN:common_lib jiaguo$
+C02ZL0QPLVDN:common_lib jiaguo$ source ~/.bashrc
+C02ZL0QPLVDN:common_lib jiaguo$
+C02ZL0QPLVDN:common_lib jiaguo$ vim !$
+vim ~/.bashrc
+C02ZL0QPLVDN:common_lib jiaguo$
+C02ZL0QPLVDN:common_lib jiaguo$ bk sd:projects
+CURRENT NAME             DESCRIPTION                INDIVIDUAL OWNERS TEAM OWNERS                        ACCESS ROLE
+        china-automation china-automation                             China Quality Assurance (60005847) admin
+*       jiaguo           personal project of jiaguo Jia Guo (jiaguo)                                     admin
+Warning: failed to send METRICS event for an unknown reason, if you are under VPN, maybe you should set BK_COULD_FORCE_PROXY_IF_NEEDED=false
+C02ZL0QPLVDN:common_lib jiaguo$ curl https://gitlab.pages.booking.com/artifactory-sd-syncer/scripts/setup-docker-credential-plugin | sh
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   619  100   619    0     0    456      0  0:00:01  0:00:01 --:--:--   456
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  2589  100  2589    0     0   2437      0  0:00:01  0:00:01 --:--:--  2437
+Password:
+C02ZL0QPLVDN:common_lib jiaguo$
+C02ZL0QPLVDN:common_lib jiaguo$
+C02ZL0QPLVDN:common_lib jiaguo$ locate setup-docker-credential-plugi
+^C
+C02ZL0QPLVDN:common_lib jiaguo$ locate setup-docker-credential-plugin
+C02ZL0QPLVDN:common_lib jiaguo$ ls ~/.docker/
+application-template    config.json             contexts                daemon.json             run                     scan
+C02ZL0QPLVDN:common_lib jiaguo$ cat ~/.docker/daemon.json
+{
+  "debug" : true,
+  "builder" : {
+    "gc" : {
+      "defaultKeepStorage" : "20GB",
+      "enabled" : true
+    }
+  },
+  "experimental" : false
+}
+C02ZL0QPLVDN:common_lib jiaguo$ cat ~/.docker/con
+config.json  contexts/
+C02ZL0QPLVDN:common_lib jiaguo$ cat ~/.docker/config.json
+{
+  "credHelpers": {
+    "docker.jfrog.booking.com": "iam",
+    "docker-dev.jfrog.booking.com": "iam",
+    "docker.artifactory.booking.com": "iam"
+  }
+}
+C02ZL0QPLVDN:common_lib jiaguo$ cat ~/.docker/contexts/
+cat: /Users/jiaguo/.docker/contexts/: Is a directory
+C02ZL0QPLVDN:common_lib jiaguo$ ls ~/.docker/contexts/
+
+meta
+C02ZL0QPLVDN:common_lib jiaguo$ ls ~/.docker/contexts/meta/
+C02ZL0QPLVDN:common_lib jiaguo$ ls -al ~/.docker/contexts/meta/
+total 0
+drwxr-xr-x  2 jiaguo  697783653  64 Sep 15  2020 .
+drwxr-xr-x  3 jiaguo  697783653  96 Sep 15  2020 ..
+C02ZL0QPLVDN:common_lib jiaguo$ ls -al ~/.docker/contexts/
+total 0
+drwxr-xr-x  3 jiaguo  697783653   96 Sep 15  2020 .
+drwxr-xr-x  8 jiaguo  697783653  256 Jul 28 08:54 ..
+drwxr-xr-x  2 jiaguo  697783653   64 Sep 15  2020 meta
+C02ZL0QPLVDN:common_lib jiaguo$
+C02ZL0QPLVDN:common_lib jiaguo$
+C02ZL0QPLVDN:common_lib jiaguo$ ls /usr/local/bin/docker
+docker                         docker-compose                 docker-credential-desktop      docker-credential-ecr-login    docker-credential-iam          docker-credential-osxk
+eychain
+C02ZL0QPLVDN:common_lib jiaguo$ ls /usr/local/bin/docker-credential-
+docker-credential-desktop      docker-credential-ecr-login    docker-credential-iam          docker-credential-osxkeychain
+C02ZL0QPLVDN:common_lib jiaguo$ ls /usr/local/bin/docker-credential-
+docker-credential-desktop      docker-credential-ecr-login    docker-credential-iam          docker-credential-osxkeychain
+C02ZL0QPLVDN:common_lib jiaguo$ ls /usr/local/bin/docker-credential-iam
+/usr/local/bin/docker-credential-iam
+C02ZL0QPLVDN:common_lib jiaguo$ file /usr/local/bin/docker-credential-iam
+
+/usr/local/bin/docker-credential-iam: Bourne-Again shell script text executable, ASCII text
+C02ZL0QPLVDN:common_lib jiaguo$
+C02ZL0QPLVDN:common_lib jiaguo$ cat  /usr/local/bin/docker-credential-iam
+
+#!/bin/bash
+
+set -o errexit -o pipefail -o noclobber -o nounset
+
+# define global variables
+DOCKER_CRED_USER="anonymous";
+DOCKER_CRED_TOKEN="";
+BOOKING_USER="${BOOKING_USER:-$USER}"
+
+show_usage () {
+    if [[ "$#" -ge 1 ]]; then
+        echo "Error: "$@ >&2;
+    fi
+
+    PROGRAM=`basename "$0"`; # docker-credential-iam
+    echo -e "Docker credential helper for Booking Artifactory Docker Registry (docker.artifactory.booking.com)";
+    echo -e "\nUsage:";
+    echo -e "  $PROGRAM get";
+    echo -e "  $PROGRAM store";
+    echo -e "  $PROGRAM erase";
+    echo -e "\nEnvironment variables:";
+    echo -e "  BOOKING_USER               Used to form the username instead of \$USER\n";
+    echo -e "\nEnvironment variables (only applicable for service accounts):";
+    echo -e "  ARTIFACTORY_DOCKER_USER    Service account's username to use while doing docker push (default: $DOCKER_CRED_USER)";
+    echo -e "  ARTIFACTORY_DOCKER_TOKEN   Service account's API token to use while doing docker push (default: \"\")";
+    echo -e "More Info: https://docs.docker.com/engine/reference/commandline/login/#credential-helper-protocol";
+}
+
+init () {
+    if [[ -n "${ARTIFACTORY_DOCKER_USER-}" ]] && [[ "$ARTIFACTORY_DOCKER_USER" != "" ]] && [[ "$ARTIFACTORY_DOCKER_USER" = svc* ]]; then
+        DOCKER_CRED_USER=$ARTIFACTORY_DOCKER_USER;
+        if [[ -n "${ARTIFACTORY_DOCKER_TOKEN-}" ]] && [[ "$ARTIFACTORY_DOCKER_TOKEN" != "" ]]; then
+            DOCKER_CRED_TOKEN=$ARTIFACTORY_DOCKER_TOKEN;
+        else
+            echo "Error: missing value for ARTIFACTORY_DOCKER_TOKEN variable";
+            exit 1;
+        fi
+    elif command -v bk >/dev/null 2>&1 ; then
+        PASSPORT_USER_PREFIX="passport-user-";
+        DOCKER_CRED_USER="${PASSPORT_USER_PREFIX}${BOOKING_USER}";
+        DOCKER_CRED_TOKEN=`bk auth:issue-token`;
+    else
+        echo "Error: you should either";
+        echo "       - have bk CLI installed (https://gitlab.booking.com/devtools/bk#installation)";
+        echo "       - For service account: set ARTIFACTORY_DOCKER_USER and ARTIFACTORY_DOCKER_TOKEN environment variables";
+        exit 1;
+    fi
+}
+
+run () {
+    [[ $# -eq 0 ]] && show_usage;
+
+    while [[ $# -gt 0 ]]; do
+            case "$1" in
+                get)
+cat << EOF
+{
+    "Username": "${DOCKER_CRED_USER}",
+    "Secret": "${DOCKER_CRED_TOKEN}"
+}
+EOF
+                    exit 0;
+                    ;;
+                store|erase)
+                    exit 0;
+                    ;;
+                *) show_usage "Error: unknown argument $1";
+                   exit 1;
+            esac
+    done
+}
+
+init;
+run $@;
+C02ZL0QPLVDN:common_lib jiaguo$ :q
+-bash: :q: command not found
+C02ZL0QPLVDN:common_lib jiaguo$
+C02ZL0QPLVDN:common_lib jiaguo$
+C02ZL0QPLVDN:common_lib jiaguo$ bk context:use:project helloworld
+Switching to context helloworld:
+ ✖ Switching sd context to helloworld...
+   → project helloworld is unknown to Service Directory, cannot switch sd context to it [see error below]
+Error: project helloworld is unknown to Service Directory, cannot switch sd context to it
+    at ~/.local/share/@bookingcom/bk/node_modules/@bookingcom/sd/manager-c2ac5575.js:1025:39
+    at Generator.next (<anonymous>)
+    at fulfilled (~/.local/share/@bookingcom/bk/node_modules/@bookingcom/sd/node_modules/tslib/tslib.js:107:62)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+C02ZL0QPLVDN:common_lib jiaguo$ which kubectl
+/usr/local/bin/kubectl
+C02ZL0QPLVDN:common_lib jiaguo$ bk cloud:clusters
+NAME                               TYPE        ENVIRONMENT REGION      ZONE         CAPABILITIES                                                 STATUS K8S VERSION
+bplatform-app-az1-bk-eu-west6-dqs  application dqs         bk-eu-west6 bk-eu-west6a hdd                                                          Ready  1.16.15
+bplatform-eu-nl-dqs-a              application dqs         eu-nl       a            alertapi,cluster-alerts,dlb,firewall,iscsi,nfs,quota-alerts… Ready  1.18.18-booking.0.el7
+bplatform-eu-uk-dqs-b              application dqs         eu-uk       b            alertapi,cluster-alerts,dlb,firewall,iscsi,quota-alerts,ros… Ready  1.18.18-booking.0.el7
+bplatform-app-az1-bk-eu-west6-prod application prod        bk-eu-west6 bk-eu-west6a hdd                                                          Ready  1.16.15
+bplatform-eu-de-prod-c             application prod        eu-de       c            alertapi,cluster-alerts,dlb,firewall,hdd,quota-alerts,roste… Ready  1.18.18-booking.0.el7
+bplatform-eu-nl-prod-c             application prod        eu-nl       c            alertapi,cluster-alerts,dlb,firewall,hdd,iscsi,nfs,quota-al… Ready  1.18.18-booking.0.el7
+bplatform-eu-uk-prod-c             application prod        eu-uk       c            alertapi,cluster-alerts,dlb,firewall,iscsi,nfs,quota-alerts… Ready  1.18.18-booking.0.el7
+bplatform-eu-nl-dev-a              development dev         eu-nl       a            alertapi,iscsi,nfs,roster,service-mesh-mgmt,shipper-app,shi… Ready  1.18.18-booking.0.el7
+bplatform-eu-nl-dev-b              development dev         eu-nl       b            alertapi,iscsi,nfs,roster,service-mesh-mgmt,shipper-app,shi… Ready  1.18.18-booking.0.el7
+bplatform-eu-uk-dev-a              development dev         eu-uk       a            alertapi,roster,service-mesh-mgmt,shipper-app,shipper-mgmt,… Ready  1.18.18-booking.0.el7
+bplatform-eu-nl-dqs-m              management  dqs         eu-nl       m            alertapi,aws-enablement,dlb,firewall,gcp-enablement,iscsi,n… Ready  1.18.18-booking.0.el7
+bplatform-eu-nl-prod-m             management  prod        eu-nl       m            alertapi,aws-enablement,dlb,firewall,gcp-enablement,hdd,isc… Ready  1.18.18-booking.0.el7
+C02ZL0QPLVDN:common_lib jiaguo$ bk context:use:cluster bplatform-eu-nl-dev-a
+ ✔ Cluster bplatform-eu-nl-dev-a exists
+ ✔ Installation jiaguo/playground/kubernetes-dev-jiaguo-9d4bd465 exists in cluster bplatform-eu-nl-dev-a
+ ✔ kubectl context set to bplatform-eu-nl-dev-a/jiaguo-jiaguo-9d4bd465
+   → namespace already set to jiaguo-jiaguo-9d4bd465
+   → cluster changed to bplatform-eu-nl-dev-a
+ ✔ sd context kubectl reference has been updated
+ ✔ Cluster bplatform-eu-nl-dev-a is healthy
+C02ZL0QPLVDN:common_lib jiaguo$ kubectl config current-context
+bplatform-eu-nl-dev-a/jiaguo-jiaguo-9d4bd465
+C02ZL0QPLVDN:common_lib jiaguo$ kubectl get pods
+No resources found in jiaguo-jiaguo-9d4bd465 namespace.
+C02ZL0QPLVDN:common_lib jiaguo$
+C02ZL0QPLVDN:common_lib jiaguo$
+C02ZL0QPLVDN:common_lib jiaguo$
+C02ZL0QPLVDN:common_lib jiaguo$
+C02ZL0QPLVDN:common_lib jiaguo$
+C02ZL0QPLVDN:common_lib jiaguo$ kubectl get svc
+No resources found in jiaguo-jiaguo-9d4bd465 namespace.
+C02ZL0QPLVDN:common_lib jiaguo$
+C02ZL0QPLVDN:common_lib jiaguo$
+C02ZL0QPLVDN:common_lib jiaguo$ kubectl get endpoints
+No resources found in jiaguo-jiaguo-9d4bd465 namespace.
+C02ZL0QPLVDN:common_lib jiaguo$
+C02ZL0QPLVDN:common_lib jiaguo$
+C02ZL0QPLVDN:common_lib jiaguo$ bk sd:playground
+Project jiaguo already exists
+Component jiaguo/playground already exists
+Provisioning DEV installation for KUBERNETES in Service Directory:
+ ✔ Validating parameters...
+ ✔ Installation jiaguo/playground/kubernetes-dev-jiaguo-ae498f53 created
+ ✔ Cluster bplatform-eu-uk-dev-a is now the preferred cluster for this installation
+ ✔ Namespace jiaguo-jiaguo-ae498f53 provisioned
+  → NOTE: It may take a bit of time to sync permissions to access the namespace
+ ✔ sd context set to jiaguo/playground/kubernetes-dev-jiaguo-ae498f53
+ ✔ kubectl context set to bplatform-eu-uk-dev-a/jiaguo-jiaguo-ae498f53
+   → namespace changed to jiaguo-jiaguo-ae498f53
+   → cluster changed to bplatform-eu-uk-dev-a
+ ✔ sd context kubectl reference has been updated
+You're good to go and run first kubectl command in the namespace!
+C02ZL0QPLVDN:common_lib jiaguo$ kubectl run --generator=run-pod/v1 --image=docker.jfrog.booking.com/projects/bplatform/booking-nginx:latest nginx
+Flag --generator has been deprecated, has no effect and will be removed in the future.
+pod/nginx created
+C02ZL0QPLVDN:common_lib jiaguo$ kubectl get pods -o yaml | grep podIP
+          f:podIP: {}
+          f:podIPs:
+    podIP: 10.230.181.113
+    podIPs:
+C02ZL0QPLVDN:common_lib jiaguo$ http_proxy= curl http://10.230.181.113/no_such_page
+<html>
+<head><title>404 Not Found</title></head>
+<body>
+<center><h1>404 Not Found</h1></center>
+<hr><center>nginx</center>
+</body>
+</html>
+C02ZL0QPLVDN:common_lib jiaguo$ bk sd:projects
+CURRENT NAME             DESCRIPTION                INDIVIDUAL OWNERS TEAM OWNERS                        ACCESS ROLE
+        china-automation china-automation                             China Quality Assurance (60005847) admin
+*       jiaguo           personal project of jiaguo Jia Guo (jiaguo)                                     admin
+C02ZL0QPLVDN:common_lib jiaguo$ kubectl get svc
+No resources found in jiaguo-jiaguo-ae498f53 namespace.
+C02ZL0QPLVDN:common_lib jiaguo$ kubectl get endpoints
+No resources found in jiaguo-jiaguo-ae498f53 namespace.
+C02ZL0QPLVDN:common_lib jiaguo$ bk sd:components
+CURRENT NAME       KIND    PROJECT DESCRIPTION                             PERSONA
+*       playground service jiaguo  personal playground component of jiaguo b-jiaguo-playground
+C02ZL0QPLVDN:common_lib jiaguo$ bk sd:components:bootstrap
+Welcome to bk cloud component bootstrapping wizard!
+
+This tool will walk you through creating a component.
+It covers the most common items, and tries to guess sensible defaults.
+
+The tool will ask you a couple of questions, please take them seriously and answer truthfully! :-)
+
+If you have questions like 'what is B.Platform Kubernetes Project?' or 'how did I end up here?',
+then please refer to B.Platform Kubernetes docs at https://docs.booking.com/kubernetes
+
+Press ^C at any time to quit.
+
+Shall we begin?
+
+
+? What kind of component are we creating today? Personal component
+Ok, cool, so we're exploring new ideas!
+This simplify initial setup a bit, but I still need to ask some questions!
+
+The first step would be to introduce a bit of hierarchy!
+
+At the top of this hierarchy, we have what we call a Project.
+A project is an abstract thing which is useful for administrative grouping, access control and later billing.
+For exploration purposes we recommend to use a personal project, i.e. a project which name is jiaguo.
+
+Beneath a Project, we have what we call a Component. The idea of a Component is quite simple:
+A component is a business function available for consumption by a human or a computer.
+Let me give you some of the examples of a component:
+  - api
+  - frontend
+  - database
+
+So, this way a 'soylent' Project may have multiple Components named 'api' or 'database'
+
+There are more things which you would need to get yourself familiar with, but it's irrelevant for now.
+If you're eager to learn, feel free to visit https://docs.booking.com/kubernetes/concepts/service-directory.html
+Let's start doing something useful now, right?!
+
+Since we're going to use a personal Project, we can jump to talk about a Component
+
+
+
+Ok, I've got all about the Project! Let's now talk about the Component!
+
+? How would you like to name the Component? (lowercase alphanumeric and '-' are allowed) firebase-crash-monitor
+? Component description is just a user-friendly explanation of function the component perform, something like: 'API component provides access to soylent AP
+I for storing PII data'
+Please describe the component in a short sentence crashmonitor
+Scanning dependencies of nearby folders:
+ ✔ Not relevant file found
+ ↓ Scanning dependencies inside files... [skipped]
+   → no file to scan
+
+All good so far! Let's see what I'm going to do:
+
+I'm going to reuse existing Project:
+name:            jiaguo
+
+I'm going to create new Component:
+name:            firebase-crash-monitor
+description:     crashmonitor
+
+I'm also going to create a DEV Installation.
+An Installation is a place where you can run code. This means a namespace for kubernetes.
+More about Installations at https://docs.booking.com/kubernetes/concepts/service-directory.html#installations
+
+I'm NOT going to register dependencies!
+Please register them later by using one of the following options:
+$ bk sd:dependencies:request -f dependencies.yaml
+$ bk sd:dependencies:request -f application.yaml
+
+? Everything looks good? No
+Sending error/warning to FLOG... sent successfully
+ ›   Error: ok, you could try again later if you want! Bye!
+C02ZL0QPLVDN:common_lib jiaguo$
+C02ZL0QPLVDN:common_lib jiaguo$
+C02ZL0QPLVDN:common_lib jiaguo$
+C02ZL0QPLVDN:common_lib jiaguo$ bk sd:components:bootstrap
+Welcome to bk cloud component bootstrapping wizard!
+
+This tool will walk you through creating a component.
+It covers the most common items, and tries to guess sensible defaults.
+
+The tool will ask you a couple of questions, please take them seriously and answer truthfully! :-)
+
+If you have questions like 'what is B.Platform Kubernetes Project?' or 'how did I end up here?',
+then please refer to B.Platform Kubernetes docs at https://docs.booking.com/kubernetes
+
+Press ^C at any time to quit.
+
+Shall we begin?
+
+
+? What kind of component are we creating today? Personal component
+Ok, cool, so we're exploring new ideas!
+This simplify initial setup a bit, but I still need to ask some questions!
+
+The first step would be to introduce a bit of hierarchy!
+
+At the top of this hierarchy, we have what we call a Project.
+A project is an abstract thing which is useful for administrative grouping, access control and later billing.
+For exploration purposes we recommend to use a personal project, i.e. a project which name is jiaguo.
+
+Beneath a Project, we have what we call a Component. The idea of a Component is quite simple:
+A component is a business function available for consumption by a human or a computer.
+Let me give you some of the examples of a component:
+  - api
+  - frontend
+  - database
+
+So, this way a 'soylent' Project may have multiple Components named 'api' or 'database'
+
+There are more things which you would need to get yourself familiar with, but it's irrelevant for now.
+If you're eager to learn, feel free to visit https://docs.booking.com/kubernetes/concepts/service-directory.html
+Let's start doing something useful now, right?!
+
+Since we're going to use a personal Project, we can jump to talk about a Component
+
+
+
+Ok, I've got all about the Project! Let's now talk about the Component!
+
+? How would you like to name the Component? (lowercase alphanumeric and '-' are allowed) crashmonitor
+? Component description is just a user-friendly explanation of function the component perform, something like: 'API component provides access to soylent AP
+I for storing PII data'
+Please describe the component in a short sentence crash monitor
+Scanning dependencies of nearby folders:
+ ✔ Not relevant file found
+ ↓ Scanning dependencies inside files... [skipped]
+   → no file to scan
+
+All good so far! Let's see what I'm going to do:
+
+I'm going to reuse existing Project:
+name:            jiaguo
+
+I'm going to create new Component:
+name:            crashmonitor
+description:     crash monitor
+
+I'm also going to create a DEV Installation.
+An Installation is a place where you can run code. This means a namespace for kubernetes.
+More about Installations at https://docs.booking.com/kubernetes/concepts/service-directory.html#installations
+
+I'm NOT going to register dependencies!
+Please register them later by using one of the following options:
+$ bk sd:dependencies:request -f dependencies.yaml
+$ bk sd:dependencies:request -f application.yaml
+
+? Everything looks good? Yes
+Creating component jiaguo/crashmonitor in Service Directory:
+ ✔ Validating parameters...
+   ✔ Project name is valid
+   ✔ Validating project jiaguo attributes...
+     ↓ Adding attribute kubernetes... [skipped]
+       → already there
+   ✔ Component name is valid
+   ✔ Component description is valid
+ ✔ Component jiaguo/crashmonitor created
+Provisioning DEV installation in Service Directory:
+ ✔ Validating parameters...
+ ✔ Installation jiaguo/crashmonitor/kubernetes-dev-jiaguo-9398a626 created
+ ✔ Cluster bplatform-eu-nl-dev-a is now the preferred cluster for this installation
+ ✔ Namespace jiaguo-jiaguo-9398a626 provisioned
+  → NOTE: It may take a bit of time to sync permissions to access the namespace
+ ✔ sd context set to jiaguo/crashmonitor/kubernetes-dev-jiaguo-9398a626
+ ✔ kubectl context set to bplatform-eu-nl-dev-a/jiaguo-jiaguo-9398a626
+   → namespace changed to jiaguo-jiaguo-9398a626
+   → cluster changed to bplatform-eu-nl-dev-a
+ ✔ sd context kubectl reference has been updated
+All in place! you're good to go and run first kubectl command in this namespace!
+
+Oh, btw, one last thing!
+If you want to scaffold Perl or Java Kubernetes configs, check out the following things:
+
+    # for Perl, using the Perl plugin
+    $ bk plugins:install @bookingcom/perl
+    $ bk perl:bootstrap
+
+    # for Java, using the Java plugin
+    $ bk plugins:install @bookingcom/java
+    $ bk java:bootstrap
+C02ZL0QPLVDN:common_lib jiaguo$ ls
+HTMLTestRunner.py                       email_helper.py                         reportLogger.py
+HTMLTestRunner_PY3.py                   logConfig.json                          reservation_util.py
+__init__.py                             logInfo.py                              utils_helper.py
+__pycache__                             logger.py
+db_helper.py                            redis_phone_verification_helper.py
+C02ZL0QPLVDN:common_lib jiaguo$ pwd
+/Users/jiaguo/workspace/b.api-testing/common_lib
+C02ZL0QPLVDN:common_lib jiaguo$ ls
+HTMLTestRunner.py                       email_helper.py                         reportLogger.py
+HTMLTestRunner_PY3.py                   logConfig.json                          reservation_util.py
+__init__.py                             logInfo.py                              utils_helper.py
+__pycache__                             logger.py
+db_helper.py                            redis_phone_verification_helper.py
+C02ZL0QPLVDN:common_lib jiaguo$ cd ../../
+C02ZL0QPLVDN:workspace jiaguo$ ls
+QAuto                           book-and-unlock-test-tools-auth geniuscredit-tool               mysql-data
+android                         crashmonitor-bot                gitlab-commit-fetcher           nightwatch
+app-auto-notes                  dev                             hacker2021                      release-page
+b-robot                         experiment-quality-tracking     main                            scripts
+b.api-testing                   genius-credit-client            mitmproxy                       tools
+bkng                            genius-credit-service           mri-client                      web-robot
+C02ZL0QPLVDN:workspace jiaguo$ pwd
+/Users/jiaguo/workspace
+C02ZL0QPLVDN:workspace jiaguo$ cd b
+b-robot/                         b.api-testing/                   bkng/                            book-and-unlock-test-tools-auth/
+C02ZL0QPLVDN:workspace jiaguo$
+C02ZL0QPLVDN:workspace jiaguo$ mkdir BPlatform
+C02ZL0QPLVDN:workspace jiaguo$ cd BPlatform/
+C02ZL0QPLVDN:BPlatform jiaguo$ ls
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$ bk sd:dependencies
+NAME PROPERTIES PROJECT COMPONENT INSTALLATION STATUS APPROVAL STATE PROVISION STATE MESSAGE
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$ bk sd:projects
+CURRENT NAME             DESCRIPTION                INDIVIDUAL OWNERS TEAM OWNERS                        ACCESS ROLE
+        china-automation china-automation                             China Quality Assurance (60005847) admin
+*       jiaguo           personal project of jiaguo Jia Guo (jiaguo)                                     admin
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$ bk sd:components
+CURRENT NAME         KIND    PROJECT DESCRIPTION                             PERSONA
+*       crashmonitor service jiaguo  crash monitor                           b-jiaguo-crashmonitor
+        playground   service jiaguo  personal playground component of jiaguo b-jiaguo-playground
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$ bk sd:projects
+CURRENT NAME             DESCRIPTION                INDIVIDUAL OWNERS TEAM OWNERS                        ACCESS ROLE
+        china-automation china-automation                             China Quality Assurance (60005847) admin
+*       jiaguo           personal project of jiaguo Jia Guo (jiaguo)                                     admin
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$ bk sd:projects:bootstrap
+ ›   Error: command sd:projects:bootstrap not found
+C02ZL0QPLVDN:BPlatform jiaguo$ bk sd:projects
+CURRENT NAME             DESCRIPTION                INDIVIDUAL OWNERS TEAM OWNERS                        ACCESS ROLE
+        china-automation china-automation                             China Quality Assurance (60005847) admin
+*       jiaguo           personal project of jiaguo Jia Guo (jiaguo)                                     admin
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$ bk context
+---------User----------
+login status                  SSO / logged in / token expires in 3h 32m 53s
+login as                      jiaguo
+
+---Service Directory---
+project                       jiaguo
+component                     crashmonitor
+installation                  kubernetes-dev-jiaguo-9398a626
+namespace                     jiaguo-jiaguo-9398a626
+
+sd context                    jiaguo/crashmonitor/kubernetes-dev-jiaguo-9398a626
+
+Flog (PROD)                   https://flog.booking.com/?persona=b-jiaguo-crashmonitor
+Grafana - Cluster View (PROD) https://grafana.booking.com/dashboard/db/app-pod-container-metrics-cluster-view?var-persona=b-jiaguo-crashmonitor
+Grafana - Pod View (PROD)     https://grafana.booking.com/dashboard/db/app-pod-container-metrics?var-persona=b-jiaguo-crashmonitor
+Logs (PROD)                   https://logs.booking.com/app/kibana#/discover?_a=(columns:!(extra.ContainerName,extra.text),index:'01344ff0-1a67-11e9-81aa-cfbc3c4d1e8b',interval:a
+uto,query:(language:lucene,query:'extra.Persona:b-jiaguo-crashmonitor'),sort:!('@timestamp',desc))&_g=()
+
+--------kubectl--------
+kubectl context               bplatform-eu-nl-dev-a/jiaguo-jiaguo-9398a626
+sd & kubectl in-sync          true
+
+cluster                       bplatform-eu-nl-dev-a
+cluster type                  development
+cluster status                Ready
+
+kubernetes-dashboard          https://bplatform-eu-nl-dev-a-dashboard.ams4.dqs.booking.com/#/overview?namespace=jiaguo-jiaguo-9398a626
+C02ZL0QPLVDN:BPlatform jiaguo$ man bkl
+No manual entry for bkl
+C02ZL0QPLVDN:BPlatform jiaguo$ man bk
+No manual entry for bk
+C02ZL0QPLVDN:BPlatform jiaguo$ bk -help
+ ›   Error: command -help not found
+C02ZL0QPLVDN:BPlatform jiaguo$ bk --help
+Booking-wide CLI
+
+VERSION
+  @bookingcom/bk/13.2.2-latest-darwin-x64.0 darwin-x64 node-v16.3.0
+
+USAGE
+  $ bk [COMMAND]
+
+TOPICS
+  auth        manage authentication
+  cloud       manage B.Platform Kubernetes Infrastructure
+  completion  outputs shell completion code for the specified shell (bash or zsh).
+  config      manage bk configuration
+  context     display information about current contexts
+  plugins     manage your CLI plugins
+  sd          manage Service Directory resources
+
+COMMANDS
+  completion  outputs shell completion code for the specified shell (bash or zsh).
+  context     display information about current contexts
+  plugins     list installed plugins
+  support     display who you should contact in case you need support with a command (works with aliases as well)
+  update      update the bk CLI
+
+C02ZL0QPLVDN:BPlatform jiaguo$ bk plugins
+@bookingcom/cloud 11.2.10
+@bookingcom/sd 11.0.28
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$ bk context:use:project jiaguo
+Switching to context jiaguo:
+ ✔ sd context set to jiaguo
+ ✔ kubectl context is unset
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$ bk context:use:project china-automation
+Switching to context china-automation:
+ ✔ sd context set to china-automation
+ ✔ kubectl context is unset
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$ bk sd:projects
+CURRENT NAME             DESCRIPTION                INDIVIDUAL OWNERS TEAM OWNERS                        ACCESS ROLE
+*       china-automation china-automation                             China Quality Assurance (60005847) admin
+        jiaguo           personal project of jiaguo Jia Guo (jiaguo)                                     admin
+C02ZL0QPLVDN:BPlatform jiaguo$ bk sd:components
+CURRENT NAME                   KIND      PROJECT          DESCRIPTION                                          PERSONA
+        api-robot              service   china-automation API Testing by China QA Team                         b-china-automation-api-robot
+        bad-stop-dashboard-web webapp    china-automation bad-stop-dashboard-web                               b-china-automation-bad-stop-dashboard-web
+        database-handler       webapp    china-automation database-handler                                     b-china-automation-database-handler
+        demo                   service   china-automation demo purpose                                         b-china-automation-demo
+        jmeter-console         service   china-automation JMeter console                                       b-china-automation-jmeter-console
+        mysql_chinaqa          datastore china-automation 'mysql_chinaqa' represents schema 'chinaqa' of MySQL
+        qa-info-web-portal     webapp    china-automation test-info-web-portal                                 b-china-automation-qa-info-web-portal
+        quality-intelligence   service   china-automation Quality-Intelligence                                 b-china-automation-quality-intelligence
+C02ZL0QPLVDN:BPlatform jiaguo$ bk context
+---------User----------
+login status         SSO / logged in / token expires in 3h 27m 49s
+login as             jiaguo
+
+---Service Directory---
+project              china-automation
+component
+installation
+namespace
+
+sd context           china-automation
+
+--------kubectl--------
+kubectl context
+sd & kubectl in-sync false
+C02ZL0QPLVDN:BPlatform jiaguo$ bk context --help
+display information about current contexts
+
+USAGE
+  $ bk context
+
+OPTIONS
+  --[no-]extra            display additional information that requires external communication
+  --output=json|yaml|ps1  output format
+
+ALIASES
+  $ bk cloud:context
+  $ bk ctx
+
+TOPICS
+  context:use  switch bk context
+
+COMMANDS
+  context:use  switch bk context
+
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$
