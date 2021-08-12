@@ -92,8 +92,7 @@ TOP_ISSUE_BY_CRASH_AND_USER_COUNT ='''
 def get_firebase_crashlytics_cursor(index=table_index):
     # read only database connection 
     DBEngine = cm.get_connection(database, acc_mode)
-
-	sql_cmd = TOP_ISSUE_BY_CRASH_AND_USER_COUNT.format(
+    sql_cmd = TOP_ISSUE_BY_CRASH_AND_USER_COUNT.format(
 		table = firebase_crash_table[index],
 		start_timestamp=start_timestamp,
 		end_timestamp = end_timestamp,
@@ -102,11 +101,12 @@ def get_firebase_crashlytics_cursor(index=table_index):
 		issue_count_max = issue_count_max
 	)
 
-	cursor = DBEngine.execute(sql_cmd)
-	return cursor
+    cursor = DBEngine.execute(sql_cmd)
+    return cursor
 
 # TODO : get issue_id from read_firebase_crashlytics & call https API to get failing details 
-def get_issue_id_list(cursor=cursor):
+
+def get_issue_id_list(cursor):
 	issue_id_list = []
 	for issue_id in cursor.fetchall():
 		issue_id_list.append[issue_id]
@@ -114,7 +114,6 @@ def get_issue_id_list(cursor=cursor):
 	total_issues = len(issue_id_list)
 	print('Total issues today: ',total_issues)	
 	return issue_id_list
-
 
 def https_get_stacktrace_frames_in_json(issue_id):
 	crash_url = 'https://ota.booking.com/crashes/Android/stacktraces?issue_ids={issue_id}}&cached=true&start_date=&end_date'
@@ -135,6 +134,7 @@ def https_get_stacktrace_frames_in_json(issue_id):
 	return frames_in_json
 
 	# TODO: interace to store each item in local DB 
+
 
 
 	

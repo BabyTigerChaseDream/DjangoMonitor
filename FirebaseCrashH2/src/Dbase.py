@@ -1,7 +1,16 @@
+'''
+##################################################
+
+This file is an abstraction of crash database
+ - based on sqlalchemy session(multi-thread access safe)
+
+##################################################
+'''
+
 from sqlalchemy import create_engine, Table, Column, Integer, String, Date, Text, MetaData, ForeignKey, desc, DateTime, UniqueConstraint
 
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker, relationship, backref
+from sqlalchemy.orm import sessionmaker, relationship, backref, scoped_session
 #from sqlalchemy.sql import insert, select, update, delete
 #from sqlalchemy.sql import or_, and_, any_, not_
 from sqlalchemy.types import JSON 
@@ -30,6 +39,7 @@ class ReservedDB(Base):
 '''
 
 class Dbase:
+	# default connection string: connect to QA team crash database & reading existing data  
     conn_string = 'mysql+pymysql://root:123456@localhost:3306/FirebaseCrashes'
     connection = None
     engine = None
@@ -39,7 +49,7 @@ class Dbase:
     metadata = Base.metadata
 
     # android crash : android daily crash data
-    submission = Table('firebase_crashlytics_android',
+    firebase_crashlytics_android = Table('firebase_crashlytics_android',
                        metadata,
                        Column('id', Integer(),
                               primary_key=True, autoincrement=True),
@@ -54,11 +64,12 @@ class Dbase:
                        Column('platform', String(50),default='android'),
                        Column('app_version', String(50)),
 					   Column('crashframes',JSON),
-                       UniqueConstraint('issue_id')
+                       UniqueConstraint('issue_id'),
+					   keep_existing=True 
                        )
-
+'''
     # ios crash : ios daily crash data
-    submission = Table('firebase_crashlytics_ios',
+    firebase_crashlytics_ios = Table('firebase_crashlytics_ios',
                        metadata,
                        Column('id', Integer(),
                               primary_key=True, autoincrement=True),
@@ -73,10 +84,12 @@ class Dbase:
                        Column('platform', String(50),default='ios'),
                        Column('app_version', String(50)),
 					   Column('crashframes',JSON),
-                       UniqueConstraint('issue_id')
+                       UniqueConstraint('issue_id'),
+				 	   keep_existing=True
                        )
-    # test resus matrix
-    test = Table('firebase_crashlytics_jira',
+
+    # all jira tickets has issue_id 
+    firebase_crashlytics_jira = Table('firebase_crashlytics_jira',
                  metadata,
                  Column('id', Integer(), primary_key=True, autoincrement=True),
 				 # issue_id in firebase_crashlytics_'platform'
@@ -84,10 +97,14 @@ class Dbase:
                  Column('ticket_id', String(50), index=True, nullable=False, unique=True),
 				 # TODO : check logic of jira filed date
                  #Column('file_timestamp', DateTime()),
-                 UniqueConstraint('issue_id')
+                 UniqueConstraint('issue_id'),
+				 keep_existing=True
                  )
 
- 
+'''
+	def __init__(self):
+		pass
+
     def connect(self, echo=False, conn_string=None, database=None):
         try:
             self.engine=create_engine(
@@ -97,8 +114,23 @@ class Dbase:
             self.engine.execute("create database if not exists %s" % self.db)
             self.engine.execute("use %s" % self.db)
 
-        self.metadata.create_all(self.engine)
+        self.session = scoped_session(sessionmaker(bind=self.engine))
         self.connection=self.engine.connect()
+
+	def execute(self, cmd):
+		return self.engine.execute(cmd)
 
     def close(self):
         self.connection.close()
+
+    def create_datatables(self):
+        self.metadata.create_all(self.engine)
+
+	########################################################
+	# Operation on each table 
+	########################################################
+
+	def bulk_save(self, objects):
+        self.session.bulk_save_objects(objects)
+		self.session.commit()
+	
