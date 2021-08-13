@@ -2,6 +2,10 @@
 # How to get the image below ?
 FROM docker.jfrog.booking.com/projects/bplatform/booking-python:3.8-uwsgi
 LABEL author="Jia Guo<jia.guo@booking.com>"
+# set proxies
+ENV HTTP_PROXY="http://webproxy:3128"
+ENV HTTPS_PROXY="http://webproxy:3128"
+
 #COPY crashmonitor-bot/requirements requirements
 #COPY crashmonitor-bot/requirements.txt requirements.txt
 
