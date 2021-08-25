@@ -49,16 +49,23 @@ spec:
         # rather than by hand. the CI pipeline might use 'sed' to swap
         # CI_COMMIT_SHA for the image produced by the pipeline.
         tag: CI_COMMIT_SHA
-      sidecars:
-        nginx:
-          enabled: true
-          appPort: 5000
+      #sidecars:
+      #  nginx:
+      #    enabled: true
+      #    appPort: 5000
+      #containers:
+      #  - name: readiness
+      #    image: k8s.gcr.io/busybox
+      #    args:
+      #    - /bin/sh
+      #    - -c
+      #    - touch /tmp/healthy; sleep 30; rm -rf /tmp/healthy; sleep 600          
       readinessProbe:
-        httpGet:
-          path: /health_check
-          port: 5000
-        periodSeconds: 30
-
+        exec:
+          command:
+          - ls 
+        initialDelaySeconds: 10 
+        periodSeconds: 5
     strategy:
       # DQS is a production-like environment, so we need a real rollout strategy just like prod
       steps:
