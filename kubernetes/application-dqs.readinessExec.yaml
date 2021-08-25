@@ -32,6 +32,7 @@ spec:
       dependencies:
         mysql:
           android: ro
+          chinaqa: rw
       name: firebase-app-crash
       replicaCount: 1
       env:

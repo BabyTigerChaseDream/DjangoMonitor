@@ -1,0 +1,192 @@
+warning: reattach-to-user-namespace: unsupported new OS, trying as if it were 10.10
+Restored session: Wed Aug 18 10:52:18 CST 2021
+
+The default interactive shell is now zsh.
+To update your account to use zsh, please run `chsh -s /bin/zsh`.
+For more details, please visit https://support.apple.com/kb/HT208050.
+C02ZL0QPLVDN:backend jiaguo$
+C02ZL0QPLVDN:backend jiaguo$
+C02ZL0QPLVDN:backend jiaguo$ kubectl version -o json
+{
+  "clientVersion": {
+    "major": "1",
+    "minor": "22",
+    "gitVersion": "v1.22.0",
+    "gitCommit": "c2b5237ccd9c0f1d600d3072634ca66cefdf272f",
+    "gitTreeState": "clean",
+    "buildDate": "2021-08-04T18:03:20Z",
+    "goVersion": "go1.16.6",
+    "compiler": "gc",
+    "platform": "darwin/amd64"
+  }
+}
+The connection to the server localhost:8080 was refused - did you specify the right host or port?
+C02ZL0QPLVDN:backend jiaguo$ docker ps | grep kube-apiserver
+e3248c3b5055   c15e4f843f01           "kube-apiserver --ad…"   45 hours ago         Up 45 hours                   k8s_kube-apiserver_ku
+be-apiserver-docker-desktop_kube-system_4ac4b5ee26e7058a1ed090c12123e3a6_23
+e9181806b58e   k8s.gcr.io/pause:3.2   "/pause"                 45 hours ago         Up 45 hours                   k8s_POD_kube-apiserve
+r-docker-desktop_kube-system_4ac4b5ee26e7058a1ed090c12123e3a6_14
+C02ZL0QPLVDN:backend jiaguo$ ls /etc/k
+kern_loader.conf                   krb5.conf.2020.09.24.18.32.48.bak  krb5.conf.2021.01.26.17.59.11.bak
+krb5.conf                          krb5.conf.2021.01.26.17.23.17.bak  krb5.keytab
+C02ZL0QPLVDN:backend jiaguo$ ls $HOME/.kube/config
+/Users/jiaguo/.kube/config
+C02ZL0QPLVDN:backend jiaguo$
+C02ZL0QPLVDN:backend jiaguo$ ls $HOME/.kube/
+cache   config
+C02ZL0QPLVDN:backend jiaguo$ kubectl cluster-info
+
+To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+The connection to the server localhost:8080 was refused - did you specify the right host or port?
+C02ZL0QPLVDN:backend jiaguo$
+C02ZL0QPLVDN:backend jiaguo$ kubectl cluster-info dump
+The connection to the server localhost:8080 was refused - did you specify the right host or port?
+C02ZL0QPLVDN:backend jiaguo$
+C02ZL0QPLVDN:backend jiaguo$ kubectl config view
+apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority-data: DATA+OMITTED
+    server: https://api.app-az1.bplatform.bk-eu-west6.dqs.booking.com
+  name: bplatform-app-az1-bk-eu-west6-dqs
+- cluster:
+    certificate-authority-data: DATA+OMITTED
+    server: https://api.app-az1.bplatform.bk-eu-west6.prod.booking.com
+  name: bplatform-app-az1-bk-eu-west6-prod
+- cluster:
+    certificate-authority-data: DATA+OMITTED
+    server: https://bplatform-eu-de-prod-c.fra4.prod.booking.com
+  name: bplatform-eu-de-prod-c
+- cluster:
+    certificate-authority-data: DATA+OMITTED
+    server: https://bplatform-eu-de-prod-t.fra4.prod.booking.com
+  name: bplatform-eu-de-prod-t
+[..... Dismiss]
+- context:
+    cluster: docker-desktop
+    user: docker-desktop
+  name: docker-desktop
+- context:
+    cluster: minikube
+    extensions:
+    - extension:
+        last-update: Thu, 12 Aug 2021 18:20:26 CST
+        provider: minikube.sigs.k8s.io
+        version: v1.22.0
+      name: context_info
+    namespace: default
+    user: minikube
+  name: minikube
+current-context: bplatform-eu-nl-dev-a
+kind: Config
+preferences: {}
+users:
+- name: bplatform-default
+  user:
+    exec:
+      apiVersion: client.authentication.k8s.io/v1alpha1
+      args:
+      - auth:issue-token
+      - --output=exec-credentials
+      - --disable-events
+      command: /usr/local/bin/bk
+      env: null
+      interactiveMode: IfAvailable
+      provideClusterInfo: false
+- name: docker-desktop
+  user:
+    client-certificate-data: REDACTED
+    client-key-data: REDACTED
+- name: minikube
+  user:
+    client-certificate: /Users/jiaguo/.minikube/profiles/minikube/client.crt
+    client-key: /Users/jiaguo/.minikube/profiles/minikube/client.key
+C02ZL0QPLVDN:backend jiaguo$
+C02ZL0QPLVDN:backend jiaguo$
+C02ZL0QPLVDN:backend jiaguo$ ls $HOME/.kube/config
+/Users/jiaguo/.kube/config
+
+C02ZL0QPLVDN:backend jiaguo$ bk login:auth
+ ›   Error: command login:auth not found
+C02ZL0QPLVDN:backend jiaguo$
+C02ZL0QPLVDN:backend jiaguo$
+C02ZL0QPLVDN:backend jiaguo$ bk auth:login
+Running some sanity checks:
+ ✔ Booking certificates cached
+ ✔ Checking some `kubectl` things...
+   ✔ Checking kubectl version
+   ✔ Updating clusters in config
+   ✔ Checking obsolete settings
+   ↓ Checking current cluster status [skipped]
+     → Error: not a BKS cluster
+Trying to login:
+ ✔ Authentication mode is sso
+ ✔ Authenticating through SSO...
+    → your browser has been opened to visit:
+      https://corpsso.booking.com/SSO/staff/auth?redirect_to=https://bk-authentication-sso.prod.booking.com/v1/redi
+rect?redirect_to=http://localhost:8980
+    → if you see "403 - Forbidden" in the browser you need to connect to VPN and rerun the command
+    ✔ Token received through SSO for user "jiaguo"
+ ✔ Setting default authentication info in kubectl config
+You're all set!
+
+C02ZL0QPLVDN:backend jiaguo$ pwd
+/Users/jiaguo/learnspace/k8s-medium/backend
+C02ZL0QPLVDN:learnspace jiaguo$ kubectl version
+Client Version: version.Info{Major:"1", Minor:"22", GitVersion:"v1.22.0", GitCommit:"c2b5237ccd9c0f1d600d3072634ca66cefdf272f", GitTree
+State:"clean", BuildDate:"2021-08-04T18:03:20Z", GoVersion:"go1.16.6", Compiler:"gc", Platform:"darwin/amd64"}
+The connection to the server localhost:8080 was refused - did you specify the right host or port?
+C02ZL0QPLVDN:learnspace jiaguo$
+C02ZL0QPLVDN:learnspace jiaguo$ bk ctx
+---------User----------
+login status         SSO / logged in / token expires in 7h 48m 54s
+login as             jiaguo
+
+---Service Directory---
+project              crashmonitor-bot
+component
+installation
+namespace
+
+sd context           crashmonitor-bot
+
+--------kubectl--------
+kubectl context      _not a BKS Context_
+sd & kubectl in-sync false
+C02ZL0QPLVDN:learnspace jiaguo$
+C02ZL0QPLVDN:learnspace jiaguo$ bk sd:projects
+CURRENT NAME             DESCRIPTION                INDIVIDUAL OWNERS TEAM OWNERS                        ACCESS ROLE
+        china-automation china-automation                             China Quality Assurance (60005847) admin
+*       crashmonitor-bot crash monitor project                        China Quality Assurance (60005847) admin
+        jiaguo           personal project of jiaguo Jia Guo (jiaguo)                                     admin
+C02ZL0QPLVDN:learnspace jiaguo$
+C02ZL0QPLVDN:learnspace jiaguo$ bk sd:components
+CURRENT NAME               KIND    PROJECT          DESCRIPTION                     PERSONA
+        firebase-app-crash service crashmonitor-bot crash monitor based on firebase b-crashmonitor-bot-firebase-app-crash
+C02ZL0QPLVDN:learnspace jiaguo$ bk ctx:use crashmonitor-bot/firebase-app-crash
+Switching to context crashmonitor-bot/firebase-app-crash:
+ ✔ sd context set to crashmonitor-bot/firebase-app-crash
+ ✔ kubectl context is unset
+C02ZL0QPLVDN:learnspace jiaguo$ bk sd:installations --project=crashmonitor-bot --component=firebase-app-crash
+CURRENT NAME                           PROJECT          COMPONENT          NAMESPACE                        PROVISIONED IN CLUSTERS
+
+        kubernetes-dev-jiaguo-c540f7ae crashmonitor-bot firebase-app-crash crashmonitor-bot-jiaguo-c540f7ae bplatform-eu-nl-dev-a,bplat
+form-eu-nl-dev-b,bplatform-eu-uk-dev-a
+        kubernetes-dqs                 crashmonitor-bot firebase-app-crash crashmonitor-bot                 bplatform-app-az1-bk-eu-wes
+t6-dqs,bplatform-eu-nl-dqs-a,bplatform-eu-nl-dqs-m,bplatform-eu-uk-dqs-b
+C02ZL0QPLVDN:learnspace jiaguo$ bk ctx:use crashmonitor-bot/firebase-app-crash/kubernetes-dev-jiaguo-c540f7ae
+Switching to context crashmonitor-bot/firebase-app-crash/kubernetes-dev-jiaguo-c540f7ae:
+ ✔ sd context set to crashmonitor-bot/firebase-app-crash/kubernetes-dev-jiaguo-c540f7ae
+ ✔ kubectl context set to bplatform-eu-nl-dev-b/crashmonitor-bot-jiaguo-c540f7ae
+   → namespace changed to crashmonitor-bot-jiaguo-c540f7ae
+   → cluster changed to bplatform-eu-nl-dev-b
+ ✔ sd context kubectl reference has been updated
+
+C02ZL0QPLVDN:learnspace jiaguo$ kubectl version
+Client Version: version.Info{Major:"1", Minor:"22", GitVersion:"v1.22.0", GitCommit:"c2b5237ccd9c0f1d600d3072634ca66cefdf272f", GitTree
+State:"clean", BuildDate:"2021-08-04T18:03:20Z", GoVersion:"go1.16.6", Compiler:"gc", Platform:"darwin/amd64"}
+Server Version: version.Info{Major:"1", Minor:"18+", GitVersion:"v1.18.18-booking.0", GitCommit:"925c1fe7b5db1fc11c7f1deb0712700aaf3c76
+b4", GitTreeState:"clean", BuildDate:"2021-04-22T11:22:17Z", GoVersion:"go1.14.4", Compiler:"gc", Platform:"linux/amd64"}
+WARNING: version difference between client (1.22) and server (1.18) exceeds the supported minor version skew of +/-1
+C02ZL0QPLVDN:learnspace jiaguo$
+C02ZL0QPLVDN:learnspace jiaguo$
