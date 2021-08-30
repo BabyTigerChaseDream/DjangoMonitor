@@ -11,35 +11,12 @@
 Guide to install Booking infra database lib: 
 	https://gitlab.booking.com/python/bkng/-/tree/master/infra/db
 '''
-# https 
-import requests
-# database 
+#import requests
 from bkng.infra.db.dbconnectionmanager import DBConnectionManager
-# schedule 
 from datetime import datetime, timedelta
-import schedule 
 
 # data format
 import json
-
-
-#################################################################
-# Test Env Prepare: 
-#################################################################
-# sudo mkdir -p /var/run/secrets/booking.com/
-# cp 
-
-#################################################################
-# Cronjob: 
-#################################################################
-
-# TODO :
-def job():
-    # placeholder for jobs to retrieve android crash from kvm db
-    pass 
-
-schedule.every().day.at("06:30").do(job)
-
 DATE_FORMAT = "%Y-%m-%d %H:%M:%S"
 
 start_datetime = (datetime.utcnow() - timedelta(days=1))
@@ -72,8 +49,16 @@ issue_count_max = '45'
 # setup DBConnections
 #################################################################
 
-cm=DBConnectionManager()
+def init():
+	cm=DBConnectionManager()
+	DBEngine = cm.get_connection(database, acc_mode)
+	return cm, DBEngine
 
+cm,DBEngine = init()
+
+#################################################################
+# Common Lib DBConnections
+#################################################################
 # sql to get data per request
 TOP_ISSUE_BY_CRASH_AND_USER_COUNT ='''
 	select 
@@ -89,9 +74,12 @@ TOP_ISSUE_BY_CRASH_AND_USER_COUNT ='''
 	order by total_users desc limit {issue_count_max};
 ''' 
 
+def execute(sql_cmd=sql_cmd):
+    cursor = DBEngine.execute(sql_cmd)
+    return cursor	
+
 def get_firebase_crashlytics_cursor(index=table_index):
     # read only database connection 
-    DBEngine = cm.get_connection(database, acc_mode)
     sql_cmd = TOP_ISSUE_BY_CRASH_AND_USER_COUNT.format(
 		table = firebase_crash_table[index],
 		start_timestamp=start_timestamp,
@@ -114,27 +102,3 @@ def get_issue_id_list(cursor):
 	total_issues = len(issue_id_list)
 	print('Total issues today: ',total_issues)	
 	return issue_id_list
-
-def https_get_stacktrace_frames_in_json(issue_id):
-	crash_url = 'https://ota.booking.com/crashes/Android/stacktraces?issue_ids={issue_id}}&cached=true&start_date=&end_date'
-	r= requests.get(crash_url)
-
-	if r.status_code != 200:
-		raise ValueError("HTTP request failed with errorcode: ", r.status_code)
-
-	# get stacktrace->frames in response
-	response = r.json()
-	
-	# frames(dict)
-	response_frames = response['issues'][issue_id]['stacktrace']['frames']
-
-	# frames(json)
-	frames_in_json = json.dumps(response_frames)
-
-	return frames_in_json
-
-	# TODO: interace to store each item in local DB 
-
-
-
-	
