@@ -74,7 +74,7 @@ TOP_ISSUE_BY_CRASH_AND_USER_COUNT ='''
 	order by total_users desc limit {issue_count_max};
 ''' 
 
-def execute(sql_cmd=sql_cmd):
+def execute(sql_cmd):
     cursor = DBEngine.execute(sql_cmd)
     return cursor	
 
