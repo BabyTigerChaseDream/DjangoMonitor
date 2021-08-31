@@ -74,6 +74,7 @@ TOP_ISSUE_BY_CRASH_AND_USER_COUNT ='''
 	having crash_count > {crash_count_max} and total_users > {total_users_max} 
 	order by total_users desc limit {issue_count_max};
 ''' 
+sql_cmd = None
 
 def execute(sql_cmd):
     cursor = DBEngine.execute(sql_cmd)
@@ -91,6 +92,7 @@ def get_firebase_crashlytics_cursor(table_index=table_index, start_timestamp=sta
 		issue_count_max = issue_count_max
 	)
 
+    print('[sql cmd]\t',sql_cmd)
     cursor = DBEngine.execute(sql_cmd)
     return cursor
 
