@@ -41,3 +41,13 @@ filter
 [F-1: file name]
 [F-2: symbol]
 [F-3: committer name/commiter email if any]
+
+
+sql_cmd = TOP_ISSUE_BY_CRASH_AND_USER_COUNT.format(
+	table = firebase_crash_table[table_index],
+	start_timestamp=start_timestamp,
+	end_timestamp = end_timestamp,
+	crash_count_max = crash_count_max,
+	total_users_max = total_users_max,
+	issue_count_max = issue_count_max
+)

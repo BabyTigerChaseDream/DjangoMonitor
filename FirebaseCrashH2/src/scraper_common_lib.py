@@ -30,3 +30,6 @@ def https_get_stacktrace_frames_in_json(issue_id):
 	return frames_in_json
 
 	# TODO: interace to store each item in local DB 
+
+# [Jia] row["issue_id"] =>issues/{}
+ISSUE_LINK = "https://console.firebase.google.com/project/booking-oauth/crashlytics/app/{}/issues/{} "

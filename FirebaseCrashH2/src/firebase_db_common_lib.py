@@ -19,8 +19,9 @@ from datetime import datetime, timedelta
 import json
 DATE_FORMAT = "%Y-%m-%d %H:%M:%S"
 
-start_datetime = (datetime.utcnow() - timedelta(days=1))
-end_datetime = datetime.utcnow()
+start_datetime = (datetime.utcnow() - timedelta(days=3))
+#end_datetime = datetime.utcnow()
+end_datetime = (datetime.utcnow() - timedelta(days=2))
 
 start_timestamp = start_datetime.strftime(DATE_FORMAT)
 end_timestamp = end_datetime.strftime(DATE_FORMAT)
@@ -42,9 +43,9 @@ firebase_crash_table ={
 table_index = 'android'
 
 ##### crash filter 
-crash_count_max = '150'
-total_users_max = '50'
-issue_count_max = '45'
+crash_count_max = '50'
+total_users_max = '20'
+issue_count_max = '20'
 #################################################################
 # setup DBConnections
 #################################################################
@@ -78,10 +79,11 @@ def execute(sql_cmd):
     cursor = DBEngine.execute(sql_cmd)
     return cursor	
 
-def get_firebase_crashlytics_cursor(index=table_index):
+def get_firebase_crashlytics_cursor(table_index=table_index, start_timestamp=start_timestamp, end_timestamp=end_timestamp, 
+							crash_count_max=crash_count_max, total_users_max=total_users_max, issue_count_max=issue_count_max):
     # read only database connection 
     sql_cmd = TOP_ISSUE_BY_CRASH_AND_USER_COUNT.format(
-		table = firebase_crash_table[index],
+		table = firebase_crash_table[table_index],
 		start_timestamp=start_timestamp,
 		end_timestamp = end_timestamp,
 		crash_count_max = crash_count_max,
@@ -91,6 +93,7 @@ def get_firebase_crashlytics_cursor(index=table_index):
 
     cursor = DBEngine.execute(sql_cmd)
     return cursor
+
 
 # TODO : get issue_id from read_firebase_crashlytics & call https API to get failing details 
 
