@@ -43,11 +43,15 @@ filter
 [F-3: committer name/commiter email if any]
 
 
-sql_cmd = TOP_ISSUE_BY_CRASH_AND_USER_COUNT.format(
-	table = firebase_crash_table[table_index],
-	start_timestamp=start_timestamp,
-	end_timestamp = end_timestamp,
-	crash_count_max = crash_count_max,
-	total_users_max = total_users_max,
-	issue_count_max = issue_count_max
+
+####################################################
+# DBG Draft  
+####################################################
+sql_cmd = dblib.TOP_ISSUE_BY_CRASH_AND_USER_COUNT.format(
+	table = 'firebase_crashlytics_com_booking_ANDROID',
+	start_timestamp=dblib.start_timestamp,
+	end_timestamp = dblib.end_timestamp,
+	crash_count_max = dblib.crash_count_max,
+	total_users_max = dblib.total_users_max,
+	issue_count_max = dblib.issue_count_max
 )
