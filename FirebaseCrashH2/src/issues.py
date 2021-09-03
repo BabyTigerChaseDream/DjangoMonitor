@@ -26,7 +26,7 @@ class Issue:
 			count(distinct installation_uuid) as total_users,
 			exceptions
 		from `{table}` 
-		where issue_id={issue_id};
+		where issue_id='{issue_id}';
 	''' 
 	def __init__(self, issue_id, table='firebase_crashlytics_com_booking_ANDROID', DBEngine=None):
 		self.DBEngine = DB().DBEngine
@@ -62,13 +62,15 @@ class Issue:
 		#type(issue_content['exceptions'])
 		#<class 'str'>
 
-		self.exceptions = json.loads(issue_exceptions[0])
+		self.exceptions = json.loads(issue_exceptions)[0]
 		return self.exceptions
 
-	def get_issue_frames(self, frames_key='frames')->dict:
+	def get_issue_frames(self, frames_key='frames')->list:
 		if not self.exceptions:
 			ValueError('Please run \'get_issue_exceptions\' to get exceptions')
-		self.frames=self.exceptions[frames_key][0]
+		# list of dict-> failure stracktrace 
+		self.frames=self.exceptions[frames_key]
+
 		return self.frames
 
 	def get_files_in_frame(self,frames=None)->set:
@@ -78,7 +80,7 @@ class Issue:
 			frames = self.frames
 
 		for frame in frames:
-			self.file.add(frame['file'])
+			self.files.add(frame['file'])
 		
 		return self.files 
 

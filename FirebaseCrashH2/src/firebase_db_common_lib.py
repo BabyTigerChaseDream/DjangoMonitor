@@ -126,7 +126,7 @@ RETRIEVE_ISSUE_CONTENT_BY_ISSUE_ID ='''
 		count(distinct installation_uuid) as total_users,
 		exceptions
 	from `{table}` 
-	where issue_id={issue_id};
+	where issue_id='{issue_id}';
 ''' 
 def get_issue_content_cursor(issue_id, table_index=table_index):
     # read only database connection 
