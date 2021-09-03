@@ -1,22 +1,12 @@
 #/usr/local/bin/python3
-from bkng.infra.db.dbconnectionmanager import DBConnectionManager
+from FirebaseCrashH2.src.draft_all_lib import DBEngine
 from collections import namedtuple
 import json
+import dblib
 
-database = 'android' 
-acc_mode = 'ro'
-
-class DB:
-	def __init__(self,database=database,acc_mode=acc_mode):
-		#self.cm = None
-		#self.DBEngine = None
-
-		cm=DBConnectionManager()
-		DBEngine = cm.get_connection(database, acc_mode)
-
-		self.cm=cm
-		self.DBEngine = DBEngine
-		#return self.DBEngine
+DBEngine = dblib.DB().DBEngine
+table_index = 'android'
+table = dblib.firebase_crash_table[table_index]
 
 class Issue:
 	RETRIEVE_ISSUE_CONTENT_BY_ISSUE_ID ='''
@@ -28,8 +18,8 @@ class Issue:
 		from `{table}` 
 		where issue_id='{issue_id}';
 	''' 
-	def __init__(self, issue_id, table='firebase_crashlytics_com_booking_ANDROID', DBEngine=None):
-		self.DBEngine = DB().DBEngine
+	def __init__(self, issue_id, table=table, DBEngine=DBEngine):
+		self.DBEngine = DBEngine
 		# sql to get data per request
 		self.table = table
 		self.issue_id = str(issue_id)
@@ -91,7 +81,7 @@ class Issue:
 			frames = self.frames
 
 		for frame in frames:
-			self.symbols.add(frame['symbols'])
+			self.symbols.add(frame['symbol'])
 		
 		return self.symbols 
 
