@@ -26,9 +26,8 @@ table_index = 'android'
 '''
 DATE_FORMAT = "%Y-%m-%d %H:%M:%S"
 
-start_datetime = (datetime.utcnow() - timedelta(days=10))
-#end_datetime = datetime.utcnow()
-end_datetime = (datetime.utcnow() - timedelta(days=12))
+end_datetime = (datetime.utcnow() - timedelta(days=10))
+start_datetime = (datetime.utcnow() - timedelta(days=12))
 
 start_timestamp = start_datetime.strftime(DATE_FORMAT)
 end_timestamp = end_datetime.strftime(DATE_FORMAT)

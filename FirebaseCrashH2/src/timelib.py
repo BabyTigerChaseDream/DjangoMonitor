@@ -7,8 +7,8 @@ class timestamp:
 
 	def timeslot(self, end_date=datetime.utcnow(), delta=10):
 		date_format =  self.DATE_FORMAT 
-		start_datetime = (datetime.utcnow() - timedelta(days=10))
-		end_datetime = (datetime.utcnow() - timedelta(days=12))
+		end_datetime = (datetime.utcnow() - timedelta(days=10))
+		start_datetime = (datetime.utcnow() - timedelta(days=12))
 		#self.start_timestamp = start_datetime.strftime(date_format)
 		#self.end_timestamp = end_datetime.strftime(date_format) 
 		start_timestamp = start_datetime.strftime(date_format)
