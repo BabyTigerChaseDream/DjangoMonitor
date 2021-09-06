@@ -88,6 +88,7 @@ class Crashes:
 
 		try:	
 			for crash in self.cursor.fetchall():
+				print(crash)
 				issue_id_list.append[crash[issue_id_key]]
 		except:
 			AttributeError('crash has no issue_id - check if cursor empty')
