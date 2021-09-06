@@ -86,12 +86,9 @@ class Crashes:
 		print('[Init] dump cursor: ',self.sql_cmd)
 		self.cursor = self.get_cursor()
 
-		#try:	
 		for crash in self.cursor.fetchall():
 			print(crash)
-			self.issue_id_list.append[crash[issue_id_key]]
-		#except:
-		#	AttributeError('crash has no issue_id - check if cursor empty')
+			self.issue_id_list.append(crash[issue_id_key])
 
 		total_issues = len(self.issue_id_list)
 		print('Total issues today: ',total_issues)	
