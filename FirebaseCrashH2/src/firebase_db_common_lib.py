@@ -56,6 +56,7 @@ class Crashes:
 								crash_count_max=crash_count_max, total_users_max=total_users_max, issue_count_max=issue_count_max):
 
 		DBEngine = dblib.DB().DBEngine
+		self.issue_id_list = []
 		try:
 	    # read only database connection 
 			self.sql_cmd = self.TOP_ISSUE_BY_CRASH_AND_USER_COUNT.format(
@@ -81,18 +82,17 @@ class Crashes:
 	# get issue_id list 
 	##########################
 	def get_issue_id_list(self, issue_id_key='issue_id'):
-		issue_id_list = []
 		# in case cursor is empty - can be dumped once only, need to re-read cursor
 		print('[Init] dump cursor: ',self.sql_cmd)
 		self.cursor = self.get_cursor()
 
-		try:	
-			for crash in self.cursor.fetchall():
-				print(crash)
-				issue_id_list.append[crash[issue_id_key]]
-		except:
-			AttributeError('crash has no issue_id - check if cursor empty')
+		#try:	
+		for crash in self.cursor.fetchall():
+			print(crash)
+			self.issue_id_list.append[crash[issue_id_key]]
+		#except:
+		#	AttributeError('crash has no issue_id - check if cursor empty')
 
-		total_issues = len(issue_id_list)
+		total_issues = len(self.issue_id_list)
 		print('Total issues today: ',total_issues)	
-		return issue_id_list
+		return self.issue_id_list
