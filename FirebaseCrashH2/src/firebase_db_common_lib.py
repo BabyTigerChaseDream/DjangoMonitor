@@ -11,6 +11,7 @@ from datetime import datetime, timedelta
 # data format
 import json
 
+import sys
 #################################################################
 # Configurable matrix: 
 #################################################################
@@ -67,8 +68,11 @@ class Crashes:
 				total_users_max = total_users_max,
 				issue_count_max = issue_count_max
 			)
+		except ValueError:
+			print("[sql_cmd] ",self.sql_cmd)
 		except:
-			ValueError("[sql_cmd] ",self.sql_cmd)
+			print("Unexpected error:", sys.exc_info()[0])
+			raise
 
 		self.DBEngine = DBEngine
 
@@ -86,9 +90,16 @@ class Crashes:
 		print('[Init] dump cursor: ',self.sql_cmd)
 		self.cursor = self.get_cursor()
 
-		for crash in self.cursor.fetchall():
-			print(crash)
-			self.issue_id_list.append(crash[issue_id_key])
+		try:
+			for crash in self.cursor.fetchall():
+				print(crash)
+				self.issue_id_list.append(crash[issue_id_key])
+		except AttributeError:
+			print('missing attribute : ',issue_id_key)
+		except:
+			print("Unexpected error:", sys.exc_info()[0])
+			raise
+
 
 		total_issues = len(self.issue_id_list)
 		print('Total issues today: ',total_issues)	
