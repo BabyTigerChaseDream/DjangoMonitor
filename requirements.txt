@@ -8,7 +8,5 @@ matplotlib <3.4.0
 filelock <3.1.0
 google-cloud-bigquery <2.9.0
 Flask-Caching <1.10.0
-bkng_infra_redis
-bkng-infra-db
 sqlalchemy
 httpie

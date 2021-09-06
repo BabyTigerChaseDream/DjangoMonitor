@@ -17,8 +17,9 @@ RUN python3 -m pip install flask
 #CMD ["python3 --version","python3 -m pip list | grep bkng","ll /etc/bookings"]
 
 WORKDIR /workspace
-#RUN pip install -r /app/requirements.txt
 COPY . /workspace
+
+RUN python3 -m pip install -r requirements.txt
 
 ENTRYPOINT [ "python" ]
 CMD [ "app.py" ]
