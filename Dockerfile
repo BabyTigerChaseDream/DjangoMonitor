@@ -20,6 +20,7 @@ WORKDIR /workspace
 COPY . /workspace
 
 RUN python3 -m pip install -r requirements.txt
+RUN yum install -y vim
 
 ENTRYPOINT [ "python" ]
 CMD [ "app.py" ]
