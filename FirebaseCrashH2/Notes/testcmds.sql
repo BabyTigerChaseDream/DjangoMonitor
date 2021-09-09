@@ -218,3 +218,43 @@ Code temp:
                 </div>
 
 [SQL CMD to find all application.display_versions - all crash versions]
+
+#############################
+	Android database fields:
+#############################
+
+android(ro)> desc `firebase_crashlytics_com_booking_ANDROID`;
++-------------------------+--------------+------+-----+---------+-------+
+| Field                   | Type         | Null | Key | Default | Extra |
++-------------------------+--------------+------+-----+---------+-------+
+| platform                | varchar(255) | YES  |     | <null>  |       |
+| bundle_identifier       | varchar(255) | YES  |     | <null>  |       |
+| event_id                | varchar(255) | NO   | PRI | <null>  |       |
+| is_fatal                | tinyint(1)   | YES  |     | <null>  |       |
+| issue_id                | varchar(255) | YES  | MUL | <null>  |       |
+| issue_title             | varchar(255) | YES  |     | <null>  |       |
+| issue_subtitle          | varchar(255) | YES  |     | <null>  |       |
+| event_timestamp         | timestamp    | YES  | MUL | <null>  |       |
+| received_timestamp      | timestamp    | YES  |     | <null>  |       |
+| device                  | json         | YES  |     | <null>  |       |
+| _memory                 | json         | YES  |     | <null>  |       |
+| _storage                | json         | YES  |     | <null>  |       |
+| operating_system        | json         | YES  |     | <null>  |       |
+| application             | json         | YES  |     | <null>  |       |
+| _user                   | json         | YES  |     | <null>  |       |
+| custom_keys             | json         | YES  |     | <null>  |       |
+| installation_uuid       | varchar(255) | YES  |     | <null>  |       |
+| crashlytics_sdk_version | varchar(255) | YES  |     | <null>  |       |
+| app_orientation         | varchar(255) | YES  |     | <null>  |       |
+| device_orientation      | varchar(255) | YES  |     | <null>  |       |
+| process_state           | varchar(255) | YES  |     | <null>  |       |
+| _logs                   | json         | YES  |     | <null>  |       |
+| breadcrumbs             | json         | YES  |     | <null>  |       |
+| blame_frame             | json         | YES  |     | <null>  |       |
+| exceptions              | json         | YES  |     | <null>  |       |
+| _errors                 | json         | YES  |     | <null>  |       |
+| threads                 | json         | YES  |     | <null>  |       |
+| experiments             | json         | YES  |     | <null>  |       |
++-------------------------+--------------+------+-----+---------+-------+
+28 rows in set
+Time: 0.019s
