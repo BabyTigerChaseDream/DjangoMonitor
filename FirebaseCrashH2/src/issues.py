@@ -73,7 +73,6 @@ class Issue:
 		self.content['crash_count']=issue_content['crash_count'] 
 		self.content['total_users']=issue_content['total_users'] 
 		self.content['event_timestamp']= issue_content['event_timestamp']
-		self.content['logs'] = self.get_logs()
 
 		try:
 			issue_exceptions = issue_content[exception_key]
@@ -84,7 +83,13 @@ class Issue:
 		#type(issue_content[exception_key])
 		#<class 'str'>
 
+		# don't change the orders of lines below:
+		# exceptions -> frames -> logs 
 		self.exceptions = json.loads(issue_exceptions)[0]
+
+		self.get_issue_frames()
+		# the order matters 
+		self.content['logs'] = self.get_logs()
 
 		# dict of issues
 		return issue_content
