@@ -14,7 +14,7 @@ class Issue:
 			issue_id,
 			issue_title,
 			issue_subtitle,
-			application->'$display_version' as app_version,
+			application->'$.display_version' as app_version,
 			count(distinct event_id) as crash_count, 
 			count(distinct installation_uuid) as total_users,
 			event_timestamp,
@@ -56,7 +56,11 @@ class Issue:
 	def get_cursor(self,sql_cmd=None):
 		if not sql_cmd:
 			sql_cmd = self.sql_cmd
-		self.cursor = self.DBEngine.execute(sql_cmd)
+		try:
+			self.cursor = self.DBEngine.execute(sql_cmd)
+		except:
+			print('[ERROR] failed to get cursor from sql_cmd')
+
 		return self.cursor
 	
 	def modelize_issue(self, exception_key='exceptions', issue_id_key='issue_id', sql_cmd=None)->dict:
