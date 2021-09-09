@@ -28,7 +28,7 @@ class Issue:
 		self.table = table
 
 		# fields in django models of Issue table
-		self.contents = {
+		self.content = {
 			'issue_id' : str(issue_id),
 			'issue_title' :'blank-title', 
 			'issue_subtitle' : 'sub-blank-title', 
