@@ -50,6 +50,6 @@ def dump_issues(issue_id_list, filename = 'issues.json'):
 	print('Total issues: ', len(IssueList))
 
 	with open(filename, 'w') as fd:
-		json.dumps(IssueList, fd, cls=jsmod.PythonObjectEncoder)
+		json.dump(IssueList, fd, cls=jsmod.PythonObjectEncoder)
 
 	print('[Issues dump to ]:', os.path.abspath(filename))

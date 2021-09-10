@@ -74,7 +74,7 @@ class Issue:
 		self.content['app_version']= issue_content['app_version'] 
 		self.content['crash_count']=issue_content['crash_count'] 
 		self.content['total_users']=issue_content['total_users'] 
-		self.content['event_timestamp']= timelib.timestamp().strf2str(issue_content['event_timestamp'])
+		self.content['event_timestamp']= issue_content['event_timestamp'].strftime('%Y-%m-%d %H:%M:%S')
 
 		try:
 			issue_exceptions = issue_content[exception_key]
