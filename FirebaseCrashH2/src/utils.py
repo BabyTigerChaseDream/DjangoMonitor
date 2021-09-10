@@ -39,6 +39,9 @@ def get_crash_lists(table_index=table_index, start_timestamp_str=start_timestamp
 issue_id_list = get_crash_lists()
 
 def dump_issues(issue_id_list, filename = 'issues.json'):
+	'''
+	linux : python -m json.tool <file.json>
+	'''
 	IssueList = []
 	for issue_id in issue_id_list:
 		I=issues.Issue(issue_id=issue_id)

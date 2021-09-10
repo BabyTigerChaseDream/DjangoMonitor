@@ -12,8 +12,8 @@ class Issue(models.Model):
     app_version = models.CharField(max_length=255)
     crash_count = models.IntegerField(default=0)
     total_users = models.IntegerField(default=0)
-	# when this event happened 
-    event_timestamp = models.TimeField()
+	# when this event happened
+    event_timestamp = models.CharField(max_length=255)
     #retrieved_timestamp = models.TimeField() 
     logs = models.TextField()
     
