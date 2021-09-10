@@ -94,7 +94,7 @@ class Issue:
 		self.content['logs'] = self.get_logs()
 
 		# dict of issues
-		return issue_content
+		return self.content
 
 	def dump_to_json(self):
 		print('place holder')
