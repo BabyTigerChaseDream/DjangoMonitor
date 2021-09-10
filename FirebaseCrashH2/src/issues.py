@@ -3,6 +3,7 @@
 from collections import namedtuple
 import json
 import dblib
+import timelib
 
 DBEngine = dblib.DB().DBEngine
 table_index = 'android'
@@ -35,7 +36,8 @@ class Issue:
 			'app_version' : '00.00',
 			'crash_count' : 0 ,
 			'total_users' :  0 ,
-			'event_timestamp' : None, 
+			# timestamp to string 
+			'event_timestamp' : 'now', 
 			'logs' : 'NA' 
 		}
 
@@ -72,7 +74,7 @@ class Issue:
 		self.content['app_version']= issue_content['app_version'] 
 		self.content['crash_count']=issue_content['crash_count'] 
 		self.content['total_users']=issue_content['total_users'] 
-		self.content['event_timestamp']= issue_content['event_timestamp']
+		self.content['event_timestamp']= timelib.timestamp().strf2str(issue_content['event_timestamp'])
 
 		try:
 			issue_exceptions = issue_content[exception_key]
@@ -100,7 +102,7 @@ class Issue:
 
 	def get_issue_frames(self, frames_key='frames')->list:
 		if not self.exceptions:
-			ValueError('Please run \'get_issue_exceptions\' to get exceptions')
+			ValueError('Please run \'modelize_issue\' to get exceptions')
 		# list of dict-> failure stracktrace 
 		self.frames=self.exceptions[frames_key]
 

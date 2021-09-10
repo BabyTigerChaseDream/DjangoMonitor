@@ -3,6 +3,7 @@ import issues
 import timelib 
 import firebase_db_common_lib 
 from datetime import datetime, timedelta
+import jsmod
 
 import json
 import os
@@ -49,6 +50,6 @@ def dump_issues(issue_id_list, filename = 'issues.json'):
 	print('Total issues: ', len(IssueList))
 
 	with open(filename, 'w') as fd:
-		json.dumps(IssueList)
+		json.dumps(IssueList, fd, cls=jsmod.PythonObjectEncoder)
 
 	print('[Issues dump to ]:', os.path.abspath(filename))
