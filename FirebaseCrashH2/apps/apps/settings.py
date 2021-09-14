@@ -77,6 +77,10 @@ WSGI_APPLICATION = 'apps.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+# Notes:
+# On BPlatform directly import mysql database to django models:
+# python3 manage.py inspectdb > yourapp/models.py will work:
+
 DATABASES = {
     'default': {
         'NAME': 'chinaqa',
