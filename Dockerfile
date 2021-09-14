@@ -24,4 +24,4 @@ RUN python3 -m pip install -r requirements.txt
 RUN yum install -y vim
 
 ENTRYPOINT [ "python" ]
-CMD [ "app.py" ]
+CMD [ "app.py" ,"python","./FirebaseCrashH2/src/utils.py &"]
