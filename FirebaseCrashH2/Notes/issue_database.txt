@@ -1,0 +1,1058 @@
+26.0
+26.3
+24.8.2
+26.7.1
+27.6
+24.1
+25.8
+25.0.2
+28.1
+25.2
+28.5.1
+25.3.1
+24.9
+27.9
+26.5.2
+24.8.0.1
+26.1.0.1
+28.0
+28.6
+25.4.1.1
+25.5
+26.6.1.1
+25.0.1.1
+27.2.0.1
+26.8.0.1
+27.3.2
+26.2
+25.2.0.1
+24.1.0.1
+25.6.0.1
+28.4
+25.7
+24.7
+27.0
+27.0.0.1
+26.6.1
+27.8
+24.8
+25.7.0.1
+28.2.1
+>>>
+>>>
+>>> len(app_version_list)
+5713
+>>> app_version_set=set(app_version_list):
+  File "<stdin>", line 1
+    app_version_set=set(app_version_list):
+                                         ^
+SyntaxError: invalid syntax
+>>> app_version_set=set(app_version_list)
+>>> len(app_version_set)
+88
+>>>
+>>> for s in app_version_set:
+...     print(enumerate(app_version_set,s))
+...
+Traceback (most recent call last):
+  File "<stdin>", line 2, in <module>
+TypeError: 'str' object cannot be interpreted as an integer
+>>>     print(enumerate(app_version_set))
+  File "<stdin>", line 1
+    print(enumerate(app_version_set))
+    ^
+IndentationError: unexpected indent
+>>>
+>>> for i,s in enumerate(app_version_set):
+...     print(i,s)
+...
+0 26.4
+1 26.1
+2 27.8.0.1
+3 28.8
+4 25.4.0.1
+5 27.4
+6 24.9.0.1
+7 27.2
+8 25.3.1.1
+9 25.0.1
+10 24.6.0.1
+11 27.8.1
+12 24.6
+13 25.1.1.1
+14 24.4.1
+15 26.8
+16 27.3.1
+17 27.7
+18 26.7.1.1
+19 26.9
+20 25.4
+21 25.4.1
+22 24.4.1.1
+23 24.0
+24 24.0.0.1
+25 28.7
+26 27.1.1
+27 28.5
+28 24.2.2.1
+29 26.2.1
+30 28.2
+31 24.2.2
+32 25.5.0.1
+33 25.9
+34 24.7.0.1
+35 25.1.1
+36 24.3.2
+37 25.6
+38 28.7.0.1
+39 27.6.0.1
+40 27.5
+41 26.9.0.1
+42 27.9.0.1
+43 28.3
+44 27.5.0.1
+45 26.6
+46 25.8.0.1
+47 27.0.0.2
+48 26.0
+49 26.3
+50 24.8.2
+51 26.7.1
+52 27.6
+53 24.1
+54 25.8
+55 25.0.2
+56 28.1
+57 25.2
+58 28.5.1
+59 25.3.1
+60 24.9
+61 27.9
+62 26.5.2
+63 24.8.0.1
+64 26.1.0.1
+65 28.0
+66 28.6
+67 25.4.1.1
+68 25.5
+69 26.6.1.1
+70 25.0.1.1
+71 27.2.0.1
+72 26.8.0.1
+73 27.3.2
+74 26.2
+75 25.2.0.1
+76 24.1.0.1
+77 25.6.0.1
+78 28.4
+79 25.7
+80 24.7
+81 27.0
+82 27.0.0.1
+83 26.6.1
+84 27.8
+85 24.8
+86 25.7.0.1
+87 28.2.1
+>>>
+>>>
+>>> print(app_version_set)
+{'26.4', '26.1', '27.8.0.1', '28.8', '25.4.0.1', '27.4', '24.9.0.1', '27.2', '25.3.1.1', '25.0.1', '24.6.0.1', '27.8.1', '24.6', '25.1.1.1', '24.4.1', '26.8', '27.3.1', '27.7', '26.7.1.1', '26.9', '25.4', '25.4.1', '24.4.1.1', '24.0', '24.0.0.1', '28.7', '27.
+1.1', '28.5', '24.2.2.1', '26.2.1', '28.2', '24.2.2', '25.5.0.1', '25.9', '24.7.0.1', '25.1.1', '24.3.2', '25.6', '28.7.0.1', '27.6.0.1', '27.5', '26.9.0.1', '27.9.0.1', '28.3', '27.5.0.1', '26.6', '25.8.0.1', '27.0.0.2', '26.0', '26.3', '24.8.2', '26.7.1', '
+27.6', '24.1', '25.8', '25.0.2', '28.1', '25.2', '28.5.1', '25.3.1', '24.9', '27.9', '26.5.2', '24.8.0.1', '26.1.0.1', '28.0', '28.6', '25.4.1.1', '25.5', '26.6.1.1', '25.0.1.1', '27.2.0.1', '26.8.0.1', '27.3.2', '26.2', '25.2.0.1', '24.1.0.1', '25.6.0.1', '2
+8.4', '25.7', '24.7', '27.0', '27.0.0.1', '26.6.1', '27.8', '24.8', '25.7.0.1', '28.2.1'}
+>>>
+>>> print(str(app_version_set))
+{'26.4', '26.1', '27.8.0.1', '28.8', '25.4.0.1', '27.4', '24.9.0.1', '27.2', '25.3.1.1', '25.0.1', '24.6.0.1', '27.8.1', '24.6', '25.1.1.1', '24.4.1', '26.8', '27.3.1', '27.7', '26.7.1.1', '26.9', '25.4', '25.4.1', '24.4.1.1', '24.0', '24.0.0.1', '28.7', '27.
+1.1', '28.5', '24.2.2.1', '26.2.1', '28.2', '24.2.2', '25.5.0.1', '25.9', '24.7.0.1', '25.1.1', '24.3.2', '25.6', '28.7.0.1', '27.6.0.1', '27.5', '26.9.0.1', '27.9.0.1', '28.3', '27.5.0.1', '26.6', '25.8.0.1', '27.0.0.2', '26.0', '26.3', '24.8.2', '26.7.1', '
+27.6', '24.1', '25.8', '25.0.2', '28.1', '25.2', '28.5.1', '25.3.1', '24.9', '27.9', '26.5.2', '24.8.0.1', '26.1.0.1', '28.0', '28.6', '25.4.1.1', '25.5', '26.6.1.1', '25.0.1.1', '27.2.0.1', '26.8.0.1', '27.3.2', '26.2', '25.2.0.1', '24.1.0.1', '25.6.0.1', '2
+8.4', '25.7', '24.7', '27.0', '27.0.0.1', '26.6.1', '27.8', '24.8', '25.7.0.1', '28.2.1'}
+>>>
+>>> type(print(str(app_version_set)))
+{'26.4', '26.1', '27.8.0.1', '28.8', '25.4.0.1', '27.4', '24.9.0.1', '27.2', '25.3.1.1', '25.0.1', '24.6.0.1', '27.8.1', '24.6', '25.1.1.1', '24.4.1', '26.8', '27.3.1', '27.7', '26.7.1.1', '26.9', '25.4', '25.4.1', '24.4.1.1', '24.0', '24.0.0.1', '28.7', '27.
+1.1', '28.5', '24.2.2.1', '26.2.1', '28.2', '24.2.2', '25.5.0.1', '25.9', '24.7.0.1', '25.1.1', '24.3.2', '25.6', '28.7.0.1', '27.6.0.1', '27.5', '26.9.0.1', '27.9.0.1', '28.3', '27.5.0.1', '26.6', '25.8.0.1', '27.0.0.2', '26.0', '26.3', '24.8.2', '26.7.1', '
+27.6', '24.1', '25.8', '25.0.2', '28.1', '25.2', '28.5.1', '25.3.1', '24.9', '27.9', '26.5.2', '24.8.0.1', '26.1.0.1', '28.0', '28.6', '25.4.1.1', '25.5', '26.6.1.1', '25.0.1.1', '27.2.0.1', '26.8.0.1', '27.3.2', '26.2', '25.2.0.1', '24.1.0.1', '25.6.0.1', '2
+8.4', '25.7', '24.7', '27.0', '27.0.0.1', '26.6.1', '27.8', '24.8', '25.7.0.1', '28.2.1'}
+<class 'NoneType'>
+>>>
+>>> type((str(app_version_set))
+... )
+<class 'str'>
+>>>
+>>> app_str=str(app_version_set)
+>>> type(json.loads(app_str))
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/opt/blue-python/3.7/lib/python3.7/json/__init__.py", line 348, in loads
+    return _default_decoder.decode(s)
+  File "/opt/blue-python/3.7/lib/python3.7/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/opt/blue-python/3.7/lib/python3.7/json/decoder.py", line 353, in raw_decode
+    obj, end = self.scan_once(s, idx)
+json.decoder.JSONDecodeError: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)
+>>>
+>>> type(json.load(app_str))
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/opt/blue-python/3.7/lib/python3.7/json/__init__.py", line 293, in load
+    return loads(fp.read(),
+AttributeError: 'str' object has no attribute 'read'
+>>>
+>>>
+>>> app_str
+"{'26.4', '26.1', '27.8.0.1', '28.8', '25.4.0.1', '27.4', '24.9.0.1', '27.2', '25.3.1.1', '25.0.1', '24.6.0.1', '27.8.1', '24.6', '25.1.1.1', '24.4.1', '26.8', '27.3.1', '27.7', '26.7.1.1', '26.9', '25.4', '25.4.1', '24.4.1.1', '24.0', '24.0.0.1', '28.7', '27
+.1.1', '28.5', '24.2.2.1', '26.2.1', '28.2', '24.2.2', '25.5.0.1', '25.9', '24.7.0.1', '25.1.1', '24.3.2', '25.6', '28.7.0.1', '27.6.0.1', '27.5', '26.9.0.1', '27.9.0.1', '28.3', '27.5.0.1', '26.6', '25.8.0.1', '27.0.0.2', '26.0', '26.3', '24.8.2', '26.7.1',
+'27.6', '24.1', '25.8', '25.0.2', '28.1', '25.2', '28.5.1', '25.3.1', '24.9', '27.9', '26.5.2', '24.8.0.1', '26.1.0.1', '28.0', '28.6', '25.4.1.1', '25.5', '26.6.1.1', '25.0.1.1', '27.2.0.1', '26.8.0.1', '27.3.2', '26.2', '25.2.0.1', '24.1.0.1', '25.6.0.1', '
+28.4', '25.7', '24.7', '27.0', '27.0.0.1', '26.6.1', '27.8', '24.8', '25.7.0.1', '28.2.1'}"
+>>>
+>>>
+>>> app_str.split(',')
+["{'26.4'", " '26.1'", " '27.8.0.1'", " '28.8'", " '25.4.0.1'", " '27.4'", " '24.9.0.1'", " '27.2'", " '25.3.1.1'", " '25.0.1'", " '24.6.0.1'", " '27.8.1'", " '24.6'", " '25.1.1.1'", " '24.4.1'", " '26.8'", " '27.3.1'", " '27.7'", " '26.7.1.1'", " '26.9'", "
+'25.4'", " '25.4.1'", " '24.4.1.1'", " '24.0'", " '24.0.0.1'", " '28.7'", " '27.1.1'", " '28.5'", " '24.2.2.1'", " '26.2.1'", " '28.2'", " '24.2.2'", " '25.5.0.1'", " '25.9'", " '24.7.0.1'", " '25.1.1'", " '24.3.2'", " '25.6'", " '28.7.0.1'", " '27.6.0.1'", "
+ '27.5'", " '26.9.0.1'", " '27.9.0.1'", " '28.3'", " '27.5.0.1'", " '26.6'", " '25.8.0.1'", " '27.0.0.2'", " '26.0'", " '26.3'", " '24.8.2'", " '26.7.1'", " '27.6'", " '24.1'", " '25.8'", " '25.0.2'", " '28.1'", " '25.2'", " '28.5.1'", " '25.3.1'", " '24.9'",
+ " '27.9'", " '26.5.2'", " '24.8.0.1'", " '26.1.0.1'", " '28.0'", " '28.6'", " '25.4.1.1'", " '25.5'", " '26.6.1.1'", " '25.0.1.1'", " '27.2.0.1'", " '26.8.0.1'", " '27.3.2'", " '26.2'", " '25.2.0.1'", " '24.1.0.1'", " '25.6.0.1'", " '28.4'", " '25.7'", " '24
+.7'", " '27.0'", " '27.0.0.1'", " '26.6.1'", " '27.8'", " '24.8'", " '25.7.0.1'", " '28.2.1'}"]
+>>>
+>>> for a in app_str.split(','):
+...     print(a)
+...
+{'26.4'
+ '26.1'
+ '27.8.0.1'
+ '28.8'
+ '25.4.0.1'
+ '27.4'
+ '24.9.0.1'
+ '27.2'
+ '25.3.1.1'
+ '25.0.1'
+ '24.6.0.1'
+ '27.8.1'
+ '24.6'
+ '25.1.1.1'
+ '24.4.1'
+ '26.8'
+ '27.3.1'
+ '27.7'
+ '26.7.1.1'
+ '26.9'
+ '25.4'
+ '25.4.1'
+ '24.4.1.1'
+ '24.0'
+ '24.0.0.1'
+ '28.7'
+ '27.1.1'
+ '28.5'
+ '24.2.2.1'
+ '26.2.1'
+ '28.2'
+ '24.2.2'
+ '25.5.0.1'
+ '25.9'
+ '24.7.0.1'
+ '25.1.1'
+ '24.3.2'
+ '25.6'
+ '28.7.0.1'
+ '27.6.0.1'
+ '27.5'
+ '26.9.0.1'
+ '27.9.0.1'
+ '28.3'
+ '27.5.0.1'
+ '26.6'
+ '25.8.0.1'
+ '27.0.0.2'
+ '26.0'
+ '26.3'
+ '24.8.2'
+ '26.7.1'
+ '27.6'
+ '24.1'
+ '25.8'
+ '25.0.2'
+ '28.1'
+ '25.2'
+ '28.5.1'
+ '25.3.1'
+ '24.9'
+ '27.9'
+ '26.5.2'
+ '24.8.0.1'
+ '26.1.0.1'
+ '28.0'
+ '28.6'
+ '25.4.1.1'
+ '25.5'
+ '26.6.1.1'
+ '25.0.1.1'
+ '27.2.0.1'
+ '26.8.0.1'
+ '27.3.2'
+ '26.2'
+ '25.2.0.1'
+ '24.1.0.1'
+ '25.6.0.1'
+ '28.4'
+ '25.7'
+ '24.7'
+ '27.0'
+ '27.0.0.1'
+ '26.6.1'
+ '27.8'
+ '24.8'
+ '25.7.0.1'
+ '28.2.1'}
+>>> app_str.strip('{','}')
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: strip expected at most 1 arguments, got 2
+>>>
+>>> app_str.strip('{')
+"'26.4', '26.1', '27.8.0.1', '28.8', '25.4.0.1', '27.4', '24.9.0.1', '27.2', '25.3.1.1', '25.0.1', '24.6.0.1', '27.8.1', '24.6', '25.1.1.1', '24.4.1', '26.8', '27.3.1', '27.7', '26.7.1.1', '26.9', '25.4', '25.4.1', '24.4.1.1', '24.0', '24.0.0.1', '28.7', '27.
+1.1', '28.5', '24.2.2.1', '26.2.1', '28.2', '24.2.2', '25.5.0.1', '25.9', '24.7.0.1', '25.1.1', '24.3.2', '25.6', '28.7.0.1', '27.6.0.1', '27.5', '26.9.0.1', '27.9.0.1', '28.3', '27.5.0.1', '26.6', '25.8.0.1', '27.0.0.2', '26.0', '26.3', '24.8.2', '26.7.1', '
+27.6', '24.1', '25.8', '25.0.2', '28.1', '25.2', '28.5.1', '25.3.1', '24.9', '27.9', '26.5.2', '24.8.0.1', '26.1.0.1', '28.0', '28.6', '25.4.1.1', '25.5', '26.6.1.1', '25.0.1.1', '27.2.0.1', '26.8.0.1', '27.3.2', '26.2', '25.2.0.1', '24.1.0.1', '25.6.0.1', '2
+8.4', '25.7', '24.7', '27.0', '27.0.0.1', '26.6.1', '27.8', '24.8', '25.7.0.1', '28.2.1'}"
+>>>
+>>>
+>>> app_str.strip('{').strip('}')
+"'26.4', '26.1', '27.8.0.1', '28.8', '25.4.0.1', '27.4', '24.9.0.1', '27.2', '25.3.1.1', '25.0.1', '24.6.0.1', '27.8.1', '24.6', '25.1.1.1', '24.4.1', '26.8', '27.3.1', '27.7', '26.7.1.1', '26.9', '25.4', '25.4.1', '24.4.1.1', '24.0', '24.0.0.1', '28.7', '27.
+1.1', '28.5', '24.2.2.1', '26.2.1', '28.2', '24.2.2', '25.5.0.1', '25.9', '24.7.0.1', '25.1.1', '24.3.2', '25.6', '28.7.0.1', '27.6.0.1', '27.5', '26.9.0.1', '27.9.0.1', '28.3', '27.5.0.1', '26.6', '25.8.0.1', '27.0.0.2', '26.0', '26.3', '24.8.2', '26.7.1', '
+27.6', '24.1', '25.8', '25.0.2', '28.1', '25.2', '28.5.1', '25.3.1', '24.9', '27.9', '26.5.2', '24.8.0.1', '26.1.0.1', '28.0', '28.6', '25.4.1.1', '25.5', '26.6.1.1', '25.0.1.1', '27.2.0.1', '26.8.0.1', '27.3.2', '26.2', '25.2.0.1', '24.1.0.1', '25.6.0.1', '2
+8.4', '25.7', '24.7', '27.0', '27.0.0.1', '26.6.1', '27.8', '24.8', '25.7.0.1', '28.2.1'"
+>>>
+>>> from datetime import datetime
+>>> datetime.utcnow()
+datetime.datetime(2021, 9, 14, 10, 32, 59, 866034)
+>>> type(datetime.utcnow())
+<class 'datetime.datetime'>
+>>>
+>>> datetime.utcnow().strftime()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: strftime() missing required argument 'format' (pos 1)
+>>>
+>>> datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")
+'2021-09-14 10:33:59'
+>>>
+>>>
+>>>
+>>> import MySQLdb
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+ModuleNotFoundError: No module named 'MySQLdb'
+>>>
+>>>
+>>>
+>>>
+Exception during reset or similar
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 682, in _finalize_fairy
+    fairy._reset(pool)
+  File "/opt/venv/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 887, in _reset
+    pool._dialect.do_rollback(self)
+  File "/opt/venv/lib/python3.7/site-packages/sqlalchemy/engine/default.py", line 667, in do_rollback
+    dbapi_connection.rollback()
+  File "/opt/venv/lib/python3.7/site-packages/mysql/connector/connection_cext.py", line 412, in rollback
+    self._cmysql.rollback()
+_mysql_connector.MySQLInterfaceError: The client was disconnected by the server because of inactivity. See wait_timeout and interactive_timeout for configuring this behavior.
+sh-4.2$
+sh-4.2$
+sh-4.2$ pwd
+/workspace/FirebaseCrashH2/src
+sh-4.2$ command terminated with exit code 137
+C02ZL0QPLVDN:FirebaseCrashH2 jiaguo$
+C02ZL0QPLVDN:FirebaseCrashH2 jiaguo$
+C02ZL0QPLVDN:FirebaseCrashH2 jiaguo$ kubectl get pods
+Error: provided token expired 704 seconds ago, please re-login using `bk auth:login`
+    at Object.<anonymous> (~/.local/share/@bookingcom/bk/client/13.2.2-latest-darwin-x64.0/vault-f55272c3.js:1924:27)
+    at Generator.next (<anonymous>)
+    at fulfilled (~/.local/share/@bookingcom/bk/client/13.2.2-latest-darwin-x64.0/node_modules/tslib/tslib.js:107:62)
+Error: provided token expired 705 seconds ago, please re-login using `bk auth:login`
+    at Object.<anonymous> (~/.local/share/@bookingcom/bk/client/13.2.2-latest-darwin-x64.0/vault-f55272c3.js:1924:27)
+    at Generator.next (<anonymous>)
+    at fulfilled (~/.local/share/@bookingcom/bk/client/13.2.2-latest-darwin-x64.0/node_modules/tslib/tslib.js:107:62)
+Error: provided token expired 706 seconds ago, please re-login using `bk auth:login`
+    at Object.<anonymous> (~/.local/share/@bookingcom/bk/client/13.2.2-latest-darwin-x64.0/vault-f55272c3.js:1924:27)
+    at Generator.next (<anonymous>)
+    at fulfilled (~/.local/share/@bookingcom/bk/client/13.2.2-latest-darwin-x64.0/node_modules/tslib/tslib.js:107:62)
+Error: provided token expired 707 seconds ago, please re-login using `bk auth:login`
+    at Object.<anonymous> (~/.local/share/@bookingcom/bk/client/13.2.2-latest-darwin-x64.0/vault-f55272c3.js:1924:27)
+    at Generator.next (<anonymous>)
+    at fulfilled (~/.local/share/@bookingcom/bk/client/13.2.2-latest-darwin-x64.0/node_modules/tslib/tslib.js:107:62)
+Error: provided token expired 707 seconds ago, please re-login using `bk auth:login`
+    at Object.<anonymous> (~/.local/share/@bookingcom/bk/client/13.2.2-latest-darwin-x64.0/vault-f55272c3.js:1924:27)
+    at Generator.next (<anonymous>)
+    at fulfilled (~/.local/share/@bookingcom/bk/client/13.2.2-latest-darwin-x64.0/node_modules/tslib/tslib.js:107:62)
+Unable to connect to the server: getting credentials: exec: executable /usr/local/bin/bk failed with exit code 2
+C02ZL0QPLVDN:FirebaseCrashH2 jiaguo$
+C02ZL0QPLVDN:FirebaseCrashH2 jiaguo$ bk auth:login
+Running some sanity checks:
+ ✔ Booking certificates cached
+ ✔ Checking some `kubectl` things...
+   ✔ Checking kubectl version
+   ✔ Updating clusters in config
+   ✔ Checking obsolete settings
+   ✔ Cluster bplatform-eu-nl-dqs-a is healthy
+Trying to login:
+ ✔ Authentication mode is sso
+ ✔ Authenticating through SSO...
+    → your browser has been opened to visit:
+      https://corpsso.booking.com/SSO/staff/auth?redirect_to=https://bk-authentication-sso.prod.booking.com/v1/redirect?redirect
+_to=http://localhost:8980
+    → if you see "403 - Forbidden" in the browser you need to connect to VPN and rerun the command
+    ✔ Token received through SSO for user "jiaguo"
+ ✔ Setting default authentication info in kubectl config
+You're all set!
+C02ZL0QPLVDN:FirebaseCrashH2 jiaguo$
+C02ZL0QPLVDN:FirebaseCrashH2 jiaguo$ kubectl get pods
+NAME                                             READY   STATUS    RESTARTS   AGE
+firebase-app-crash-1563dc62-0-684c5db489-fttvt   6/6     Running   0          2m47s
+C02ZL0QPLVDN:FirebaseCrashH2 jiaguo$
+C02ZL0QPLVDN:FirebaseCrashH2 jiaguo$ kubectl exec -it firebase-app-crash-1563dc62-0-684c5db489-fttvt -- /bin/sh
+Defaulted container "app" out of: app, nginx, rosterd, envoy, authxagent, vault-sidecar, vault-init (init), rosterd-init (init)
+sh-4.2$ cd FirebaseCrashH2/
+sh-4.2$
+sh-4.2$ cd src/
+sh-4.2$ ls
+Dbase.py  draft_all_lib.py  firebase_db_common_lib.py  jsmod.py          scraper_common_lib.py  utils.py
+dblib.py  env_setup.py      issues.py                  requirements.txt  timelib.py
+sh-4.2$ python
+Python 3.7.12 (default, Sep 10 2021, 12:09:04)
+[GCC 4.8.5 20150623 (Red Hat 4.8.5-44)] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import issues
+>>>
+>>> issue_id='5c06a163f8b88c296382cb87'
+>>>
+>>> I=issues.Issue(issue_id)
+>>> I.get_cursor()
+<sqlalchemy.engine.cursor.LegacyCursorResult object at 0x7fa29672d910>
+>>> I.get_cursor
+I.get_cursor(               I.get_cursor_app_versions(
+>>> I.get_cursor_app_versions()
+<sqlalchemy.engine.cursor.LegacyCursorResult object at 0x7fa29672dc90>
+>>>
+>>> app_cursor=I.get_cursor_app_versions()
+>>> app_cursor.fetchall()
+[('5c06a163f8b88c296382cb87', '["27.9.0.1", "28.4", "28.4", "28.2.1", "28.4", "28.3", "28.2.1", "28.3", "28.4", "27.9.0.1", "27.9.0.1", "28.4", "27.9.0.1", "28.4", "28.3", "27.9.0. ... (53956 characters truncated) ... 7", "28.8", "28.8", "27.5", "28.7.0.1", "
+28.7", "28.7", "27.9.0.1", "28.8", "27.4", "28.2.1", "28.8", "28.8", "28.7.0.1", "28.3", "26.1.0.1", "28.7"]')]
+>>>
+>>> I.modelize_issue()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/workspace/FirebaseCrashH2/src/issues.py", line 129, in modelize_issue
+    app_version_string = self.cursor_app_versions.fetchone()['app_version_list'] # -> str
+  File "/opt/venv/lib/python3.7/site-packages/sqlalchemy/engine/cursor.py", line 792, in _key_fallback
+    replace_context=err,
+  File "/opt/venv/lib/python3.7/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+sqlalchemy.exc.NoSuchColumnError: "Could not locate column in row for column 'app_version_list'"
+>>>
+>>>
+>>> app_cursor=I.get_cursor_app_versions()
+>>> app_cursor.keys()
+RMKeyView(['issue_id', 'app_version_lists'])
+>>>
+>>> command terminated with exit code 137
+C02ZL0QPLVDN:FirebaseCrashH2 jiaguo$
+C02ZL0QPLVDN:FirebaseCrashH2 jiaguo$
+C02ZL0QPLVDN:FirebaseCrashH2 jiaguo$ kubectl get pods
+
+NAME                                            READY   STATUS    RESTARTS   AGE
+firebase-app-crash-cf6d7852-0-84448656f-s49zf   6/6     Running   0          2m8s
+C02ZL0QPLVDN:FirebaseCrashH2 jiaguo$
+C02ZL0QPLVDN:FirebaseCrashH2 jiaguo$ #kubectl exec -it  -- /bin/sh
+C02ZL0QPLVDN:FirebaseCrashH2 jiaguo$
+C02ZL0QPLVDN:FirebaseCrashH2 jiaguo$
+C02ZL0QPLVDN:FirebaseCrashH2 jiaguo$ kubectl exec -it firebase-app-crash-cf6d7852-0-84448656f-s49zf -- /bin/sh
+Defaulted container "app" out of: app, nginx, rosterd, envoy, authxagent, vault-sidecar, vault-init (init), rosterd-init (init)
+sh-4.2$
+sh-4.2$ python
+Python 3.7.12 (default, Sep 10 2021, 12:09:04)
+[GCC 4.8.5 20150623 (Red Hat 4.8.5-44)] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import issues
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+ModuleNotFoundError: No module named 'issues'
+>>>
+sh-4.2$ cd FirebaseCrashH2/src/
+sh-4.2$
+sh-4.2$ cd FirebaseCrashH2/src/
+sh: cd: FirebaseCrashH2/src/: No such file or directory
+sh-4.2$ python
+Python 3.7.12 (default, Sep 10 2021, 12:09:04)
+[GCC 4.8.5 20150623 (Red Hat 4.8.5-44)] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import issues
+>>> issue_id='5c06a163f8b88c296382cb87'
+>>> I=issues.Issue(issue_id)
+>>> I.get_cursor_app_versions()
+<sqlalchemy.engine.cursor.LegacyCursorResult object at 0x7efe2c714b90>
+>>>
+>>>
+>>>
+>>> app_cursor=I.get_cursor_app_versions()
+>>> app_cursor.fetchall()
+[('5c06a163f8b88c296382cb87', '["27.9.0.1", "28.4", "28.4", "28.2.1", "28.4", "28.3", "28.2.1", "28.3", "28.4", "27.9.0.1", "27.9.0.1", "28.4", "27.9.0.1", "28.4", "28.3", "27.9.0. ... (53956 characters truncated) ... 7", "28.8", "28.8", "27.5", "28.7.0.1", "
+28.7", "28.7", "27.9.0.1", "28.8", "27.4", "28.2.1", "28.8", "28.8", "28.7.0.1", "28.3", "26.1.0.1", "28.7"]')]
+>>> I.modelize_issue()
+{'issue_id': '5c06a163f8b88c296382cb87', 'issue_title': 'ActivityThread.java line 3478', 'issue_subtitle': 'android.app.ActivityThread.reportSizeConfigurations', 'app_version': '"27.9.0.1"', 'crash_count': 5713, 'total_users': 5448, 'event_timestamp': '2021-0
+8-12 03:01:34', 'issue_logs': 'Parcel.java@android.os.Parcel.readException\nParcel.java@android.os.Parcel.readException\nIActivityManager.java@android.app.IActivityManager$Stub$Proxy.reportSizeConfigurations\nActivityThread.java@android.app.ActivityThread.rep
+ortSizeConfigurations\nActivityThread.java@android.app.ActivityThread.handleLaunchActivity\nActivityThread.java@android.app.ActivityThread.-wrap12\nActivityThread.java@android.app.ActivityThread$H.handleMessage\nHandler.java@android.os.Handler.dispatchMessage
+\nLooper.java@android.os.Looper.loop\nActivityThread.java@android.app.ActivityThread.main\nMethod.java@java.lang.reflect.Method.invoke\nZygote.java@com.android.internal.os.Zygote$MethodAndArgsCaller.run\nZygoteInit.java@com.android.internal.os.ZygoteInit.main
+\n', 'app_version_list': "'24.6', '26.6.1.1', '25.3.1.1', '24.0', '26.9', '28.3', '27.8.1', '27.9.0.1', '25.5.0.1', '27.6', '24.0.0.1', '25.1.1', '25.0.1.1', '24.9', '25.2.0.1', '27.3.2', '28.7', '28.8', '26.7.1', '24.8', '25.8.0.1', '24.1', '24.7', '27.0', '
+24.7.0.1', '28.5', '25.2', '28.7.0.1', '26.1', '28.0', '25.6.0.1', '25.9', '27.9', '25.4.1', '26.8.0.1', '24.2.2', '27.8.0.1', '24.6.0.1', '28.5.1', '26.5.2', '24.8.0.1', '26.6', '24.1.0.1', '24.4.1', '28.6', '26.8', '28.2', '24.2.2.1', '25.5', '27.8', '24.8.
+2', '26.7.1.1', '28.4', '28.2.1', '25.4.0.1', '25.7', '27.1.1', '27.4', '27.0.0.2', '26.9.0.1', '26.3', '25.3.1', '27.7', '26.1.0.1', '25.4', '24.4.1.1', '27.6.0.1', '26.6.1', '24.9.0.1', '26.0', '25.7.0.1', '25.0.2', '27.2', '25.0.1', '27.5.0.1', '28.1', '25
+.6', '25.8', '26.2.1', '27.0.0.1', '26.4', '27.5', '26.2', '25.4.1.1', '24.3.2', '27.2.0.1', '25.1.1.1', '27.3.1'", 'last_update_timestamp': '2021-09-14 11:50:54'}
+>>>
+>>> I.dump_to_json()
+place holder
+>>>
+>>>
+>>> import utils
+>>> utils.get_crash_lists()
+[Init] dump cursor:
+                select
+                        issue_id,
+                        application->'$.display_version' as app_version,
+                        count(distinct event_id) as crash_count,
+                        count(distinct installation_uuid) as total_users
+                from `firebase_crashlytics_com_booking_ANDROID`
+                where
+                        event_timestamp >= '2021-08-28 11:51:37' and event_timestamp <= '2021-09-04 11:51:37'
+                group by issue_id
+                having crash_count > 10 and total_users > 10
+                order by total_users desc limit 20;
+
+('5c06a163f8b88c296382cb87', '"27.5"', 1354, 1330)
+('1e4a57e206f3bdbfd2a10eabca16255f', '"27.9.0.1"', 1230, 1097)
+('57d315f90aeb16625bf85353', '"26.2.1"', 899, 843)
+('a90e5206fb185ba394bb890f4a0b74ba', '"28.6"', 1327, 822)
+('ac198257088d930fabe1e1b8e7107f69', '"28.6"', 815, 800)
+('c8b638ff07b3d862e80f9a1f7ba4d829', '"28.6"', 446, 441)
+('8fbf9fa572753f95b47cc0796abf0a61', '"28.7"', 382, 329)
+('4bc0978871cc4e7e29ee6398b786869f', '"28.6"', 314, 314)
+('ef302380c11f56bd1e86cce48614cee3', '"27.9.0.1"', 2180, 301)
+('227fecd089009d7a8c19b7dc194d9647', '"28.6"', 348, 292)
+('a2ac44e749f81c687fba64da32ec605f', '"28.6"', 253, 250)
+('2449075f9c7d6b93627f0c9dd5668d91', '"27.9"', 411, 226)
+('ae2c21e4871b7d28d8f50cd0f9a310cc', '"24.8.0.1"', 650, 223)
+('0194d93e80614b77dc6413f32e295f14', '"28.6"', 226, 217)
+('37c0973bcbe3e68cb3e54e6842d41e19', '"27.2"', 366, 209)
+('f60005b8140e060a4111d9ba53ac18bb', '"27.9.0.1"', 175, 167)
+('81740667e38724aabecacb50e6a1ac57', '"28.7.0.1"', 192, 164)
+('08d4b83f00e615eba1aa74dca474e591', '"25.3.1"', 228, 148)
+('1f8554f58a3c262696ee32c27fd15e93', '"25.4.1.1"', 203, 136)
+('7399104c8f4db64614e58ee43e82194e', '"25.8"', 152, 135)
+Total issues today:  20
+['5c06a163f8b88c296382cb87', '1e4a57e206f3bdbfd2a10eabca16255f', '57d315f90aeb16625bf85353', 'a90e5206fb185ba394bb890f4a0b74ba', 'ac198257088d930fabe1e1b8e7107f69', 'c8b638ff07b3d862e80f9a1f7ba4d829', '8fbf9fa572753f95b47cc0796abf0a61', '4bc0978871cc4e7e29ee6
+398b786869f', 'ef302380c11f56bd1e86cce48614cee3', '227fecd089009d7a8c19b7dc194d9647', 'a2ac44e749f81c687fba64da32ec605f', '2449075f9c7d6b93627f0c9dd5668d91', 'ae2c21e4871b7d28d8f50cd0f9a310cc', '0194d93e80614b77dc6413f32e295f14', '37c0973bcbe3e68cb3e54e6842d4
+1e19', 'f60005b8140e060a4111d9ba53ac18bb', '81740667e38724aabecacb50e6a1ac57', '08d4b83f00e615eba1aa74dca474e591', '1f8554f58a3c262696ee32c27fd15e93', '7399104c8f4db64614e58ee43e82194e']
+>>>
+>>>
+>>> utils.dump_issues()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: dump_issues() missing 1 required positional argument: 'issue_id_list'
+>>> utils.dump_issues(utils)
+utils
+>>> utils.dump_issues(utils.)
+utils.crash_count_max         utils.end_timestamp_str       utils.issue_count_max         utils.job_test(               utils.os                      utils.start_timestamp_str     utils.timedelta(
+utils.datetime(               utils.firebase_db_common_lib  utils.issues                  utils.jsmod                   utils.schedule                utils.table_index             utils.timelib
+utils.dump_issues(            utils.get_crash_lists(        utils.job_get_crash(          utils.json                    utils.setup_timeslot(         utils.time                    utils.total_users_max
+>>>
+>>>
+>>> issue_id_list=utils.get_crash_lists()
+[Init] dump cursor:
+                select
+                        issue_id,
+                        application->'$.display_version' as app_version,
+                        count(distinct event_id) as crash_count,
+                        count(distinct installation_uuid) as total_users
+                from `firebase_crashlytics_com_booking_ANDROID`
+                where
+                        event_timestamp >= '2021-08-28 11:51:37' and event_timestamp <= '2021-09-04 11:51:37'
+                group by issue_id
+                having crash_count > 10 and total_users > 10
+                order by total_users desc limit 20;
+
+('5c06a163f8b88c296382cb87', '"27.5"', 1354, 1330)
+('1e4a57e206f3bdbfd2a10eabca16255f', '"27.9.0.1"', 1230, 1097)
+('57d315f90aeb16625bf85353', '"26.2.1"', 899, 843)
+('a90e5206fb185ba394bb890f4a0b74ba', '"28.6"', 1327, 822)
+('ac198257088d930fabe1e1b8e7107f69', '"28.6"', 815, 800)
+('c8b638ff07b3d862e80f9a1f7ba4d829', '"28.6"', 446, 441)
+('8fbf9fa572753f95b47cc0796abf0a61', '"28.7"', 382, 329)
+('4bc0978871cc4e7e29ee6398b786869f', '"28.6"', 314, 314)
+('ef302380c11f56bd1e86cce48614cee3', '"27.9.0.1"', 2180, 301)
+('227fecd089009d7a8c19b7dc194d9647', '"28.6"', 348, 292)
+('a2ac44e749f81c687fba64da32ec605f', '"28.6"', 253, 250)
+('2449075f9c7d6b93627f0c9dd5668d91', '"27.9"', 411, 226)
+('ae2c21e4871b7d28d8f50cd0f9a310cc', '"24.8.0.1"', 650, 223)
+('0194d93e80614b77dc6413f32e295f14', '"28.6"', 226, 217)
+('37c0973bcbe3e68cb3e54e6842d41e19', '"27.2"', 366, 209)
+('f60005b8140e060a4111d9ba53ac18bb', '"27.9.0.1"', 175, 167)
+('81740667e38724aabecacb50e6a1ac57', '"28.7.0.1"', 192, 164)
+('08d4b83f00e615eba1aa74dca474e591', '"25.3.1"', 228, 148)
+('1f8554f58a3c262696ee32c27fd15e93', '"25.4.1.1"', 203, 136)
+('7399104c8f4db64614e58ee43e82194e', '"25.8"', 152, 135)
+Total issues today:  20
+>>>
+>>> utils.dump_issues(issue_id_list)
+
+Total issues:  20
+[Issues dump to ]: /workspace/FirebaseCrashH2/src/issues.json
+>>>
+>>>
+sh-4.2$
+sh-4.2$ cat /workspace/FirebaseCrashH2/src/issues.json
+[{"issue_id": "5c06a163f8b88c296382cb87", "issue_title": "ActivityThread.java line 3478", "issue_subtitle": "android.app.ActivityThread.reportSizeConfigurations", "app_version": "\"27.9.0.1\"", "crash_count": 5713, "total_users": 5448, "event_timestamp": "202
+1-08-12 03:01:34", "issue_logs": "Parcel.java@android.os.Parcel.readException\nParcel.java@android.os.Parcel.readException\nIActivityManager.java@android.app.IActivityManager$Stub$Proxy.reportSizeConfigurations\nActivityThread.java@android.app.ActivityThread.
+reportSizeConfigurations\nActivityThread.java@android.app.ActivityThread.handleLaunchActivity\nActivityThread.java@android.app.ActivityThread.-wrap12\nActivityThread.java@android.app.ActivityThread$H.handleMessage\nHandler.java@android.os.Handler.dispatchMess
+age\nLooper.java@android.os.Looper.loop\nActivityThread.java@android.app.ActivityThread.main\nMethod.java@java.lang.reflect.Method.invoke\nZygote.java@com.android.internal.os.Zygote$MethodAndArgsCaller.run\nZygoteInit.java@com.android.internal.os.ZygoteInit.m
+ain\n", "app_version_list": "'24.6', '26.6.1.1', '25.3.1.1', '24.0', '26.9', '28.3', '27.8.1', '27.9.0.1', '25.5.0.1', '27.6', '24.0.0.1', '25.1.1', '25.0.1.1', '24.9', '25.2.0.1', '27.3.2', '28.7', '28.8', '26.7.1', '24.8', '25.8.0.1', '24.1', '24.7', '27.0'
+, '24.7.0.1', '28.5', '25.2', '28.7.0.1', '26.1', '28.0', '25.6.0.1', '25.9', '27.9', '25.4.1', '26.8.0.1', '24.2.2', '27.8.0.1', '24.6.0.1', '28.5.1', '26.5.2', '24.8.0.1', '26.6', '24.1.0.1', '24.4.1', '28.6', '26.8', '28.2', '24.2.2.1', '25.5', '27.8', '24
+.8.2', '26.7.1.1', '28.4', '28.2.1', '25.4.0.1', '25.7', '27.1.1', '27.4', '27.0.0.2', '26.9.0.1', '26.3', '25.3.1', '27.7', '26.1.0.1', '25.4', '24.4.1.1', '27.6.0.1', '26.6.1', '24.9.0.1', '26.0', '25.7.0.1', '25.0.2', '27.2', '25.0.1', '27.5.0.1', '28.1',
+'25.6', '25.8', '26.2.1', '27.0.0.1', '26.4', '27.5', '26.2', '25.4.1.1', '24.3.2', '27.2.0.1', '25.1.1.1', '27.3.1'", "last_update_timestamp": "2021-09-14 11:53:42"}, {"issue_id": "1e4a57e206f3bdbfd2a10eabca16255f", "issue_title": "SearchActivity.java line 4
+66", "issue_subtitle": "com.booking.appindex.presentation.activity.SearchActivity.onResume", "app_version": "\"27.9.0.1\"", "crash_count": 1695, "total_users": 1516, "event_timestamp": "2021-08-26 09:43:39", "issue_logs": "ActivityThread.java@android.app.Acti
+vityThread.performResumeActivity\nActivityThread.java@android.app.ActivityThread.handleResumeActivity\nResumeActivityItem.java@android.app.servertransaction.ResumeActivityItem.execute\nTransactionExecutor.java@android.app.servertransaction.TransactionExecutor
+.executeLifecycleState\nTransactionExecutor.java@android.app.servertransaction.TransactionExecutor.execute\nActivityThread.java@android.app.ActivityThread$H.handleMessage\nHandler.java@android.os.Handler.dispatchMessage\nLooper.java@android.os.Looper.loop\nAc
+tivityThread.java@android.app.ActivityThread.main\nMethod.java@java.lang.reflect.Method.invoke\nRuntimeInit.java@com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run\nZygoteInit.java@com.android.internal.os.ZygoteInit.main\n", "app_version_list": "'27.
+9.0.1'", "last_update_timestamp": "2021-09-14 11:53:44"}, {"issue_id": "57d315f90aeb16625bf85353", "issue_title": "Parcel.java line 1608", "issue_subtitle": "android.os.Parcel.readException", "app_version": "\"25.9\"", "crash_count": 3997, "total_users": 3303
+, "event_timestamp": "2021-08-12 02:46:34", "issue_logs": "JobService.java@android.app.job.JobService$JobHandler.handleMessage\nHandler.java@android.os.Handler.dispatchMessage\nLooper.java@android.os.Looper.loop\nActivityThread.java@android.app.ActivityThread
+.main\nMethod.java@java.lang.reflect.Method.invoke\nZygoteInit.java@com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run\nZygoteInit.java@com.android.internal.os.ZygoteInit.main\n", "app_version_list": "'24.4.1', '28.8', '28.6', '26.7.1', '26.6.1', '24.
+8', '25.1', '25.8.0.1', '24.1', '24.6', '25.5', '26.0', '24.0', '27.8', '24.7', '25.7.0.1', '24.8.2', '28.5', '25.0.2', '28.3', '25.2', '28.4', '28.2.1', '25.0.1', '24.8.1', '25.4.0.1', '24.3.1', '25.5.0.1', '25.7', '25.9.100', '24.0.0.1', '27.6', '26.1', '25
+.1.1', '25.6', '24.9', '25.0.1.1', '25.8', '26.2.1', '28.0', '25.6.0.1', '25.9', '24.2.1', '27.9', '25.4.1', '26.4', '26.3', '25.3.1', '24.2.2', '26.2', '28.7', '27.7', '26.1.0.1', '24.3.2', '25.4', '28.5.1', '24.9.1b', '25.1.1.1', '24.8.0.1', '24.1.0.1'", "l
+ast_update_timestamp": "2021-09-14 11:53:47"}, {"issue_id": "a90e5206fb185ba394bb890f4a0b74ba", "issue_title": "LocaleUtils.java line 8", "issue_subtitle": "org.chromium.base.LocaleUtils.getDefaultLocaleListString", "app_version": "\"28.4\"", "crash_count": 6
+288, "total_users": 3259, "event_timestamp": "2021-08-12 02:57:44", "issue_logs": "ActivityThread.java@android.app.ActivityThread.performLaunchActivity\nActivityThread.java@android.app.ActivityThread.handleLaunchActivity\nLaunchActivityItem.java@android.app.s
+ervertransaction.LaunchActivityItem.execute\nTransactionExecutor.java@android.app.servertransaction.TransactionExecutor.executeCallbacks\nTransactionExecutor.java@android.app.servertransaction.TransactionExecutor.execute\nActivityThread.java@android.app.Activ
+ityThread$H.handleMessage\nHandler.java@android.os.Handler.dispatchMessage\nLooper.java@android.os.Looper.loop\nActivityThread.java@android.app.ActivityThread.main\nMethod.java@java.lang.reflect.Method.invoke\nRuntimeInit.java@com.android.internal.os.RuntimeI
+nit$MethodAndArgsCaller.run\nZygoteInit.java@com.android.internal.os.ZygoteInit.main\n", "app_version_list": "'28.8', '28.6', '26.8', '26.7.1', '26.6.1', '25.5', '26.0', '26.9', '27.8', '27.0', '28.5', '27.2', '28.3', '27.8.1', '28.4', '28.7.0.1', '28.2.1', '
+27.9.0.1', '27.9.1.10', '28.1', '27.6', '25.5.0.1', '25.7', '27.1.1', '26.1', '25.6', '26.5', '28.0', '25.8', '25.9', '27.9', '27.4', '26.4', '26.3', '27.5', '28.1.0.1', '25.8.100', '27.3.2', '28.7', '27.7', '28.5.1', '26.5.2', '27.6.0.1', '27.3.1'", "last_up
+date_timestamp": "2021-09-14 11:54:02"}, {"issue_id": "ac198257088d930fabe1e1b8e7107f69", "issue_title": "LocationPermissionReactor.java line 54", "issue_subtitle": "com.booking.contentdiscovery.permission.LocationPermissionReactor$Companion.get", "app_versio
+n": "\"28.6\"", "crash_count": 1604, "total_users": 1565, "event_timestamp": "2021-08-23 03:22:52", "issue_logs": "LocationPermissionReactor.java@com.booking.contentdiscovery.permission.LocationPermissionReactor$Companion.get\nContentDiscoveryRecommendationsA
+ctivity.java@com.booking.contentdiscovery.recommendationspage.ContentDiscoveryRecommendationsActivity$2.invoke\nContentDiscoveryRecommendationsActivity.java@com.booking.contentdiscovery.recommendationspage.ContentDiscoveryRecommendationsActivity$2.invoke\nAnd
+roidActivityExtensionObserver.java@com.booking.marken.support.android.AndroidActivityExtensionObserver.onStart\nFullLifecycleObserverAdapter.java@androidx.lifecycle.FullLifecycleObserverAdapter.onStateChanged\nLifecycleRegistry.java@androidx.lifecycle.Lifecyc
+leRegistry$ObserverWithState.dispatchEvent\nLifecycleRegistry.java@androidx.lifecycle.LifecycleRegistry.forwardPass\nLifecycleRegistry.java@androidx.lifecycle.LifecycleRegistry.sync\nLifecycleRegistry.java@androidx.lifecycle.LifecycleRegistry.moveToState\nLif
+ecycleRegistry.java@androidx.lifecycle.LifecycleRegistry.handleLifecycleEvent\nReportFragment.java@androidx.lifecycle.ReportFragment.dispatch\nReportFragment.java@androidx.lifecycle.ReportFragment$LifecycleCallbacks.onActivityPostStarted\nActivity.java@androi
+d.app.Activity.dispatchActivityPostStarted\nActivity.java@android.app.Activity.performStart\nActivityThread.java@android.app.ActivityThread.handleStartActivity\nTransactionExecutor.java@android.app.servertransaction.TransactionExecutor.performLifecycleSequenc
+e\nTransactionExecutor.java@android.app.servertransaction.TransactionExecutor.cycleToPath\nTransactionExecutor.java@android.app.servertransaction.TransactionExecutor.executeLifecycleState\nTransactionExecutor.java@android.app.servertransaction.TransactionExec
+utor.execute\nActivityThread.java@android.app.ActivityThread$H.handleMessage\nHandler.java@android.os.Handler.dispatchMessage\nLooper.java@android.os.Looper.loop\nActivityThread.java@android.app.ActivityThread.main\nMethod.java@java.lang.reflect.Method.invoke
+\nRuntimeInit.java@com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run\nZygoteInit.java@com.android.internal.os.ZygoteInit.main\n", "app_version_list": "'28.6'", "last_update_timestamp": "2021-09-14 11:54:04"}, {"issue_id": "c8b638ff07b3d862e80f9a1f7b
+a4d829", "issue_title": "CompositeFacet.java line 239", "issue_subtitle": "com.booking.marken.facets.composite.CompositeFacet.attach", "app_version": "\"28.4\"", "crash_count": 4432, "total_users": 4355, "event_timestamp": "2021-08-12 02:59:53", "issue_logs":
+ "RuntimeInit.java@com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run\nZygoteInit.java@com.android.internal.os.ZygoteInit.main\n", "app_version_list": "'28.8', '27.2', '28.3', '28.6', '28.7', '28.4', '28.7.0.1', '28.2.1', '27.9.0.1', '27.4', '27.5.0.
+1', '28.5.1', '27.0', '27.1.1', '28.5'", "last_update_timestamp": "2021-09-14 11:54:13"}, {"issue_id": "8fbf9fa572753f95b47cc0796abf0a61", "issue_title": "ActivityThread.java line 2054", "issue_subtitle": "android.app.ActivityThread$H.handleMessage", "app_ver
+sion": "\"28.3\"", "crash_count": 1532, "total_users": 1271, "event_timestamp": "2021-08-12 03:14:46", "issue_logs": "ActivityThread.java@android.app.ActivityThread$H.handleMessage\nHandler.java@android.os.Handler.dispatchMessage\nLooper.java@android.os.Loope
+r.loop\nActivityThread.java@android.app.ActivityThread.main\nMethod.java@java.lang.reflect.Method.invoke\nRuntimeInit.java@com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run\nZygoteInit.java@com.android.internal.os.ZygoteInit.main\n", "app_version_li
+st": "'28.8', '28.6', '26.8', '26.7.1', '26.6.1', '28.2', '24.1', '24.6', '25.5', '27.8', '26.9', '27.0', '27.3', '28.5', '28.3', '25.2', '27.8.1', '28.4', '28.2.1', '25.0.1', '27.9.1.10', '28.1', '24.8.1', '27.6', '25.5.0.1', '25.7', '26.1', '24.9', '25.6',
+'25.1.1', '25.8', '28.0', '25.6.0.1', '27.9', '25.4.1', '27.4', '26.4', '26.3', '27.5', '25.3.1', '24.2.2', '27.3.2', '28.7', '27.7', '24.3.2', '25.4', '28.5.1', '26.6', '27.3.1'", "last_update_timestamp": "2021-09-14 11:54:14"}, {"issue_id": "4bc0978871cc4e7
+e29ee6398b786869f", "issue_title": "TagManagerSearchResultsEventParams.java line 57", "issue_subtitle": "com.booking.marketing.tagmanager.TagManagerSearchResultsEventParams.getFirstThreeHotelIDs", "app_version": "\"28.4\"", "crash_count": 1460, "total_users":
+ 1455, "event_timestamp": "2021-08-12 03:51:24", "issue_logs": "ArrayList.java@java.util.ArrayList.subListRangeCheck\nArrayList.java@java.util.ArrayList.subList\nTagManagerSearchResultsEventParams.java@com.booking.marketing.tagmanager.TagManagerSearchResultsE
+ventParams.getFirstThreeHotelIDs\nTagManagerSearchResultsEventParams.java@com.booking.marketing.tagmanager.TagManagerSearchResultsEventParams.<init>\nTagManagerMarketingTracker.java@com.booking.marketing.tagmanager.TagManagerMarketingTracker.trackSearchResult
+sEvent\nSearchResultsActivity.java@com.booking.searchresult.SearchResultsActivity$2.run\nThreadPoolExecutor.java@java.util.concurrent.ThreadPoolExecutor.runWorker\nThreadPoolExecutor.java@java.util.concurrent.ThreadPoolExecutor$Worker.run\nThread.java@java.la
+ng.Thread.run\n", "app_version_list": "'28.8', '28.6', '28.3', '28.0', '27.8.1', '28.7', '28.4', '28.2', '28.7.0.1', '28.2.1', '27.9', '27.9.0.1', '28.5.1', '28.1', '27.8', '27.9.1.10', '28.5'", "last_update_timestamp": "2021-09-14 11:54:15"}, {"issue_id": "e
+f302380c11f56bd1e86cce48614cee3", "issue_title": "NotificationHistory.java line 17", "issue_subtitle": "com.booking.notification.track.NotificationHistory.lastClickedNotificationInfo", "app_version": "\"27.9.0.1\"", "crash_count": 7872, "total_users": 820, "e
+vent_timestamp": "2021-08-12 04:46:35", "issue_logs": "NotificationHistory.java@com.booking.notification.track.NotificationHistory.lastClickedNotificationInfo\nReferrerAndAffiliateUtils.java@com.booking.util.ReferrerAndAffiliateUtils.getAffiliateLabelValue\nS
+helvesDependenciesImpl.java@com.booking.di.shelves.ShelvesDependenciesImpl.getAffiliatesConfig\nShelvesModule.java@com.booking.shelvesservicesv2.ShelvesModule.getAffiliatesConfig\nHeaderOverride.java@com.booking.shelvesservicesv2.network.request.HeaderOverrid
+e.<init>\nShelvesRequest.java@com.booking.shelvesservicesv2.network.request.ShelvesRequest.<init>\nShelvesReactor.java@com.booking.shelvesservicesv2.reactors.ShelvesReactor$Companion.handleLoadShelves\nShelvesReactor.java@com.booking.shelvesservicesv2.reactor
+s.ShelvesReactor$Companion.<init>\nShelvesReactor.java@com.booking.shelvesservicesv2.reactors.ShelvesReactor$Companion$reactor$1$$special$$inlined$executeNamedAction$2.invoke\nReactorBuilder.java@com.booking.marken.reactors.core.ReactorBuilder$executeNamedAct
+ion$2.invoke\nShelvesReactor.java@com.booking.shelvesservicesv2.reactors.ShelvesReactor$Companion$reactor$1$$special$$inlined$executeNamedAction$2.invoke\nTypedActionHandler.java@com.booking.marken.reactors.core.TypedActionHandler.execute\nTypedActionHandlerR
+eactor.java@com.booking.marken.reactors.core.TypedActionHandlerReactor$execute$1.invoke\nTypedActionHandlerReactor.java@com.booking.marken.reactors.core.TypedActionHandlerReactor$execute$1.invoke\nMarkenReactorState.java@com.booking.marken.store.support.Marke
+nReactorState.executeAction\nMarkenReactorGroup.java@com.booking.marken.store.support.MarkenReactorGroup.dispatch\nMarkenStore.java@com.booking.marken.store.MarkenStore.processOneAction\nMarkenStore.java@com.booking.marken.store.MarkenStore.processActionQueue
+WithParent\nMarkenStore.java@com.booking.marken.store.MarkenStore.access$onParentUpdate\nMarkenStore.java@com.booking.marken.store.MarkenStore$actionProcessor$2.invoke\nMarkenStore.java@com.booking.marken.store.MarkenStore$actionProcessor$2.invoke\nMarkenStor
+e.java@com.booking.marken.store.MarkenStore$onBarrierActionFinished$1.run\nThreadPoolExecutor.java@java.util.concurrent.ThreadPoolExecutor.runWorker\nThreadPoolExecutor.java@java.util.concurrent.ThreadPoolExecutor$Worker.run\nThread.java@java.lang.Thread.run\
+n", "app_version_list": "'28.1.0.1', '27.9.0.1'", "last_update_timestamp": "2021-09-14 11:54:24"}, {"issue_id": "227fecd089009d7a8c19b7dc194d9647", "issue_title": "Animation.java line 261", "issue_subtitle": "android.view.animation.Animation.<init>", "app_ver
+sion": "\"28.4\"", "crash_count": 1092, "total_users": 922, "event_timestamp": "2021-08-12 03:51:06", "issue_logs": "Integer.java@java.lang.Integer.parseInt\nXmlUtils.java@com.android.internal.util.XmlUtils.convertValueToInt\nTypedArray.java@android.content.r
+es.TypedArray.getInt\nAnimation.java@android.view.animation.Animation.<init>\nAnimationSet.java@android.view.animation.AnimationSet.<init>\nAnimationUtils.java@android.view.animation.AnimationUtils.createAnimationFromXml\nAnimationUtils.java@android.view.anim
+ation.AnimationUtils.createAnimationFromXml\nAnimationUtils.java@android.view.animation.AnimationUtils.loadAnimation\nEditor.java@android.widget.Editor$SelectionPopupWindow.createAnimations\nEditor.java@android.widget.Editor$ActionPinnedPopupWindow.<init>\nEd
+itor.java@android.widget.Editor$ActionPopupWindow.<init>\nEditor.java@android.widget.Editor$ActionPopupWindow.<init>\nEditor.java@android.widget.Editor$SelectionPopupWindow.<init>\nEditor.java@android.widget.Editor$SelectionHandleView.getActionPopupWindow\nEd
+itor.java@android.widget.Editor$HandleView.showActionPopupWindow\nEditor.java@android.widget.Editor$HandleView.showActionPopupWindow\nEditor.java@android.widget.Editor$SelectionModifierCursorController.initHandles\nEditor.java@android.widget.Editor$SelectionM
+odifierCursorController.show\nEditor.java@android.widget.Editor$SelectionModifierCursorController.enterDrag\nEditor.java@android.widget.Editor.selectCurrentWordAndStartDrag\nEditor.java@android.widget.Editor.performLongClick\nTextView.java@android.widget.Text
+View.performLongClick\nView.java@android.view.View.performLongClick\nView.java@android.view.View$CheckForLongPress.run\nHandler.java@android.os.Handler.handleCallback\nHandler.java@android.os.Handler.dispatchMessage\nLooper.java@android.os.Looper.loop\nActivi
+tyThread.java@android.app.ActivityThread.main\nMethod.java@java.lang.reflect.Method.invoke\nRuntimeInit.java@com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run\nZygoteInit.java@com.android.internal.os.ZygoteInit.main\n", "app_version_list": "'28.8',
+'28.6', '25.4.101', '26.0', '27.0', '28.5', '28.3', '28.4', '28.2.1', '27.9.0.1', '27.5.0.1', '28.1', '27.6', '28.0', '27.9', '27.5', '27.3.2', '28.7', '27.7', '28.5.1', '26.5.2', '27.3.1'", "last_update_timestamp": "2021-09-14 11:54:25"}, {"issue_id": "a2ac4
+4e749f81c687fba64da32ec605f", "issue_title": "Privacy.java line 21", "issue_subtitle": "com.booking.identity.privacy.Privacy.getDependencies", "app_version": "\"28.3\"", "crash_count": 2724, "total_users": 2656, "event_timestamp": "2021-08-12 05:26:54", "issu
+e_logs": "ActivityThread.java@android.app.ActivityThread.performLaunchActivity\nActivityThread.java@android.app.ActivityThread.handleLaunchActivity\nLaunchActivityItem.java@android.app.servertransaction.LaunchActivityItem.execute\nTransactionExecutor.java@and
+roid.app.servertransaction.TransactionExecutor.executeCallbacks\nTransactionExecutor.java@android.app.servertransaction.TransactionExecutor.execute\nActivityThread.java@android.app.ActivityThread$H.handleMessage\nHandler.java@android.os.Handler.dispatchMessag
+e\nLooper.java@android.os.Looper.loop\nActivityThread.java@android.app.ActivityThread.main\nMethod.java@java.lang.reflect.Method.invoke\nRuntimeInit.java@com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run\nZygoteInit.java@com.android.internal.os.Zygo
+teInit.main\n", "app_version_list": "'28.6', '28.3', '28.7', '28.4', '28.7.0.1', '28.5.1', '28.5'", "last_update_timestamp": "2021-09-14 11:54:29"}, {"issue_id": "2449075f9c7d6b93627f0c9dd5668d91", "issue_title": "AccessibilityInteractionController.java line
+1125", "issue_subtitle": "android.view.AccessibilityInteractionController$AccessibilityNodePrefetcher.prefetchAccessibilityNodeInfos", "app_version": "\"28.4\"", "crash_count": 1720, "total_users": 913, "event_timestamp": "2021-08-12 03:53:25", "issue_logs":
+"ExploreByTouchHelper.java@androidx.customview.widget.ExploreByTouchHelper.createNodeForChild\nExploreByTouchHelper.java@androidx.customview.widget.ExploreByTouchHelper.obtainAccessibilityNodeInfo\nExploreByTouchHelper.java@androidx.customview.widget.ExploreB
+yTouchHelper$MyNodeProvider.createAccessibilityNodeInfo\nAccessibilityNodeProviderCompat.java@androidx.core.view.accessibility.AccessibilityNodeProviderCompat$AccessibilityNodeProviderApi16.createAccessibilityNodeInfo\nAccessibilityInteractionController.java@
+android.view.AccessibilityInteractionController$AccessibilityNodePrefetcher.prefetchAccessibilityNodeInfos\nAccessibilityInteractionController.java@android.view.AccessibilityInteractionController.findAccessibilityNodeInfoByAccessibilityIdUiThread\nAccessibili
+tyInteractionController.java@android.view.AccessibilityInteractionController.access$400\nAccessibilityInteractionController.java@android.view.AccessibilityInteractionController$PrivateHandler.handleMessage\nHandler.java@android.os.Handler.dispatchMessage\nLoo
+per.java@android.os.Looper.loop\nActivityThread.java@android.app.ActivityThread.main\nMethod.java@java.lang.reflect.Method.invoke\nRuntimeInit.java@com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run\nZygoteInit.java@com.android.internal.os.ZygoteInit
+.main\n", "app_version_list": "'28.8', '28.6', '24.9.0.1', '25.8.0.1', '24.2.2.1', '27.8', '26.9', '27.0', '24.7.0.1', '28.5', '28.3', '27.8.1', '28.4', '28.2.1', '27.9.1.10', '28.1', '27.6', '27.1.1', '25.0.1.1', '28.0', '25.6.0.1', '27.9', '27.5', '27.8.0.1
+', '25.8.100', '27.3.2', '28.7', '27.7', '26.1.0.1', '28.5.1', '27.6.0.1', '24.1.0.1'", "last_update_timestamp": "2021-09-14 11:54:30"}, {"issue_id": "ae2c21e4871b7d28d8f50cd0f9a310cc", "issue_title": "NotificationsRepository.java line 170", "issue_subtitle":
+ "com.booking.notification.NotificationsRepository$Companion.fetchNotifications", "app_version": "\"24.8.0.1\"", "crash_count": 3229, "total_users": 917, "event_timestamp": "2021-08-12 02:46:45", "issue_logs": "ModernAsyncTask.java@androidx.loader.content.Mod
+ernAsyncTask$3.done\nFutureTask.java@java.util.concurrent.FutureTask.finishCompletion\nFutureTask.java@java.util.concurrent.FutureTask.setException\nFutureTask.java@java.util.concurrent.FutureTask.run\nThreadPoolExecutor.java@java.util.concurrent.ThreadPoolEx
+ecutor.runWorker\nThreadPoolExecutor.java@java.util.concurrent.ThreadPoolExecutor$Worker.run\nThread.java@java.lang.Thread.run\n", "app_version_list": "'25.2.0.1', '25.2', '24.9.0.1', '24.6.0.1', '24.4.1.1', '25.1.1.1', '24.8.0.1', '25.0.1.1', '24.7.0.1'", "l
+ast_update_timestamp": "2021-09-14 11:54:32"}, {"issue_id": "0194d93e80614b77dc6413f32e295f14", "issue_title": "FragmentStore.java line 67", "issue_subtitle": "androidx.fragment.app.FragmentStore.addFragment", "app_version": "\"28.4\"", "crash_count": 1014, "
+total_users": 972, "event_timestamp": "2021-08-12 03:14:14", "issue_logs": "FragmentStore.java@androidx.fragment.app.FragmentStore.addFragment\nFragmentManager.java@androidx.fragment.app.FragmentManager.addFragment\nBackStackRecord.java@androidx.fragment.app.
+BackStackRecord.executeOps\nFragmentManager.java@androidx.fragment.app.FragmentManager.executeOps\nFragmentManager.java@androidx.fragment.app.FragmentManager.executeOpsTogether\nFragmentManager.java@androidx.fragment.app.FragmentManager.removeRedundantOperati
+onsAndExecute\nFragmentManager.java@androidx.fragment.app.FragmentManager.execPendingActions\nFragmentManager.java@androidx.fragment.app.FragmentManager$4.run\nHandler.java@android.os.Handler.handleCallback\nHandler.java@android.os.Handler.dispatchMessage\nLo
+oper.java@android.os.Looper.loop\nActivityThread.java@android.app.ActivityThread.main\nMethod.java@java.lang.reflect.Method.invoke\nRuntimeInit.java@com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run\nZygoteInit.java@com.android.internal.os.ZygoteIni
+t.main\n", "app_version_list": "'28.8', '28.6', '26.7.1', '26.0', '26.9', '27.0', '28.5', '27.2', '28.3', '27.8.1', '28.4', '28.7.0.1', '28.2.1', '27.9.0.1', '28.1', '27.6', '25.7', '27.1.1', '26.1', '25.6', '25.8', '28.0', '26.2.1', '25.9', '27.9', '27.4', '
+27.0.0.2', '26.4', '26.3', '27.5', '25.8.100', '27.3.2', '28.7', '27.7', '26.1.0.1', '28.5.1', '26.5.2', '27.6.0.1', '27.3.1'", "last_update_timestamp": "2021-09-14 11:54:33"}, {"issue_id": "37c0973bcbe3e68cb3e54e6842d41e19", "issue_title": "AccessibilityInte
+ractionController.java line 977", "issue_subtitle": "android.view.AccessibilityInteractionController$AccessibilityNodePrefetcher.prefetchAccessibilityNodeInfos", "app_version": "\"28.3\"", "crash_count": 691, "total_users": 481, "event_timestamp": "2021-08-12
+ 15:27:50", "issue_logs": "ExploreByTouchHelper.java@androidx.customview.widget.ExploreByTouchHelper.createNodeForChild\nExploreByTouchHelper.java@androidx.customview.widget.ExploreByTouchHelper.obtainAccessibilityNodeInfo\nExploreByTouchHelper.java@androidx.
+customview.widget.ExploreByTouchHelper$MyNodeProvider.createAccessibilityNodeInfo\nAccessibilityNodeProviderCompat.java@androidx.core.view.accessibility.AccessibilityNodeProviderCompat$AccessibilityNodeProviderApi16.createAccessibilityNodeInfo\nAccessibilityI
+nteractionController.java@android.view.AccessibilityInteractionController$AccessibilityNodePrefetcher.prefetchAccessibilityNodeInfos\nAccessibilityInteractionController.java@android.view.AccessibilityInteractionController.findAccessibilityNodeInfoByAccessibil
+ityIdUiThread\nAccessibilityInteractionController.java@android.view.AccessibilityInteractionController.access$400\nAccessibilityInteractionController.java@android.view.AccessibilityInteractionController$PrivateHandler.handleMessage\nHandler.java@android.os.Ha
+ndler.dispatchMessage\nLooper.java@android.os.Looper.loop\nActivityThread.java@android.app.ActivityThread.main\nMethod.java@java.lang.reflect.Method.invoke\nRuntimeInit.java@com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run\nZygoteInit.java@com.andr
+oid.internal.os.ZygoteInit.main\n", "app_version_list": "'24.4.1', '28.8', '28.6', '26.8', '27.0', '28.5', '27.2', '28.3', '27.8.1', '28.4', '28.7.0.1', '27.9.0.1', '28.1', '27.6', '25.9', '27.0.0.1', '27.3.2', '28.7', '25.4.1.1', '28.5.1'", "last_update_time
+stamp": "2021-09-14 11:54:33"}, {"issue_id": "f60005b8140e060a4111d9ba53ac18bb", "issue_title": "Parcel.java line 2071", "issue_subtitle": "android.os.Parcel.createException", "app_version": "\"27.9.0.1\"", "crash_count": 858, "total_users": 811, "event_times
+tamp": "2021-08-12 03:00:45", "issue_logs": "AsyncTask.java@android.os.AsyncTask$AsyncFutureTask.done\nFutureTask.java@java.util.concurrent.FutureTask.finishCompletion\nFutureTask.java@java.util.concurrent.FutureTask.setException\nFutureTask.java@java.util.co
+ncurrent.FutureTask.run\nThreadPoolExecutor.java@java.util.concurrent.ThreadPoolExecutor.runWorker\nThreadPoolExecutor.java@java.util.concurrent.ThreadPoolExecutor$Worker.run\nThread.java@java.lang.Thread.run\n", "app_version_list": "'28.6', '25.8.0.1', '26.6
+.1.1', '24.2.2.1', '26.7.1.1', '28.3', '28.4', '28.7.0.1', '27.9.0.1', '27.5.0.1', '25.5.0.1', '25.6.0.1', '27.0.0.1', '26.8.0.1', '27.0.0.2', '26.9.0.1', '28.1.0.1', '28.7', '26.1.0.1', '27.2.0.1', '28.5.1', '27.6.0.1'", "last_update_timestamp": "2021-09-14
+11:54:34"}, {"issue_id": "81740667e38724aabecacb50e6a1ac57", "issue_title": "LocationManager.java line 384", "issue_subtitle": "android.location.LocationManager$ListenerTransport._handleMessage", "app_version": "\"28.4\"", "crash_count": 8119, "total_users":
+5744, "event_timestamp": "2021-08-16 20:05:16", "issue_logs": "LocationManager.java@android.location.LocationManager$ListenerTransport._handleMessage\nLocationManager.java@android.location.LocationManager$ListenerTransport.access$000\nLocationManager.java@and
+roid.location.LocationManager$ListenerTransport$2.handleMessage\nHandler.java@android.os.Handler.dispatchMessage\nLooper.java@android.os.Looper.loop\nActivityThread.java@android.app.ActivityThread.main\nMethod.java@java.lang.reflect.Method.invoke\nRuntimeInit
+.java@com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run\nZygoteInit.java@com.android.internal.os.ZygoteInit.main\n", "app_version_list": "'28.7.0.1', '28.4'", "last_update_timestamp": "2021-09-14 11:54:40"}, {"issue_id": "08d4b83f00e615eba1aa74dca47
+4e591", "issue_title": "GsonLocalDateTimeTypeAdapter.java line 33", "issue_subtitle": "com.booking.commons.json.adapters.GsonLocalDateTimeTypeAdapter.read", "app_version": "\"25.2\"", "crash_count": 1066, "total_users": 697, "event_timestamp": "2021-08-12 04:
+31:58", "issue_logs": "GsonLocalDateTimeTypeAdapter.java@com.booking.commons.json.adapters.GsonLocalDateTimeTypeAdapter.read\nGsonLocalDateTimeTypeAdapter.java@com.booking.commons.json.adapters.GsonLocalDateTimeTypeAdapter.read\nReflectiveTypeAdapterFactory.j
+ava@com.google.gson.internal.bind.ReflectiveTypeAdapterFactory$1.read\nReflectiveTypeAdapterFactory.java@com.google.gson.internal.bind.ReflectiveTypeAdapterFactory$Adapter.read\nTypeAdapterRuntimeTypeWrapper.java@com.google.gson.internal.bind.TypeAdapterRunti
+meTypeWrapper.read\nCollectionTypeAdapterFactory.java@com.google.gson.internal.bind.CollectionTypeAdapterFactory$Adapter.read\nCollectionTypeAdapterFactory.java@com.google.gson.internal.bind.CollectionTypeAdapterFactory$Adapter.read\nReflectiveTypeAdapterFact
+ory.java@com.google.gson.internal.bind.ReflectiveTypeAdapterFactory$1.read\nReflectiveTypeAdapterFactory.java@com.google.gson.internal.bind.ReflectiveTypeAdapterFactory$Adapter.read\nGsonResponseBodyConverter.java@retrofit2.converter.gson.GsonResponseBodyConv
+erter.convert\nGsonResponseBodyConverter.java@retrofit2.converter.gson.GsonResponseBodyConverter.convert\nOkHttpCall.java@retrofit2.OkHttpCall.parseResponse\nOkHttpCall.java@retrofit2.OkHttpCall.execute\nDefaultCallAdapterFactory.java@retrofit2.DefaultCallAda
+pterFactory$ExecutorCallbackCall.execute\nWeatherReactor.java@com.booking.appengagement.weather.brekadown.reactor.WeatherReactor$execute$1$1.invoke\nWeatherReactor.java@com.booking.appengagement.weather.brekadown.reactor.WeatherReactor$execute$1$1.invoke\nThr
+eadKt.java@com.booking.marken.support.utils.ThreadKt$doAsync$1.run\nThreadPoolExecutor.java@java.util.concurrent.ThreadPoolExecutor.runWorker\nThreadPoolExecutor.java@java.util.concurrent.ThreadPoolExecutor$Worker.run\nThread.java@java.lang.Thread.run\n", "ap
+p_version_list": "'25.2.0.1', '25.2', '25.3.1.1', '25.3.1', '25.3'", "last_update_timestamp": "2021-09-14 11:54:41"}, {"issue_id": "1f8554f58a3c262696ee32c27fd15e93", "issue_title": "RoomFacilityFilter.java line 25", "issue_subtitle": "com.booking.room.list.f
+ilters.RoomFacilityFilter.<init>", "app_version": "\"24.7.0.1\"", "crash_count": 812, "total_users": 533, "event_timestamp": "2021-08-12 10:24:46", "issue_logs": "Integer.java@java.lang.Integer.parseInt\nInteger.java@java.lang.Integer.valueOf\nRoomFacilityFil
+ter.java@com.booking.room.list.filters.RoomFacilityFilter.<init>\nRoomFacilityFilterEntryView.java@com.booking.room.list.filters.views.RoomFacilityFilterEntryView.tryCreateFilters\nPreselectRoomFiltersUseCase.java@com.booking.room.usecase.PreselectRoomFilters
+UseCase.getPreselectedFilters\nRoomListFragment.java@com.booking.room.list.RoomListFragment.addFiltersFromSearchResults\nRoomListFragment.java@com.booking.room.list.RoomListFragment.initList\nRoomListFragment.java@com.booking.room.list.RoomListFragment.update
+HotelBlock\nRoomListFragment.java@com.booking.room.list.RoomListFragment.onReceiveBlockAvailability\nRoomListFragment.java@com.booking.room.list.RoomListFragment.lambda$onRoomListReceived$1\n-.java@com.booking.room.list.-$$Lambda$RoomListFragment$Yz6-2-rhhzOb
+qeU65D-kPnwKCkY.run\nHandler.java@android.os.Handler.handleCallback\nHandler.java@android.os.Handler.dispatchMessage\nLooper.java@android.os.Looper.loop\nActivityThread.java@android.app.ActivityThread.main\nMethod.java@java.lang.reflect.Method.invoke\nRuntime
+Init.java@com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run\nZygoteInit.java@com.android.internal.os.ZygoteInit.main\n", "app_version_list": "'24.4.1', '25.4.101', '24.8', '24.9.0.1', '24.1', '24.6', '25.5', '25.3.1.1', '24.2.2.1', '24.7', '24.8.2',
+ '25.0.101', '24.7.0.1', '25.0.2', '25.2', '25.0.1', '25.4.0.1', '24.8.1', '24.3.1', '25.5.0.1', '25.1.1', '25.0.1.1', '24.9', '25.2.0.1', '25.4.1', '25.3.1', '24.2.2', '25.4.1.1', '24.6.0.1', '24.3.2', '25.4', '24.4.1.1', '25.1.1.1', '24.8.0.1', '24.1.0.1'",
+ "last_update_timestamp": "2021-09-14 11:54:41"}, {"issue_id": "7399104c8f4db64614e58ee43e82194e", "issue_title": "BuiToast.java line 57", "issue_subtitle": "com.booking.android.ui.BuiToast.<init>", "app_version": "\"25.8.100\"", "crash_count": 621, "total_us
+ers": 545, "event_timestamp": "2021-08-12 07:09:23", "issue_logs": "RuntimeInit.java@com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run\nZygoteInit.java@com.android.internal.os.ZygoteInit.main\n", "app_version_list": "'24.4.1', '28.6', '24.8', '25.8.
+0.1', '24.6', '25.7.0.1', '24.8.2', '28.5', '24.8.1', '25.7', '25.0.1.1', '25.6', '25.8', '25.2.0.1', '28.1.0.1', '27.5', '25.3.1', '25.8.100', '28.7', '24.8.0.1'", "last_update_timestamp": "2021-09-14 11:54:43"}]sh-4.2$
+sh-4.2$
+sh-4.2$
+sh-4.2$
+sh-4.2$
+sh-4.2$
+sh-4.2$ python -m json.tool /workspace/FirebaseCrashH2/src/issues.json
+[
+    {
+        "issue_id": "5c06a163f8b88c296382cb87",
+        "issue_title": "ActivityThread.java line 3478",
+        "issue_subtitle": "android.app.ActivityThread.reportSizeConfigurations",
+        "app_version": "\"27.9.0.1\"",
+        "crash_count": 5713,
+        "total_users": 5448,
+        "event_timestamp": "2021-08-12 03:01:34",
+        "issue_logs": "Parcel.java@android.os.Parcel.readException\nParcel.java@android.os.Parcel.readException\nIActivityManager.java@android.app.IActivityManager$Stub$Proxy.reportSizeConfigurations\nActivityThread.java@android.app.ActivityThread.reportSizeC
+onfigurations\nActivityThread.java@android.app.ActivityThread.handleLaunchActivity\nActivityThread.java@android.app.ActivityThread.-wrap12\nActivityThread.java@android.app.ActivityThread$H.handleMessage\nHandler.java@android.os.Handler.dispatchMessage\nLooper
+.java@android.os.Looper.loop\nActivityThread.java@android.app.ActivityThread.main\nMethod.java@java.lang.reflect.Method.invoke\nZygote.java@com.android.internal.os.Zygote$MethodAndArgsCaller.run\nZygoteInit.java@com.android.internal.os.ZygoteInit.main\n",
+        "app_version_list": "'24.6', '26.6.1.1', '25.3.1.1', '24.0', '26.9', '28.3', '27.8.1', '27.9.0.1', '25.5.0.1', '27.6', '24.0.0.1', '25.1.1', '25.0.1.1', '24.9', '25.2.0.1', '27.3.2', '28.7', '28.8', '26.7.1', '24.8', '25.8.0.1', '24.1', '24.7', '27.0'
+, '24.7.0.1', '28.5', '25.2', '28.7.0.1', '26.1', '28.0', '25.6.0.1', '25.9', '27.9', '25.4.1', '26.8.0.1', '24.2.2', '27.8.0.1', '24.6.0.1', '28.5.1', '26.5.2', '24.8.0.1', '26.6', '24.1.0.1', '24.4.1', '28.6', '26.8', '28.2', '24.2.2.1', '25.5', '27.8', '24
+.8.2', '26.7.1.1', '28.4', '28.2.1', '25.4.0.1', '25.7', '27.1.1', '27.4', '27.0.0.2', '26.9.0.1', '26.3', '25.3.1', '27.7', '26.1.0.1', '25.4', '24.4.1.1', '27.6.0.1', '26.6.1', '24.9.0.1', '26.0', '25.7.0.1', '25.0.2', '27.2', '25.0.1', '27.5.0.1', '28.1',
+'25.6', '25.8', '26.2.1', '27.0.0.1', '26.4', '27.5', '26.2', '25.4.1.1', '24.3.2', '27.2.0.1', '25.1.1.1', '27.3.1'",
+        "last_update_timestamp": "2021-09-14 11:53:42"
+    },
+    {
+        "issue_id": "1e4a57e206f3bdbfd2a10eabca16255f",
+        "issue_title": "SearchActivity.java line 466",
+        "issue_subtitle": "com.booking.appindex.presentation.activity.SearchActivity.onResume",
+        "app_version": "\"27.9.0.1\"",
+        "crash_count": 1695,
+        "total_users": 1516,
+        "event_timestamp": "2021-08-26 09:43:39",
+        "issue_logs": "ActivityThread.java@android.app.ActivityThread.performResumeActivity\nActivityThread.java@android.app.ActivityThread.handleResumeActivity\nResumeActivityItem.java@android.app.servertransaction.ResumeActivityItem.execute\nTransactionExec
+utor.java@android.app.servertransaction.TransactionExecutor.executeLifecycleState\nTransactionExecutor.java@android.app.servertransaction.TransactionExecutor.execute\nActivityThread.java@android.app.ActivityThread$H.handleMessage\nHandler.java@android.os.Hand
+ler.dispatchMessage\nLooper.java@android.os.Looper.loop\nActivityThread.java@android.app.ActivityThread.main\nMethod.java@java.lang.reflect.Method.invoke\nRuntimeInit.java@com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run\nZygoteInit.java@com.androi
+d.internal.os.ZygoteInit.main\n",
+        "app_version_list": "'27.9.0.1'",
+        "last_update_timestamp": "2021-09-14 11:53:44"
+    },
+    {
+        "issue_id": "57d315f90aeb16625bf85353",
+        "issue_title": "Parcel.java line 1608",
+        "issue_subtitle": "android.os.Parcel.readException",
+        "app_version": "\"25.9\"",
+        "crash_count": 3997,
+        "total_users": 3303,
+        "event_timestamp": "2021-08-12 02:46:34",
+        "issue_logs": "JobService.java@android.app.job.JobService$JobHandler.handleMessage\nHandler.java@android.os.Handler.dispatchMessage\nLooper.java@android.os.Looper.loop\nActivityThread.java@android.app.ActivityThread.main\nMethod.java@java.lang.reflect
+.Method.invoke\nZygoteInit.java@com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run\nZygoteInit.java@com.android.internal.os.ZygoteInit.main\n",
+        "app_version_list": "'24.4.1', '28.8', '28.6', '26.7.1', '26.6.1', '24.8', '25.1', '25.8.0.1', '24.1', '24.6', '25.5', '26.0', '24.0', '27.8', '24.7', '25.7.0.1', '24.8.2', '28.5', '25.0.2', '28.3', '25.2', '28.4', '28.2.1', '25.0.1', '24.8.1', '25.4.
+0.1', '24.3.1', '25.5.0.1', '25.7', '25.9.100', '24.0.0.1', '27.6', '26.1', '25.1.1', '25.6', '24.9', '25.0.1.1', '25.8', '26.2.1', '28.0', '25.6.0.1', '25.9', '24.2.1', '27.9', '25.4.1', '26.4', '26.3', '25.3.1', '24.2.2', '26.2', '28.7', '27.7', '26.1.0.1',
+ '24.3.2', '25.4', '28.5.1', '24.9.1b', '25.1.1.1', '24.8.0.1', '24.1.0.1'",
+        "last_update_timestamp": "2021-09-14 11:53:47"
+    },
+    {
+        "issue_id": "a90e5206fb185ba394bb890f4a0b74ba",
+        "issue_title": "LocaleUtils.java line 8",
+        "issue_subtitle": "org.chromium.base.LocaleUtils.getDefaultLocaleListString",
+        "app_version": "\"28.4\"",
+        "crash_count": 6288,
+        "total_users": 3259,
+        "event_timestamp": "2021-08-12 02:57:44",
+        "issue_logs": "ActivityThread.java@android.app.ActivityThread.performLaunchActivity\nActivityThread.java@android.app.ActivityThread.handleLaunchActivity\nLaunchActivityItem.java@android.app.servertransaction.LaunchActivityItem.execute\nTransactionExec
+utor.java@android.app.servertransaction.TransactionExecutor.executeCallbacks\nTransactionExecutor.java@android.app.servertransaction.TransactionExecutor.execute\nActivityThread.java@android.app.ActivityThread$H.handleMessage\nHandler.java@android.os.Handler.d
+ispatchMessage\nLooper.java@android.os.Looper.loop\nActivityThread.java@android.app.ActivityThread.main\nMethod.java@java.lang.reflect.Method.invoke\nRuntimeInit.java@com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run\nZygoteInit.java@com.android.int
+ernal.os.ZygoteInit.main\n",
+        "app_version_list": "'28.8', '28.6', '26.8', '26.7.1', '26.6.1', '25.5', '26.0', '26.9', '27.8', '27.0', '28.5', '27.2', '28.3', '27.8.1', '28.4', '28.7.0.1', '28.2.1', '27.9.0.1', '27.9.1.10', '28.1', '27.6', '25.5.0.1', '25.7', '27.1.1', '26.1', '25
+.6', '26.5', '28.0', '25.8', '25.9', '27.9', '27.4', '26.4', '26.3', '27.5', '28.1.0.1', '25.8.100', '27.3.2', '28.7', '27.7', '28.5.1', '26.5.2', '27.6.0.1', '27.3.1'",
+        "last_update_timestamp": "2021-09-14 11:54:02"
+    },
+    {
+        "issue_id": "ac198257088d930fabe1e1b8e7107f69",
+        "issue_title": "LocationPermissionReactor.java line 54",
+        "issue_subtitle": "com.booking.contentdiscovery.permission.LocationPermissionReactor$Companion.get",
+        "app_version": "\"28.6\"",
+        "crash_count": 1604,
+        "total_users": 1565,
+        "event_timestamp": "2021-08-23 03:22:52",
+        "issue_logs": "LocationPermissionReactor.java@com.booking.contentdiscovery.permission.LocationPermissionReactor$Companion.get\nContentDiscoveryRecommendationsActivity.java@com.booking.contentdiscovery.recommendationspage.ContentDiscoveryRecommendation
+sActivity$2.invoke\nContentDiscoveryRecommendationsActivity.java@com.booking.contentdiscovery.recommendationspage.ContentDiscoveryRecommendationsActivity$2.invoke\nAndroidActivityExtensionObserver.java@com.booking.marken.support.android.AndroidActivityExtensi
+onObserver.onStart\nFullLifecycleObserverAdapter.java@androidx.lifecycle.FullLifecycleObserverAdapter.onStateChanged\nLifecycleRegistry.java@androidx.lifecycle.LifecycleRegistry$ObserverWithState.dispatchEvent\nLifecycleRegistry.java@androidx.lifecycle.Lifecy
+cleRegistry.forwardPass\nLifecycleRegistry.java@androidx.lifecycle.LifecycleRegistry.sync\nLifecycleRegistry.java@androidx.lifecycle.LifecycleRegistry.moveToState\nLifecycleRegistry.java@androidx.lifecycle.LifecycleRegistry.handleLifecycleEvent\nReportFragmen
+t.java@androidx.lifecycle.ReportFragment.dispatch\nReportFragment.java@androidx.lifecycle.ReportFragment$LifecycleCallbacks.onActivityPostStarted\nActivity.java@android.app.Activity.dispatchActivityPostStarted\nActivity.java@android.app.Activity.performStart\
+nActivityThread.java@android.app.ActivityThread.handleStartActivity\nTransactionExecutor.java@android.app.servertransaction.TransactionExecutor.performLifecycleSequence\nTransactionExecutor.java@android.app.servertransaction.TransactionExecutor.cycleToPath\nT
+ransactionExecutor.java@android.app.servertransaction.TransactionExecutor.executeLifecycleState\nTransactionExecutor.java@android.app.servertransaction.TransactionExecutor.execute\nActivityThread.java@android.app.ActivityThread$H.handleMessage\nHandler.java@a
+ndroid.os.Handler.dispatchMessage\nLooper.java@android.os.Looper.loop\nActivityThread.java@android.app.ActivityThread.main\nMethod.java@java.lang.reflect.Method.invoke\nRuntimeInit.java@com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run\nZygoteInit.j
+ava@com.android.internal.os.ZygoteInit.main\n",
+        "app_version_list": "'28.6'",
+        "last_update_timestamp": "2021-09-14 11:54:04"
+    },
+    {
+        "issue_id": "c8b638ff07b3d862e80f9a1f7ba4d829",
+        "issue_title": "CompositeFacet.java line 239",
+        "issue_subtitle": "com.booking.marken.facets.composite.CompositeFacet.attach",
+        "app_version": "\"28.4\"",
+        "crash_count": 4432,
+        "total_users": 4355,
+        "event_timestamp": "2021-08-12 02:59:53",
+        "issue_logs": "RuntimeInit.java@com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run\nZygoteInit.java@com.android.internal.os.ZygoteInit.main\n",
+        "app_version_list": "'28.8', '27.2', '28.3', '28.6', '28.7', '28.4', '28.7.0.1', '28.2.1', '27.9.0.1', '27.4', '27.5.0.1', '28.5.1', '27.0', '27.1.1', '28.5'",
+        "last_update_timestamp": "2021-09-14 11:54:13"
+    },
+    {
+        "issue_id": "8fbf9fa572753f95b47cc0796abf0a61",
+        "issue_title": "ActivityThread.java line 2054",
+        "issue_subtitle": "android.app.ActivityThread$H.handleMessage",
+        "app_version": "\"28.3\"",
+        "crash_count": 1532,
+        "total_users": 1271,
+        "event_timestamp": "2021-08-12 03:14:46",
+        "issue_logs": "ActivityThread.java@android.app.ActivityThread$H.handleMessage\nHandler.java@android.os.Handler.dispatchMessage\nLooper.java@android.os.Looper.loop\nActivityThread.java@android.app.ActivityThread.main\nMethod.java@java.lang.reflect.Meth
+od.invoke\nRuntimeInit.java@com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run\nZygoteInit.java@com.android.internal.os.ZygoteInit.main\n",
+        "app_version_list": "'28.8', '28.6', '26.8', '26.7.1', '26.6.1', '28.2', '24.1', '24.6', '25.5', '27.8', '26.9', '27.0', '27.3', '28.5', '28.3', '25.2', '27.8.1', '28.4', '28.2.1', '25.0.1', '27.9.1.10', '28.1', '24.8.1', '27.6', '25.5.0.1', '25.7', '
+26.1', '24.9', '25.6', '25.1.1', '25.8', '28.0', '25.6.0.1', '27.9', '25.4.1', '27.4', '26.4', '26.3', '27.5', '25.3.1', '24.2.2', '27.3.2', '28.7', '27.7', '24.3.2', '25.4', '28.5.1', '26.6', '27.3.1'",
+        "last_update_timestamp": "2021-09-14 11:54:14"
+    },
+    {
+        "issue_id": "4bc0978871cc4e7e29ee6398b786869f",
+        "issue_title": "TagManagerSearchResultsEventParams.java line 57",
+        "issue_subtitle": "com.booking.marketing.tagmanager.TagManagerSearchResultsEventParams.getFirstThreeHotelIDs",
+        "app_version": "\"28.4\"",
+        "crash_count": 1460,
+        "total_users": 1455,
+        "event_timestamp": "2021-08-12 03:51:24",
+        "issue_logs": "ArrayList.java@java.util.ArrayList.subListRangeCheck\nArrayList.java@java.util.ArrayList.subList\nTagManagerSearchResultsEventParams.java@com.booking.marketing.tagmanager.TagManagerSearchResultsEventParams.getFirstThreeHotelIDs\nTagMana
+gerSearchResultsEventParams.java@com.booking.marketing.tagmanager.TagManagerSearchResultsEventParams.<init>\nTagManagerMarketingTracker.java@com.booking.marketing.tagmanager.TagManagerMarketingTracker.trackSearchResultsEvent\nSearchResultsActivity.java@com.bo
+oking.searchresult.SearchResultsActivity$2.run\nThreadPoolExecutor.java@java.util.concurrent.ThreadPoolExecutor.runWorker\nThreadPoolExecutor.java@java.util.concurrent.ThreadPoolExecutor$Worker.run\nThread.java@java.lang.Thread.run\n",
+        "app_version_list": "'28.8', '28.6', '28.3', '28.0', '27.8.1', '28.7', '28.4', '28.2', '28.7.0.1', '28.2.1', '27.9', '27.9.0.1', '28.5.1', '28.1', '27.8', '27.9.1.10', '28.5'",
+        "last_update_timestamp": "2021-09-14 11:54:15"
+    },
+    {
+        "issue_id": "ef302380c11f56bd1e86cce48614cee3",
+        "issue_title": "NotificationHistory.java line 17",
+        "issue_subtitle": "com.booking.notification.track.NotificationHistory.lastClickedNotificationInfo",
+        "app_version": "\"27.9.0.1\"",
+        "crash_count": 7872,
+        "total_users": 820,
+        "event_timestamp": "2021-08-12 04:46:35",
+        "issue_logs": "NotificationHistory.java@com.booking.notification.track.NotificationHistory.lastClickedNotificationInfo\nReferrerAndAffiliateUtils.java@com.booking.util.ReferrerAndAffiliateUtils.getAffiliateLabelValue\nShelvesDependenciesImpl.java@com.
+booking.di.shelves.ShelvesDependenciesImpl.getAffiliatesConfig\nShelvesModule.java@com.booking.shelvesservicesv2.ShelvesModule.getAffiliatesConfig\nHeaderOverride.java@com.booking.shelvesservicesv2.network.request.HeaderOverride.<init>\nShelvesRequest.java@co
+m.booking.shelvesservicesv2.network.request.ShelvesRequest.<init>\nShelvesReactor.java@com.booking.shelvesservicesv2.reactors.ShelvesReactor$Companion.handleLoadShelves\nShelvesReactor.java@com.booking.shelvesservicesv2.reactors.ShelvesReactor$Companion.<init
+>\nShelvesReactor.java@com.booking.shelvesservicesv2.reactors.ShelvesReactor$Companion$reactor$1$$special$$inlined$executeNamedAction$2.invoke\nReactorBuilder.java@com.booking.marken.reactors.core.ReactorBuilder$executeNamedAction$2.invoke\nShelvesReactor.jav
+a@com.booking.shelvesservicesv2.reactors.ShelvesReactor$Companion$reactor$1$$special$$inlined$executeNamedAction$2.invoke\nTypedActionHandler.java@com.booking.marken.reactors.core.TypedActionHandler.execute\nTypedActionHandlerReactor.java@com.booking.marken.r
+eactors.core.TypedActionHandlerReactor$execute$1.invoke\nTypedActionHandlerReactor.java@com.booking.marken.reactors.core.TypedActionHandlerReactor$execute$1.invoke\nMarkenReactorState.java@com.booking.marken.store.support.MarkenReactorState.executeAction\nMar
+kenReactorGroup.java@com.booking.marken.store.support.MarkenReactorGroup.dispatch\nMarkenStore.java@com.booking.marken.store.MarkenStore.processOneAction\nMarkenStore.java@com.booking.marken.store.MarkenStore.processActionQueueWithParent\nMarkenStore.java@com
+.booking.marken.store.MarkenStore.access$onParentUpdate\nMarkenStore.java@com.booking.marken.store.MarkenStore$actionProcessor$2.invoke\nMarkenStore.java@com.booking.marken.store.MarkenStore$actionProcessor$2.invoke\nMarkenStore.java@com.booking.marken.store.
+MarkenStore$onBarrierActionFinished$1.run\nThreadPoolExecutor.java@java.util.concurrent.ThreadPoolExecutor.runWorker\nThreadPoolExecutor.java@java.util.concurrent.ThreadPoolExecutor$Worker.run\nThread.java@java.lang.Thread.run\n",
+        "app_version_list": "'28.1.0.1', '27.9.0.1'",
+        "last_update_timestamp": "2021-09-14 11:54:24"
+    },
+    {
+        "issue_id": "227fecd089009d7a8c19b7dc194d9647",
+        "issue_title": "Animation.java line 261",
+        "issue_subtitle": "android.view.animation.Animation.<init>",
+        "app_version": "\"28.4\"",
+        "crash_count": 1092,
+        "total_users": 922,
+        "event_timestamp": "2021-08-12 03:51:06",
+        "issue_logs": "Integer.java@java.lang.Integer.parseInt\nXmlUtils.java@com.android.internal.util.XmlUtils.convertValueToInt\nTypedArray.java@android.content.res.TypedArray.getInt\nAnimation.java@android.view.animation.Animation.<init>\nAnimationSet.jav
+a@android.view.animation.AnimationSet.<init>\nAnimationUtils.java@android.view.animation.AnimationUtils.createAnimationFromXml\nAnimationUtils.java@android.view.animation.AnimationUtils.createAnimationFromXml\nAnimationUtils.java@android.view.animation.Animat
+ionUtils.loadAnimation\nEditor.java@android.widget.Editor$SelectionPopupWindow.createAnimations\nEditor.java@android.widget.Editor$ActionPinnedPopupWindow.<init>\nEditor.java@android.widget.Editor$ActionPopupWindow.<init>\nEditor.java@android.widget.Editor$Ac
+tionPopupWindow.<init>\nEditor.java@android.widget.Editor$SelectionPopupWindow.<init>\nEditor.java@android.widget.Editor$SelectionHandleView.getActionPopupWindow\nEditor.java@android.widget.Editor$HandleView.showActionPopupWindow\nEditor.java@android.widget.E
+ditor$HandleView.showActionPopupWindow\nEditor.java@android.widget.Editor$SelectionModifierCursorController.initHandles\nEditor.java@android.widget.Editor$SelectionModifierCursorController.show\nEditor.java@android.widget.Editor$SelectionModifierCursorControl
+ler.enterDrag\nEditor.java@android.widget.Editor.selectCurrentWordAndStartDrag\nEditor.java@android.widget.Editor.performLongClick\nTextView.java@android.widget.TextView.performLongClick\nView.java@android.view.View.performLongClick\nView.java@android.view.Vi
+ew$CheckForLongPress.run\nHandler.java@android.os.Handler.handleCallback\nHandler.java@android.os.Handler.dispatchMessage\nLooper.java@android.os.Looper.loop\nActivityThread.java@android.app.ActivityThread.main\nMethod.java@java.lang.reflect.Method.invoke\nRu
+ntimeInit.java@com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run\nZygoteInit.java@com.android.internal.os.ZygoteInit.main\n",
+        "app_version_list": "'28.8', '28.6', '25.4.101', '26.0', '27.0', '28.5', '28.3', '28.4', '28.2.1', '27.9.0.1', '27.5.0.1', '28.1', '27.6', '28.0', '27.9', '27.5', '27.3.2', '28.7', '27.7', '28.5.1', '26.5.2', '27.3.1'",
+        "last_update_timestamp": "2021-09-14 11:54:25"
+    },
+    {
+        "issue_id": "a2ac44e749f81c687fba64da32ec605f",
+        "issue_title": "Privacy.java line 21",
+        "issue_subtitle": "com.booking.identity.privacy.Privacy.getDependencies",
+        "app_version": "\"28.3\"",
+        "crash_count": 2724,
+        "total_users": 2656,
+        "event_timestamp": "2021-08-12 05:26:54",
+        "issue_logs": "ActivityThread.java@android.app.ActivityThread.performLaunchActivity\nActivityThread.java@android.app.ActivityThread.handleLaunchActivity\nLaunchActivityItem.java@android.app.servertransaction.LaunchActivityItem.execute\nTransactionExec
+utor.java@android.app.servertransaction.TransactionExecutor.executeCallbacks\nTransactionExecutor.java@android.app.servertransaction.TransactionExecutor.execute\nActivityThread.java@android.app.ActivityThread$H.handleMessage\nHandler.java@android.os.Handler.d
+ispatchMessage\nLooper.java@android.os.Looper.loop\nActivityThread.java@android.app.ActivityThread.main\nMethod.java@java.lang.reflect.Method.invoke\nRuntimeInit.java@com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run\nZygoteInit.java@com.android.int
+ernal.os.ZygoteInit.main\n",
+        "app_version_list": "'28.6', '28.3', '28.7', '28.4', '28.7.0.1', '28.5.1', '28.5'",
+        "last_update_timestamp": "2021-09-14 11:54:29"
+    },
+    {
+        "issue_id": "2449075f9c7d6b93627f0c9dd5668d91",
+        "issue_title": "AccessibilityInteractionController.java line 1125",
+        "issue_subtitle": "android.view.AccessibilityInteractionController$AccessibilityNodePrefetcher.prefetchAccessibilityNodeInfos",
+        "app_version": "\"28.4\"",
+        "crash_count": 1720,
+        "total_users": 913,
+        "event_timestamp": "2021-08-12 03:53:25",
+        "issue_logs": "ExploreByTouchHelper.java@androidx.customview.widget.ExploreByTouchHelper.createNodeForChild\nExploreByTouchHelper.java@androidx.customview.widget.ExploreByTouchHelper.obtainAccessibilityNodeInfo\nExploreByTouchHelper.java@androidx.cust
+omview.widget.ExploreByTouchHelper$MyNodeProvider.createAccessibilityNodeInfo\nAccessibilityNodeProviderCompat.java@androidx.core.view.accessibility.AccessibilityNodeProviderCompat$AccessibilityNodeProviderApi16.createAccessibilityNodeInfo\nAccessibilityInter
+actionController.java@android.view.AccessibilityInteractionController$AccessibilityNodePrefetcher.prefetchAccessibilityNodeInfos\nAccessibilityInteractionController.java@android.view.AccessibilityInteractionController.findAccessibilityNodeInfoByAccessibilityI
+dUiThread\nAccessibilityInteractionController.java@android.view.AccessibilityInteractionController.access$400\nAccessibilityInteractionController.java@android.view.AccessibilityInteractionController$PrivateHandler.handleMessage\nHandler.java@android.os.Handle
+r.dispatchMessage\nLooper.java@android.os.Looper.loop\nActivityThread.java@android.app.ActivityThread.main\nMethod.java@java.lang.reflect.Method.invoke\nRuntimeInit.java@com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run\nZygoteInit.java@com.android.
+internal.os.ZygoteInit.main\n",
+        "app_version_list": "'28.8', '28.6', '24.9.0.1', '25.8.0.1', '24.2.2.1', '27.8', '26.9', '27.0', '24.7.0.1', '28.5', '28.3', '27.8.1', '28.4', '28.2.1', '27.9.1.10', '28.1', '27.6', '27.1.1', '25.0.1.1', '28.0', '25.6.0.1', '27.9', '27.5', '27.8.0.1',
+ '25.8.100', '27.3.2', '28.7', '27.7', '26.1.0.1', '28.5.1', '27.6.0.1', '24.1.0.1'",
+        "last_update_timestamp": "2021-09-14 11:54:30"
+    },
+    {
+        "issue_id": "ae2c21e4871b7d28d8f50cd0f9a310cc",
+        "issue_title": "NotificationsRepository.java line 170",
+        "issue_subtitle": "com.booking.notification.NotificationsRepository$Companion.fetchNotifications",
+        "app_version": "\"24.8.0.1\"",
+        "crash_count": 3229,
+        "total_users": 917,
+        "event_timestamp": "2021-08-12 02:46:45",
+        "issue_logs": "ModernAsyncTask.java@androidx.loader.content.ModernAsyncTask$3.done\nFutureTask.java@java.util.concurrent.FutureTask.finishCompletion\nFutureTask.java@java.util.concurrent.FutureTask.setException\nFutureTask.java@java.util.concurrent.Fu
+tureTask.run\nThreadPoolExecutor.java@java.util.concurrent.ThreadPoolExecutor.runWorker\nThreadPoolExecutor.java@java.util.concurrent.ThreadPoolExecutor$Worker.run\nThread.java@java.lang.Thread.run\n",
+        "app_version_list": "'25.2.0.1', '25.2', '24.9.0.1', '24.6.0.1', '24.4.1.1', '25.1.1.1', '24.8.0.1', '25.0.1.1', '24.7.0.1'",
+        "last_update_timestamp": "2021-09-14 11:54:32"
+    },
+    {
+        "issue_id": "0194d93e80614b77dc6413f32e295f14",
+        "issue_title": "FragmentStore.java line 67",
+        "issue_subtitle": "androidx.fragment.app.FragmentStore.addFragment",
+        "app_version": "\"28.4\"",
+        "crash_count": 1014,
+        "total_users": 972,
+        "event_timestamp": "2021-08-12 03:14:14",
+        "issue_logs": "FragmentStore.java@androidx.fragment.app.FragmentStore.addFragment\nFragmentManager.java@androidx.fragment.app.FragmentManager.addFragment\nBackStackRecord.java@androidx.fragment.app.BackStackRecord.executeOps\nFragmentManager.java@andr
+oidx.fragment.app.FragmentManager.executeOps\nFragmentManager.java@androidx.fragment.app.FragmentManager.executeOpsTogether\nFragmentManager.java@androidx.fragment.app.FragmentManager.removeRedundantOperationsAndExecute\nFragmentManager.java@androidx.fragment
+.app.FragmentManager.execPendingActions\nFragmentManager.java@androidx.fragment.app.FragmentManager$4.run\nHandler.java@android.os.Handler.handleCallback\nHandler.java@android.os.Handler.dispatchMessage\nLooper.java@android.os.Looper.loop\nActivityThread.java
+@android.app.ActivityThread.main\nMethod.java@java.lang.reflect.Method.invoke\nRuntimeInit.java@com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run\nZygoteInit.java@com.android.internal.os.ZygoteInit.main\n",
+        "app_version_list": "'28.8', '28.6', '26.7.1', '26.0', '26.9', '27.0', '28.5', '27.2', '28.3', '27.8.1', '28.4', '28.7.0.1', '28.2.1', '27.9.0.1', '28.1', '27.6', '25.7', '27.1.1', '26.1', '25.6', '25.8', '28.0', '26.2.1', '25.9', '27.9', '27.4', '27.
+0.0.2', '26.4', '26.3', '27.5', '25.8.100', '27.3.2', '28.7', '27.7', '26.1.0.1', '28.5.1', '26.5.2', '27.6.0.1', '27.3.1'",
+        "last_update_timestamp": "2021-09-14 11:54:33"
+    },
+    {
+        "issue_id": "37c0973bcbe3e68cb3e54e6842d41e19",
+        "issue_title": "AccessibilityInteractionController.java line 977",
+        "issue_subtitle": "android.view.AccessibilityInteractionController$AccessibilityNodePrefetcher.prefetchAccessibilityNodeInfos",
+        "app_version": "\"28.3\"",
+        "crash_count": 691,
+        "total_users": 481,
+        "event_timestamp": "2021-08-12 15:27:50",
+        "issue_logs": "ExploreByTouchHelper.java@androidx.customview.widget.ExploreByTouchHelper.createNodeForChild\nExploreByTouchHelper.java@androidx.customview.widget.ExploreByTouchHelper.obtainAccessibilityNodeInfo\nExploreByTouchHelper.java@androidx.cust
+omview.widget.ExploreByTouchHelper$MyNodeProvider.createAccessibilityNodeInfo\nAccessibilityNodeProviderCompat.java@androidx.core.view.accessibility.AccessibilityNodeProviderCompat$AccessibilityNodeProviderApi16.createAccessibilityNodeInfo\nAccessibilityInter
+actionController.java@android.view.AccessibilityInteractionController$AccessibilityNodePrefetcher.prefetchAccessibilityNodeInfos\nAccessibilityInteractionController.java@android.view.AccessibilityInteractionController.findAccessibilityNodeInfoByAccessibilityI
+dUiThread\nAccessibilityInteractionController.java@android.view.AccessibilityInteractionController.access$400\nAccessibilityInteractionController.java@android.view.AccessibilityInteractionController$PrivateHandler.handleMessage\nHandler.java@android.os.Handle
+r.dispatchMessage\nLooper.java@android.os.Looper.loop\nActivityThread.java@android.app.ActivityThread.main\nMethod.java@java.lang.reflect.Method.invoke\nRuntimeInit.java@com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run\nZygoteInit.java@com.android.
+internal.os.ZygoteInit.main\n",
+        "app_version_list": "'24.4.1', '28.8', '28.6', '26.8', '27.0', '28.5', '27.2', '28.3', '27.8.1', '28.4', '28.7.0.1', '27.9.0.1', '28.1', '27.6', '25.9', '27.0.0.1', '27.3.2', '28.7', '25.4.1.1', '28.5.1'",
+        "last_update_timestamp": "2021-09-14 11:54:33"
+    },
+    {
+        "issue_id": "f60005b8140e060a4111d9ba53ac18bb",
+        "issue_title": "Parcel.java line 2071",
+        "issue_subtitle": "android.os.Parcel.createException",
+        "app_version": "\"27.9.0.1\"",
+        "crash_count": 858,
+        "total_users": 811,
+        "event_timestamp": "2021-08-12 03:00:45",
+        "issue_logs": "AsyncTask.java@android.os.AsyncTask$AsyncFutureTask.done\nFutureTask.java@java.util.concurrent.FutureTask.finishCompletion\nFutureTask.java@java.util.concurrent.FutureTask.setException\nFutureTask.java@java.util.concurrent.FutureTask.ru
+n\nThreadPoolExecutor.java@java.util.concurrent.ThreadPoolExecutor.runWorker\nThreadPoolExecutor.java@java.util.concurrent.ThreadPoolExecutor$Worker.run\nThread.java@java.lang.Thread.run\n",
+        "app_version_list": "'28.6', '25.8.0.1', '26.6.1.1', '24.2.2.1', '26.7.1.1', '28.3', '28.4', '28.7.0.1', '27.9.0.1', '27.5.0.1', '25.5.0.1', '25.6.0.1', '27.0.0.1', '26.8.0.1', '27.0.0.2', '26.9.0.1', '28.1.0.1', '28.7', '26.1.0.1', '27.2.0.1', '28.5.
+1', '27.6.0.1'",
+        "last_update_timestamp": "2021-09-14 11:54:34"
+    },
+    {
+        "issue_id": "81740667e38724aabecacb50e6a1ac57",
+        "issue_title": "LocationManager.java line 384",
+        "issue_subtitle": "android.location.LocationManager$ListenerTransport._handleMessage",
+        "app_version": "\"28.4\"",
+        "crash_count": 8119,
+        "total_users": 5744,
+        "event_timestamp": "2021-08-16 20:05:16",
+        "issue_logs": "LocationManager.java@android.location.LocationManager$ListenerTransport._handleMessage\nLocationManager.java@android.location.LocationManager$ListenerTransport.access$000\nLocationManager.java@android.location.LocationManager$ListenerTr
+ansport$2.handleMessage\nHandler.java@android.os.Handler.dispatchMessage\nLooper.java@android.os.Looper.loop\nActivityThread.java@android.app.ActivityThread.main\nMethod.java@java.lang.reflect.Method.invoke\nRuntimeInit.java@com.android.internal.os.RuntimeIni
+t$MethodAndArgsCaller.run\nZygoteInit.java@com.android.internal.os.ZygoteInit.main\n",
+        "app_version_list": "'28.7.0.1', '28.4'",
+        "last_update_timestamp": "2021-09-14 11:54:40"
+    },
+    {
+        "issue_id": "08d4b83f00e615eba1aa74dca474e591",
+        "issue_title": "GsonLocalDateTimeTypeAdapter.java line 33",
+        "issue_subtitle": "com.booking.commons.json.adapters.GsonLocalDateTimeTypeAdapter.read",
+        "app_version": "\"25.2\"",
+        "crash_count": 1066,
+        "total_users": 697,
+        "event_timestamp": "2021-08-12 04:31:58",
+        "issue_logs": "GsonLocalDateTimeTypeAdapter.java@com.booking.commons.json.adapters.GsonLocalDateTimeTypeAdapter.read\nGsonLocalDateTimeTypeAdapter.java@com.booking.commons.json.adapters.GsonLocalDateTimeTypeAdapter.read\nReflectiveTypeAdapterFactory.j
+ava@com.google.gson.internal.bind.ReflectiveTypeAdapterFactory$1.read\nReflectiveTypeAdapterFactory.java@com.google.gson.internal.bind.ReflectiveTypeAdapterFactory$Adapter.read\nTypeAdapterRuntimeTypeWrapper.java@com.google.gson.internal.bind.TypeAdapterRunti
+meTypeWrapper.read\nCollectionTypeAdapterFactory.java@com.google.gson.internal.bind.CollectionTypeAdapterFactory$Adapter.read\nCollectionTypeAdapterFactory.java@com.google.gson.internal.bind.CollectionTypeAdapterFactory$Adapter.read\nReflectiveTypeAdapterFact
+ory.java@com.google.gson.internal.bind.ReflectiveTypeAdapterFactory$1.read\nReflectiveTypeAdapterFactory.java@com.google.gson.internal.bind.ReflectiveTypeAdapterFactory$Adapter.read\nGsonResponseBodyConverter.java@retrofit2.converter.gson.GsonResponseBodyConv
+erter.convert\nGsonResponseBodyConverter.java@retrofit2.converter.gson.GsonResponseBodyConverter.convert\nOkHttpCall.java@retrofit2.OkHttpCall.parseResponse\nOkHttpCall.java@retrofit2.OkHttpCall.execute\nDefaultCallAdapterFactory.java@retrofit2.DefaultCallAda
+pterFactory$ExecutorCallbackCall.execute\nWeatherReactor.java@com.booking.appengagement.weather.brekadown.reactor.WeatherReactor$execute$1$1.invoke\nWeatherReactor.java@com.booking.appengagement.weather.brekadown.reactor.WeatherReactor$execute$1$1.invoke\nThr
+eadKt.java@com.booking.marken.support.utils.ThreadKt$doAsync$1.run\nThreadPoolExecutor.java@java.util.concurrent.ThreadPoolExecutor.runWorker\nThreadPoolExecutor.java@java.util.concurrent.ThreadPoolExecutor$Worker.run\nThread.java@java.lang.Thread.run\n",
+        "app_version_list": "'25.2.0.1', '25.2', '25.3.1.1', '25.3.1', '25.3'",
+        "last_update_timestamp": "2021-09-14 11:54:41"
+    },
+    {
+        "issue_id": "1f8554f58a3c262696ee32c27fd15e93",
+        "issue_title": "RoomFacilityFilter.java line 25",
+        "issue_subtitle": "com.booking.room.list.filters.RoomFacilityFilter.<init>",
+        "app_version": "\"24.7.0.1\"",
+        "crash_count": 812,
+        "total_users": 533,
+        "event_timestamp": "2021-08-12 10:24:46",
+        "issue_logs": "Integer.java@java.lang.Integer.parseInt\nInteger.java@java.lang.Integer.valueOf\nRoomFacilityFilter.java@com.booking.room.list.filters.RoomFacilityFilter.<init>\nRoomFacilityFilterEntryView.java@com.booking.room.list.filters.views.RoomF
+acilityFilterEntryView.tryCreateFilters\nPreselectRoomFiltersUseCase.java@com.booking.room.usecase.PreselectRoomFiltersUseCase.getPreselectedFilters\nRoomListFragment.java@com.booking.room.list.RoomListFragment.addFiltersFromSearchResults\nRoomListFragment.ja
+va@com.booking.room.list.RoomListFragment.initList\nRoomListFragment.java@com.booking.room.list.RoomListFragment.updateHotelBlock\nRoomListFragment.java@com.booking.room.list.RoomListFragment.onReceiveBlockAvailability\nRoomListFragment.java@com.booking.room.
+list.RoomListFragment.lambda$onRoomListReceived$1\n-.java@com.booking.room.list.-$$Lambda$RoomListFragment$Yz6-2-rhhzObqeU65D-kPnwKCkY.run\nHandler.java@android.os.Handler.handleCallback\nHandler.java@android.os.Handler.dispatchMessage\nLooper.java@android.os
+.Looper.loop\nActivityThread.java@android.app.ActivityThread.main\nMethod.java@java.lang.reflect.Method.invoke\nRuntimeInit.java@com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run\nZygoteInit.java@com.android.internal.os.ZygoteInit.main\n",
+        "app_version_list": "'24.4.1', '25.4.101', '24.8', '24.9.0.1', '24.1', '24.6', '25.5', '25.3.1.1', '24.2.2.1', '24.7', '24.8.2', '25.0.101', '24.7.0.1', '25.0.2', '25.2', '25.0.1', '25.4.0.1', '24.8.1', '24.3.1', '25.5.0.1', '25.1.1', '25.0.1.1', '24.
+9', '25.2.0.1', '25.4.1', '25.3.1', '24.2.2', '25.4.1.1', '24.6.0.1', '24.3.2', '25.4', '24.4.1.1', '25.1.1.1', '24.8.0.1', '24.1.0.1'",
+        "last_update_timestamp": "2021-09-14 11:54:41"
+    },
+    {
+        "issue_id": "7399104c8f4db64614e58ee43e82194e",
+        "issue_title": "BuiToast.java line 57",
+        "issue_subtitle": "com.booking.android.ui.BuiToast.<init>",
+        "app_version": "\"25.8.100\"",
+        "crash_count": 621,
+        "total_users": 545,
+        "event_timestamp": "2021-08-12 07:09:23",
+        "issue_logs": "RuntimeInit.java@com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run\nZygoteInit.java@com.android.internal.os.ZygoteInit.main\n",
+        "app_version_list": "'24.4.1', '28.6', '24.8', '25.8.0.1', '24.6', '25.7.0.1', '24.8.2', '28.5', '24.8.1', '25.7', '25.0.1.1', '25.6', '25.8', '25.2.0.1', '28.1.0.1', '27.5', '25.3.1', '25.8.100', '28.7', '24.8.0.1'",
+        "last_update_timestamp": "2021-09-14 11:54:43"
+    }
+]
+sh-4.2$
