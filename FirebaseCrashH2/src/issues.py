@@ -31,7 +31,7 @@ class Issue:
 	RETRIEVE_ISSUE_APP_VERSIONS_BY_ISSUE_ID = '''
 		select 
 			issue_id, 
-			JSON_ARRAYAGG(application->'$.display_version') as app_version_lists
+			JSON_ARRAYAGG(application->'$.display_version') as app_version_list
 		from `{table}` 
 		where issue_id='{issue_id}';
 	'''
