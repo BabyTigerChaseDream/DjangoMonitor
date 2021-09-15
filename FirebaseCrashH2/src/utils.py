@@ -59,11 +59,11 @@ def dump_issues(issue_id_list, filename = 'issues.json'):
 
 	print('[Issues dump to ]:', os.path.abspath(filename))
 
-def write_issues_to_database(issue_id_list, table, acc_mode, database='chinaqa'):
+def write_issues_to_crashissue_database(issue_id_list, acc_mode, table='CrashIssuesBak', database='chinaqa'):
 	mydb = dblib.DB(database=database,acc_mode=acc_mode)
 	
 	INSERT_ISSUE_TO_DATABASE = '''
-		insert into CrashIssuesBak
+		insert into {table}
 			(
 				issue_id, 
 				issue_title, 
@@ -98,6 +98,7 @@ def write_issues_to_database(issue_id_list, table, acc_mode, database='chinaqa')
 			row = I.modelize_issue()
 
 			insert_data_sql_cmd = INSERT_ISSUE_TO_DATABASE.format(
+				table = table,
 				issue_id = '"'+str(row['issue_id'])+'"',
 				issue_title = '"'+str(row['issue_title'])+'"',
 				issue_subtitle = '"'+str(row['issue_subtitle'])+'"',
