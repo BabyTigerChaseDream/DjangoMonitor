@@ -14,7 +14,7 @@ class Issue(models.Model):
 	# latest crash app version 
     app_version = models.CharField(max_length=255)
     crash_count = models.IntegerField(default=0)
-    total_users = models.IntegerField(default=0)
+    total_user = models.IntegerField(default=0)
 	# when this event happened
     event_timestamp = models.CharField(max_length=255)
     #retrieved_timestamp = models.TimeField() 
@@ -39,7 +39,7 @@ class Issue(models.Model):
 	'''
     def __str__(self):
         return '%s - %s ([%s]:[user]%s:[crashes]%s)' % \
-			(self.issue_id, self.title, self.event_timestamp, self.total_users, self.crash_count)
+			(self.issue_id, self.title, self.event_timestamp, self.total_user, self.crash_count)
 
     def create(self, **kwargs): 
 	    current_issue_id = kwargs['issue_id']

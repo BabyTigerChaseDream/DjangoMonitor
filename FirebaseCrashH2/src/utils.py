@@ -20,7 +20,7 @@ import schedule,time
 # Configurable matrix: 
 #################################################################
 crash_count_max = '10'
-total_users_max = '10'
+total_user_max = '10'
 issue_count_max = '20'
 
 table_index = 'android'
@@ -33,9 +33,9 @@ def setup_timeslot(end_date=datetime.utcnow(), delta=7):
 start_timestamp_str, end_timestamp_str = setup_timeslot(end_date=datetime.utcnow(), delta=7)
 
 def get_crash_lists(table_index=table_index, start_timestamp_str=start_timestamp_str, end_timestamp_str=end_timestamp_str, 
-								crash_count_max=crash_count_max, total_users_max=total_users_max, issue_count_max=issue_count_max):
+								crash_count_max=crash_count_max, total_user_max=total_user_max, issue_count_max=issue_count_max):
 	crashes = firebase_db_common_lib.Crashes(table_index=table_index, start_timestamp_str=start_timestamp_str, end_timestamp_str=end_timestamp_str, 
-								crash_count_max=crash_count_max, total_users_max=total_users_max, issue_count_max=issue_count_max)
+								crash_count_max=crash_count_max, total_user_max=total_user_max, issue_count_max=issue_count_max)
 	return crashes.get_issue_id_list()
 
 

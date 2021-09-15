@@ -16,7 +16,7 @@ import sys
 # Configurable matrix: 
 #################################################################
 crash_count_max = '10'
-total_users_max = '10'
+total_user_max = '10'
 issue_count_max = '20'
 
 table_index = 'android'
@@ -36,16 +36,16 @@ class Crashes:
 			issue_id, 
 			application->'$.display_version' as app_version, 
 			count(distinct event_id) as crash_count, 
-			count(distinct installation_uuid) as total_users 
+			count(distinct installation_uuid) as total_user 
 		from `{table}` 
 		where 
 			event_timestamp >= '{start_timestamp_str}' and event_timestamp <= '{end_timestamp_str}'
 		group by issue_id
-		having crash_count > {crash_count_max} and total_users > {total_users_max} 
-		order by total_users desc limit {issue_count_max};
+		having crash_count > {crash_count_max} and total_user > {total_user_max} 
+		order by total_user desc limit {issue_count_max};
 	''' 
 	def __init__(self, table_index=table_index, start_timestamp_str=start_timestamp_str, end_timestamp_str=end_timestamp_str, 
-								crash_count_max=crash_count_max, total_users_max=total_users_max, issue_count_max=issue_count_max):
+								crash_count_max=crash_count_max, total_user_max=total_user_max, issue_count_max=issue_count_max):
 
 		DBEngine = dblib.DB().DBEngine
 		self.issue_id_list = []
@@ -56,7 +56,7 @@ class Crashes:
 				start_timestamp_str=start_timestamp_str,
 				end_timestamp_str = end_timestamp_str,
 				crash_count_max = crash_count_max,
-				total_users_max = total_users_max,
+				total_user_max = total_user_max,
 				issue_count_max = issue_count_max
 			)
 		except ValueError:

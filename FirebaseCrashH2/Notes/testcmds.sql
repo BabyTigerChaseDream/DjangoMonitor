@@ -12,7 +12,7 @@ SELECT
   q1.events,
   q1.users,
   q2.total_events,
-  q2.total_users,
+  q2.total_user,
   q2.total_issues
 FROM (
     SELECT
@@ -38,7 +38,7 @@ FROM (
         SELECT
             COUNT(DISTINCT issue_id) AS total_issues,
             COUNT(DISTINCT event_id) AS total_events,
-            COUNT(DISTINCT installation_uuid) AS total_users
+            COUNT(DISTINCT installation_uuid) AS total_user
         FROM `{table}*`
         WHERE
             is_fatal=@is_fatal and event_timestamp >= @event_timestamp_start and event_timestamp <= @event_timestamp_end {additional_where_clause}
@@ -56,7 +56,7 @@ SELECT
   q1.events,
   q1.users,
   q2.total_events,
-  q2.total_users,
+  q2.total_user,
   q2.total_issues
 FROM (
     SELECT
@@ -82,7 +82,7 @@ FROM (
         SELECT
             COUNT(DISTINCT issue_id) AS total_issues,
             COUNT(DISTINCT event_id) AS total_events,
-            COUNT(DISTINCT installation_uuid) AS total_users
+            COUNT(DISTINCT installation_uuid) AS total_user
         FROM `firebase_crashlytics_com_booking_ANDROID`
         WHERE
             is_fatal=@is_fatal and event_timestamp >= @event_timestamp_start and event_timestamp <= @event_timestamp_end
@@ -112,7 +112,7 @@ ORDER BY users DESC LIMIT 10
 'LIMIT @limit OFFSET @offset'
 
 '''***** [table q2] *****'''
-SELECT COUNT(DISTINCT issue_id) AS total_issues, COUNT(DISTINCT event_id) AS total_events, COUNT(DISTINCT installation_uuid) AS total_users
+SELECT COUNT(DISTINCT issue_id) AS total_issues, COUNT(DISTINCT event_id) AS total_events, COUNT(DISTINCT installation_uuid) AS total_user
 FROM `firebase_crashlytics_com_booking_ANDROID`
 WHERE event_timestamp >= '2021-07-20 09:58:50' and event_timestamp <= '2021-07-20 19:58:50'
 'WHERE is_fatal=@is_fatal and event_timestamp >= '2021-07-20 09:58:50' and event_timestamp <= '2021-07-20 19:58:50'
@@ -121,10 +121,10 @@ WHERE event_timestamp >= '2021-07-20 09:58:50' and event_timestamp <= '2021-07-2
     Where clause filter crashes - only for col (NOT for alias)
 ##################################################################
 
-select issue_id, count(distinct event_id) as crash_count, count(distinct installation_uuid) as total_users from `firebase_crashlytics_com_booking_ANDROID` 
-  where event_timestamp >= '2021-07-20 09:58:50' and event_timestamp <= '2021-07-20 19:58:50' group by issue_id order by total_users desc limit 10;
+select issue_id, count(distinct event_id) as crash_count, count(distinct installation_uuid) as total_user from `firebase_crashlytics_com_booking_ANDROID` 
+  where event_timestamp >= '2021-07-20 09:58:50' and event_timestamp <= '2021-07-20 19:58:50' group by issue_id order by total_user desc limit 10;
 +----------------------------------+--------------+-------------+
-| issue_id                         | total_events | total_users |
+| issue_id                         | total_events | total_user |
 +----------------------------------+--------------+-------------+
 | 5c06a163f8b88c296382cb87         | 97           | 97          |
 | a90e5206fb185ba394bb890f4a0b74ba | 144          | 86          |
@@ -150,14 +150,14 @@ DECIMAL on the CAST() :
 	DECIMAL[(M[,D])]
 	Converts a value to DECIMAL data type. The optional arguments M and D specify the precision (M specifies the total number of digits) and the scale (D specifies the number of digits after the decimal point) of the decimal value. The default precision is two digits after the decimal point.
 
-android(ro)> select issue_id, application->'$.display_version' as app_version,count(distinct event_id) as crash_count, count(distinct installation_uuid) as total_users
+android(ro)> select issue_id, application->'$.display_version' as app_version,count(distinct event_id) as crash_count, count(distinct installation_uuid) as total_user
 				from `firebase_crashlytics_com_booking_ANDROID`
 				where event_timestamp >= '2021-07-26 00:00:00' and event_timestamp <= '2021-07-26 23:59:59'
 				group by issue_id
-				having crash_count>100 and total_users>50 and CAST(app_version AS DECIMAL(10,3))>26
-				order by total_users desc limit 10;
+				having crash_count>100 and total_user>50 and CAST(app_version AS DECIMAL(10,3))>26
+				order by total_user desc limit 10;
 	+----------------------------------+-------------+-------------+-------------+
-	| issue_id                         | app_version | crash_count | total_users |
+	| issue_id                         | app_version | crash_count | total_user |
 	+----------------------------------+-------------+-------------+-------------+
 	| 5d2c6080e0c9ddb395fefb721174fdaf | "28.1"      | 1127        | 778         |
 	| 07097b4a18819ee555ab639dfc558b8f | "28.1"      | 1036        | 329         |

@@ -13,7 +13,7 @@ class Config(models.Model):
 	slack_channel = models.CharField(max_length=600, default=None)
 	email_address = models.CharField(max_length=600, default=None)
 	crash_count = models.IntegerField(default=0)
-	total_users = models.IntegerField(default=0)
+	total_user = models.IntegerField(default=0)
 	# TODO: splitter
 	files = models.CharField(max_length=2000, default=None)
 	# TODO: splitter
@@ -29,7 +29,7 @@ class Config(models.Model):
 	    `slack_channel` varchar(600) DEFAULT NULL,
 	    `email_address` varchar(600) DEFAULT NULL,
 	    `crash_count` int(10) unsigned NOT NULL DEFAULT '0',
-	    `total_users` int(10) unsigned NOT NULL DEFAULT '0',
+	    `total_user` int(10) unsigned NOT NULL DEFAULT '0',
 	    `files` varchar(2000) DEFAULT NULL,
 	    `keywords` varchar(2000) DEFAULT NULL,
 		`tags` varchar(600) DEFAULT NULL,
@@ -38,7 +38,7 @@ class Config(models.Model):
 	'''
 	def __str__(self): 
 		return '%s - %s ([%s]:[user]%s:[crashes]%s)' % \
-			(self.issue_id, self.title, self.event_timestamp, self.total_users, self.crash_count)
+			(self.issue_id, self.title, self.event_timestamp, self.total_user, self.crash_count)
 
 	def create(self, **kwargs): 
 	    team_id = kwargs['issue_id']

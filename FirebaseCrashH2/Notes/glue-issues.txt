@@ -1,0 +1,86 @@
+    object members will be pretty-printed with that indent level. An indent
+    level of 0 will only insert newlines. ``None`` is the most compact
+    representation.
+
+    If specified, ``separators`` should be an ``(item_separator, key_separator)``
+    tuple.  The default is ``(', ', ': ')`` if *indent* is ``None`` and
+    ``(',', ': ')`` otherwise.  To get the most compact JSON representation,
+    you should specify ``(',', ':')`` to eliminate whitespace.
+
+    ``default(obj)`` is a function that should return a serializable version
+    of obj or raise TypeError. The default simply raises TypeError.
+
+    If *sort_keys* is true (default: ``False``), then the output of
+    dictionaries will be sorted by key.
+
+    To use a custom ``JSONEncoder`` subclass (e.g. one that overrides the
+    ``.default()`` method to serialize additional types), specify it with
+    the ``cls`` kwarg; otherwise ``JSONEncoder`` is used.
+
+>>>
+>>>
+>>> json.dumps(IssueList)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/opt/blue-python/3.7/lib/python3.7/json/__init__.py", line 231, in dumps
+    return _default_encoder.encode(obj)
+  File "/opt/blue-python/3.7/lib/python3.7/json/encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/opt/blue-python/3.7/lib/python3.7/json/encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "/opt/blue-python/3.7/lib/python3.7/json/encoder.py", line 179, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type LegacyRow is not JSON serializable
+>>>
+>>>
+>>>
+>>> with open('issues.json', 'a+') as fd:
+...     json.dump(IssueList,fd)
+...
+Traceback (most recent call last):
+  File "<stdin>", line 2, in <module>
+  File "/opt/blue-python/3.7/lib/python3.7/json/__init__.py", line 179, in dump
+    for chunk in iterable:
+  File "/opt/blue-python/3.7/lib/python3.7/json/encoder.py", line 429, in _iterencode
+    yield from _iterencode_list(o, _current_indent_level)
+  File "/opt/blue-python/3.7/lib/python3.7/json/encoder.py", line 325, in _iterencode_list
+    yield from chunks
+  File "/opt/blue-python/3.7/lib/python3.7/json/encoder.py", line 438, in _iterencode
+    o = _default(o)
+  File "/opt/blue-python/3.7/lib/python3.7/json/encoder.py", line 179, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type LegacyRow is not JSON serializable
+>>>
+>>>
+>>> with open('outputfile', 'w') as fout:
+...     json.dump(I)
+I                   ImportError(        IndentationError(   InterruptedError(   IssueList
+IOError(            ImportWarning(      IndexError(         IsADirectoryError(
+...     json.dump(IssueList,fout)
+...
+Traceback (most recent call last):
+  File "<stdin>", line 2, in <module>
+  File "/opt/blue-python/3.7/lib/python3.7/json/__init__.py", line 179, in dump
+    for chunk in iterable:
+  File "/opt/blue-python/3.7/lib/python3.7/json/encoder.py", line 429, in _iterencode
+    yield from _iterencode_list(o, _current_indent_level)
+  File "/opt/blue-python/3.7/lib/python3.7/json/encoder.py", line 325, in _iterencode_list
+    yield from chunks
+  File "/opt/blue-python/3.7/lib/python3.7/json/encoder.py", line 438, in _iterencode
+    o = _default(o)
+  File "/opt/blue-python/3.7/lib/python3.7/json/encoder.py", line 179, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type LegacyRow is not JSON serializable
+>>>
+>>>
+>>> IssueList[0]
+('5c06a163f8b88c296382cb87', 'ActivityThread.java line 3478', 'android.app.ActivityThread.reportSizeConfigurations', '"28.3"', 5547, 52
+68, datetime.datetime(2021, 8, 5, 2, 48, 3), '[{"type": "java.lang.IllegalArgumentException", "title": "Fatal Exception: java.lang.Ille
+galArgumentException", "blamed": true, "frames": [{"file": " ... (2655 characters truncated) ... ssage": "reportSizeConfigurations: Act
+ivityRecord not found for: Token{f871bea ActivityRecord{b7f77d5 u0 com.booking/.startup.HomeActivity t-1 f}}"}]')
+>>>
+>>>
+>>> type(IssueList[0])
+<class 'sqlalchemy.engine.row.LegacyRow'>
+>>>
+>>>
