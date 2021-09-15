@@ -21,7 +21,7 @@ class Issue:
 			issue_subtitle,
 			application->'$.display_version' as app_version,
 			count(distinct event_id) as crash_count, 
-			count(distinct installation_uuid) as total_users,
+			count(distinct installation_uuid) as total_user,
 			event_timestamp,
 			exceptions
 		from `{table}` 
@@ -48,7 +48,7 @@ class Issue:
 			'issue_subtitle' : 'sub-blank-title', 
 			'app_version' : '0',
 			'crash_count' : 0 ,
-			'total_users' :  0 ,
+			'total_user' :  0 ,
 			# timestamp to string 
 			'event_timestamp' : 'now', 
 			'issue_logs' : 'NA',
@@ -103,7 +103,7 @@ class Issue:
 		self.content['issue_subtitle']=issue_content['issue_subtitle'] 
 		self.content['app_version']= issue_content['app_version'] 
 		self.content['crash_count']=issue_content['crash_count'] 
-		self.content['total_users']=issue_content['total_users'] 
+		self.content['total_user']=issue_content['total_user'] 
 		self.content['event_timestamp']= issue_content['event_timestamp'].strftime('%Y-%m-%d %H:%M:%S')
 
 

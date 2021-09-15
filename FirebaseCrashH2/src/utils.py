@@ -1,6 +1,7 @@
 #/usr/local/bin/python3
 import issues
 import timelib 
+import dblib
 import firebase_db_common_lib 
 from datetime import datetime, timedelta
 import jsmod
@@ -57,6 +58,64 @@ def dump_issues(issue_id_list, filename = 'issues.json'):
 		json.dump(IssueList, fd, cls=jsmod.PythonObjectEncoder)
 
 	print('[Issues dump to ]:', os.path.abspath(filename))
+
+def write_issues_to_database(issue_id_list, table, acc_mode, database='chinaqa'):
+	mydb = dblib.DB(database=database,acc_mode=acc_mode)
+	
+	INSERT_ISSUE_TO_DATABASE = '''
+		insert into CrashIssuesBak
+			(
+				issue_id, 
+				issue_title, 
+				issue_subtitle, 
+				app_version, 
+				crash_count, 
+				total_user, 
+				event_timestamp, 
+				issue_logs, 
+				app_version_list, 
+				last_update_timestamp
+			)
+		values
+			(
+				{issue_id},
+				{issue_title},
+				{issue_subtitle},
+				{app_version},
+				{crash_count},
+				{total_user},
+				{event_timestamp},
+				{issue_logs}, 
+				{app_version_list}, 
+				{last_update_timestamp}
+			);	
+	'''
+	#IssueList = []
+	for issue_id in issue_id_list:
+		I=issues.Issue(issue_id=issue_id)
+		try:
+			#IssueList.append(I.modelize_issue())
+			row = I.modelize_issue()
+
+			insert_data_sql_cmd = INSERT_ISSUE_TO_DATABASE.format(
+				issue_id = '"'+str(row['issue_id'])+'"',
+				issue_title = '"'+str(row['issue_title'])+'"',
+				issue_subtitle = '"'+str(row['issue_subtitle'])+'"',
+				# app version has ' " ' already
+				app_version = str(row['app_version']),
+				crash_count = '"'+str(row['crash_count'])+'"',
+				total_user = '"'+str(row['total_user'])+'"',
+				event_timestamp= '"'+str(row['event_timestamp'])+'"',
+				issue_logs = '"'+str(row['issue_logs'])+'"',
+				app_version_list= '"'+str(row['app_version_list'])+'"',
+				last_update_timestamp= '"'+str(row['last_update_timestamp'])+'"'
+			)
+
+			mydb.DBEngine.execute(insert_data_sql_cmd)
+		except:
+			print('error on issue: ',issue_id)
+
+	#print('Total issues: ', len(IssueList))
 
 
 def job_get_crash():
