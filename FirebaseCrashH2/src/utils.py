@@ -90,11 +90,11 @@ def write_issues_to_crashissue_database(issue_id_list, acc_mode, table='CrashIss
 				{last_update_timestamp}
 			)
 		on duplicate key update	
-			app_version = VALUES(app_version),
-			crash_count = VALUES(crash_count),
-			total_user = VALUES(total_user),
-			app_version_list = VALUES(app_version_list),
-			last_update_timestamp VALUES(last_update_timestamp);	
+			app_version = {app_version},
+			crash_count = {crash_count},
+			total_user = {total_user},
+			app_version_list = {app_version_list},
+			last_update_timestamp = {last_update_timestamp};	
 	'''
 	#IssueList = []
 	for issue_id in issue_id_list:
@@ -120,7 +120,8 @@ def write_issues_to_crashissue_database(issue_id_list, acc_mode, table='CrashIss
 
 			mydb.DBEngine.execute(insert_data_sql_cmd)
 		except:
-			print('error on issue: ',issue_id)
+			print('[error on issue]: ',issue_id)
+			print('[sql_cmd]: ',insert_data_sql_cmd)
 
 	#print('Total issues: ', len(IssueList))
 
