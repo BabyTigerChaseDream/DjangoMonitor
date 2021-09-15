@@ -66,6 +66,7 @@ def write_issues_to_crashissue_database(issue_id_list, acc_mode, table='CrashIss
 		insert into {table}
 			(
 				issue_id, 
+				platform,
 				issue_title, 
 				issue_subtitle, 
 				app_version, 
@@ -79,6 +80,7 @@ def write_issues_to_crashissue_database(issue_id_list, acc_mode, table='CrashIss
 		values
 			(
 				{issue_id},
+				{platform},
 				{issue_title},
 				{issue_subtitle},
 				{app_version},
@@ -106,6 +108,7 @@ def write_issues_to_crashissue_database(issue_id_list, acc_mode, table='CrashIss
 			insert_data_sql_cmd = INSERT_ISSUE_TO_DATABASE.format(
 				table = table,
 				issue_id = '"'+str(row['issue_id'])+'"',
+				platform = '"'+str(row['platform'])+'"',
 				issue_title = '"'+str(row['issue_title'])+'"',
 				issue_subtitle = '"'+str(row['issue_subtitle'])+'"',
 				# app version has ' " ' already

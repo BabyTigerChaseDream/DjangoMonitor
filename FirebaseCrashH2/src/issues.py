@@ -17,6 +17,7 @@ class Issue:
 	RETRIEVE_ISSUE_CONTENT_BY_ISSUE_ID ='''
 		select 
 			issue_id,
+			platform,
 			issue_title,
 			issue_subtitle,
 			application->'$.display_version' as app_version,
@@ -44,6 +45,7 @@ class Issue:
 		# fields in django models of Issue table
 		self.content = {
 			'issue_id' : str(issue_id),
+			'platform' : 'mobile',
 			'issue_title' :'blank-title', 
 			'issue_subtitle' : 'sub-blank-title', 
 			'app_version' : '0',
@@ -99,6 +101,7 @@ class Issue:
 		self.get_cursor(sql_cmd=sql_cmd)
 		issue_content = self.cursor.fetchone()
 
+		self.content['platform']=issue_content['platform'] 
 		self.content['issue_title']=issue_content['issue_title'] 
 		self.content['issue_subtitle']=issue_content['issue_subtitle'] 
 		self.content['app_version']= issue_content['app_version'] 
