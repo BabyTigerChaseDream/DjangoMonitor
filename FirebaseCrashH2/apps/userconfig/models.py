@@ -1,9 +1,9 @@
 # Create your models here.
 from django.db import models
 
+'''
+
 from django.core.exceptions import ObjectDoesNotExist
-
-
 
 class Config(models.Model):
 	id = models.AutoField(primary_key=True)
@@ -20,7 +20,6 @@ class Config(models.Model):
 	keywords = models.CharField(max_length=2000, default=None) 
 	tags = models.CharField(max_length=600, default=None)
 
-	'''
 	CREATE TABLE if not exists `Config` (
 	    `id` INT NOT NULL AUTO_INCREMENT,
 	    `team` varchar(255) NOT NULL,
@@ -35,7 +34,7 @@ class Config(models.Model):
 		`tags` varchar(600) DEFAULT NULL,
 	     PRIMARY KEY (id)
 	) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
-	'''
+
 	def __str__(self): 
 		return '%s - %s ([%s]:[user]%s:[crashes]%s)' % \
 			(self.issue_id, self.title, self.event_timestamp, self.total_user, self.crash_count)
@@ -57,3 +56,5 @@ class Config(models.Model):
 	    if created:
 		    obj.save()
 	    return obj
+
+'''

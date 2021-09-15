@@ -3,9 +3,9 @@ from django.db import models
 # Create your models here.
 #from django.contrib.auth.models import User
 
-from django.core.exceptions import ObjectDoesNotExist
+#from django.core.exceptions import ObjectDoesNotExist
 
-
+'''
 class Issue(models.Model):
     #issue_id = models.ForeignKey(User, on_delete=models.CASCADE)
     issue_id = models.CharField(max_length=255)
@@ -22,7 +22,6 @@ class Issue(models.Model):
     app_version_list = models.TextField(),
     last_update_timestamp = models.CharField(max_length=255)	
     
-	'''
 	CREATE TABLE `Issue` (
 		`issue_id` varchar(255) NOT NULL,
 		`issue_title` varchar(500) DEFAULT NULL,
@@ -36,7 +35,7 @@ class Issue(models.Model):
 		`last_update_timestamp` varchar(255) DEFAULT NULL,
 		PRIMARY KEY (`issue_id`)
 	) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC
-	'''
+
     def __str__(self):
         return '%s - %s ([%s]:[user]%s:[crashes]%s)' % \
 			(self.issue_id, self.title, self.event_timestamp, self.total_user, self.crash_count)
@@ -60,3 +59,4 @@ class Issue(models.Model):
 		# updated items is items consistently occur
 
 	    return obj
+'''
