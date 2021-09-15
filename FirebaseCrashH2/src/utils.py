@@ -88,7 +88,13 @@ def write_issues_to_crashissue_database(issue_id_list, acc_mode, table='CrashIss
 				{issue_logs}, 
 				{app_version_list}, 
 				{last_update_timestamp}
-			);	
+			)
+		on duplicate key update	
+			app_version = VALUES(app_version),
+			crash_count = VALUES(crash_count),
+			total_user = VALUES(total_user),
+			app_version_list = VALUES(app_version_list),
+			last_update_timestamp VALUES(last_update_timestamp);	
 	'''
 	#IssueList = []
 	for issue_id in issue_id_list:
