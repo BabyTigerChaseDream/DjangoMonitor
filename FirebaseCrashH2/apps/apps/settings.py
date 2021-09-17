@@ -31,16 +31,19 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+	# Jia <new pkg>: TODO install on BPlatform
+	'crispy_forms',
+	########
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'analyzer',
-    'issue_import',
-	'userconfig',
-	'notification'
+    #'analyzer.apps.AnalyzerConfig',
+    #'issue_import.apps.apps.IssueImportConfig',
+	#'notification.apps.NotificationConfig',
+	'userconfig.apps.UserconfigConfig'
 ]
 
 MIDDLEWARE = [
@@ -82,14 +85,25 @@ WSGI_APPLICATION = 'apps.wsgi.application'
 # python3 manage.py inspectdb > yourapp/models.py will work:
 
 DATABASES = {
+
+	# localhost databse 
     'default': {
-        'NAME': 'chinaqa',
+        'NAME': 'qa',
         'ENGINE': 'django.db.backends.mysql',
-        'USER': 'crashmonitorbotfire_chinaqa_rw0',
-        'PASSWORD': 'Ugzdq7E3PDzJ1wBp',
-        'HOST':'dev-inttoolmdb-vip.lhr4.dqs.booking.com',
+        'USER': 'django',
+        'PASSWORD': '123456',
+        'HOST':'localhost',
         'PORT':'3306',
     }
+ 	## BPlatform databse 
+ 	#   'default': {
+ 	#       'NAME': 'chinaqa',
+ 	#       'ENGINE': 'django.db.backends.mysql',
+ 	#       'USER': 'crashmonitorbotfire_chinaqa_rw0',
+ 	#       'PASSWORD': 'Ugzdq7E3PDzJ1wBp',
+ 	#       'HOST':'dev-inttoolmdb-vip.lhr4.dqs.booking.com',
+ 	#       'PORT':'3306',
+ 	#   }
 }
 
 

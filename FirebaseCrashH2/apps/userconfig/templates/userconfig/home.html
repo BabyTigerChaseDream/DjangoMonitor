@@ -1,0 +1,25 @@
+{% extends "userconfig/base.html" %}
+{% block content %}
+    {% for config in configs %}
+        <article class="media content-section">
+          <div class="media-body">
+            <div class="article-metadata">
+              <a class="mr-2" href="#">Team: {{ config.team}}</a>
+              <small class="text-muted"> Team ID: {{config.team_id}}</small>
+            </div>
+            <small class="text-muted">{{ config.start_date| date:"F d, Y" }}</small>
+            <small class="text-muted">{{ config.end_date| date:"F d, Y" }}</small>
+
+            <p class="article-title">Slack Channel: {{ config.slack_channel}}</p>
+            <p class="article-title">Email Address: {{ config.email_address }}</p>
+            <p class="article-title">Contacts: {{ config.contacts }}</p>
+
+            <p class="article-title">Crash Count Bar : {{ config.crash_count }}</p>
+            <sp class="article-title">Total User Affected :{{ config.total_user }}</p>
+
+            <p class="article-content">Files to Monitor: {{ config.files}}</p>
+            <p class="article-content">Keywords to Check: {{ config.keywords}}</p>
+          </div>
+        </article>
+    {% endfor %}
+{% endblock content %}
