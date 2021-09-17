@@ -4,22 +4,30 @@
         <article class="media content-section">
           <div class="media-body">
             <div class="article-metadata">
-              <a class="mr-2" href="#">Team: {{ config.team}}</a>
-              <small class="text-muted"> Team ID: {{config.team_id}}</small>
-            </div>
-            <small class="text-muted">{{ config.start_date| date:"F d, Y" }}</small>
-            <small class="text-muted">{{ config.end_date| date:"F d, Y" }}</small>
-
+            <p class="article-title"> </small>
+		    <a class="mr-2" href=" {% url 'config-detail' config.id %}">Configuration Detail</a>
+			<a class="btn btn-outline-secondary" href="{% url 'config-update' config.id %}">Update</a>
+			<a class="btn btn-outline-secondary" href="{% url 'config-delete' config.id %}">Delete</a>
+            <p class="article-title"> Team : {{config.team}}
+            <p class="article-title"> Team ID: {{config.team_id}}
+		</div>
+		<div class="article-metadata">
+            <small class="text-muted">Start Date:{{ config.start_date| date:"F d, Y" }}</small>
+            <small class="text-muted">| End Date:{{ config.end_date| date:"F d, Y" }}</small>
+		</div>
+		<div class="article-metadata">
             <p class="article-title">Slack Channel: {{ config.slack_channel}}</p>
             <p class="article-title">Email Address: {{ config.email_address }}</p>
             <p class="article-title">Contacts: {{ config.contacts }}</p>
-
+		</div>
+		<div class="article-metadata">
             <p class="article-title">Crash Count Bar : {{ config.crash_count }}</p>
             <sp class="article-title">Total User Affected :{{ config.total_user }}</p>
-
+		</div>
+		<div class="article-metadata">
             <p class="article-content">Files to Monitor: {{ config.files}}</p>
             <p class="article-content">Keywords to Check: {{ config.keywords}}</p>
-          </div>
+		</div>
         </article>
     {% endfor %}
 {% endblock content %}

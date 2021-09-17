@@ -79,9 +79,21 @@ class ConfigUpdateView(UpdateView):
 		return super().form_valid(form)
 	success_url = '/'
 
+'''
+class ConfigTeamView(ListView):
+    model = Config
+    template_name = 'userconfig/config_team.html'  # <app>/<model>_<viewtype>.html
+    context_object_name = 'config'
+    paginate_by = 5
+
+    def get_queryset(self):
+        #user = get_object_or_404(User, username=self.kwargs.get('username'))
+        return Config.objects.filter(team_id=team_id).order_by('-date_posted')
+'''
+
 class ConfigDeleteView(DeleteView):
 	model = Config
 	success_url = '/'
 
-def about(request):
-	return render(request, 'userconfig/about.html', {'title':'About'})
+def crashlist(request):
+	return render(request, 'userconfig/crashlist.html', {'title':'Crash List'})

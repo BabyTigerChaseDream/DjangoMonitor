@@ -5,13 +5,13 @@ from .views import (
 	ConfigDetailView,
 	ConfigCreateView,
 	ConfigUpdateView,
-	ConfigDeleteView
+	ConfigDeleteView,
+	#ConfigTeamView,
 )
 
 from . import views
 urlpatterns = [
 	path('', views.home, name='userconfig-home'),
-	path('about/', views.about, name='userconfig-about'),
 	# defaule view looking for :
 	# <app>/<model>_<viewtype>.html
 	# blog/config_list.html
@@ -21,5 +21,9 @@ urlpatterns = [
 	path('config/create/', ConfigCreateView.as_view(), name='config-create'),
 	path('config/<int:pk>/update/', ConfigUpdateView.as_view(), name='config-update'),
 	path('config/<int:pk>/delete/', ConfigDeleteView.as_view(), name='config-delete'),
-	path('about/', views.about, name='userconfig-about'),
+
+	#path('config/<int:pk>/delete/', ConfigDeleteView.as_view(), name='config-delete'),
+
+	#path('crashlist/<str:team_id>', views.about, name='userconfig-crashlist'),
+	path('crashlist/', views.crashlist, name='userconfig-crashlist'),
 ]
