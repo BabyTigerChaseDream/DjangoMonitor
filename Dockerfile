@@ -25,8 +25,18 @@ RUN python3 -m pip install -r requirements.txt
 RUN yum install -y vim
 #RUN chmod 777 ./FirebaseCrashH2/apps/run.sh
 RUN chmod 777 run.sh
+
+# TODO: not working 
+#RUN python /workspace/FirebaseCrashH2/apps/manage.py runserver 0.0.0.0:8000
+#CMD [ "python", "/workspace/FirebaseCrashH2/apps/manage.py", "runserver", "0.0.0.0:8000"]
 EXPOSE 8000
 #ENTRYPOINT [ "python" ]
 #CMD [ "app.py" ,"python","./FirebaseCrashH2/src/utils.py &"]
 #CMD [ "python","./FirebaseCrashH2/apps/manage.py", "runserver","0.0.0.0:8000"]
-CMD ["/bin/sh","./run.sh"]
+
+# working : docker run -p 8000:8000 django-bplatform
+CMD [ "python", "./FirebaseCrashH2/apps/manage.py", "runserver", "0.0.0.0:8000"]
+
+# FAILED - & error 
+#CMD [ "python", "./FirebaseCrashH2/apps/manage.py", "runserver", "0.0.0.0:8000", "&"]
+
