@@ -24,8 +24,9 @@ COPY . /workspace
 RUN python3 -m pip install -r requirements.txt
 RUN yum install -y vim
 #RUN chmod 777 ./FirebaseCrashH2/apps/run.sh
+RUN chmod 777 run.sh
 EXPOSE 8000
 #ENTRYPOINT [ "python" ]
-#CMD ["cd","./FirebaseCrashH2/apps/","/bin/sh","./run.sh", "cd"]
 #CMD [ "app.py" ,"python","./FirebaseCrashH2/src/utils.py &"]
-CMD [ "python","./FirebaseCrashH2/apps/manage.py", "runserver 0.0.0.0:8000&","echo","done"]
+#CMD [ "python","./FirebaseCrashH2/apps/manage.py", "runserver","0.0.0.0:8000"]
+CMD ["/bin/sh","./run.sh"]
