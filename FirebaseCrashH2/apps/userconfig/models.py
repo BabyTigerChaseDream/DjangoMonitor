@@ -7,17 +7,17 @@ from django.core.exceptions import ObjectDoesNotExist
 class Config(models.Model):
 	id = models.AutoField(primary_key=True)
 	team = models.CharField(max_length=255)
-	team_id = models.CharField(max_length=255, unique=True)
-	contacts = models.CharField(max_length=600, default=None)
+	team_id = models.CharField(max_length=255, default='000000')
+	contacts = models.CharField(max_length=600, default='Jia Guo')
 	slack_channel = models.CharField(max_length=600, default=None)
-	email_address = models.CharField(max_length=600, default=None)
-	crash_count = models.IntegerField(default=0)
-	total_user = models.IntegerField(default=0)
+	email_address = models.CharField(max_length=600, default="<yourID>@booking.com")
+	crash_count = models.IntegerField(default=100)
+	total_user = models.IntegerField(default=50)
 	# TODO: splitter
 	files = models.CharField(max_length=2000, default=None)
 	# TODO: splitter
 	keywords = models.CharField(max_length=2000, default=None) 
-	tags = models.CharField(max_length=600, default=None)
+	tags = models.CharField(max_length=600, default="Notes on this configuration")
 	start_date = models.DateTimeField(default=timezone.now()-timezone.timedelta(days=15) )
 	end_date = models.DateTimeField(default=timezone.now) 
 

@@ -1,4 +1,7 @@
 from django.shortcuts import render
+from django.shortcuts import get_object_or_404
+from django.utils import timezone
+
 from .filters import UserConfigFilter
 
 from django.views.generic import (
@@ -65,10 +68,25 @@ class ConfigDetailView(DetailView):
 
 class ConfigCreateView(CreateView):
 	model = Config
-	fields = ['team','team_id','start_date','end_date','slack_channel','email_address','contacts','crash_count','total_user','files','keywords','tags']
+	#fields = ['team','team_id','start_date','end_date','slack_channel','email_address','contacts','crash_count','total_user','files','keywords','tags']
+	#fields = ('team','slack_channel','email_address','crash_count','total_user','files','keywords')
+	fields = ('team','slack_channel','email_address','files','keywords')
 
 	def form_valid(self, form):
-		form.instance.author = self.request.user
+		## assignd default to items below:
+		## dates: time slot
+		#start_date = get_object_or_404(Config, slug=self.kwargs['start_date'])
+		#form.instance.start_date = timezone.now()-timezone.timedelta(days=15)
+		#end_date = get_object_or_404(Config, slug=self.kwargs['end_date'])
+		#form.instance.end_date = timezone.now
+
+		#threashold:  crashes / users
+		#crash_count = get_object_or_404(Config, slug=self.kwargs['crash_count'])
+		form.instance.crash_count = 50 
+		#total_user = get_object_or_404(Config, slug=self.kwargs['total_user'])
+		form.instance.total_user = 100 
+
+		#return super(ConfigCreateView, self).form_valid(form)
 		return super().form_valid(form)
 	success_url = '/'
 

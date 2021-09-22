@@ -4,11 +4,10 @@
 		<div class="media-body">
 		<div class="article-metadata">
             <p class="article-title"> </small>
-		    <a class="mr-2" href="#">Configuration ID(Unique): {{config.id}}</a>
+		    <a class="mr-2" href="#">Configuration ID(Unique):{{config.id}}</a>
 			<a class="btn btn-outline-secondary" href="{% url 'config-update' config.id %}">Update</a>
 			<a class="btn btn-outline-secondary" href="{% url 'config-delete' config.id %}">Delete</a>
             <p class="article-title"> Team : {{config.team}}
-            <p class="article-title"> Team ID: {{config.team_id}}
 		</div>
 		<div class="article-metadata">
             <small class="text-muted">Start Date:{{ config.start_date| date:"F d, Y" }}</small>
