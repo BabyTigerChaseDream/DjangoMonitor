@@ -26,4 +26,7 @@ urlpatterns = [
 
 	#path('crashlist/<str:team_id>', views.about, name='userconfig-crashlist'),
 	path('crashlist/', views.crashlist, name='userconfig-crashlist'),
+
+	path('filters/', views.Filters, name='userconfig-filter'),
+
 ]

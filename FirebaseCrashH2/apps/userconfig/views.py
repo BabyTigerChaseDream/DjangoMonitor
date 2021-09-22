@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from .filters import UserConfigFilter
+
 from django.views.generic import (
 	ListView, 
 	DetailView,
@@ -6,7 +8,7 @@ from django.views.generic import (
 	UpdateView,
 	DeleteView
 )
-from django.http import HttpResponse
+#from django.http import HttpResponse
 from .models import Config
 
 '''
@@ -97,3 +99,9 @@ class ConfigDeleteView(DeleteView):
 
 def crashlist(request):
 	return render(request, 'userconfig/crashlist.html', {'title':'Crash List'})
+
+
+def Filters(request):
+    userconfig_list = Config.objects.all()
+    userconfig_filter = UserConfigFilter(request.GET, queryset=userconfig_list)
+    return render(request, 'userconfig/userconfig_filter.html', {'filter': userconfig_filter, 'configs':userconfig_list})
