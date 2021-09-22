@@ -11,11 +11,17 @@ from .views import (
 
 from . import views
 urlpatterns = [
-	path('', views.home, name='userconfig-home'),
+
+	# Home dir
+	#path('', views.home, name='userconfig-home'),
+	# new Home
+	path('', views.Filters, name='userconfig-home-with-filter'),
+
 	# defaule view looking for :
 	# <app>/<model>_<viewtype>.html
 	# blog/config_list.html
-	path('', ConfigListView.as_view(), name='userconfig-home'),
+	#path('', ConfigListView.as_view(), name='userconfig-home'),
+
 	path('config/<int:pk>/', ConfigDetailView.as_view(), name='config-detail'),
 #	# template : <model>_<form>.html -> config_form.html
 	path('config/create/', ConfigCreateView.as_view(), name='config-create'),
@@ -26,7 +32,5 @@ urlpatterns = [
 
 	#path('crashlist/<str:team_id>', views.about, name='userconfig-crashlist'),
 	path('crashlist/', views.crashlist, name='userconfig-crashlist'),
-
-	path('filters/', views.Filters, name='userconfig-filter'),
 
 ]
