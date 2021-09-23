@@ -27,7 +27,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+from django.contrib.messages import constants as messages
+MESSAGE_TAGS = {
+    messages.ERROR: 'danger',
+	}
 # Application definition
 
 INSTALLED_APPS = [
@@ -43,8 +46,7 @@ INSTALLED_APPS = [
     #'analyzer.apps.AnalyzerConfig',
     #'issue_import.apps.apps.IssueImportConfig',
 	#'notification.apps.NotificationConfig',
-	'userconfig.apps.UserconfigConfig',
-	'heartbeat.apps.HeartbeatConfig',
+	'userconfig.apps.UserconfigConfig'
 ]
 
 MIDDLEWARE = [
@@ -87,15 +89,24 @@ WSGI_APPLICATION = 'apps.wsgi.application'
 
 DATABASES = {
 
- 	# BPlatform databse 
- 	   'default': {
- 	       'NAME': 'chinaqa',
- 	       'ENGINE': 'django.db.backends.mysql',
- 	       'USER': 'crashmonitorbotfire_chinaqa_rw0',
- 	       'PASSWORD': 'Ugzdq7E3PDzJ1wBp',
- 	       'HOST':'dev-inttoolmdb-vip.lhr4.dqs.booking.com',
- 	       'PORT':'3306',
- 	   }
+	# localhost databse 
+    'default': {
+        'NAME': 'qa',
+        'ENGINE': 'django.db.backends.mysql',
+        'USER': 'django',
+        'PASSWORD': '123456',
+        'HOST':'localhost',
+        'PORT':'3306',
+    }
+ 	## BPlatform databse 
+ 	#   'default': {
+ 	#       'NAME': 'chinaqa',
+ 	#       'ENGINE': 'django.db.backends.mysql',
+ 	#       'USER': 'crashmonitorbotfire_chinaqa_rw0',
+ 	#       'PASSWORD': 'Ugzdq7E3PDzJ1wBp',
+ 	#       'HOST':'dev-inttoolmdb-vip.lhr4.dqs.booking.com',
+ 	#       'PORT':'3306',
+ 	#   }
 }
 
 

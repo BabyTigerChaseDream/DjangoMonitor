@@ -1,6 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.shortcuts import get_object_or_404
 from django.utils import timezone
+from django.contrib import messages
+from django import forms
 
 from .filters import UserConfigFilter
 
@@ -70,24 +72,90 @@ class ConfigCreateView(CreateView):
 	model = Config
 	#fields = ['team','team_id','start_date','end_date','slack_channel','email_address','contacts','crash_count','total_user','files','keywords','tags']
 	#fields = ('team','slack_channel','email_address','crash_count','total_user','files','keywords')
-	fields = ('team','slack_channel','email_address','files','keywords')
+	fields = ('team','slack_channel','email_address','crash_count','total_user','files','keywords')
+
+	# get form and update required/optional fields 
+	def get_form(self, form_class=None):
+		form = super(ConfigCreateView, self).get_form(form_class)
+		# team required
+		#form.fields['team'].required = False
+		form.fields['slack_channel'].required = False
+		form.fields['email_address'].required = False
+		form.fields['files'].required = False
+		form.fields['keywords'].required = False
+
+		return form
 
 	def form_valid(self, form):
+		'''
 		## assignd default to items below:
 		## dates: time slot
 		#start_date = get_object_or_404(Config, slug=self.kwargs['start_date'])
 		#form.instance.start_date = timezone.now()-timezone.timedelta(days=15)
-		#end_date = get_object_or_404(Config, slug=self.kwargs['end_date'])
-		#form.instance.end_date = timezone.now
-
 		#threashold:  crashes / users
 		#crash_count = get_object_or_404(Config, slug=self.kwargs['crash_count'])
 		form.instance.crash_count = 50 
-		#total_user = get_object_or_404(Config, slug=self.kwargs['total_user'])
-		form.instance.total_user = 100 
+		'''
 
-		#return super(ConfigCreateView, self).form_valid(form)
-		return super().form_valid(form)
+		# retrieve user input data 
+		team = form.cleaned_data.get('team', 'anonymous team')
+		slack_channel= form.cleaned_data.get('slack_channel', None)
+		email_address= form.cleaned_data.get('email_address', None)
+		files= form.cleaned_data.get('files', None)
+		keywords= form.cleaned_data.get('keywords', None)
+
+		messages.info(self.request, "[Debug] team:{team}, slack_channel:{slack_channel}, \
+						email_address:{email_address}, files:{files}, keywords:{keywords} " \
+							.format(team=team,slack_channel=slack_channel,email_address=email_address,files=files,keywords=keywords))
+		messages.info(self.request, "[Debug Type] slack_channel:{slack_channel}, \
+						email_address:{email_address}, files:{files}, keywords:{keywords} " \
+							.format(slack_channel=type(slack_channel),email_address=type(email_address),files=type(files),keywords=keywords))
+							
+		'''
+		messages.info(self.request, "[Debug Len] slack_channel:{slack_channel}, \
+						email_address:{email_address}, files:{files}, keywords:{keywords} " \
+							.format(slack_channel=len(slack_channel),email_address=len(email_address),files=len(files),keywords=len(keywords))
+		'''
+		##### slack and email logic check ##### 	
+		# 1) need at least one 
+		if (not len(slack_channel)) and (not len(email_address)):
+			messages.error(self.request, "At least one channel required to receive info: slack/email ")
+			return redirect('config-create')
+
+		# 2) need at least one 
+		# 2.1) email format 
+		# TODO : email regex check 
+		if email_address:
+			if (not '@booking.com' in email_address):
+				messages.error(self.request, "Please check your email: is it booking internal email ?")
+				return redirect('config-create')
+			else:
+				pass
+				#return redirect('userconfig-home-with-filter')
+		'''
+		# 2.2) slack format 
+		# TODO : slack check  
+		if slack_channel:
+			if (not 'slack?' in slack_channel):
+				messages.error(self.request, "Please check your slack format")
+				return redirect('config-create')
+			else:
+				#return redirect('userconfig-home-with-filter')
+
+		'''	
+		############################################################
+
+		if (not files) and (not keywords):
+			messages.error(self.request, "Fill in at least one of files/keywords")
+			#return redirect('config-create') 
+		else:
+			#return super(ConfigCreateView, self).form_valid(form)
+			messages.success(self.request, 'Config Successfully created for {team}!'.format(team=team))
+			#return redirect('userconfig-home-with-filter')
+
+		# must save it !!!
+		self.object = form.save()
+		return redirect('userconfig-home-with-filter')
 	success_url = '/'
 
 class ConfigUpdateView(UpdateView):

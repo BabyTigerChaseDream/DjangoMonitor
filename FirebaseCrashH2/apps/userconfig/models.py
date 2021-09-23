@@ -10,7 +10,7 @@ class Config(models.Model):
 	team_id = models.CharField(max_length=255, default='000000')
 	contacts = models.CharField(max_length=600, default='Jia Guo')
 	slack_channel = models.CharField(max_length=600, default=None)
-	email_address = models.CharField(max_length=600, default="<yourID>@booking.com")
+	email_address = models.CharField(max_length=600, default=None)
 	crash_count = models.IntegerField(default=100)
 	total_user = models.IntegerField(default=50)
 	# TODO: splitter

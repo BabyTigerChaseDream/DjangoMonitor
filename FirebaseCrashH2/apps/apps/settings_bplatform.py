@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     #'analyzer.apps.AnalyzerConfig',
     #'issue_import.apps.apps.IssueImportConfig',
 	#'notification.apps.NotificationConfig',
-	'userconfig.apps.UserconfigConfig'
+	'userconfig.apps.UserconfigConfig',
+	'heartbeat.apps.HeartbeatConfig',
 ]
 
 MIDDLEWARE = [
