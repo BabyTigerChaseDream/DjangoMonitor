@@ -16,40 +16,6 @@ from django.views.generic import (
 #from django.http import HttpResponse
 from .models import Config
 
-'''
- 	id            
- 	team          
- 	team_id       
- 	contacts      
- 	slack_channel 
- 	email_address 
- 	crash_count   
- 	total_user    
- 	files         
- 	keywords      
- 	tags          
- 	start_date    
- 	end_date 
-'''
-
-'''
-Config = [
-     
-	{
-		'author': 'Jia',
-		'title': 'Blog 1',
-		'content': 'first Config',
-		'date_Configed':'Sep/16/2020'
-	},
-	{
-		'author': 'Guo',
-		'title': 'Blog 2',
-		'content': 'second Config',
-		'date_Configed':'Sep/18/2020'
-	}
-]
-'''
-
 def home(request):
 	context = {
 		'configs':Config.objects.all()
@@ -73,6 +39,15 @@ class ConfigCreateView(CreateView):
 	#fields = ['team','team_id','start_date','end_date','slack_channel','email_address','contacts','crash_count','total_user','files','keywords','tags']
 	#fields = ('team','slack_channel','email_address','crash_count','total_user','files','keywords')
 	fields = ('team','slack_channel','email_address','crash_count','total_user','files','keywords')
+
+	'''
+	class Meta:
+		model = Config
+		fields=['slack_channel']
+		labels={'slack_channel':'Slack channel of your team'}
+		help_texts={'slack_channel':'Your slackID'}
+        #help_texts={'slack_channel':"Enter Your slack ID"}
+	'''
 
 	# get form and update required/optional fields 
 	def get_form(self, form_class=None):
@@ -104,17 +79,10 @@ class ConfigCreateView(CreateView):
 		files= form.cleaned_data.get('files', None)
 		keywords= form.cleaned_data.get('keywords', None)
 
+		'''
 		messages.info(self.request, "[Debug] team:{team}, slack_channel:{slack_channel}, \
 						email_address:{email_address}, files:{files}, keywords:{keywords} " \
 							.format(team=team,slack_channel=slack_channel,email_address=email_address,files=files,keywords=keywords))
-		messages.info(self.request, "[Debug Type] slack_channel:{slack_channel}, \
-						email_address:{email_address}, files:{files}, keywords:{keywords} " \
-							.format(slack_channel=type(slack_channel),email_address=type(email_address),files=type(files),keywords=keywords))
-							
-		'''
-		messages.info(self.request, "[Debug Len] slack_channel:{slack_channel}, \
-						email_address:{email_address}, files:{files}, keywords:{keywords} " \
-							.format(slack_channel=len(slack_channel),email_address=len(email_address),files=len(files),keywords=len(keywords))
 		'''
 		##### slack and email logic check ##### 	
 		# 1) need at least one 
@@ -131,7 +99,6 @@ class ConfigCreateView(CreateView):
 				return redirect('config-create')
 			else:
 				pass
-				#return redirect('userconfig-home-with-filter')
 		'''
 		# 2.2) slack format 
 		# TODO : slack check  
@@ -141,17 +108,15 @@ class ConfigCreateView(CreateView):
 				return redirect('config-create')
 			else:
 				#return redirect('userconfig-home-with-filter')
-
 		'''	
 		############################################################
 
 		if (not files) and (not keywords):
 			messages.error(self.request, "Fill in at least one of files/keywords")
-			#return redirect('config-create') 
+			return redirect('config-create') 
 		else:
 			#return super(ConfigCreateView, self).form_valid(form)
 			messages.success(self.request, 'Config Successfully created for {team}!'.format(team=team))
-			#return redirect('userconfig-home-with-filter')
 
 		# must save it !!!
 		self.object = form.save()
@@ -160,11 +125,63 @@ class ConfigCreateView(CreateView):
 
 class ConfigUpdateView(UpdateView):
 	model = Config
-	fields = ['team','team_id','start_date','end_date','slack_channel','email_address','contacts','crash_count','total_user','files','keywords','tags']
+	fields = ['team','start_date','end_date','slack_channel','email_address','crash_count','total_user','files','keywords','tags']
+	'''
+	def get_object(self):
+		return self.model.objects.get(pk=self.request.GET.get('id')) 
+	'''
 
+	# get form and update required/optional fields 
+	def get_form(self, form_class=None):
+		form = super(ConfigUpdateView, self).get_form(form_class)
+		# team required
+		#form.fields['id'].widget.attrs['readonly'] = True
+		form.fields['slack_channel'].required = False
+		form.fields['email_address'].required = False
+		form.fields['files'].required = False
+		form.fields['keywords'].required = False
+
+		return form
 	def form_valid(self, form):
-		form.instance.author = self.request.user
-		return super().form_valid(form)
+		# retrieve user input data 
+		team = form.cleaned_data.get('team', 'anonymous team')
+		slack_channel= form.cleaned_data.get('slack_channel', None)
+		email_address= form.cleaned_data.get('email_address', None)
+		files= form.cleaned_data.get('files', None)
+		keywords= form.cleaned_data.get('keywords', None)
+
+		#config_id = Config.objects.get('id')
+		'''
+		messages.info(self.request, "[Debug] team:{team}, slack_channel:{slack_channel}, \
+						email_address:{email_address}, files:{files}, keywords:{keywords} " \
+							.format(team=team,slack_channel=slack_channel,email_address=email_address,files=files,keywords=keywords))
+		'''
+		##### slack and email logic check ##### 	
+		# 1) need at least one 
+		if (not len(slack_channel)) and (not len(email_address)):
+			messages.error(self.request, "At least one channel required to receive info: slack/email ")
+			print('[JIAJIAJIA]',self.request.get_full_path, '[JIAPATH]',self.request.path)
+			return redirect(self.request.path)
+
+		# 2) need at least one 
+		# 2.1) email format 
+		# TODO : email regex check 
+		if email_address:
+			if (not '@booking.com' in email_address):
+				messages.error(self.request, "Please check your email: is it booking internal email ?")
+				return redirect(self.request.path)
+			else:
+				pass
+
+		if (not files) and (not keywords):
+			messages.error(self.request, "Fill in at least one of files/keywords")
+			return redirect(self.request.path)
+		else:
+			messages.success(self.request, 'Config Successfully created for {team}!'.format(team=team))
+
+		# must save it !!!
+		self.object = form.save()
+		return redirect('userconfig-home-with-filter')
 	success_url = '/'
 
 '''
@@ -185,7 +202,6 @@ class ConfigDeleteView(DeleteView):
 
 def crashlist(request):
 	return render(request, 'userconfig/crashlist.html', {'title':'Crash List'})
-
 
 def Filters(request):
     userconfig_list = Config.objects.all()
