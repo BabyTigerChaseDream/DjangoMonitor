@@ -1,4 +1,5 @@
-from .models import Config
+from django.forms.fields import ChoiceField
+from .models import Config, PLATFORM_CHOICES
 import django_filters
 
 class UserConfigFilter(django_filters.FilterSet):
@@ -20,14 +21,11 @@ class UserConfigFilter(django_filters.FilterSet):
     release_year__lt = django_filters.NumberFilter(field_name='release_date', lookup_expr='year__lt')
 	'''
 	crash___gt = django_filters.NumberFilter(field_name='crash_count', lookup_expr='gt')
-	crash___lt = django_filters.NumberFilter(field_name='crash_count', lookup_expr='lt')
+	#crash___lt = django_filters.NumberFilter(field_name='crash_count', lookup_expr='lt')
 	user___gt = django_filters.NumberFilter(field_name='total_user', lookup_expr='gt')
-	user___lt = django_filters.NumberFilter(field_name='total_user', lookup_expr='lt')
+	#user___lt = django_filters.NumberFilter(field_name='total_user', lookup_expr='lt')
 
+	platform = django_filters.ChoiceFilter(choices=PLATFORM_CHOICES) 
 	files = django_filters.CharFilter(lookup_expr='icontains') 
 	keywords = django_filters.CharFilter(lookup_expr='icontains')
 	tags = django_filters.CharFilter(lookup_expr='icontains')
-
-	class Meta:
-		model = Config
-		fields = ['team', 'slack_channel', 'email_address']

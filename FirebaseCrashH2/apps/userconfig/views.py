@@ -37,8 +37,7 @@ class ConfigDetailView(DetailView):
 class ConfigCreateView(CreateView):
 	model = Config
 	#fields = ['team','team_id','start_date','end_date','slack_channel','email_address','contacts','crash_count','total_user','files','keywords','tags']
-	#fields = ('team','slack_channel','email_address','crash_count','total_user','files','keywords')
-	fields = ('team','slack_channel','email_address','crash_count','total_user','files','keywords')
+	fields = ('team','platform','slack_channel','email_address','crash_count','total_user','files','keywords')
 	def __init__(self, *args, **kwargs):
 		super(ConfigCreateView, self).__init__(*args, **kwargs)
 		self.helper = FormHelper()
@@ -56,8 +55,16 @@ class ConfigCreateView(CreateView):
 	# get form and update required/optional fields 
 	def get_form(self, form_class=None):
 		form = super(ConfigCreateView, self).get_form(form_class)
+		'''
+		PLATFORM_CHOICES = (
+			('android', 'android'),
+			('ios', 'ios')
+		)	
+		form.fields['platform'] = forms.MultipleChoiceField(choices=PLATFORM_CHOICES)	
+		'''
+
 		# team required
-		form.fields['team'].widget=forms.TextInput(attrs={'placeholder': 'name your config','size':'16'}) 
+		form.fields['team'].widget=forms.TextInput(attrs={'placeholder': 'name your config','size':'18'}) 
 		
 		form.fields['slack_channel'].required = False
 		form.fields['slack_channel'].widget=forms.TextInput(attrs={'placeholder': '#slack_channel'})
@@ -143,7 +150,7 @@ class ConfigCreateView(CreateView):
 
 class ConfigUpdateView(UpdateView):
 	model = Config
-	fields = ['team','start_date','end_date','slack_channel','email_address','crash_count','total_user','files','keywords','tags']
+	fields = ('team','platform','start_date','end_date','slack_channel','email_address','crash_count','total_user','files','keywords','tags')
 	'''
 	def get_object(self):
 		return self.model.objects.get(pk=self.request.GET.get('id')) 

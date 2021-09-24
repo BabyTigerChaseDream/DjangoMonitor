@@ -19,6 +19,7 @@
 				<a class="btn btn-outline-secondary" href="{% url 'config-update' config.id %}">Update</a>
 				<a class="btn btn-outline-secondary" href="{% url 'config-delete' config.id %}">Delete</a>
 				<p class="article-title"> Team : {{config.team}}
+				<p class="article-title"> Platform : {{config.platform}}
 			</div>
 			<div class="article-metadata">
 				<small class="text-muted">Start Date:{{ config.start_date| date:"F d, Y" }}</small>

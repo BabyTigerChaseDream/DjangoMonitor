@@ -4,6 +4,11 @@ from django.utils import timezone
 
 from django.core.exceptions import ObjectDoesNotExist
 
+PLATFORM_CHOICES = (
+    ('android', 'android'),
+    ('ios', 'ios')
+)
+
 class Config(models.Model):
 	id = models.AutoField(primary_key=True)
 	# help_text='your-lovely-teamname'
@@ -12,7 +17,9 @@ class Config(models.Model):
 	#team_id = models.CharField(max_length=255, default='000000')
 	
 	#contacts = models.CharField(max_length=600, default='Jia Guo')
-
+	#TODO
+	platform = models.CharField(max_length=60, choices=PLATFORM_CHOICES, default='android') 
+	#platform = models.CharField(max_length=60, default='android') 
 	# help_text='slack-channel-to-receive-notification'
 	slack_channel = models.CharField(max_length=600, default=None)
 
