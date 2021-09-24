@@ -57,25 +57,25 @@ class ConfigCreateView(CreateView):
 	def get_form(self, form_class=None):
 		form = super(ConfigCreateView, self).get_form(form_class)
 		# team required
-		form.fields['team'].widget=forms.TextInput(attrs={'placeholder': 'eg:GeniusCredit-BookUnlock'}) 
+		form.fields['team'].widget=forms.TextInput(attrs={'placeholder': 'name your config','size':'16'}) 
 		
 		form.fields['slack_channel'].required = False
 		form.fields['slack_channel'].widget=forms.TextInput(attrs={'placeholder': '#slack_channel'})
 
 		form.fields['email_address'].required = False
-		form.fields['email_address'].widget=forms.TextInput(attrs={'placeholder': '<username>@booking.com'})
+		form.fields['email_address'].widget=forms.TextInput(attrs={'placeholder': '<user>@booking.com'})
 
 		form.fields['crash_count'].required = False
-		form.fields['crash_count'].widget=forms.NumberInput(attrs={'placeholder': 'minimum crash occurence threshold'})
+		form.fields['crash_count'].widget=forms.NumberInput(attrs={'placeholder': 'minimum crash occurence'})
 
 		form.fields['total_user'].required = False
-		form.fields['total_user'].widget=forms.NumberInput(attrs={'placeholder': 'minimum users affected by the crash'})
+		form.fields['total_user'].widget=forms.NumberInput(attrs={'placeholder': 'minimum users affected'})
 
 		form.fields['files'].required = False
-		form.fields['files'].widget=forms.TextInput(attrs={'placeholder': 'filename to monitor,split by \',\''})
+		form.fields['files'].widget=forms.TextInput(attrs={'placeholder': 'files to monitor on crashes(split by \',\')','size':'50'})
 
 		form.fields['keywords'].required = False
-		form.fields['keywords'].widget=forms.TextInput(attrs={'placeholder': 'keywords to monitor in error logs,split by \',\''})
+		form.fields['keywords'].widget=forms.TextInput(attrs={'placeholder': 'monitor crashes based on keywords filled in,split by \',\'','size':'50'})
 
 		return form
 
@@ -195,7 +195,7 @@ class ConfigUpdateView(UpdateView):
 			messages.error(self.request, "Fill in at least one of files/keywords")
 			return redirect(self.request.path)
 		else:
-			messages.success(self.request, 'Config Successfully created for {team}!'.format(team=team))
+			messages.success(self.request, 'Config Successfully Updated for {team}!'.format(team=team))
 
 		# must save it !!!
 		self.object = form.save()
