@@ -32,7 +32,8 @@ class Config(models.Model):
 	# TODO: splitter
 	keywords = models.CharField(max_length=2000, default=None) 
 	tags = models.CharField(max_length=600, default="Notes on this configuration")
-	start_date = models.DateTimeField(default=timezone.now()-timezone.timedelta(days=15) )
+	#start_date = models.DateTimeField(default=timezone.now()-timezone.timedelta(days=15) )
+	timeslot = models.IntegerField(default=7)	
 	end_date = models.DateTimeField(default=timezone.now) 
 
 	def __str__(self): 

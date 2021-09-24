@@ -36,7 +36,6 @@ class ConfigDetailView(DetailView):
 
 class ConfigCreateView(CreateView):
 	model = Config
-	#fields = ['team','team_id','start_date','end_date','slack_channel','email_address','contacts','crash_count','total_user','files','keywords','tags']
 	fields = ('team','platform','slack_channel','email_address','crash_count','total_user','files','keywords')
 	def __init__(self, *args, **kwargs):
 		super(ConfigCreateView, self).__init__(*args, **kwargs)
@@ -55,13 +54,6 @@ class ConfigCreateView(CreateView):
 	# get form and update required/optional fields 
 	def get_form(self, form_class=None):
 		form = super(ConfigCreateView, self).get_form(form_class)
-		'''
-		PLATFORM_CHOICES = (
-			('android', 'android'),
-			('ios', 'ios')
-		)	
-		form.fields['platform'] = forms.MultipleChoiceField(choices=PLATFORM_CHOICES)	
-		'''
 
 		# team required
 		form.fields['team'].widget=forms.TextInput(attrs={'placeholder': 'name your config','size':'18'}) 
@@ -87,16 +79,6 @@ class ConfigCreateView(CreateView):
 		return form
 
 	def form_valid(self, form):
-		'''
-		## assignd default to items below:
-		## dates: time slot
-		#start_date = get_object_or_404(Config, slug=self.kwargs['start_date'])
-		#form.instance.start_date = timezone.now()-timezone.timedelta(days=15)
-		#threashold:  crashes / users
-		#crash_count = get_object_or_404(Config, slug=self.kwargs['crash_count'])
-		form.instance.crash_count = 50 
-		'''
-
 		# retrieve user input data 
 		team = form.cleaned_data.get('team', 'anonymous team')
 		slack_channel= form.cleaned_data.get('slack_channel', None)
@@ -150,7 +132,7 @@ class ConfigCreateView(CreateView):
 
 class ConfigUpdateView(UpdateView):
 	model = Config
-	fields = ('team','platform','start_date','end_date','slack_channel','email_address','crash_count','total_user','files','keywords','tags')
+	fields = ('team','platform','timeslot','end_date','slack_channel','email_address','crash_count','total_user','files','keywords','tags')
 	'''
 	def get_object(self):
 		return self.model.objects.get(pk=self.request.GET.get('id')) 
