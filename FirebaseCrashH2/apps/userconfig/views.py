@@ -3,7 +3,7 @@ from django.shortcuts import get_object_or_404
 from django.utils import timezone
 from django.contrib import messages
 from django import forms
-
+from crispy_forms.helper import FormHelper
 from .filters import UserConfigFilter
 
 from django.views.generic import (
@@ -39,7 +39,11 @@ class ConfigCreateView(CreateView):
 	#fields = ['team','team_id','start_date','end_date','slack_channel','email_address','contacts','crash_count','total_user','files','keywords','tags']
 	#fields = ('team','slack_channel','email_address','crash_count','total_user','files','keywords')
 	fields = ('team','slack_channel','email_address','crash_count','total_user','files','keywords')
-
+	def __init__(self, *args, **kwargs):
+		super(ConfigCreateView, self).__init__(*args, **kwargs)
+		self.helper = FormHelper()
+		self.helper.form_class = 'form-horizontal'
+		self.helper.help_text_inline = True	
 	'''
 	class Meta:
 		model = Config
@@ -53,11 +57,25 @@ class ConfigCreateView(CreateView):
 	def get_form(self, form_class=None):
 		form = super(ConfigCreateView, self).get_form(form_class)
 		# team required
-		#form.fields['team'].required = False
+		form.fields['team'].widget=forms.TextInput(attrs={'placeholder': 'eg:GeniusCredit-BookUnlock'}) 
+		
 		form.fields['slack_channel'].required = False
+		form.fields['slack_channel'].widget=forms.TextInput(attrs={'placeholder': '#slack_channel'})
+
 		form.fields['email_address'].required = False
+		form.fields['email_address'].widget=forms.TextInput(attrs={'placeholder': '<username>@booking.com'})
+
+		form.fields['crash_count'].required = False
+		form.fields['crash_count'].widget=forms.NumberInput(attrs={'placeholder': 'minimum crash occurence threshold'})
+
+		form.fields['total_user'].required = False
+		form.fields['total_user'].widget=forms.NumberInput(attrs={'placeholder': 'minimum users affected by the crash'})
+
 		form.fields['files'].required = False
+		form.fields['files'].widget=forms.TextInput(attrs={'placeholder': 'filename to monitor,split by \',\''})
+
 		form.fields['keywords'].required = False
+		form.fields['keywords'].widget=forms.TextInput(attrs={'placeholder': 'keywords to monitor in error logs,split by \',\''})
 
 		return form
 

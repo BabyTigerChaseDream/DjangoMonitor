@@ -6,14 +6,21 @@ from django.core.exceptions import ObjectDoesNotExist
 
 class Config(models.Model):
 	id = models.AutoField(primary_key=True)
+	# help_text='your-lovely-teamname'
 	team = models.CharField(max_length=255)
-	team_id = models.CharField(max_length=255, default='000000')
-	contacts = models.CharField(max_length=600, default='Jia Guo')
+	
+	#team_id = models.CharField(max_length=255, default='000000')
+	
+	#contacts = models.CharField(max_length=600, default='Jia Guo')
+
+	# help_text='slack-channel-to-receive-notification'
 	slack_channel = models.CharField(max_length=600, default=None)
+
 	email_address = models.CharField(max_length=600, default=None)
 	crash_count = models.IntegerField(default=100)
 	total_user = models.IntegerField(default=50)
 	# TODO: splitter
+	#files = models.CharField(max_length=2000, default=None, help_text='file names you wanna monitor ')
 	files = models.CharField(max_length=2000, default=None)
 	# TODO: splitter
 	keywords = models.CharField(max_length=2000, default=None) 
