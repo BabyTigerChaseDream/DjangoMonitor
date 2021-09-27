@@ -178,15 +178,15 @@ class Issue:
 		
 		return self.symbols 
 
-	def files_filter(self,target_file:set,files=set())->bool:
+	def files_filter(self,target_file_set:set,files=set())->bool:
 		if not files:
 			files = self.files
-		return files.intersection(target_file) 
+		return files.intersection(target_file_set) 
 	
-	def symbols_filter(self,target_symbol:set,symbols=set())->bool:
+	def symbols_filter(self,target_symbol_set:set,symbols=set())->bool:
 		if not symbols:
 			files = self.symbols
-		return symbols.intersection(target_symbol) 
+		return symbols.intersection(target_symbol_set) 
 
 	def get_logs(self, frames=None)->str:
 		self.logs = ''

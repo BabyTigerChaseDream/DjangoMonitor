@@ -12,11 +12,10 @@ import os
 import schedule,time
 
 '''
-	api to retrieve data from firebase 
-	- debugging 
-	- glue logic 
+#########################
+#   API to Crash class  #
+#########################
 '''
-
 #################################################################
 # Configurable matrix: 
 #################################################################
@@ -25,7 +24,6 @@ total_user_max = '10'
 issue_count_max = '20'
 
 table_index = 'android'
-
 
 # api for user input timing 
 def setup_timeslot(end_date=datetime.utcnow(), delta=7):
@@ -128,7 +126,17 @@ def write_issues_to_crashissue_database(issue_id_list, acc_mode, table='CrashIss
 
 	#print('Total issues: ', len(IssueList))
 
+'''
+##############################
+#   API to userconfig class  #
+##############################
+'''
 
+'''
+#########################
+# devops #
+#########################
+'''
 def job_get_crash():
 	issue_id_list = get_crash_lists()
 	dump_issues(issue_id_list)
