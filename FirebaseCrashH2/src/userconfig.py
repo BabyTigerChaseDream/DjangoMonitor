@@ -30,7 +30,8 @@ class CGroup:
 	userconfig_acc_mode = 'rw'
 
 	def __init__(self, database=userconfig_database, table=userconfig_table, acc_mode=userconfig_acc_mode):
-		self.mydb = dblib.DB(database=database,acc_mode=acc_mode)
+		self.mydb = dblib.DB(database=database,acc_mode=acc_mode,simulate=True)
+		self.conn = self.mydb.connect()
 		self.table=table
 		self.all_userconfig=[]	
 
@@ -48,11 +49,15 @@ class CGroup:
 				timeslot
 			from `{table}` 
 		'''
-		get_userconfig_sqlcmd =  GET_USERCONFIG_SQLCMD.format(table=self.table)
+		self.get_userconfig_sqlcmd =  GET_USERCONFIG_SQLCMD.format(table=self.table)
 		# retrieve data 
-		cursor = self.mydb.DBEngine.execute(get_userconfig_sqlcmd)	
+		# BPlatform
+		#cursor = self.mydb.DBEngine.execute(get_userconfig_sqlcmd)	
+		# local 
+		self.conn.execute(self.get_userconfig_sqlcmd)	
+		self.cursor = self.conn
 
-		for config in cursor.fetchall():
+		for config in self.cursor.fetchall():
 			self.all_userconfig.append(config)
 
 		self.userconfig_count = len(self.all_userconfig)
@@ -61,6 +66,7 @@ class CGroup:
 '''
 # Single configuration 
 '''
+# CUser(**CG.all_userconfig[0]) -> works right 
 class CUser:
 	def __init__(self, **kwargs):
 
@@ -85,6 +91,9 @@ class CUser:
 
 		self.Crashes = None
 		self.IssueWorker = None
+
+		# cmd 
+		self.sqlcmd_filter_issue_by_crash_and_user_count = None
 
 	def sqlcmd_filter_with_crash_user(self, table=None, start_timestamp_str=None, end_timestamp_str=None,
 			crash_count_max=None, total_user_max=None, issue_count_max=ISSUE_LIMIT):
@@ -116,14 +125,16 @@ class CUser:
 		self.Crashes = firebase_db_common_lib.Crashes(table_index=self.platform, start_timestamp_str=start_timestamp_str, end_timestamp_str=end_timestamp_str, 
 								crash_count_max=crash_count_max, total_user_max=total_user_max, issue_count_max=issue_count_max)
 
-		self.sqlcmd_filter_issue_by_crash_and_user_count = SQLCMD_FILTER_ISSUE_BY_CRASH_AND_USER_COUNT.format(
-				table = dblib.firebase_crash_table[table],
+		self.sqlcmd_filter_issue_by_crash_and_user_count_raw = SQLCMD_FILTER_ISSUE_BY_CRASH_AND_USER_COUNT.format(
+				table = self.table,
 				start_timestamp_str=start_timestamp_str,
 				end_timestamp_str = end_timestamp_str,
 				crash_count_max = crash_count_max,
 				total_user_max = total_user_max,
 				issue_count_max = issue_count_max					
 		)
+		self.sqlcmd_filter_issue_by_crash_and_user_count = self.sqlcmd_filter_issue_by_crash_and_user_count_raw.replace('\t',' ').replace('\n',' ')
+		return self.sqlcmd_filter_issue_by_crash_and_user_count
 	
 	def get_crash_user_issue_id_list(self, table=None, start_timestamp_str=None, end_timestamp_str=None,
 			crash_count_max=None, total_user_max=None, issue_count_max=ISSUE_LIMIT, write=True, local_database='qa',local_table='CrashIssues'):
@@ -147,15 +158,19 @@ class CUser:
 	# Issue_id_list contains basic crashes user wants
 	# filter it further in API below 
 	
-	def filter_issue_id_with_files(self, write=True, local_database='qa',local_table='CrashIssues'):
+	def filter_issue_id_with_files(self, write=False, local_database='qa',local_table='CrashIssues'):
 		target_file_set = set()
+
+		if not self.issue_id_list:
+			self.get_crash_user_issue_id_list()
+
 		for issue_id in self.issue_id_list:
 			I = issues.Issue(issue_id=issue_id)
 			I.modelize_issue()
 			I.get_issue_frames()
 			I.get_files_in_frame()
 
-			for f in self.files.strip().split(','):
+			for f in self.files.replace(' ','').split(','):
 				target_file_set.add(f)
 				print('[DBG] file set for {issue_id}:{target_file_set}'.format(issue_id=issue_id,target_file_set=target_file_set))
 
@@ -166,8 +181,12 @@ class CUser:
 			print('[Info] Write retrieved issue ID to {local_database}.{local_table}'.format(local_database=local_database, local_table=local_table))
 			utils.write_issues_to_crashissue_database(issue_id_list=self.issue_id_files_list, acc_mode='rw', table=local_table, database=local_database)
 		
-	def filter_issue_id_with_keywords(self, write=True, local_database='qa',local_table='CrashIssues'):
+	def filter_issue_id_with_keywords(self, write=False, local_database='qa',local_table='CrashIssues'):
 		target_symbol_set = set()
+
+		if not self.issue_id_list:
+			self.get_crash_user_issue_id_list()
+
 		for issue_id in self.issue_id_list:
 			I = issues.Issue(issue_id=issue_id)
 			I.modelize_issue()
@@ -175,7 +194,7 @@ class CUser:
 			I.get_symbols_in_frame()
 
 			# TODO : need to debug it some -see how user input
-			for f in self.keywords.strip().split(','):
+			for f in self.keywords.replace(' ','').split(','):
 				target_symbol_set.add(f)
 				print('[DBG] file set for {issue_id}:{target_symbol_set}'.format(issue_id=issue_id,target_symbol_set=target_symbol_set))
 
@@ -186,8 +205,26 @@ class CUser:
 			print('[Info] Write retrieved issue ID to {local_database}.{local_table}'.format(local_database=local_database, local_table=local_table))
 			utils.write_issues_to_crashissue_database(issue_id_list=self.issue_id_keywords_list, acc_mode='rw', table=local_table, database=local_database)
 
-	def get_issue_with_both_files_and_keywords(self):
-		return set(self.issue_id_files_list).intersection(set(self.issue_id_keywords_list))
+	def get_issue_with_files_and_keywords(self)->list:
+		if not self.issue_id_keywords_list:
+			self.filter_issue_id_with_keywords()
+		if not self.issue_id_files_list:
+			self.filter_issue_id_with_files()
+		
+		self.issue_with_files_and_keywords_list = list( 
+			set(self.issue_id_files_list).intersection(set(self.issue_id_keywords_list)) 
+			)
+		
+		return self.issue_with_files_and_keywords_list 
+	'''
+	def get_issue_with_files_or_keywords(self)->list:
+		if not self.issue_id_keywords_list:
+			self.filter_issue_id_with_keywords()
+		if not self.issue_id_files_list:
+			self.filter_issue_id_with_files()
 
-	def get_issue_with_either_files_and_keywords(self):
-		return set(self.issue_id_files_list).union(set(self.issue_id_keywords_list))
+		self.issue_with_files_or_keywords_list = list( 
+			set(self.issue_id_files_list).union(set(self.issue_id_keywords_list)) 
+			)
+		return self.issue_with_files_or_keywords_list 
+	'''

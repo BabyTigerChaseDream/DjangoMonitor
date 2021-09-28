@@ -1,6 +1,9 @@
 #/usr/local/bin/python3
 
 from bkng.infra.db.dbconnectionmanager import DBConnectionManager
+import MySQLdb
+import MySQLdb.cursors
+
 
 # Database configuration 
 #################################################################
@@ -18,14 +21,42 @@ firebase_crash_table ={
     'sync':'firebase_crashlytics_com_booking_ANDROID_sync'
 }
 
+# access BPlatform database by default
 class DB:
-	def __init__(self,database=database,acc_mode=acc_mode):
-		#self.cm = None
-		#self.DBEngine = None
+	def __init__(self,simulate=True,database=database,acc_mode=acc_mode,user=None,password=None):
+		# param for db access
+		self.database = database
+		self.acc_mode = acc_mode
+		self.user = user
+		self.password = password
 
-		cm=DBConnectionManager()
-		DBEngine = cm.get_connection(database, acc_mode)
+		# mode : simulation/bplatform
+		self.simulate = simulate
 
-		self.cm=cm
-		self.DBEngine = DBEngine
-		#return self.DBEngine
+		# to be fill in: conn/cursor 
+		self.cm = None
+		# replace DBEngine -> conn
+		#self.DBEngine = None	
+		self.conn = None
+
+	def connect(self):
+		# simulate on mock data on localhost
+		if (self.simulate):
+			db = MySQLdb.connect(host="localhost",
+				user='django',
+				password='123456',
+				db='qa',cursorclass=MySQLdb.cursors.DictCursor)
+			self.conn=db.cursor()			
+		# simulate on mock data on localhost
+		else:
+			self.cm=DBConnectionManager()
+			#self.DBEngine = self.cm.get_connection(self.database, self.acc_mode)
+			self.conn= self.cm.get_connection(self.database, self.acc_mode)
+			#self.cur = self.DBEngine
+		return self.conn
+
+	def execute(self, sql_cmd):
+		if not self.conn:
+			self.connect()
+		return self.conn.execute(sql_cmd)
+		

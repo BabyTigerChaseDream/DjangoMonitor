@@ -6,12 +6,12 @@ import dblib
 import timelib
 from datetime import datetime 
 
-DBEngine = dblib.DB().DBEngine
+#DBEngine = dblib.DB().DBEngine
+conn = dblib.DB().conn
 table_index = 'android'
 table = dblib.firebase_crash_table[table_index]
 
 # local database used for debugging 
-
 
 class Issue:
 	RETRIEVE_ISSUE_CONTENT_BY_ISSUE_ID ='''
@@ -37,8 +37,11 @@ class Issue:
 		where issue_id='{issue_id}';
 	'''
 
-	def __init__(self, issue_id, table=table, DBEngine=DBEngine):
-		self.DBEngine = DBEngine
+	#def __init__(self, issue_id, table=table, DBEngine=DBEngine):
+	#def __init__(self, issue_id, table=table, conn=conn):
+	def __init__(self, issue_id, table=table, simulate=True):
+		#self.DBEngine = DBEngine
+		self.conn = dblib.DB(simulate=simulate).connect()
 		# sql to get data per request
 		self.table = table
 
@@ -81,7 +84,8 @@ class Issue:
 		if not sql_cmd:
 			sql_cmd = self.sql_cmd
 		try:
-			self.cursor = self.DBEngine.execute(sql_cmd)
+			#self.cursor = self.DBEngine.execute(sql_cmd)
+			self.cursor = self.conn.execute(sql_cmd)
 		except:
 			print('[ERROR] failed to get cursor from sql_cmd')
 
@@ -91,7 +95,8 @@ class Issue:
 		if not sql_cmd_app_versions:
 			sql_cmd_app_versions = self.sql_cmd_app_versions
 		try:
-			self.cursor_app_versions = self.DBEngine.execute(sql_cmd_app_versions)
+			#self.cursor_app_versions = self.DBEngine.execute(sql_cmd_app_versions)
+			self.cursor_app_versions = self.conn.execute(sql_cmd_app_versions)
 		except:
 			print('[ERROR] failed to get app versions from sql_cmd_app_versions')
 

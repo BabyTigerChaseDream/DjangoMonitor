@@ -35,6 +35,8 @@ class Config(models.Model):
 	#start_date = models.DateTimeField(default=timezone.now()-timezone.timedelta(days=15) )
 	timeslot = models.IntegerField(default=7)	
 	end_date = models.DateTimeField(default=timezone.now) 
+	# add one more fields: add all issue id list to corresponding userconfig  
+	issue_id_list = models.CharField(max_length=2000, default=None) 
 
 	def __str__(self): 
 		return '%s - %s ([%s]:[user]%s:[crashes]%s)' % \
@@ -73,6 +75,22 @@ class Config(models.Model):
 		`tags` varchar(600) DEFAULT NULL,
 	     PRIMARY KEY (id)
 	) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
+
+class UserCrash(models.Model):
+    #issue_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    issue_id = models.CharField(max_length=255)
+    issue_title = models.CharField(max_length=255)
+    issue_subtitle = models.CharField(max_length=255)
+	# latest crash app version 
+    app_version = models.CharField(max_length=255)
+    crash_count = models.IntegerField(default=0)
+    total_user = models.IntegerField(default=0)
+	# when this event happened
+    event_timestamp = models.CharField(max_length=255)
+    #retrieved_timestamp = models.TimeField() 
+    issue_logs = models.TextField(),
+    app_version_list = models.TextField(),
+    last_update_timestamp = models.CharField(max_length=255)
 
 '''
 

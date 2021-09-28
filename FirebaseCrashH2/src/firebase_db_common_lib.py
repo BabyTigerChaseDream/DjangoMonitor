@@ -45,9 +45,8 @@ class Crashes:
 		order by total_user desc limit {issue_count_max};
 	''' 
 	def __init__(self, table_index=table_index, start_timestamp_str=start_timestamp_str, end_timestamp_str=end_timestamp_str, 
-								crash_count_max=crash_count_max, total_user_max=total_user_max, issue_count_max=issue_count_max):
-
-		DBEngine = dblib.DB().DBEngine
+								crash_count_max=crash_count_max, total_user_max=total_user_max, issue_count_max=issue_count_max,
+								simulate=True):
 		self.issue_id_list = []
 		try:
 	    # read only database connection 
@@ -65,12 +64,15 @@ class Crashes:
 			print("Unexpected error:", sys.exc_info()[0])
 			raise
 
-		self.DBEngine = DBEngine
+		#DBEngine = dblib.DB().DBEngine
+		#self.DBEngine = DBEngine
+		self.conn = dblib.DB(simulate=simulate).connect()
 
 	def get_cursor(self,sql_cmd=None):
 		if not sql_cmd:
 			sql_cmd = self.sql_cmd
-		self.cursor = self.DBEngine.execute(sql_cmd)
+		#self.cursor = self.DBEngine.execute(sql_cmd)
+		self.cursor = self.conn.execute(sql_cmd)
 		return self.cursor
 		
 	##########################
@@ -84,7 +86,7 @@ class Crashes:
 		try:
 			for crash in self.cursor.fetchall():
 				print(crash)
-				self.issue_id_list.append(crash[issue_id_key])
+				self.issue_id_list.append(str(crash[issue_id_key]))
 		except AttributeError:
 			print('missing attribute : ',issue_id_key)
 		except:
