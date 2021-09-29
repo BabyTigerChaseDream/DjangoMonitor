@@ -7,6 +7,8 @@ from .views import (
 	ConfigUpdateView,
 	ConfigDeleteView,
 	#ConfigTeamView,
+	#TableView,
+	crashissues_list
 )
 
 from . import views
@@ -32,5 +34,7 @@ urlpatterns = [
 
 	#path('crashlist/<str:team_id>', views.about, name='userconfig-crashlist'),
 	path('crashlist/', views.crashlist, name='userconfig-crashlist'),
+	# display crash issues list 
+	path('crashdetail/', crashissues_list, name='crash-detail'),
 
 ]

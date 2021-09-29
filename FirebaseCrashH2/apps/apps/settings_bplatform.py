@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
 	# Jia <new pkg>: TODO install on BPlatform
 	'crispy_forms',
+	'django_tables2',
 	########
     'django.contrib.admin',
     'django.contrib.auth',

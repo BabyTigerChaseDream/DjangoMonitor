@@ -1,0 +1,17 @@
+{%extends 'userconfig/base.html' %}
+{% load render_table from django_tables2 %}
+{% render_table table %}
+{% block content %}
+	<h1>Crash Detail List Home !</h1> 
+	    {% for table in tables %}
+			<tr>
+				<td>{{table.issue_id}}</td>
+				<td>{{table.issue_title}}</td>
+				<td>{{table.issue_subtitle}}</td>
+				<td>{{table.crash_count}}</td>
+				<td>{{table.total_user}}</td>
+				<td>{{table.app_version_list}}</td>
+				<td>{{table.issue_logs}}</td>
+			</tr>			
+    	{% endfor %}
+{% endblock content%}

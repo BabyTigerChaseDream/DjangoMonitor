@@ -6,6 +6,8 @@ from django import forms
 from crispy_forms.helper import FormHelper
 from .filters import UserConfigFilter
 
+from .models import Config, Crashissues
+
 from django.views.generic import (
 	ListView, 
 	DetailView,
@@ -14,7 +16,8 @@ from django.views.generic import (
 	DeleteView
 )
 #from django.http import HttpResponse
-from .models import Config
+
+import django_tables2 as tables
 
 def home(request):
 	context = {
@@ -214,3 +217,23 @@ def Filters(request):
     userconfig_list = Config.objects.all()
     userconfig_filter = UserConfigFilter(request.GET, queryset=userconfig_list)
     return render(request, 'userconfig/userconfig_filter.html', {'filter': userconfig_filter, 'configs':userconfig_list})
+
+#Crash Issue Detail Session
+class CrashissuesTableView(tables.Table):
+    class Meta:
+        model = Crashissues
+
+class TableView(tables.SingleTableView):
+    table_class = CrashissuesTableView
+    queryset = Crashissues.objects.all()
+    template_name = "userconfig/crashissues_list.html"
+
+def crashissues_list(request):
+    table = Crashissues.objects.all()
+
+    return render(
+		request, 
+		#"userconfig/crashissues_list.html", 
+		"userconfig/crashissues_list_init.html", 
+		{ "tables": table }
+	)

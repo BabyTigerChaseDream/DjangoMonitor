@@ -36,7 +36,8 @@ class Config(models.Model):
 	timeslot = models.IntegerField(default=7)	
 	end_date = models.DateTimeField(default=timezone.now) 
 	# add one more fields: add all issue id list to corresponding userconfig  
-	issue_id_list = models.CharField(max_length=2000, default=None) 
+	issue_id_list = models.CharField(max_length=2000, default='0000-0000-0000-0000') 
+	issue_id_blacklist = models.CharField(max_length=500, default='0000-0000-0000-0000') 
 
 	def __str__(self): 
 		return '%s - %s ([%s]:[user]%s:[crashes]%s)' % \
@@ -94,3 +95,18 @@ class UserCrash(models.Model):
 
 '''
 
+class Crashissues(models.Model):
+    issue_id = models.CharField(primary_key=True, max_length=255)
+    issue_title = models.CharField(max_length=200, blank=True, null=True)
+    issue_subtitle = models.CharField(max_length=200, blank=True, null=True)
+    app_version = models.CharField(max_length=300, blank=True, null=True)
+    crash_count = models.PositiveIntegerField()
+    total_user = models.PositiveIntegerField()
+    event_timestamp = models.CharField(max_length=255, blank=True, null=True)
+    issue_logs = models.TextField(blank=True, null=True)
+    app_version_list = models.TextField(blank=True, null=True)
+    last_update_timestamp = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'CrashIssues'
