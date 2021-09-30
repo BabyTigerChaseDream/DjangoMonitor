@@ -40,8 +40,8 @@ class Config(models.Model):
 	issue_id_blacklist = models.CharField(max_length=500, default='0000-0000-0000-0000') 
 
 	def __str__(self): 
-		return '%s - %s ([%s]:[user]%s:[crashes]%s)' % \
-			(self.issue_id, self.title, self.event_timestamp, self.total_user, self.crash_count)
+		return '%s - %s (%s)' % \
+			(self.id, self.team, self.issue_id_list)
 
 	def create(self, **kwargs): 
 	    team_id = kwargs['issue_id']

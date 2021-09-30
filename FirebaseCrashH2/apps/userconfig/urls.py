@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, re_path
 
 from .views import (
 	ConfigListView,
@@ -8,7 +8,8 @@ from .views import (
 	ConfigDeleteView,
 	#ConfigTeamView,
 	#TableView,
-	crashissues_list
+	crashissues_list,
+	crashissues_list_user,
 )
 
 from . import views
@@ -36,5 +37,6 @@ urlpatterns = [
 	path('crashlist/', views.crashlist, name='userconfig-crashlist'),
 	# display crash issues list 
 	path('crashdetail/', crashissues_list, name='crash-detail'),
+	re_path('crashdetail_user/(?P<userconfig_id>\d+)/$', crashissues_list_user, name='crash-detail-user'),
 
 ]

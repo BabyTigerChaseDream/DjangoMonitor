@@ -233,7 +233,27 @@ def crashissues_list(request):
 
     return render(
 		request, 
-		#"userconfig/crashissues_list.html", 
-		"userconfig/crashissues_list_init.html", 
+		"userconfig/crashissues_list.html", 
 		{ "tables": table }
 	)
+
+def crashissues_list_user(request, userconfig_id):
+	print('In crashissues_list_user: ', userconfig_id)
+	UserConfig = Config.objects.filter(id=userconfig_id)
+	#print(UserConfig)
+	issue_id_list = UserConfig[0].issue_id_list
+
+	print('In issue_id_list >> ', issue_id_list)
+
+	issue_table_user = []
+	# get crash issue id in UserConfig 
+	for issue_id in issue_id_list.split(','):
+		one_issue = Crashissues.objects.filter(issue_id=issue_id)
+		issue_table_user.append(one_issue[0])
+
+	print("Total issue for this user : ", len(issue_table_user))
+
+	return render(request,
+				"userconfig/crashissues_list.html", 
+				{ "tables": issue_table_user }
+			)

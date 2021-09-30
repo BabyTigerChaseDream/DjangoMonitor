@@ -1,17 +1,36 @@
 {%extends 'userconfig/base.html' %}
-{% load render_table from django_tables2 %}
-{% render_table table %}
+{% load static %}}
 {% block content %}
+
+    <head>
+        <title>django-tables2 examples</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'userconfig/bootstrap.css' %}" />
+        <style type="text/css">
+			table, th, td {
+				font-family: arial, sans-serif;
+  				border:1px solid black;
+			}			
+			tr:nth-child {
+				background-color: #dddddd;
+			}
+
+        </style>
+    </head>
+
 	<h1>Crash Detail List Home !</h1> 
-	    {% for table in tables %}
+	<table summary="Crash Issue List">
+	
+	<table border = "1" cellpadding = "0.5" cellspacing = "0.5">
+	<tr><th> ID </th><th style="width:10%"> Title </th><th style="width:20%"> issue_subtitle </th><th> crash_count </th><th> total_user </th><th style="width:80%"> app_version_list </th><th style="width:30%"> issue_logs </th>
+	    {% for item in tables %}
 			<tr>
-				<td>{{table.issue_id}}</td>
-				<td>{{table.issue_title}}</td>
-				<td>{{table.issue_subtitle}}</td>
-				<td>{{table.crash_count}}</td>
-				<td>{{table.total_user}}</td>
-				<td>{{table.app_version_list}}</td>
-				<td>{{table.issue_logs}}</td>
+				<td>{{item.issue_id}}</td>
+				<td>{{item.issue_title}}</td>
+				<td>{{item.issue_subtitle}}</td>
+				<td>{{item.crash_count}}</td>
+				<td>{{item.total_user}}</td>
+				<td>{{item.app_version_list}}</td>
+				<td>{{item.issue_logs}}</td>
 			</tr>			
     	{% endfor %}
 {% endblock content%}
