@@ -1,4 +1,5 @@
 from django.urls import path, re_path
+from django.views.generic.base import RedirectView
 
 from .views import (
 	ConfigListView,
@@ -10,6 +11,8 @@ from .views import (
 	#TableView,
 	crashissues_list,
 	crashissues_list_user,
+	crashlist,
+	firebase
 )
 
 from . import views
@@ -39,4 +42,9 @@ urlpatterns = [
 	path('crashdetail/', crashissues_list, name='crash-detail'),
 	re_path('crashdetail_user/(?P<userconfig_id>\d+)/$', crashissues_list_user, name='crash-detail-user'),
 
+	# redirect to firebase for any issue_id
+    re_path('firebase/(?P<platform>\w+)/(?P<issue_id>\w+)/$',
+        #RedirectView.as_view(url='https://ota.booking.com/crashes/%(platform)s/%(issue_id)s'),
+		firebase,
+		name='firebase')
 ]

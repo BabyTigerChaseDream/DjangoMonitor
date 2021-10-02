@@ -243,6 +243,15 @@ def crashissues_list_user(request, userconfig_id):
 	#print(UserConfig)
 	issue_id_list = UserConfig[0].issue_id_list
 
+	platform = UserConfig[0].platform
+
+	if platform == 'ios':
+		platform = 'iOS'
+	elif platform == 'android':
+		platform = 'Android'
+	else:
+		platform = 'Android' 
+
 	print('In issue_id_list >> ', issue_id_list)
 
 	issue_table_user = []
@@ -255,5 +264,19 @@ def crashissues_list_user(request, userconfig_id):
 
 	return render(request,
 				"userconfig/crashissues_list.html", 
-				{ "tables": issue_table_user }
+				{ "tables": issue_table_user , 'platform':platform}
 			)
+
+def firebase(request,platform,issue_id):
+	if 'ios' in platform.lower():
+		platform = 'iOS'
+	elif 'android' in platform.lower():
+		platform = 'Android'
+	else:
+		platform = 'Android' 
+
+	print('[Firebase] ', platform , issue_id)
+	#return render(request, 'userconfig/firebase.html')
+	url='https://ota.booking.com/crashes/{platform}/{issue_id}'.format(platform=platform, issue_id=issue_id) 
+	print('[URL] ',url)	
+	return redirect(url)
