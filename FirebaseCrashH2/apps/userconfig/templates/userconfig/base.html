@@ -1,4 +1,9 @@
 {% load static %}
+<!-- <script src="{% static "jquery/jquery.js" %}"></script>
+<script src="{% static "jquery/plugins/jquery.cookie.js" %}"></script>
+<script src="{% static "jquery-3.6.0.min.js" %}"></script>
+-->
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,15 +27,15 @@
     <header class="site-header">
       <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
         <div class="container">
-          <a class="navbar-brand mr-4" href="{% url 'userconfig-home-with-filter' %}">Django userconfig</a>
+          <a class="navbar-brand mr-4" href="{% url 'userconfig-home-with-filter' %}">CrashMonitor</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav mr-auto">
-              <a class="nav-item nav-link" href="{% url 'userconfig-home-with-filter' %}">Home</a>
-              <a class="nav-item nav-link" href="{% url 'userconfig-crashlist' %}">CrashList</a>
-              <a class="nav-item nav-link" href="{% url 'config-create' %}">Add New Config</a>
+              <a class="nav-item nav-link" href="{% url 'userconfig-home-with-filter' %}">Configration-List</a>
+              <a class="nav-item nav-link" href="{% url 'userconfig-crashlist' %}">Crash-List</a>
+              <a class="nav-item nav-link" href="{% url 'config-create' %}"> Create-Config </a>
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
@@ -52,27 +57,14 @@
             {% endfor %}
           {% endif %}
           {% block content %}{% endblock %}
-        </div>
-        <div class="col-md-4">
-          <div class="content-section">
-            <h3>Our Sidebar</h3>
-            <p class='text-muted'>You can put any information here you'd like.
-              <ul class="list-group">
-                <li class="list-group-item list-group-item-light">Latest Posts</li>
-                <li class="list-group-item list-group-item-light">Announcements</li>
-                <li class="list-group-item list-group-item-light">Calendars</li>
-                <li class="list-group-item list-group-item-light">etc</li>
-              </ul>
-            </p>
-          </div>
-        </div>
-      </div>
+
     </main>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	-->
 </body>
 </html>

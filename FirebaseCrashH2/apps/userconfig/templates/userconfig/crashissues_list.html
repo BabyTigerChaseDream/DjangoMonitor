@@ -1,30 +1,28 @@
 {%extends 'userconfig/base.html' %}
 {% load static %}}
+{% block css %}
+	<link rel="stylesheet" type="text/css" href="{% static 'userconfig/sort-table.css' %}">
+{% endblock %}
 {% block content %}
 
-    <head>
-        <title>django-tables2 examples</title>
-        <link rel="stylesheet" type="text/css" href="{% static 'userconfig/bootstrap.css' %}" />
-        <style type="text/css">
-			table, th, td {
-				font-family: arial, sans-serif;
-  				border:1px solid black;
-			}			
-			tr:nth-child {
-				background-color: #dddddd;
-			}
-
-        </style>
-    </head>
-
-	<h1>Crash Detail List Home !</h1> 
-	<table summary="Crash Issue List">
+	<h1>Crash Issue List of <a href=" {% url 'config-detail' userconfig_id %}">#{{userconfig_id}}</a> </h1> 
 	
-	<table border = "1" cellpadding = "0.5" cellspacing = "0.5">
-	<tr><th> ID </th><th style="width:10%"> Platform </th><th style="width:20%"> Title </th><th> crash_count </th><th> total_user </th><th style="width:100%"> app_version_list </th>
-	    {% for item in tables %}
-			<tr>
-				<td>
+	<div class="table-responsive-sm">
+		<table id="dtBasicExample" class="table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+ 			 <thead>
+ 			   <tr>
+ 			     <th class="th-sm">Issue ID</th>
+ 			     <th class="th-sm">Platform</th>
+ 			     <th class="th-sm">Title</th>
+ 			     <th class="th-sm">crash_count</th>
+ 			     <th class="th-sm">total_user</th>
+				 <th class="th-sm">app_versions</th>
+ 			   </tr>
+ 			 </thead>
+ 			 <tbody>
+	    	 {% for item in tables %}
+ 			   <tr>
+				<th scope="row">
 					{% if platform == "Android" %}
 						<a href="{% url 'firebase' platform item.issue_id %}">{{item.issue_id}}</a>
 					{% elif platform == "iOS" %}
@@ -32,12 +30,27 @@
 					{% else %}
 						<a href="#">{{item.issue_id}}</a>
 					{% endif %}
-				</td>
+				</th>
 				<td>{{ platform }}</td>
-				<td>{{item.issue_title}}</td>
+				<td style="min-width: 80px;">{{item.issue_title}}</td>
 				<td>{{item.crash_count}}</td>
 				<td>{{item.total_user}}</td>
-				<td>{{item.app_version_list}}</td>
-			</tr>			
-    	{% endfor %}
+				<td style="min-width: 300px;">{{item.app_version_list}}</td
+ 			   </tr>
+    		 {% endfor %}
+ 			 </tbody>
+			 <tfoot>
+			  	<tr>
+ 			     <th>Issue ID</th>
+ 			     <th>Platform</th>
+ 			     <th>Title</th>
+ 			     <th>crash_count</th>
+ 			     <th>total_user</th>
+				 <th>app_versions</th>
+ 			   </tr>
+			 </tfoot>
+		</table>	
+	</div>
 {% endblock content%}
+
+
