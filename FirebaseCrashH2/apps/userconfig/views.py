@@ -3,6 +3,8 @@ from django.shortcuts import get_object_or_404
 from django.utils import timezone
 from django.contrib import messages
 from django import forms
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 from crispy_forms.helper import FormHelper
 from .filters import UserConfigFilter
 
@@ -26,14 +28,15 @@ def home(request):
 	#return HttpResponse('<h1>Userconfig Home</h1>')
 	return render(request, 'userconfig/home.html', context)
 
+'''
 class ConfigListView(ListView):
 	model = Config
 	# defaule view looking for :
 	# <app>/<model>_<viewtype>.htm
 	template_name = 'userconfig/home.html'
-	context_object_name = 'Configs'
-	ordering = ['-date_Configed']
-
+	context_object_name = 'configs'
+	paginate_by = 2
+'''
 class ConfigDetailView(DetailView):
 	model = Config
 
@@ -216,7 +219,21 @@ def crashlist(request):
 def Filters(request):
     userconfig_list = Config.objects.all()
     userconfig_filter = UserConfigFilter(request.GET, queryset=userconfig_list)
-    return render(request, 'userconfig/userconfig_filter.html', {'filter': userconfig_filter, 'configs':userconfig_list})
+
+	#paginator 
+    paginator = Paginator(userconfig_list, 2)
+    page = request.GET.get('page')
+    try:
+        userconfig_list = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        userconfig_list = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        userconfig_list = paginator.page(paginator.num_pages)
+
+    #return render(request, 'userconfig/userconfig_filter_home.html', {'filter': userconfig_filter, 'configs':userconfig_list})
+    return render(request, 'userconfig/userconfig_filter_home.html', {'filter': userconfig_filter, 'configs':userconfig_list})
 
 #Crash Issue Detail Session
 class CrashissuesTableView(tables.Table):
@@ -238,10 +255,12 @@ def crashissues_list(request):
 	)
 
 def crashissues_list_user(request, userconfig_id):
+	default_issue_id = '0000-0000-0000-0000'
 	print('In crashissues_list_user: ', userconfig_id)
 	UserConfig = Config.objects.filter(id=userconfig_id)
 	#print(UserConfig)
 	issue_id_list = UserConfig[0].issue_id_list
+	#team = UserConfig[0].team
 
 	platform = UserConfig[0].platform
 
@@ -255,16 +274,25 @@ def crashissues_list_user(request, userconfig_id):
 	print('In issue_id_list >> ', issue_id_list)
 
 	issue_table_user = []
-	# get crash issue id in UserConfig 
-	for issue_id in issue_id_list.split(','):
-		one_issue = Crashissues.objects.filter(issue_id=issue_id)
-		issue_table_user.append(one_issue[0])
 
-	print("Total issue for this user : ", len(issue_table_user))
+	if default_issue_id in issue_id_list:
+		messages.info(request, "No Crash Detected for your configuration !")
+	else:
+		# get crash issue id in UserConfig 
+		for issue_id in issue_id_list.split(','):
+			try:
+				one_issue = Crashissues.objects.filter(issue_id=issue_id)
+			except:
+				messages.error(request,'[missing crash id in database] ', issue_id)	
+				continue
+			issue_table_user.append(one_issue[0])
 
+		print("Total issue for this user : ", len(issue_table_user))
+
+		messages.info(request, "Crash Detected for your configuration !")
 	return render(request,
 				"userconfig/crashissues_list.html", 
-				{ "tables": issue_table_user , 'platform':platform}
+				{ "tables": issue_table_user , 'platform':platform, 'userconfig_id':userconfig_id}
 			)
 
 def firebase(request,platform,issue_id):

@@ -2,7 +2,7 @@ from django.urls import path, re_path
 from django.views.generic.base import RedirectView
 
 from .views import (
-	ConfigListView,
+	#ConfigListView,
 	ConfigDetailView,
 	ConfigCreateView,
 	ConfigUpdateView,
@@ -11,7 +11,7 @@ from .views import (
 	#TableView,
 	crashissues_list,
 	crashissues_list_user,
-	crashlist,
+	#crashlist,
 	firebase
 )
 
@@ -26,7 +26,7 @@ urlpatterns = [
 	# defaule view looking for :
 	# <app>/<model>_<viewtype>.html
 	# blog/config_list.html
-	#path('', ConfigListView.as_view(), name='userconfig-home'),
+	#path('listview', ConfigListView.as_view(), name='userconfig-home'),
 
 	path('config/<int:pk>/', ConfigDetailView.as_view(), name='config-detail'),
 #	# template : <model>_<form>.html -> config_form.html

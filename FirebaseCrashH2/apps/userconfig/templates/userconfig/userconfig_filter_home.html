@@ -1,12 +1,12 @@
 {%extends 'userconfig/base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
-	<button type="submit" class="btn btn-primary btn-block" style="width: 30rem;">Search Configuration</button>	
+	<button type="submit" class="btn btn-primary btn-block" style="width: 40rem;">Search Configuration</button>	
 	<p></p>
 	<div>
 		<!-- <article class="media content-section"> -->
 		<!-- <article class="form-group media content-section"> -->
-		<div class="form-group content-section" style="width: 30rem;">
+		<div class="form-group content-section" style="width: 40rem;">
 			<form method='GET'>
 				{{ filter.form.as_p }}
 			</form>	
@@ -14,8 +14,8 @@
 		</div>
 	</div>
 	<div>
-    {% for config in filter.qs %}
-		<div class="card card-fluid" style="width: 30rem;">
+    {% for config in configs %}
+		<div class="card card-fluid" style="width: 40rem;">
 			<h5 class="card-header">
 				<a class="card-link" href=" {% url 'config-detail' config.id %}">{{config.team}} Configuration</a>
 			</h5>
@@ -47,6 +47,29 @@
    	    <p></p>
     	</blockquote>
     {% endfor %}
+
+	<div class="footer">
+		<ul class="pagination">
+			{% if configs.has_previous %}
+			<li class="page-item"><a class="page-link" href="?page=1">First</a></li>
+			<li class="page-item"><a class="page-link" href="?page={{ configs.previous_page_number }}">Previous</a></li>
+			{% endif %}
+
+			{% for num in configs.paginator.page_range %}
+				{% if configs.number == num %}
+				<li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+				{% elif num > configs.number|add:'-3' and num < configs.number|add:'3' %}
+				<li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+				{% endif %}
+			{% endfor %}
+
+			{% if configs.has_next %}
+				<li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a></li>
+				<li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Last</a></li>
+			{% endif %}
+			</ul>
+	</div>
+
 	</div>
 {% endblock content%}
 

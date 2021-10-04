@@ -1,7 +1,21 @@
-{% extends "userconfig/base.html" %}
+{%extends 'userconfig/base.html' %}
+{% load crispy_forms_tags %}
 {% block content %}
+	<button type="submit" class="btn btn-primary btn-block" style="width: 40rem;">Search Configuration</button>	
+	<p></p>
+	<div>
+		<!-- <article class="media content-section"> -->
+		<!-- <article class="form-group media content-section"> -->
+		<div class="form-group content-section" style="width: 40rem;">
+			<form method='GET'>
+				{{ filter.form.as_p }}
+			</form>	
+		<!-- </article>	-->
+		</div>
+	</div>
+	<div>
     {% for config in configs %}
-		<div class="card card-fluid" style="width: 30rem;">
+		<div class="card card-fluid" style="width: 40rem;">
 			<h5 class="card-header">
 				<a class="card-link" href=" {% url 'config-detail' config.id %}">{{config.team}} Configuration</a>
 			</h5>
@@ -29,5 +43,25 @@
 				</div>
 			</div>
 		</div>
+	  	<blockquote class="blockquote mb-0">
+   	    <p></p>
+    	</blockquote>
     {% endfor %}
-{% endblock content %}
+		<div class="pagination">
+			<span class="step-links">
+				{% if configs.has_previous %}
+					<a href="?page={{ configs.previous_page_number }}">previous</a>
+				{% endif %}
+
+				<span class="current">
+					Page {{ configs.number }} of {{ configs.paginator.num_pages }}.
+				</span>
+
+				{% if configs.has_next %}
+					<a href="?page={{ configs.next_page_number }}">next</a>
+				{% endif %}
+			</span>
+		</div>
+	</div>
+{% endblock content%}
+
