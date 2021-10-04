@@ -221,7 +221,7 @@ def Filters(request):
     userconfig_filter = UserConfigFilter(request.GET, queryset=userconfig_list)
 
 	#paginator 
-    paginator = Paginator(userconfig_list, 2)
+    paginator = Paginator(userconfig_list, 5)
     page = request.GET.get('page')
     try:
         userconfig_list = paginator.page(page)

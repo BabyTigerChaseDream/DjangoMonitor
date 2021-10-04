@@ -48,7 +48,6 @@
     	</blockquote>
     {% endfor %}
 
-	<div class="footer">
 		<ul class="pagination">
 			{% if configs.has_previous %}
 			<li class="page-item"><a class="page-link" href="?page=1">First</a></li>
@@ -58,7 +57,7 @@
 			{% for num in configs.paginator.page_range %}
 				{% if configs.number == num %}
 				<li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
-				{% elif num > configs.number|add:'-3' and num < configs.number|add:'3' %}
+				{% elif num > configs.number|add:'-2' and num < configs.number|add:'2' %}
 				<li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
 				{% endif %}
 			{% endfor %}
@@ -68,7 +67,6 @@
 				<li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Last</a></li>
 			{% endif %}
 			</ul>
-	</div>
 
 	</div>
 {% endblock content%}
