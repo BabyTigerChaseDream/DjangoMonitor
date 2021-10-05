@@ -1,7 +1,6 @@
 {%extends 'userconfig/base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
-	<button type="submit" class="btn btn-primary btn-block" style="width: 40rem;">Search Configuration</button>	
 	<p></p>
 	<div>
 		<!-- <article class="media content-section"> -->
@@ -9,6 +8,7 @@
 		<div class="form-group content-section" style="width: 40rem;">
 			<form method='GET'>
 				{{ filter.form.as_p }}
+				<button type="submit" class="btn btn-primary btn-block" style="width: 40rem;">Search Configuration</button>	
 			</form>	
 		<!-- </article>	-->
 		</div>

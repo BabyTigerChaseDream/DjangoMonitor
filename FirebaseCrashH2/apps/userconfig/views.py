@@ -20,6 +20,9 @@ from django.views.generic import (
 #from django.http import HttpResponse
 
 import django_tables2 as tables
+from .email_helper import EmailHelper  
+from datetime import datetime
+
 
 def home(request):
 	context = {
@@ -308,3 +311,43 @@ def firebase(request,platform,issue_id):
 	url='https://ota.booking.com/crashes/{platform}/{issue_id}'.format(platform=platform, issue_id=issue_id) 
 	print('[URL] ',url)	
 	return redirect(url)
+
+'''
+############################
+# 	Notification blocks
+############################
+'''
+def EmailMsg():
+    msg = '<h1>Ding crash list </h1>'
+    bookingValue = "<H3>Think Customer First. </H4><H4>Own it.</H4> <H4>------Booking Value</H3>"
+    msg = msg + bookingValue
+    return msg
+
+#def send_notification(request,userconfig_id):
+	#UserConfig = Config.objects.filter(id=userconfig_id)
+def send_notification(request,userconfig_id):
+	UserConfig = Config.objects.filter(id=userconfig_id)	
+	email_address = UserConfig[0].email_address
+	slack_channel = UserConfig[0].slack_channel
+	print("[Email Type] ",type(email_address))
+
+	#receiver = []
+	#receiver.append(email_address)
+
+	#curDate = datetime.now()
+
+	email = EmailHelper()
+	title = 'Crash Monitor Notification'
+	#email.booking_send_email("China.Quality@booking.com", email_address, title, EmailMsg() )
+	if 'booking.com' in email_address:
+		email.booking_send_email("Crash.Monitor@booking.com", email_address, title, EmailMsg() )
+	
+	if slack_channel is not None:
+		email.booking_send_slack("Crash.Monitor",slack_channel, EmailMsg())
+
+	print("[UserConfig] ",UserConfig)	
+	
+	return render(request,
+			"userconfig/config_detail_notify.html", 
+			{ "config": UserConfig[0]}
+		)
