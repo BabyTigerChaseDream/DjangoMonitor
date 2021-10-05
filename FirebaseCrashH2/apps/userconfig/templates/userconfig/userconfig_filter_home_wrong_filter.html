@@ -1,16 +1,20 @@
 {%extends 'userconfig/base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
+	<p></p>
 	<div>
-		<article class="media content-section">
+		<!-- <article class="media content-section"> -->
+		<!-- <article class="form-group media content-section"> -->
+		<div class="form-group content-section" style="width: 40rem;">
 			<form method='GET'>
 				{{ filter.form.as_p }}
-				<button type="submit">Filter</button>	
+				<button type="submit" class="btn btn-primary btn-block" style="width: 40rem;">Search Configuration</button>	
 			</form>	
-		</article>	
+		<!-- </article>	-->
+		</div>
 	</div>
 	<div>
-    {% for config in filter.qs %}
+    {% for config in configs %}
 		<div class="card card-fluid" style="width: 40rem;">
 			<h5 class="card-header">
 				<a class="card-link" href=" {% url 'config-detail' config.id %}">{{config.team}} Configuration</a>
@@ -39,8 +43,12 @@
 				</div>
 			</div>
 		</div>
+	  	<blockquote class="blockquote mb-0">
+   	    <p></p>
+    	</blockquote>
     {% endfor %}
-			<ul class="pagination">
+
+		<ul class="pagination">
 			{% if configs.has_previous %}
 			<li class="page-item"><a class="page-link" href="?page=1">First</a></li>
 			<li class="page-item"><a class="page-link" href="?page={{ configs.previous_page_number }}">Previous</a></li>
@@ -59,6 +67,7 @@
 				<li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Last</a></li>
 			{% endif %}
 			</ul>
+
 	</div>
 {% endblock content%}
 
