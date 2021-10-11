@@ -20,6 +20,6 @@ COPY . /workspace
 
 RUN python3 -m pip install -r requirements.txt
 RUN yum install -y vim
-
+EXPOSE 8000
 #ENTRYPOINT [ "python" ]
 CMD [ "python","app.py" ]
