@@ -1,7 +1,5 @@
 requests <2.26.0
 Django == 3.2 
-python-gitlab ==2.5.0
-PyYAML >= 3.13, <4.0
 Flask-Caching <1.10.0
 pymysql==0.9.3
 django-crispy-forms==1.12.0

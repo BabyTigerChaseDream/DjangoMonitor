@@ -25,7 +25,10 @@ spec:
     # https://gitlab.booking.com/bplatform/core-charts/blob/master/official/java/values.yaml
     # - These values include things like the resource limits, service configuration, etc
     values:
-      port: 8000
+      ports:
+        - 443
+        - 80
+        - 5000
       dependencies:
         mysql:
           android: ro
@@ -50,13 +53,12 @@ spec:
       sidecars:
         nginx:
           enabled: true
-          appPort: 8000
+          appPort: 5000
       readinessProbe:
         httpGet:
-          path: /heartbeat/
-          port: 8000
+          path: /health_check
+          port: 5000
         periodSeconds: 30
-        initialDelaySeconds: 5
 
     strategy:
       # DQS is a production-like environment, so we need a real rollout strategy just like prod

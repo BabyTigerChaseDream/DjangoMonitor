@@ -1,0 +1,21 @@
+version: "3.9"
+   
+services:
+  db:
+    image: mysql:8.0
+    ports:
+      - '3307:3306'
+    environment:
+       MYSQL_DATABASE: 'qa'
+       MYSQL_USER: 'django'
+       MYSQL_PASSWORD: '123456'
+       MYSQL_ROOT_PASSWORD: '123456'
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/workspace
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
