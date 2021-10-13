@@ -28,7 +28,8 @@ spec:
       ports:
         - 443
         - 80
-        - 5000
+        - 8000
+        #- 5000
       dependencies:
         mysql:
           android: ro
@@ -53,11 +54,14 @@ spec:
       sidecars:
         nginx:
           enabled: true
-          appPort: 5000
+          #appPort: 5000
+          appPort: 8000
       readinessProbe:
         httpGet:
-          path: /health_check
-          port: 5000
+          #path: /health_check
+          #port: 5000
+          path: /heartbeat
+          port: 8000
         periodSeconds: 30
 
     strategy:
