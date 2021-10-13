@@ -100,6 +100,7 @@ class Crashissues(models.Model):
     issue_title = models.CharField(max_length=200, blank=True, null=True)
     issue_subtitle = models.CharField(max_length=200, blank=True, null=True)
     app_version = models.CharField(max_length=300, blank=True, null=True)
+    platform=models.CharField(max_length=60, choices=PLATFORM_CHOICES, default='android')
     crash_count = models.PositiveIntegerField()
     total_user = models.PositiveIntegerField()
     event_timestamp = models.CharField(max_length=255, blank=True, null=True)
@@ -109,4 +110,4 @@ class Crashissues(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'CrashIssues'
+        db_table = 'CrashIssuesDbg'
