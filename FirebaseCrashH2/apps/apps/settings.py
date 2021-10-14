@@ -58,6 +58,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+	'userconfig.middleware.healthcheck.HealthCheckMiddleware',
 ]
 
 ROOT_URLCONF = 'apps.urls'
@@ -107,6 +108,10 @@ DATABASES = {
  	       'PASSWORD': 'Ugzdq7E3PDzJ1wBp',
  	       'HOST':'dev-inttoolmdb-vip.lhr4.dqs.booking.com',
  	       'PORT':'3306',
+			'OPTIONS': {
+            'connect_timeout': 5,
+        }
+
  	   }
 }
 

@@ -27,7 +27,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+from django.contrib.messages import constants as messages
+MESSAGE_TAGS = {
+    messages.ERROR: 'danger',
+	}
 # Application definition
 
 INSTALLED_APPS = [
@@ -44,8 +47,7 @@ INSTALLED_APPS = [
     #'analyzer.apps.AnalyzerConfig',
     #'issue_import.apps.apps.IssueImportConfig',
 	#'notification.apps.NotificationConfig',
-	'userconfig.apps.UserconfigConfig',
-	'heartbeat.apps.HeartbeatConfig',
+	'userconfig.apps.UserconfigConfig'
 ]
 
 MIDDLEWARE = [
@@ -56,6 +58,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+	'userconfig.middleware.healthcheck.HealthCheckMiddleware',
 ]
 
 ROOT_URLCONF = 'apps.urls'
@@ -88,6 +91,15 @@ WSGI_APPLICATION = 'apps.wsgi.application'
 
 DATABASES = {
 
+	## localhost databse 
+ #   'default': {
+ #       'NAME': 'qa',
+ #       'ENGINE': 'django.db.backends.mysql',
+ #       'USER': 'django',
+ #       'PASSWORD': '123456',
+ #       'HOST':'localhost',
+ #       'PORT':'3306',
+ #   }
  	# BPlatform databse 
  	   'default': {
  	       'NAME': 'chinaqa',
@@ -96,6 +108,10 @@ DATABASES = {
  	       'PASSWORD': 'Ugzdq7E3PDzJ1wBp',
  	       'HOST':'dev-inttoolmdb-vip.lhr4.dqs.booking.com',
  	       'PORT':'3306',
+			'OPTIONS': {
+            'connect_timeout': 5,
+        }
+
  	   }
 }
 

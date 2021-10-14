@@ -60,9 +60,11 @@ spec:
         httpGet:
           #path: /health_check
           #port: 5000
-          path: /heartbeat
+          path: /readiness
           port: 8000
-        periodSeconds: 30
+        initialDelaySeconds: 20
+        timeoutSeconds: 5
+        #periodSeconds: 30
 
     strategy:
       # DQS is a production-like environment, so we need a real rollout strategy just like prod
