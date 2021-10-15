@@ -15,6 +15,8 @@ RUN python3 -m pip install flask
 RUN python3 -m pip install schedule
 #CMD ["python3 --version","python3 -m pip list | grep bkng","ll /etc/bookings"]
 
+ENV PYTHONUNBUFFERED=1
+
 WORKDIR /workspace
 COPY . /workspace
 
