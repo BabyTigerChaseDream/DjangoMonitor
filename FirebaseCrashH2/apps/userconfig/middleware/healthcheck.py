@@ -6,6 +6,7 @@ logger = logging.getLogger("healthz")
 
 class HealthCheckMiddleware(object):
     def __init__(self, get_response):
+        print(">>>>>>> JIA") 
         self.get_response = get_response
         # One-time configuration and initialization.
 
@@ -18,17 +19,20 @@ class HealthCheckMiddleware(object):
         return self.get_response(request)
 
     def healthz(self, request):
+        print(">>>>>>> JIA healthz") 
         """
         Returns that the server is alive.
         """
         return HttpResponse("OK")
 
     def readiness(self, request):
+        print(">>>>>>> JIA readiness") 
         # Connect to each database and do a generic standard SQL query
         # that doesn't write any data and doesn't depend on any tables
         # being present.
         try:
             from django.db import connections
+			
             for name in connections:
                 cursor = connections[name].cursor()
                 cursor.execute("SELECT 1;")
@@ -52,5 +56,4 @@ class HealthCheckMiddleware(object):
         except Exception as e:
             logger.exception(e)
             return HttpResponseServerError("cache: cannot connect to cache.")
-
         return HttpResponse("OK")

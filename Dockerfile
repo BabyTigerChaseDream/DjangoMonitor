@@ -25,4 +25,5 @@ RUN python3 -m pip install -r requirements.txt
 EXPOSE 8000
 #ENTRYPOINT [ "python" ]
 #CMD [ "python","app.py" ]
-CMD ["python","FirebaseCrashH2/apps/manage.py","runserver"]
+#CMD ["python","FirebaseCrashH2/apps/manage.py","runserver","0.0.0.0:8000"]
+#CMD ["python","FirebaseCrashH2/apps/manage.py","runserver","0.0.0.0:8000/readiness"]
