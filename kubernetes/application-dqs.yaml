@@ -56,6 +56,14 @@ spec:
           enabled: true
           appPort: 8000
           #appPort: 5000
+        sysctlv2:
+          enabled: false
+          dependencies:
+          - "Bookings::SysCtl::XML_Feature"
+          - "Bookings::SysCtl::SiteVars"
+          - "Bookings::SysCtl::AccessCtl::PenTestIPs"
+      keystoreInit:
+          enabled: false
       readinessProbe:
         httpGet:
           path: /heartbeat
