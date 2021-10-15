@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-l9pp-e-%%mvu*namelukv!(5$awz35+vjve@#0=xig0%y+^!zt
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 from django.contrib.messages import constants as messages
 MESSAGE_TAGS = {
