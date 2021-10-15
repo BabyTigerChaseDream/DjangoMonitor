@@ -28,8 +28,7 @@ spec:
       ports:
         - 443
         - 80
-        - 8000
-        #- 5000
+        - 5000
       dependencies:
         mysql:
           android: ro
@@ -54,17 +53,12 @@ spec:
       sidecars:
         nginx:
           enabled: true
-          #appPort: 5000
-          appPort: 8000
+          appPort: 5000
       readinessProbe:
         httpGet:
-          #path: /health_check
-          #port: 5000
-          path: /readiness
-          port: 8000
-        initialDelaySeconds: 20
-        timeoutSeconds: 5
-        #periodSeconds: 30
+          path: /health_check
+          port: 5000
+        periodSeconds: 30
 
     strategy:
       # DQS is a production-like environment, so we need a real rollout strategy just like prod

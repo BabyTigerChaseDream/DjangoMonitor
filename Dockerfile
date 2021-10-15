@@ -15,13 +15,11 @@ RUN python3 -m pip install flask
 RUN python3 -m pip install schedule
 #CMD ["python3 --version","python3 -m pip list | grep bkng","ll /etc/bookings"]
 
-ENV PYTHONUNBUFFERED=1
-
 WORKDIR /workspace
 COPY . /workspace
 
 RUN python3 -m pip install -r requirements.txt
-#RUN yum install -y vim
+RUN yum install -y vim
 EXPOSE 8000
 #ENTRYPOINT [ "python" ]
 #CMD [ "python","app.py" ]
