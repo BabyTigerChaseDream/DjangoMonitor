@@ -17,9 +17,13 @@ spec:
       capabilities:
       - dlb
     chart:
-      name: python
-      version: ^3
+      name: java
+      version: 3.x.x
       repoUrl: https://artifactory.booking.com/charts
+    #  name: python
+    #  version: ^3
+    #  repoUrl: https://artifactory.booking.com/charts
+
     # The values listed below are a subset of all the available values. You can find the full list of
     # values for java shipper applications in the values.yaml of the java chart in the core-charts repository
     # https://gitlab.booking.com/bplatform/core-charts/blob/master/official/java/values.yaml
