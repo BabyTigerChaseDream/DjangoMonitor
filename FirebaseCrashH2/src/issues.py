@@ -10,6 +10,7 @@ from datetime import datetime
 conn = dblib.DB().conn
 table_index = 'android'
 table = dblib.firebase_crash_table[table_index]
+database = 'android'
 
 # local database used for debugging 
 
@@ -39,11 +40,12 @@ class Issue:
 
 	#def __init__(self, issue_id, table=table, DBEngine=DBEngine):
 	#def __init__(self, issue_id, table=table, conn=conn):
-	def __init__(self, issue_id, table=table, simulate=False):
+	def __init__(self, issue_id, table=table, database=database, simulate=False):
 		#self.DBEngine = DBEngine
 		self.conn = dblib.DB(simulate=simulate).connect()
-		# sql to get data per request
+		# specify both database and table , in order to access right
 		self.table = table
+		self.database = database 
 
 		# fields in django models of Issue table
 		self.content = {
@@ -81,9 +83,11 @@ class Issue:
 	    return self.__dict__	
 
 	def get_cursor(self,sql_cmd=None):
+		sql_cmd_use_database = 'use '+str(self.database)
 		if not sql_cmd:
 			sql_cmd = self.sql_cmd
 		try:
+			self.cursor = self.conn.execute(sql_cmd_use_database)
 			#self.cursor = self.DBEngine.execute(sql_cmd)
 			self.cursor = self.conn.execute(sql_cmd)
 		except:
@@ -106,6 +110,9 @@ class Issue:
 		self.get_cursor(sql_cmd=sql_cmd)
 		issue_content = self.cursor.fetchone()
 
+		if len(issue_content) == 0:
+			print("[Warning] issue_content empty ")
+
 		self.content['platform']=issue_content['platform'] 
 		self.content['issue_title']=issue_content['issue_title'] 
 		self.content['issue_subtitle']=issue_content['issue_subtitle'] 
@@ -113,7 +120,6 @@ class Issue:
 		self.content['crash_count']=issue_content['crash_count'] 
 		self.content['total_user']=issue_content['total_user'] 
 		self.content['event_timestamp']= issue_content['event_timestamp'].strftime('%Y-%m-%d %H:%M:%S')
-
 
 		try:
 			issue_exceptions = issue_content[exception_key]
