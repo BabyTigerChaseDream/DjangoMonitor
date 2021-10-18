@@ -1,5 +1,5 @@
 #/usr/local/bin/python3
-from FirebaseCrashH2.src.userconfig import CUser
+#from FirebaseCrashH2.src.userconfig import CUser
 import issues
 import timelib 
 import dblib
@@ -164,32 +164,32 @@ def write_to_cuser(conn, config_id, issue_id_list, table='userconfig'):
 			print('[error on issue]: ',config_id)
 			print('[sql_cmd]: ',sql_cmd)
 
-def write_issue_id_list_to_userconfig(acc_mode='rw', table='userconfig', database='qa'):
-	# DQS database info
-	#userconfig_database = 'chinaqa'
-	#userconfig_table = 'Config'
+# comment out due to module missing 
+#def write_issue_id_list_to_userconfig(acc_mode='rw', table='userconfig', database='qa'):
+#	# DQS database info
+#	#userconfig_database = 'chinaqa'
+#	#userconfig_table = 'Config'
+#
+#	# local database info
+#	userconfig_database = 'qa'
+#	userconfig_table = 'userconfig_config'
+#	userconfig_acc_mode = 'rw'
+#	
+#	mydb = dblib.DB(database=database,acc_mode=acc_mode)
+#	conn=mydb.connect()
+#
+#	CGroup = userconfig.CGroup(database=userconfig_database, table=userconfig_table, acc_mode=userconfig_acc_mode)
+#	# fetch all config in database
+#	CGroup.fetchall()
+#	CGroup.all_userconfig
+#
+#	for config in CGroup.all_userconfig:
+#		CUser = userconfig.CUser(**config)
+#		CUser.get_issue_with_files_and_keywords()
+#		config_id =  CUser.id
+#		issue_id_list = CUser.issue_with_files_and_keywords_list
+#		write_to_cuser(conn=conn, config_id=config_id, issue_id_list=issue_id_list, table=table)	
 
-	# local database info
-	userconfig_database = 'qa'
-	userconfig_table = 'userconfig_config'
-	userconfig_acc_mode = 'rw'
-	
-	mydb = dblib.DB(database=database,acc_mode=acc_mode)
-	conn=mydb.connect()
-
-	CGroup = userconfig.CGroup(database=userconfig_database, table=userconfig_table, acc_mode=userconfig_acc_mode)
-	# fetch all config in database
-	CGroup.fetchall()
-	CGroup.all_userconfig
-
-	for config in CGroup.all_userconfig:
-		CUser = userconfig.CUser(**config)
-		CUser.get_issue_with_files_and_keywords()
-		config_id =  CUser.id
-		issue_id_list = CUser.issue_with_files_and_keywords_list
-		write_to_cuser(conn=conn, config_id=config_id, issue_id_list=issue_id_list, table=table)	
-
-'''
 #########################
 # devops #
 #########################
@@ -201,7 +201,6 @@ def job_test():
 	print('VarTime: ',start_timestamp_str)
 	print('Now: ',datetime.utcnow())
 
-'''
 '''
 if __name__ == '__main__':
 	end_date =datetime.utcnow() 
