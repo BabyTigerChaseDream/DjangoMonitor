@@ -30,7 +30,7 @@ class CGroup:
 	userconfig_acc_mode = 'rw'
 
 	def __init__(self, database=userconfig_database, table=userconfig_table, acc_mode=userconfig_acc_mode):
-		self.mydb = dblib.DB(database=database,acc_mode=acc_mode,simulate=True)
+		self.mydb = dblib.DB(database=database,acc_mode=acc_mode,simulate=False)
 		self.conn = self.mydb.connect()
 		self.table=table
 		self.all_userconfig=[]	

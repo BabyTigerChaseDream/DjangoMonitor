@@ -25,7 +25,7 @@ firebase_crash_table ={
 
 # access BPlatform database by default
 class DB:
-	def __init__(self,simulate=True,database=database,acc_mode=acc_mode,user=None,password=None):
+	def __init__(self,simulate=False,database=database,acc_mode=acc_mode,user=None,password=None):
 		# param for db access
 		self.database = database
 		self.acc_mode = acc_mode

@@ -46,7 +46,7 @@ class Crashes:
 	''' 
 	def __init__(self, table_index=table_index, start_timestamp_str=start_timestamp_str, end_timestamp_str=end_timestamp_str, 
 								crash_count_max=crash_count_max, total_user_max=total_user_max, issue_count_max=issue_count_max,
-								simulate=True):
+								simulate=False):
 		self.issue_id_list = []
 		try:
 	    # read only database connection 

@@ -39,7 +39,7 @@ class Issue:
 
 	#def __init__(self, issue_id, table=table, DBEngine=DBEngine):
 	#def __init__(self, issue_id, table=table, conn=conn):
-	def __init__(self, issue_id, table=table, simulate=True):
+	def __init__(self, issue_id, table=table, simulate=False):
 		#self.DBEngine = DBEngine
 		self.conn = dblib.DB(simulate=simulate).connect()
 		# sql to get data per request
