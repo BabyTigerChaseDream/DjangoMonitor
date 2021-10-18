@@ -107,6 +107,13 @@ class Issue:
 		return self.cursor_app_versions	
 
 	def modelize_issue(self, exception_key='exceptions', issue_id_key='issue_id', sql_cmd=None, sql_cmd_app_versions=None)->dict:
+		# 1018: TBD 
+		'''
+			cursor=I.get_cursor()
+			cursor.fetchone()
+			('43e2161ef1430b65cde82f0a7bc6d956', None, 'InstayUploader.java line 27', 'com.booking.ugc.instayratings.InstayUploader.uploadRating', '"29.1"', 1222, 1026, datetime.datetime(2021, 10, 4, 10, 27, 38), None)	
+		'''
+		#[notes] one time only
 		self.get_cursor(sql_cmd=sql_cmd)
 		issue_content = self.cursor.fetchone()
 
@@ -123,8 +130,11 @@ class Issue:
 
 		try:
 			issue_exceptions = issue_content[exception_key]
-		except:
-			KeyError("Missing exceptions in issue_id:",issue_content[issue_id_key])
+		except Exception as e:
+			print("[Exceptions] :",str(e))
+			print(" >>> issue_content :\n",)
+			for k,v in issue_content.items():
+				print("{k}:{v}".format(k=k,v=v) )
 	
 		#print('[issue_content keys] ',issue_content.keys() )
 		#type(issue_content[exception_key])
