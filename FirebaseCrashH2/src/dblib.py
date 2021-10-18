@@ -1,8 +1,10 @@
 #/usr/local/bin/python3
 
 from bkng.infra.db.dbconnectionmanager import DBConnectionManager
+'''
 import MySQLdb
 import MySQLdb.cursors
+'''
 
 
 # Database configuration 
@@ -42,11 +44,15 @@ class DB:
 	def connect(self):
 		# simulate on mock data on localhost
 		if (self.simulate):
+			pass 
+		# comment out on BKS 
+			'''
 			db = MySQLdb.connect(host="localhost",
 				user='django',
 				password='123456',
 				db='qa',cursorclass=MySQLdb.cursors.DictCursor)
 			self.conn=db.cursor()			
+			'''
 		# simulate on mock data on localhost
 		else:
 			self.cm=DBConnectionManager()
