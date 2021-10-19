@@ -2,6 +2,8 @@
 #from FirebaseCrashH2.src.draft_all_lib import DBEngine
 from collections import namedtuple
 import json
+
+from sqlalchemy.util.langhelpers import symbol
 import dblib
 import timelib
 from datetime import datetime 
@@ -185,7 +187,7 @@ class Issue:
 				self.get_stacktraces()
 				frames = []
 				frames.extend(s['frames'] for s in self.stacktraces)
-				self.frames = frames 
+				self.frames = frames[0]
 			except Exception as e:
 				print("[Exceptions] :",str(e))		
 				print("	>>> stacktraces content <<<",self.stacktraces)
@@ -199,8 +201,12 @@ class Issue:
 			frames = self.get_issue_frames()
 
 		for frame in frames:
-			self.files.add(frame['file'])
-		
+			try:
+				file_name = frame['file'] or 'NA'
+				self.files.add(file_name)
+			
+			except Exception as e:
+				print("[Exceptions] :",str(e))	
 		return self.files 
 
 	def get_symbols_in_frame(self,frames=None)->set:
@@ -210,7 +216,8 @@ class Issue:
 			frames = self.frames
 
 		for frame in frames:
-			self.symbols.add(frame['symbol'])
+			symbol_name = frame['symbol'] or 'NA'
+			self.symbols.add(symbol_name)
 		
 		return self.symbols 
 
@@ -231,6 +238,8 @@ class Issue:
 		if not frames:
 			frames = self.frames
 		for frame in frames:
-			self.logs += frame['file'] + sep + frame['symbol'] + '\n'
+			file_name = frame['file'] or 'NA' 
+			symbol_name = frame['symbol'] or 'NA'	
+			self.logs += file_name + sep + symbol_name + '\n'
 		
 		return self.logs
