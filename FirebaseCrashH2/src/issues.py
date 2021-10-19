@@ -129,23 +129,21 @@ class Issue:
 			self.content['total_user']=issue_content['total_user'] 
 			self.content['event_timestamp']= issue_content['event_timestamp'].strftime('%Y-%m-%d %H:%M:%S')
 			issue_exceptions = issue_content[exception_key]
+			#type(issue_content[exception_key])
+			#<class 'str'>
+			# DO NOT change the orders of lines below:
+			# exceptions -> frames -> logs 
+			self.exceptions = json.loads(issue_exceptions)[0]
+
+			self.get_issue_frames()
+			# the order matters 
+			self.content['issue_logs'] = self.get_logs()
+
 		except Exception as e:
 			print("[Exceptions] :",str(e))
 			print(" >>> issue_content :\n",)
 			for k,v in issue_content.items():
 				print("{k}:{v}".format(k=k,v=v) )
-	
-		#print('[issue_content keys] ',issue_content.keys() )
-		#type(issue_content[exception_key])
-		#<class 'str'>
-
-		# don't change the orders of lines below:
-		# exceptions -> frames -> logs 
-		self.exceptions = json.loads(issue_exceptions)[0]
-
-		self.get_issue_frames()
-		# the order matters 
-		self.content['issue_logs'] = self.get_logs()
 
 		# get app_version_list
 		self.get_cursor_app_versions(sql_cmd_app_versions=sql_cmd_app_versions)
