@@ -8,9 +8,12 @@ from datetime import datetime
 
 #DBEngine = dblib.DB().DBEngine
 conn = dblib.DB().conn
+#DB name
+database = 'android'
+# tables in database above
 table_index = 'android'
 table = dblib.firebase_crash_table[table_index]
-database = 'android'
+stacktrace_table = 'firebase_crashlytics_stacktraces'
 
 # local database used for debugging 
 
@@ -38,11 +41,19 @@ class Issue:
 		where issue_id='{issue_id}';
 	'''
 
+	RETRIEVE_STACKTRACES_BY_ISSUE_ID = '''
+		select 
+			stacktraces 
+		from `{stacktrace_table}` 
+		where issue_id='{issue_id}';
+	'''
+
 	#def __init__(self, issue_id, table=table, DBEngine=DBEngine):
 	#def __init__(self, issue_id, table=table, conn=conn):
 	def __init__(self, issue_id, table=table, database=database, simulate=False):
 		#self.DBEngine = DBEngine
 		self.conn = dblib.DB(simulate=simulate).connect()
+		#self.issue_id = str(issue_id)
 		# specify both database and table , in order to access right
 		self.table = table
 		self.database = database 
@@ -63,8 +74,8 @@ class Issue:
 			'last_update_timestamp' : 'now'	
 		}
 
-		self.exceptions = None 
 		self.frames = None
+		self.stacktraces= None
 
 		self.files = set()
 		self.symbols = set()
@@ -79,6 +90,10 @@ class Issue:
 				issue_id = str(issue_id)
 			)
 
+		self.sql_cmd_stacktraces = Issue.RETRIEVE_STACKTRACES_BY_ISSUE_ID.format(
+			stacktrace_table=stacktrace_table,
+			issue_id = issue_id 
+		)
 	def myattr(self):
 	    return self.__dict__	
 
@@ -106,13 +121,7 @@ class Issue:
 
 		return self.cursor_app_versions	
 
-	def modelize_issue(self, exception_key='exceptions', issue_id_key='issue_id', sql_cmd=None, sql_cmd_app_versions=None)->dict:
-		# 1018: TBD 
-		'''
-			cursor=I.get_cursor()
-			cursor.fetchone()
-			('43e2161ef1430b65cde82f0a7bc6d956', None, 'InstayUploader.java line 27', 'com.booking.ugc.instayratings.InstayUploader.uploadRating', '"29.1"', 1222, 1026, datetime.datetime(2021, 10, 4, 10, 27, 38), None)	
-		'''
+	def modelize_issue(self,  sql_cmd=None, sql_cmd_app_versions=None)->dict:
 		#[notes] one time only
 		self.get_cursor(sql_cmd=sql_cmd)
 		issue_content = self.cursor.fetchone()
@@ -128,12 +137,6 @@ class Issue:
 			self.content['crash_count']=issue_content['crash_count'] 
 			self.content['total_user']=issue_content['total_user'] 
 			self.content['event_timestamp']= issue_content['event_timestamp'].strftime('%Y-%m-%d %H:%M:%S')
-			issue_exceptions = issue_content[exception_key]
-			#type(issue_content[exception_key])
-			#<class 'str'>
-			# DO NOT change the orders of lines below:
-			# exceptions -> frames -> logs 
-			self.exceptions = json.loads(issue_exceptions)[0]
 
 			self.get_issue_frames()
 			# the order matters 
@@ -166,19 +169,34 @@ class Issue:
 		print('place holder')
 		pass
 
-	def get_issue_frames(self, frames_key='frames')->list:
-		if not self.exceptions:
-			ValueError('Please run \'modelize_issue\' to get exceptions')
-		# list of dict-> failure stracktrace 
-		self.frames=self.exceptions[frames_key]
+	def get_stacktraces(self)->list:
+		self.get_cursor(sql_cmd=self.sql_cmd_stacktraces)
+		try:
+			stacktraces=self.cursor.fetchone()
+			self.stacktraces = json.loads(stacktraces['stacktraces'])
+		except Exception as e:
+			print("[Exceptions] :",str(e))		
+		
+		return self.stacktraces
 
+	def get_issue_frames(self)->list:
+		if not self.stacktraces:
+			try:
+				self.get_stacktraces()
+				frames = []
+				frames.extend(s['frames'] for s in self.stacktraces)
+				self.frames = frames 
+			except Exception as e:
+				print("[Exceptions] :",str(e))		
+				print("	>>> stacktraces content <<<",self.stacktraces)
+		
 		return self.frames
 
-	def get_files_in_frame(self,frames=None)->set:
+	def get_files_in_frame(self)->set:
 		self.files = set()
 
-		if not frames:
-			frames = self.frames
+		if not self.frames:
+			frames = self.get_issue_frames()
 
 		for frame in frames:
 			self.files.add(frame['file'])
