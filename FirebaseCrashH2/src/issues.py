@@ -120,15 +120,14 @@ class Issue:
 		if len(issue_content) == 0:
 			print("[Warning] issue_content empty ")
 
-		self.content['platform']=issue_content['platform'] 
-		self.content['issue_title']=issue_content['issue_title'] 
-		self.content['issue_subtitle']=issue_content['issue_subtitle'] 
-		self.content['app_version']= issue_content['app_version'] 
-		self.content['crash_count']=issue_content['crash_count'] 
-		self.content['total_user']=issue_content['total_user'] 
-		self.content['event_timestamp']= issue_content['event_timestamp'].strftime('%Y-%m-%d %H:%M:%S')
-
 		try:
+			self.content['platform']=issue_content['platform'] 
+			self.content['issue_title']=issue_content['issue_title'] 
+			self.content['issue_subtitle']=issue_content['issue_subtitle'] 
+			self.content['app_version']= issue_content['app_version'] 
+			self.content['crash_count']=issue_content['crash_count'] 
+			self.content['total_user']=issue_content['total_user'] 
+			self.content['event_timestamp']= issue_content['event_timestamp'].strftime('%Y-%m-%d %H:%M:%S')
 			issue_exceptions = issue_content[exception_key]
 		except Exception as e:
 			print("[Exceptions] :",str(e))
