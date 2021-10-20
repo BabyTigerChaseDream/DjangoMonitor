@@ -92,7 +92,7 @@ class Issue:
 			)
 
 		self.sql_cmd_stacktraces = Issue.RETRIEVE_STACKTRACES_BY_ISSUE_ID.format(
-			stacktrace_table=stacktrace_table,
+			stacktrace_table=self.stacktrace_table,
 			issue_id = issue_id 
 		)
 	def myattr(self):
