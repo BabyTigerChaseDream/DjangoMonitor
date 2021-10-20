@@ -5,7 +5,7 @@ import timelib
 import dblib
 import firebase_db_common_lib 
 from datetime import datetime, timedelta
-import userconfig
+#import userconfig
 
 import jsmod
 import json
@@ -144,12 +144,7 @@ def write_issues_to_crashissue_database(issue_id_list, acc_mode, table='CrashIss
 # local database info
 userconfig_database = 'qa'
 userconfig_table = 'userconfig_config'
-userconfig_acc_mode = 'rw'
-
-# fetch data from userconfig
-# generate sql_cmd to get the issue_id from chinaqa:CrashIssuesDbg
-# <source table> chinaqa:userconfig , get user input
-# <dest table> chinaqa:CrashIssuesDbg , filter item based on user input
+acc_mode = 'rw'
 
 def write_to_cuser(conn, config_id, issue_id_list, table='userconfig'):
 	issue_id_list_string =  ",".join(issue_id_list)
@@ -184,12 +179,12 @@ def write_to_cuser(conn, config_id, issue_id_list, table='userconfig'):
 #	mydb = dblib.DB(database=database,acc_mode=acc_mode)
 #	conn=mydb.connect()
 #
-#	CGroup = userconfig.CGroup(database=userconfig_database, table=userconfig_table, acc_mode=userconfig_acc_mode)
+#	ConfigGroup = userconfig.ConfigGroup(database=userconfig_database, table=userconfig_table, acc_mode=userconfig_acc_mode)
 #	# fetch all config in database
-#	CGroup.fetchall()
-#	CGroup.all_userconfig
+#	ConfigGroup.fetchall()
+#	ConfigGroup.all_userconfig
 #
-#	for config in CGroup.all_userconfig:
+#	for config in ConfigGroup.all_userconfig:
 #		CUser = userconfig.CUser(**config)
 #		CUser.get_issue_with_files_and_keywords()
 #		config_id =  CUser.id

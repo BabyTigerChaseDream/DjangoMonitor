@@ -4,6 +4,7 @@
 # retreive userconfig in Config table  
 # one userconfig enter maps to one UserConfig Class
 #########################################
+from sys import platform
 import dblib
 import firebase_db_common_lib
 import issues
@@ -19,49 +20,85 @@ DATE_FORMAT = "%Y-%m-%d %H:%M:%S"
 '''
 # all configurations in Config models
 '''
-class CGroup:
-	# DQS database info
-	#userconfig_database = 'chinaqa'
-	#userconfig_table = 'Config'
-
+class ConfigGroup:
 	# local database info
-	userconfig_database = 'qa'
+	database = 'chinaqa'
 	userconfig_table = 'userconfig_config'
-	userconfig_acc_mode = 'rw'
+	crash_table = 'CrashIssuesDbg'
+	acc_mode = 'rw'
 
-	def __init__(self, database=userconfig_database, table=userconfig_table, acc_mode=userconfig_acc_mode):
+	def __init__(self, database=database, userconfig_table=userconfig_table, 
+				acc_mode=acc_mode):
 		self.mydb = dblib.DB(database=database,acc_mode=acc_mode,simulate=False)
 		self.conn = self.mydb.connect()
-		self.table=table
-		self.all_userconfig=[]	
+		self.userconfig_table=userconfig_table
+		self.userparams=[]	
+		self.user_sqlcmd=[]	
 
-	# reading userconfig from userconfig database directly -> generate sql_cmd
-	def fetchall(self):
-		GET_USERCONFIG_SQLCMD='''
+	# reading userconfig parameters from userconfig database 
+	def get_userconfig_param(self):
+		GET_USERCONFIG_PARAM_SQLCMD='''
 			select 
-				id,
+				id, 
 				team,
+				platform,
 				crash_count,
 				total_user,
-				platform,
 				files,
 				keywords,
-				timeslot
-			from `{table}` 
+				issue_id_blacklist
+			from `{userconfig_table}`
 		'''
-		self.get_userconfig_sqlcmd =  GET_USERCONFIG_SQLCMD.format(table=self.table)
-		# retrieve data 
-		# BPlatform
-		#cursor = self.mydb.DBEngine.execute(get_userconfig_sqlcmd)	
-		# local 
-		self.conn.execute(self.get_userconfig_sqlcmd)	
-		self.cursor = self.conn
+		self.get_userconfig_param_sqlcmd = GET_USERCONFIG_PARAM_SQLCMD.format(userconfig_table=self.userconfig_table)
+		try:
+			self.cursor = self.conn.execute(self.get_userconfig_param_sqlcmd)
+
+		except Exception as e:
+			print("[Exceptions] :",str(e))
+			print(" >>> userconfig_param_sqlcmd:\n\t ",
+					self.get_userconfig_param_sqlcmd)
 
 		for config in self.cursor.fetchall():
-			self.all_userconfig.append(config)
+			self.userparams.append(config)
 
-		self.userconfig_count = len(self.all_userconfig)
-		print('Total userconfig read: ',len(self.all_userconfig) )
+		self.userconfig_count = len(self.userparams)
+		print('Total userconfig read: ',len(self.userparams) )
+
+	# generate sql_cmd from 'get_userconfig_param' 
+	def get_userconfig_sqlcmd(self, crash_table=None):
+		GET_USERCONFIG_CRASHISSUE_SQLCMD = '''
+			select 
+				issue_id, 
+				platform,
+				crash_count,
+				total_user,	
+			from `{crash_table}` 
+			where 
+				platform = '{platform}' and crash_count >= '{crash_count}' and total_user >= '{total_user}'
+			order by total_user desc;
+		''' 
+		# TODO : version to check black_list
+		if crash_table is None:
+			crash_table = self.crash_table
+
+		# iterate all userconfig parameters:
+		for config in self.userparams:
+			try:
+				platform = config['platform']
+				crash_count = config['crash_count']
+				total_user = config['total_user']
+				self.get_userconfig_crashissue_sqlcmd = GET_USERCONFIG_CRASHISSUE_SQLCMD.format(
+																crash_table=crash_table,
+																platform = platform,
+																crash_count=crash_count,
+																total_user=total_user
+																)
+				self.user_sqlcmd.append(self.get_userconfig_crashissue_sqlcmd)
+			except Exception as e:
+				print("[Exceptions] :",str(e))
+				print(" >>> config content: ", config)				
+				print(" >>> userconfig_crashissue_sqlcmd: ", self.get_userconfig_crashissue_sqlcmd)				
+
 
 '''
 # Single configuration 

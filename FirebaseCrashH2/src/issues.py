@@ -103,8 +103,9 @@ class Issue:
 		if not sql_cmd:
 			sql_cmd = self.sql_cmd
 		try:
+			# first select the right database 
 			self.cursor = self.conn.execute(sql_cmd_use_database)
-			#self.cursor = self.DBEngine.execute(sql_cmd)
+			# then read data from table 
 			self.cursor = self.conn.execute(sql_cmd)
 		except:
 			print('[ERROR] failed to get cursor from sql_cmd')
