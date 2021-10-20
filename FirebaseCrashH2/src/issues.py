@@ -12,10 +12,7 @@ from datetime import datetime
 conn = dblib.DB().conn
 #DB name
 database = 'android'
-# tables in database above
-table_index = 'android'
-table = dblib.firebase_crash_table[table_index]
-stacktrace_table = 'firebase_crashlytics_stacktraces'
+
 
 # local database used for debugging 
 
@@ -49,9 +46,11 @@ class Issue:
 		from `{stacktrace_table}` 
 		where issue_id='{issue_id}';
 	'''
+	# tables in database above
+	table_index = 'android'
+	table = dblib.firebase_crash_table[table_index]
+	stacktrace_table = 'firebase_crashlytics_stacktraces'
 
-	#def __init__(self, issue_id, table=table, DBEngine=DBEngine):
-	#def __init__(self, issue_id, table=table, conn=conn):
 	def __init__(self, issue_id, table=table, database=database, simulate=False):
 		#self.DBEngine = DBEngine
 		self.conn = dblib.DB(simulate=simulate).connect()
@@ -132,7 +131,9 @@ class Issue:
 			print("[Warning] issue_content empty ")
 
 		try:
-			self.content['platform']=issue_content['platform'] 
+			# comment out 'platform' since firebase reassign it to null, use table_index -> platform
+			#self.content['platform']=issue_content['platform'] 
+			self.content['platform']= self.table_index
 			self.content['issue_title']=issue_content['issue_title'] 
 			self.content['issue_subtitle']=issue_content['issue_subtitle'] 
 			self.content['app_version']= issue_content['app_version'] 

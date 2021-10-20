@@ -22,7 +22,12 @@ firebase_crash_table ={
     'jira':'firebase_crashlytics_jira_sync',
     'sync':'firebase_crashlytics_com_booking_ANDROID_sync'
 }
-
+'''
+[dbg tips]
+import dblib
+mydb=dblib.DB(database='chinaqa',user='crashmonitorbotfire_chinaqa_rw0',password='Ugzdq7E3PDzJ1wBp')
+curs=mydb.execute("select * from CrashIssuesDbg where issue_id='6dd5f05f6be20963f0883d3b2efc5485';")
+'''
 # access BPlatform database by default
 class DB:
 	def __init__(self,simulate=False,database=database,acc_mode=acc_mode,user=None,password=None):

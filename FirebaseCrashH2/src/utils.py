@@ -22,9 +22,9 @@ import time
 #################################################################
 # Configurable matrix: 
 #################################################################
-crash_count_max = '10'
-total_user_max = '10'
-issue_count_max = '20'
+crash_count_max = '100'
+total_user_max = '50'
+issue_count_max = '50'
 
 table_index = 'android'
 
@@ -59,7 +59,7 @@ def dump_issues(issue_id_list, filename = 'issues.json'):
 
 	print('[Issues dump to ]:', os.path.abspath(filename))
 
-def write_issues_to_crashissue_database(issue_id_list, acc_mode, table='CrashIssuesBak', database='chinaqa'):
+def write_issues_to_crashissue_database(issue_id_list, acc_mode, table='CrashIssuesDbg', database='chinaqa'):
 	#mydb = dblib.DB(database=database,acc_mode=acc_mode)
 	mydb = dblib.DB(database=database,acc_mode=acc_mode)
 	conn=mydb.connect()
@@ -95,6 +95,7 @@ def write_issues_to_crashissue_database(issue_id_list, acc_mode, table='CrashIss
 			)
 		on duplicate key update	
 			app_version = {app_version},
+			platform = {platform},
 			crash_count = {crash_count},
 			total_user = {total_user},
 			app_version_list = {app_version_list},
@@ -144,6 +145,11 @@ def write_issues_to_crashissue_database(issue_id_list, acc_mode, table='CrashIss
 userconfig_database = 'qa'
 userconfig_table = 'userconfig_config'
 userconfig_acc_mode = 'rw'
+
+# fetch data from userconfig
+# generate sql_cmd to get the issue_id from chinaqa:CrashIssuesDbg
+# <source table> chinaqa:userconfig , get user input
+# <dest table> chinaqa:CrashIssuesDbg , filter item based on user input
 
 def write_to_cuser(conn, config_id, issue_id_list, table='userconfig'):
 	issue_id_list_string =  ",".join(issue_id_list)
