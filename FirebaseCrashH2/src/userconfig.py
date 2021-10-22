@@ -135,7 +135,7 @@ class ConfigUser:
 
 	SAVE_MATCH_ISSUE_ID_LIST_TO_USERCONFIG='''
 		update {userconfig_table}
-		set issue_id_list={match_issue_id_list}
+		set issue_id_list=`{match_issue_id_list}`
 		where id={config_id}
 	'''
 	def __init__(self, database=database, simulate=False, acc_mode=acc_mode, **kwargs):
@@ -220,8 +220,9 @@ class ConfigUser:
 			for f in self.files.replace(' ','').split(','):
 				if str(f) in issue_logs:
 					self.issue_id_files_hit_list.append(issue_content['issue_id'])
+					print(issue_content['issue_id'])
 		
-		match_issue_id_list = "".join([i for i in self.issue_id_files_hit_list])
+		match_issue_id_list = ",".join([i for i in self.issue_id_files_hit_list])
 		print(match_issue_id_list)
 
 		if write:
