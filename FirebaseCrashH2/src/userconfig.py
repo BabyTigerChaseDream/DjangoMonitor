@@ -82,10 +82,11 @@ class ConfigGroup:
 				platform = '{platform}' and crash_count >= '{crash_count}' and total_user >= '{total_user}'
 			order by total_user desc;
 		''' 
+		self.configuser_list=[]
+
 		# TODO : version to check black_list
 		if crash_table is None:
 			crash_table = self.crash_table
-
 		# iterate all userconfig parameters:
 		for config in self.userparams:
 			try:
@@ -125,7 +126,7 @@ class ConfigGroup:
 2) filter files and keywords based on 1) 
 3) generate final issue_id lists which is user wants , write it back to userConfig doc
 '''
-# CUser(**CG.configuser_list[0]) -> works right 
+# CU=userconfig.ConfigUser(**CG.userparams[2]) -> works right 
 class ConfigUser:
 	database = 'chinaqa'
 	userconfig_table = 'userconfig_config'
@@ -147,9 +148,14 @@ class ConfigUser:
 			self.files = kwargs['files']
 			self.keywords = kwargs['keywords']
 			self.issue_id_blacklist = kwargs['issue_id_blacklist']
-			self.user_sqlcmd = kwargs['user_sqlcmd']
+			try:
+				self.user_sqlcmd = kwargs['user_sqlcmd']
+			except Exception as e:
+				print("[Exceptions - user_sqlcmd] :",str(e))
+				print(">>> ",kwargs)			
 		except Exception as e:
 			print("[Exceptions] :",str(e))
+			print(">>> ",kwargs)
 
 		# setup database conn		
 		self.conn = dblib.DB(simulate=simulate,database=database,acc_mode=acc_mode).connect()
