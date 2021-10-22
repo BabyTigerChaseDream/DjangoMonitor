@@ -27,6 +27,7 @@ total_user_max = '50'
 issue_count_max = '50'
 
 table_index = 'android'
+acc_mode = 'rw'
 
 # api for user input timing 
 def setup_timeslot(end_date=datetime.utcnow(), delta=7):

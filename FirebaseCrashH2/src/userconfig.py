@@ -76,10 +76,10 @@ class ConfigGroup:
 				platform,
 				crash_count,
 				total_user,	
-				issue_logs,
+				issue_logs
 			from `{crash_table}` 
 			where 
-				platform = '{platform}' and crash_count >= '{crash_count}' and total_user >= '{total_user}'
+				platform = '{platform}' and crash_count >= {crash_count} and total_user >= {total_user}
 			order by total_user desc;
 		''' 
 		self.configuser_list=[]
@@ -142,6 +142,7 @@ class ConfigUser:
 		try:
 			self.id = kwargs['id']
 			self.team = kwargs['team']
+			### remove dup info 'crash_count'/'total_user' in 'ConfigUser' which is included in 'user_sqlcmd'
 			#self.crash_count = kwargs['crash_count']
 			#self.total_user = kwargs['total_user']
 			self.platform = kwargs['platform']
