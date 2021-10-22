@@ -126,7 +126,7 @@ class ConfigGroup:
 2) filter files and keywords based on 1) 
 3) generate final issue_id lists which is user wants , write it back to userConfig doc
 '''
-# CU=userconfig.ConfigUser(**CG.userparams[2]) -> works right 
+# CU=userconfig.ConfigUser(**CG.configuser_list[2]) -> works right 
 class ConfigUser:
 	database = 'chinaqa'
 	userconfig_table = 'userconfig_config'
@@ -142,8 +142,8 @@ class ConfigUser:
 		try:
 			self.id = kwargs['id']
 			self.team = kwargs['team']
-			self.crash_count = kwargs['crash_count']
-			self.total_user = kwargs['total_user']
+			#self.crash_count = kwargs['crash_count']
+			#self.total_user = kwargs['total_user']
 			self.platform = kwargs['platform']
 			self.files = kwargs['files']
 			self.keywords = kwargs['keywords']
