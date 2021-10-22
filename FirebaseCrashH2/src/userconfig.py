@@ -186,6 +186,7 @@ class ConfigUser:
 		return self.cursor
 
 	def filter_issue_content_by_crashcnt_totaluser(self,user_sqlcmd=None):
+		self.issue_content_list = []
 		# fetch data in chinaqa.CrashIssues
 		# return issue id list
 		# Issue_id_list contains basic crashes user wants
@@ -208,7 +209,7 @@ class ConfigUser:
 				print(">>> user_sqlcmd: ",user_sqlcmd)
 
 		# clean state
-		self.issue_id_files_list=[]
+		self.issue_id_files_hit_list=[]
 		#target_file_set = set()
 		for issue_content in self.issue_content_list:
 			try:
