@@ -135,7 +135,7 @@ class ConfigUser:
 
 	SAVE_MATCH_ISSUE_ID_LIST_TO_USERCONFIG='''
 		UPDATE {userconfig_table}
-		SET issue_id_list=`{match_issue_id_list}`
+		SET issue_id_list='{match_issue_id_list}'
 		WHERE id={config_id}
 	'''
 
