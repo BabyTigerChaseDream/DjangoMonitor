@@ -150,9 +150,9 @@ acc_mode = 'rw'
 def write_to_cuser(conn, config_id, issue_id_list, table='userconfig'):
 	issue_id_list_string =  ",".join(issue_id_list)
 	UPDATE_ISSUE_ID_TO_DATABASE = '''
-		update {table}
-		set issue_id_list={issue_id_list}
-		where id={config_id}
+		UPDATE {table}
+		SET issue_id_list=`{issue_id_list}`
+		WHERE id={config_id}
 	'''
 	try:
 		sql_cmd = UPDATE_ISSUE_ID_TO_DATABASE.format(
