@@ -287,8 +287,12 @@ class ConfigUser:
 		if not final_issue_id_hit_list:
 			final_issue_id_hit_list = self.final_issue_id_hit_list
 
-		match_issue_id_list = ",".join([i for i in self.final_issue_id_hit_list])
-		print(match_issue_id_list)		
+		if len(self.final_issue_id_hit_list):
+			match_issue_id_list = ",".join([i for i in self.final_issue_id_hit_list])
+			print(match_issue_id_list)		
+		else:
+			# no crash issue found
+			match_issue_id_list="0000-0000-0000-0000"
 
 		print('[Info] Write retrieved issue ID to Userconfig table->issue_id_list')
 		try:

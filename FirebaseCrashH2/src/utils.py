@@ -22,8 +22,8 @@ import time
 #################################################################
 # Configurable matrix: 
 #################################################################
-crash_count_max = '100'
-total_user_max = '50'
+crash_count_max = '1000'
+total_user_max = '500'
 issue_count_max = '50'
 
 table_index = 'android'
@@ -35,6 +35,7 @@ def setup_timeslot(end_date=datetime.utcnow(), delta=7):
 
 start_timestamp_str, end_timestamp_str = setup_timeslot(end_date=datetime.utcnow(), delta=7)
 
+# single entry to decide crash_count/total_user to retrieve !!!
 def get_crash_lists(table_index=table_index, start_timestamp_str=start_timestamp_str, end_timestamp_str=end_timestamp_str, 
 								crash_count_max=crash_count_max, total_user_max=total_user_max, issue_count_max=issue_count_max):
 	crashes = firebase_db_common_lib.Crashes(table_index=table_index, start_timestamp_str=start_timestamp_str, end_timestamp_str=end_timestamp_str, 
@@ -63,7 +64,7 @@ def dump_issues(issue_id_list, filename = 'issues.json'):
 def write_issues_to_crashissue_database(issue_id_list, acc_mode, table='CrashIssuesDbg', database='chinaqa'):
 	#mydb = dblib.DB(database=database,acc_mode=acc_mode)
 	mydb = dblib.DB(database=database,acc_mode=acc_mode)
-	conn=mydb.connect()
+	#conn=mydb.connect()
 	
 	INSERT_ISSUE_TO_DATABASE = '''
 		insert into {table}
@@ -99,6 +100,7 @@ def write_issues_to_crashissue_database(issue_id_list, acc_mode, table='CrashIss
 			platform = {platform},
 			crash_count = {crash_count},
 			total_user = {total_user},
+			issue_logs = {issue_logs},
 			app_version_list = {app_version_list},
 			last_update_timestamp = {last_update_timestamp};	
 	'''
@@ -126,7 +128,10 @@ def write_issues_to_crashissue_database(issue_id_list, acc_mode, table='CrashIss
 			)
 
 			#mydb.DBEngine.execute(insert_data_sql_cmd)
-			conn.execute(insert_data_sql_cmd)
+			#conn.execute(insert_data_sql_cmd)
+			curs=mydb.execute(insert_data_sql_cmd)
+			print('[sql_cmd]: ',insert_data_sql_cmd)
+			print('>>> inserted item <<< ', curs.fetchone()['issue_logs'])
 		except:
 			print('[error on issue]: ',issue_id)
 			print('[sql_cmd]: ',insert_data_sql_cmd)
