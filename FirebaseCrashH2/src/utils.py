@@ -5,7 +5,7 @@ import timelib
 import dblib
 import firebase_db_common_lib 
 from datetime import datetime, timedelta
-#import userconfig
+import userconfig
 
 import jsmod
 import json
@@ -147,53 +147,26 @@ userconfig_database = 'qa'
 userconfig_table = 'userconfig_config'
 acc_mode = 'rw'
 
-def write_to_cuser(conn, config_id, issue_id_list, table='userconfig'):
-	issue_id_list_string =  ",".join(issue_id_list)
-	UPDATE_ISSUE_ID_TO_DATABASE = '''
-		UPDATE {table}
-		SET issue_id_list=`{issue_id_list}`
-		WHERE id={config_id}
-	'''
-	try:
-		sql_cmd = UPDATE_ISSUE_ID_TO_DATABASE.format(
-			table = table,
-			issue_id_list = '"'+str(issue_id_list_string)+'"',
-			id = config_id
-		)
-		#mydb.DBEngine.execute(sql_cmd)
-		conn.execute(sql_cmd)
-	except:
-			print('[error on issue]: ',config_id)
-			print('[sql_cmd]: ',sql_cmd)
+def update_hit_issue_id_list_to_userconfig():
+	CG = userconfig.ConfigGroup()
+	# fetch all userconfig in 
+	CG.get_userconfig_param()
+	CG.get_configuser_issue_content_list()
 
-# comment out due to module missing 
-#def write_issue_id_list_to_userconfig(acc_mode='rw', table='userconfig', database='qa'):
-#	# DQS database info
-#	#userconfig_database = 'chinaqa'
-#	#userconfig_table = 'Config'
-#
-#	# local database info
-#	userconfig_database = 'qa'
-#	userconfig_table = 'userconfig_config'
-#	userconfig_acc_mode = 'rw'
-#	
-#	mydb = dblib.DB(database=database,acc_mode=acc_mode)
-#	conn=mydb.connect()
-#
-#	ConfigGroup = userconfig.ConfigGroup(database=userconfig_database, table=userconfig_table, acc_mode=userconfig_acc_mode)
-#	# fetch all config in database
-#	ConfigGroup.fetchall()
-#	ConfigGroup.all_userconfig
-#
-#	for config in ConfigGroup.all_userconfig:
-#		CUser = userconfig.CUser(**config)
-#		CUser.get_issue_with_files_and_keywords()
-#		config_id =  CUser.id
-#		issue_id_list = CUser.issue_with_files_and_keywords_list
-#		write_to_cuser(conn=conn, config_id=config_id, issue_id_list=issue_id_list, table=table)	
+	# all configuration in CG.configuser_list
+	for configuser in CG.configuser_list:
+		try:
+			print(" [INFO] Retrieve Crash for team",configuser['team'],"###",configuser['id'])
+			CU=userconfig.ConfigUser(**configuser)
+			# step-1 filter all crashes based on crashcnt&totaluser from CrashIssueDbg
+			CU.filter_issue_content_by_crashcnt_totaluser()
+			CU.get_issue_with_files_and_keywords(write=True)
+		except Exception as e:
+			print("[Exceptions] :",str(e))
+			print(" >>> configuser content: ", configuser)	
 
 #########################
-# devops #
+#    Cron Jobs devops   #
 #########################
 def job_get_crash():
 	issue_id_list = get_crash_lists()
