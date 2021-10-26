@@ -27,6 +27,7 @@ total_user_max = '500'
 issue_count_max = '50'
 
 table_index = 'android'
+# table_index = 'iOS'
 acc_mode = 'rw'
 
 # api for user input timing 
@@ -36,9 +37,9 @@ def setup_timeslot(end_date=datetime.utcnow(), delta=7):
 start_timestamp_str, end_timestamp_str = setup_timeslot(end_date=datetime.utcnow(), delta=7)
 
 # single entry to decide crash_count/total_user to retrieve !!!
-def get_crash_lists(table_index=table_index, start_timestamp_str=start_timestamp_str, end_timestamp_str=end_timestamp_str, 
+def get_crash_lists(table_index, start_timestamp_str=start_timestamp_str, end_timestamp_str=end_timestamp_str, 
 								crash_count_max=crash_count_max, total_user_max=total_user_max, issue_count_max=issue_count_max):
-	crashes = firebase_db_common_lib.Crashes(table_index=table_index, start_timestamp_str=start_timestamp_str, end_timestamp_str=end_timestamp_str, 
+	crashes = firebase_db_common_lib.Crashes(table_index, start_timestamp_str=start_timestamp_str, end_timestamp_str=end_timestamp_str, 
 								crash_count_max=crash_count_max, total_user_max=total_user_max, issue_count_max=issue_count_max)
 	return crashes.get_issue_id_list()
 
@@ -61,7 +62,7 @@ def dump_issues(issue_id_list, filename = 'issues.json'):
 
 	print('[Issues dump to ]:', os.path.abspath(filename))
 
-def write_issues_to_crashissue_database(issue_id_list, acc_mode, table='CrashIssuesDbg', database='chinaqa'):
+def write_issues_to_crashissue_database(issue_id_list, acc_mode, table_index, table='CrashIssuesDbg', database='chinaqa'):
 	#mydb = dblib.DB(database=database,acc_mode=acc_mode)
 	mydb = dblib.DB(database=database,acc_mode=acc_mode)
 	#conn=mydb.connect()
@@ -106,7 +107,7 @@ def write_issues_to_crashissue_database(issue_id_list, acc_mode, table='CrashIss
 	'''
 	#IssueList = []
 	for issue_id in issue_id_list:
-		I=issues.Issue(issue_id=issue_id)
+		I=issues.Issue(issue_id=issue_id, table_index=table_index)
 		try:
 			#IssueList.append(I.modelize_issue())
 			row = I.modelize_issue()

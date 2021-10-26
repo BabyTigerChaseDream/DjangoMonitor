@@ -44,7 +44,7 @@ class Crashes:
 		having crash_count > {crash_count_max} and total_user > {total_user_max} 
 		order by total_user desc limit {issue_count_max};
 	''' 
-	def __init__(self, table_index=table_index, start_timestamp_str=start_timestamp_str, end_timestamp_str=end_timestamp_str, 
+	def __init__(self, table_index, start_timestamp_str=start_timestamp_str, end_timestamp_str=end_timestamp_str, 
 								crash_count_max=crash_count_max, total_user_max=total_user_max, issue_count_max=issue_count_max,
 								simulate=False):
 		self.issue_id_list = []
