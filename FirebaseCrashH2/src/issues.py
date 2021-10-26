@@ -52,6 +52,7 @@ class Issue:
 	def __init__(self, issue_id, table_index, database=database, simulate=False):
 		# tables in database above
 		# table_index ='android' / 'iOS'	
+		self.table_index = table_index
 		table = dblib.firebase_crash_table[table_index]
 
 		#self.DBEngine = DBEngine
