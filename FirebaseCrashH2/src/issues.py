@@ -44,7 +44,7 @@ class Issue:
 		select 
 			stacktraces 
 		from `{stacktrace_table}` 
-		where issue_id='{issue_id}';
+		where issue_id='{issue_id}' limit 3;
 	'''
 
 	stacktrace_table = 'firebase_crashlytics_stacktraces'
