@@ -47,11 +47,12 @@ class Issue:
 		where issue_id='{issue_id}';
 	'''
 
+	stacktrace_table = 'firebase_crashlytics_stacktraces'
+
 	def __init__(self, issue_id, table_index, database=database, simulate=False):
 		# tables in database above
 		# table_index ='android' / 'iOS'	
 		table = dblib.firebase_crash_table[table_index]
-		stacktrace_table = 'firebase_crashlytics_stacktraces'
 
 		#self.DBEngine = DBEngine
 		self.conn = dblib.DB(simulate=simulate).connect()

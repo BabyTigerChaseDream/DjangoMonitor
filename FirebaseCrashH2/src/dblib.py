@@ -18,7 +18,7 @@ acc_mode = 'ro'
 # Mapping table:
 firebase_crash_table ={
     'android':'firebase_crashlytics_com_booking_ANDROID',
-    'ios':'firebase_crashlytics_com_booking_BookingApp_IOS',
+    'iOS':'firebase_crashlytics_com_booking_BookingApp_IOS',
     'jira':'firebase_crashlytics_jira_sync',
     'sync':'firebase_crashlytics_com_booking_ANDROID_sync'
 }
