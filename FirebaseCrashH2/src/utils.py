@@ -198,8 +198,11 @@ def update_hit_issue_id_list_to_userconfig():
 #    Cron Jobs devops   #
 #########################
 def job_get_android_crash():
+	print("start: job_get_android_crash \n")
 	issue_id_list=get_crash_lists(table_index='android')
+	print("done : get_crash_lists \n")
 	write_issues_to_crashissue_database(issue_id_list=issue_id_list,acc_mode='rw',table_index='android')
+	print("done :write_issues_to_crashissue_database \n")
 	update_hit_issue_id_list_to_userconfig()
 	# send notification
 
