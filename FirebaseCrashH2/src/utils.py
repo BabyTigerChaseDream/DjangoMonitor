@@ -7,7 +7,7 @@ import firebase_db_common_lib
 from datetime import datetime, timedelta
 import userconfig
 
-from .email_helper import EmailHelper
+from email_helper import EmailHelper
 
 import jsmod
 import json

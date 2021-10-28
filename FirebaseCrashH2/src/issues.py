@@ -126,7 +126,7 @@ class Issue:
 
 		return self.cursor_app_versions	
 
-	def modelize_issue(self,  sql_cmd=None, sql_cmd_app_versions=None)->dict:
+	def modelize_issue(self, sql_cmd=None, sql_cmd_app_versions=None)->dict:
 		#[notes] one time only
 		self.get_cursor(sql_cmd=sql_cmd)
 		issue_content = self.cursor.fetchone()
