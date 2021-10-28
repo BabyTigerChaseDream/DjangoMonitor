@@ -7,11 +7,13 @@ import firebase_db_common_lib
 from datetime import datetime, timedelta
 import userconfig
 
+from .email_helper import EmailHelper
+
 import jsmod
 import json
 import os
 
-#import schedule
+import schedule
 import time
 
 '''
@@ -153,6 +155,25 @@ userconfig_database = 'qa'
 userconfig_table = 'userconfig_config'
 acc_mode = 'rw'
 
+def send_notification(**configuser):
+	email_address = configuser['email_address']
+	slack_channel = configuser['slack_channel']
+	print("[Email Type] ",type(email_address))
+
+	#receiver = []
+	#receiver.append(email_address)
+
+	#curDate = datetime.now()
+
+	email = EmailHelper()
+	title = 'Crash Monitor Notification'
+	#email.booking_send_email("China.Quality@booking.com", email_address, title, EmailMsg() )
+	if 'booking.com' in email_address:
+		email.booking_send_email("Crash.Monitor@booking.com", email_address, title, EmailMsg() )
+	
+	if slack_channel is not None:
+		email.booking_send_slack("Crash.Monitor",slack_channel, EmailMsg())
+
 def update_hit_issue_id_list_to_userconfig():
 	CG = userconfig.ConfigGroup()
 	# fetch all userconfig in 
@@ -167,6 +188,8 @@ def update_hit_issue_id_list_to_userconfig():
 			# step-1 filter all crashes based on crashcnt&totaluser from CrashIssueDbg
 			CU.filter_issue_content_by_crashcnt_totaluser()
 			CU.get_issue_with_files_and_keywords(write=True)
+			send_notification(configuser)
+
 		except Exception as e:
 			print("[Exceptions] :",str(e))
 			print(" >>> configuser content: ", configuser)	
@@ -174,23 +197,30 @@ def update_hit_issue_id_list_to_userconfig():
 #########################
 #    Cron Jobs devops   #
 #########################
-def job_get_crash():
-	issue_id_list = get_crash_lists()
-	dump_issues(issue_id_list)
+def job_get_android_crash():
+	issue_id_list=get_crash_lists(table_index='android')
+	write_issues_to_crashissue_database(issue_id_list=issue_id_list,acc_mode='rw',table_index='android')
+	update_hit_issue_id_list_to_userconfig()
+	# send notification
+
+'''
+def job_get_ios_crash():
+	issue_id_list=get_crash_lists(table_index='android')
+	write_issues_to_crashissue_database(issue_id_list=issue_id_list,acc_mode='rw',table_index='android')
+	update_hit_issue_id_list_to_userconfig()
+	# send notification
+'''
 
 def job_test():
 	print('VarTime: ',start_timestamp_str)
 	print('Now: ',datetime.utcnow())
 
-'''
 if __name__ == '__main__':
 	end_date =datetime.utcnow() 
 	delta = 7
 	print('collect crash data within 7 days, end at : ', end_date)
-	#schedule.every().day.at("06:00").do(job_get_crash)
-	schedule.every().minute.at(":17").do(job_test)
+	schedule.every().hour.do(job_get_android_crash)
 
 	while True:
 		schedule.run_pending()
 		time.sleep(1)
-'''
