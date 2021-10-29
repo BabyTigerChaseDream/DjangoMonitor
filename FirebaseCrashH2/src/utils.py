@@ -188,7 +188,7 @@ def update_hit_issue_id_list_to_userconfig():
 			# step-1 filter all crashes based on crashcnt&totaluser from CrashIssueDbg
 			CU.filter_issue_content_by_crashcnt_totaluser()
 			CU.get_issue_with_files_and_keywords(write=True)
-			send_notification(configuser)
+			send_notification(**configuser)
 
 		except Exception as e:
 			print("[Exceptions] :",str(e))
@@ -221,9 +221,9 @@ def job_test():
 if __name__ == '__main__':
 	end_date =datetime.utcnow() 
 	print('[job_get_android_crash] collect crash data within 7 days, end at : ', end_date)
-	schedule.every().hour.at(":45").do(job_get_android_crash)
+	schedule.every().hour.at(":20").do(job_get_android_crash)
 	print('[job_test]')
-	schedule.every().hour.at(":45").do(job_test)
+	schedule.every().hour.at(":20").do(job_test)
 
 
 	while True:
