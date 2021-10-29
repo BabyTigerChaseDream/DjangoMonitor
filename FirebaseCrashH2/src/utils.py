@@ -155,15 +155,10 @@ userconfig_database = 'qa'
 userconfig_table = 'userconfig_config'
 acc_mode = 'rw'
 
-def send_notification(**configuser):
-	email_address = configuser['email_address']
-	slack_channel = configuser['slack_channel']
+def send_notification(**userconfig_notification):
+	email_address = userconfig_notification['email_address']
+	slack_channel = userconfig_notification['slack_channel']
 	print("[Email Type] ",type(email_address))
-
-	#receiver = []
-	#receiver.append(email_address)
-
-	#curDate = datetime.now()
 
 	email = EmailHelper()
 	title = 'Crash Monitor Notification'
@@ -173,6 +168,24 @@ def send_notification(**configuser):
 	
 	if slack_channel is not None:
 		email.booking_send_slack("Crash.Monitor",slack_channel, EmailMsg())
+
+SELECT_EMAIL_SLACK_FROM_USERCONFIG_ID ='''
+	SELECT 
+		slack_channel,
+		email_address
+	FROM {userconfig_table}
+	WHERE id={userconfig_id}
+'''
+def get_email_slack_from_userconfig_id(userconfig_id,userconfig_table='userconfig_config'):
+	mydb = dblib.DB(database=userconfig_database,acc_mode=acc_mode)
+	select_email_slack_from_userconfig_id=SELECT_EMAIL_SLACK_FROM_USERCONFIG_ID.format(
+							userconfig_table=userconfig_table,
+							userconfig_id=userconfig_id	
+	)
+
+	curs=mydb.execute(select_email_slack_from_userconfig_id)
+	return curs.fetchone()
+
 
 def update_hit_issue_id_list_to_userconfig():
 	CG = userconfig.ConfigGroup()
@@ -188,7 +201,10 @@ def update_hit_issue_id_list_to_userconfig():
 			# step-1 filter all crashes based on crashcnt&totaluser from CrashIssueDbg
 			CU.filter_issue_content_by_crashcnt_totaluser()
 			CU.get_issue_with_files_and_keywords(write=True)
-			send_notification(**configuser)
+
+			userconfig_id = configuser['id']	
+			userconfig_notification = get_email_slack_from_userconfig_id(userconfig_id)
+			send_notification(**userconfig_notification)
 
 		except Exception as e:
 			print("[Exceptions] :",str(e))
@@ -221,9 +237,9 @@ def job_test():
 if __name__ == '__main__':
 	end_date =datetime.utcnow() 
 	print('[job_get_android_crash] collect crash data within 7 days, end at : ', end_date)
-	schedule.every(15).minutes.at(":20").do(job_get_android_crash)
-	print('[job_test]')
-	schedule.every(35).minutes.at(":20").do(job_test)
+	schedule.every(10).minutes.at(":20").do(job_get_android_crash)
+	#print('[job_test]')
+	#schedule.every(35).minutes.at(":20").do(job_test)
 
 
 	while True:
