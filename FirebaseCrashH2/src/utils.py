@@ -147,12 +147,13 @@ def write_issues_to_crashissue_database(issue_id_list, acc_mode, table_index, ta
 ##############################
 '''
 # DQS database info
-#userconfig_database = 'chinaqa'
-#userconfig_table = 'Config'
-
-# local database info
-userconfig_database = 'qa'
+userconfig_database = 'chinaqa'
 userconfig_table = 'userconfig_config'
+
+## local database info
+#userconfig_database = 'qa'
+#userconfig_table = 'userconfig_config'
+
 acc_mode = 'rw'
 
 def send_notification(**userconfig_notification):
