@@ -156,6 +156,12 @@ userconfig_table = 'userconfig_config'
 
 acc_mode = 'rw'
 
+def EmailMsg():
+    msg = '<h1>Crash Monitor Retrieved </h1>'
+    bookingValue = "<H3>Check your crash lists</H3>"
+    msg = msg + bookingValue
+    return msg
+
 def send_notification(**userconfig_notification):
 	email_address = userconfig_notification['email_address']
 	slack_channel = userconfig_notification['slack_channel']
