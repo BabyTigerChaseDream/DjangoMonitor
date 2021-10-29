@@ -220,8 +220,9 @@ def job_test():
 
 if __name__ == '__main__':
 	end_date =datetime.utcnow() 
-	print('collect crash data within 7 days, end at : ', end_date)
-	#schedule.every().hour.at(":45").do(job_get_android_crash)
+	print('[job_get_android_crash] collect crash data within 7 days, end at : ', end_date)
+	schedule.every().hour.at(":45").do(job_get_android_crash)
+	print('[job_test]')
 	schedule.every().hour.at(":45").do(job_test)
 
 
