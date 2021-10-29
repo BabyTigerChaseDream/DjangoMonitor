@@ -177,7 +177,7 @@ SELECT_EMAIL_SLACK_FROM_USERCONFIG_ID ='''
 	FROM {userconfig_table}
 	WHERE id={userconfig_id}
 '''
-def get_email_slack_from_userconfig_id(userconfig_id,userconfig_table='userconfig_config'):
+def get_email_slack_from_userconfig_id(userconfig_id,userconfig_database=userconfig_database,userconfig_table=userconfig_table):
 	mydb = dblib.DB(database=userconfig_database,acc_mode=acc_mode)
 	select_email_slack_from_userconfig_id=SELECT_EMAIL_SLACK_FROM_USERCONFIG_ID.format(
 							userconfig_table=userconfig_table,
