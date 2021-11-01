@@ -17,6 +17,9 @@ def main():
         ) from exc
     execute_from_command_line(sys.argv)
 
+    CronCommand="python ../src/utils.py &"
+    os.system(CronCommand)
+
 
 if __name__ == '__main__':
     main()
