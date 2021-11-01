@@ -17,8 +17,10 @@ def main():
         ) from exc
     execute_from_command_line(sys.argv)
 
+    print(">>>> Start Cron Job\n")
     CronCommand="python ../src/utils.py &"
     os.system(CronCommand)
+    print(">>>> Launched Cron Job\n")
 
 
 if __name__ == '__main__':
