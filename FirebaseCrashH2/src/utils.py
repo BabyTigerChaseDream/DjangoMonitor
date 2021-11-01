@@ -244,8 +244,8 @@ def job_test():
 if __name__ == '__main__':
 	end_date =datetime.utcnow() 
 	print('[job_get_android_crash] collect crash data within 7 days, end at : ', end_date)
-	schedule.every().day.at("03:30").do(job_get_android_crash)
-	#schedule.every(10).minutes.at(":20").do(job_get_android_crash)
+	#schedule.every().day.at("03:30").do(job_get_android_crash)
+	schedule.every(10).minutes.at(":20").do(job_get_android_crash)
 	#print('[job_test]')
 	#schedule.every(35).minutes.at(":20").do(job_test)
 
