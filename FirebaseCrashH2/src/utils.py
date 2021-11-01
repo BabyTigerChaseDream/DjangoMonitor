@@ -24,9 +24,9 @@ import time
 #################################################################
 # Configurable matrix: 
 #################################################################
-crash_count_max = '1000'
-total_user_max = '500'
-issue_count_max = '50'
+crash_count_max = '500'
+total_user_max = '200'
+issue_count_max = '100'
 
 table_index = 'android'
 # table_index = 'iOS'
@@ -245,7 +245,7 @@ if __name__ == '__main__':
 	end_date =datetime.utcnow() 
 	print('[job_get_android_crash] collect crash data within 7 days, end at : ', end_date)
 	#schedule.every().day.at("03:30").do(job_get_android_crash)
-	schedule.every(10).minutes.at(":20").do(job_get_android_crash)
+	schedule.every(180).minutes.at(":20").do(job_get_android_crash)
 	#print('[job_test]')
 	#schedule.every(35).minutes.at(":20").do(job_test)
 
