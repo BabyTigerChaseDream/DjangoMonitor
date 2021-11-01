@@ -15,12 +15,14 @@ def main():
             "available on your PYTHONPATH environment variable? Did you "
             "forget to activate a virtual environment?"
         ) from exc
+
+    print(">>>> Start Cron Job\n")
+    CronCommand="python ../src/utils.py &"
+    os.system(CronCommand)
+    print(">>>> Launched Cron Job\n")
     execute_from_command_line(sys.argv)
 
 if __name__ == '__main__':
     main()
 	#print(">>>> Start Cron Job\n")
-    print(">>>> Start Cron Job\n")
-    CronCommand="python ../src/utils.py &"
-    os.system(CronCommand)
-    print(">>>> Launched Cron Job\n")
+
