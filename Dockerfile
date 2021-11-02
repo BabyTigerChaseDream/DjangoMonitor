@@ -13,6 +13,8 @@ FROM docker.artifactory.booking.com/projects/bplatform/booking-python:3.7
 RUN python3 -m pip install bkng-infra-core bkng-infra-db booking-python-libs --index-url https://jfrog.booking.com/artifactory/api/pypi/pypi/simple
 RUN python3 -m pip install flask
 RUN python3 -m pip install schedule
+RUN python3 -m pip install deepdiff
+
 #CMD ["python3 --version","python3 -m pip list | grep bkng","ll /etc/bookings"]
 
 ENV PYTHONUNBUFFERED=1
