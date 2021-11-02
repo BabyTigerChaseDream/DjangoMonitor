@@ -136,8 +136,9 @@ def write_issues_to_crashissue_database(issue_id_list, acc_mode, table_index, ta
 			print('[sql_cmd]: ',insert_data_sql_cmd)
 			print('>>> inserted item <<< ', curs.fetchone()['issue_logs'])
 		except:
-			print('[error on issue]: ',issue_id)
-			print('[sql_cmd]: ',insert_data_sql_cmd)
+			print('[IGNORE issue]: ',issue_id )
+			continue
+			#print('[sql_cmd]: ',insert_data_sql_cmd)
 
 	#print('Total issues: ', len(IssueList))
 
@@ -220,22 +221,28 @@ def update_hit_issue_id_list_to_userconfig():
 #########################
 #    Cron Jobs devops   #
 #########################
-def job_get_android_crash():
-	print("start: job_get_android_crash \n")
-	issue_id_list=get_crash_lists(table_index='android')
-	print("done : get_crash_lists \n")
-	write_issues_to_crashissue_database(issue_id_list=issue_id_list,acc_mode='rw',table_index='android')
-	print("done :write_issues_to_crashissue_database \n")
-	update_hit_issue_id_list_to_userconfig()
-	# send notification
 
-'''
-def job_get_ios_crash():
-	issue_id_list=get_crash_lists(table_index='android')
-	write_issues_to_crashissue_database(issue_id_list=issue_id_list,acc_mode='rw',table_index='android')
+def job_get_android_crash():
+	table_index ='android' 
+	print("start android: job_get_android_crash \n")
+	issue_id_list=get_crash_lists(table_index=table_index)
+	print("done android: get_crash_lists \n")
+	write_issues_to_crashissue_database(issue_id_list=issue_id_list,acc_mode='rw',table_index=table_index)
+	print("done android: write_issues_to_crashissue_database \n")
 	update_hit_issue_id_list_to_userconfig()
-	# send notification
-'''
+
+def job_get_ios_crash():
+	table_index ='iOS'
+	print("start iOS: job_get_ios_crash \n")
+	issue_id_list=get_crash_lists(table_index=table_index)
+	print("done iOS: get_crash_lists \n")
+	write_issues_to_crashissue_database(issue_id_list=issue_id_list,acc_mode='rw',table_index=table_index)
+	print("done iOS:write_issues_to_crashissue_database \n")
+	update_hit_issue_id_list_to_userconfig()
+
+def job_get_all_crash():
+	job_get_android_crash()
+	job_get_ios_crash()
 
 def job_test():
 	print('VarTime: ',start_timestamp_str)
@@ -246,7 +253,7 @@ if __name__ == '__main__':
 	print('[job_get_android_crash] collect crash data within 7 days, end at : ', end_date)
 	#schedule.every().day.at("03:30").do(job_get_android_crash)
 	#schedule.every(180).minutes.at(":20").do(job_get_android_crash)
-	schedule.every(20).minutes.at(":20").do(job_get_android_crash)
+	schedule.every(120).minutes.at(":20").do(job_get_all_crash)
 	#print('[job_test]')
 	#schedule.every(35).minutes.at(":20").do(job_test)
 
