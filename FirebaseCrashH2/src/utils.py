@@ -107,7 +107,10 @@ def write_issues_to_crashissue_database(issue_id_list, acc_mode, table_index, ta
 			app_version_list = {app_version_list},
 			last_update_timestamp = {last_update_timestamp};	
 	'''
-	#IssueList = []
+	issue_num = len(issue_id_list)
+	skip_num = 0
+	skip_issue_list = []
+	print("Writeing to [",table_index,"]","Total Issue:",issue_num)
 	for issue_id in issue_id_list:
 		I=issues.Issue(issue_id=issue_id, table_index=table_index)
 		try:
@@ -137,10 +140,17 @@ def write_issues_to_crashissue_database(issue_id_list, acc_mode, table_index, ta
 			print('>>> inserted item <<< ', curs.fetchone()['issue_logs'])
 		except:
 			print('[IGNORE issue]: ',issue_id )
+			skip_num+=1
+			skip_issue_list.append(issue_id)
 			continue
 			#print('[sql_cmd]: ',insert_data_sql_cmd)
 
-	#print('Total issues: ', len(IssueList))
+	print("======================================")
+	print('[Platform]', table_index)
+	print('Total issues: ', issue_num)
+	print('Total skip_num: ', skip_num)
+	print('skip_issue_list: ', skip_issue_list)
+	print("======================================")
 
 '''
 ##############################
