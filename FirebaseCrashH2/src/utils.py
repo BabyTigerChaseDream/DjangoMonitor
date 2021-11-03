@@ -172,10 +172,12 @@ def send_notification(**userconfig_notification):
 	title = 'Crash Monitor Notification'
 	#email.booking_send_email("China.Quality@booking.com", email_address, title, EmailMsg() )
 	if 'booking.com' in email_address:
-		email.booking_send_email("Crash.Monitor@booking.com", email_address, title, EmailMsg() )
+		for e in email_address.replace(" ","").split(","):
+			email.booking_send_email("Crash.Monitor@booking.com", e, title, EmailMsg() )
 	
 	if slack_channel is not None:
-		email.booking_send_slack("Crash.Monitor",slack_channel, EmailMsg())
+		for s in slack_channel.replace(" ","").split(","):
+			email.booking_send_slack("Crash.Monitor",s, EmailMsg())
 
 SELECT_EMAIL_SLACK_FROM_USERCONFIG_ID ='''
 	SELECT 
@@ -193,7 +195,6 @@ def get_email_slack_from_userconfig_id(userconfig_id,userconfig_database=usercon
 
 	curs=mydb.execute(select_email_slack_from_userconfig_id)
 	return curs.fetchone()
-
 
 def update_hit_issue_id_list_to_userconfig():
 	CG = userconfig.ConfigGroup()
@@ -253,7 +254,7 @@ if __name__ == '__main__':
 	print('[job_get_android_crash] collect crash data within 7 days, end at : ', end_date)
 	#schedule.every().day.at("03:30").do(job_get_android_crash)
 	#schedule.every(180).minutes.at(":20").do(job_get_android_crash)
-	schedule.every(120).minutes.at(":20").do(job_get_all_crash)
+	schedule.every(15).minutes.at(":20").do(job_get_all_crash)
 	#print('[job_test]')
 	#schedule.every(35).minutes.at(":20").do(job_test)
 
