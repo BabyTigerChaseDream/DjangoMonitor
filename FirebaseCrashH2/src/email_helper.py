@@ -142,14 +142,14 @@ class Report:
 		# TODO: read data in database 
 		msg = ""	
 		# order issue by user count 
-		msg = '<h1>[{platform}]:Total {count} Crashes Detected for {team}</h1>'.format(
+		msg = '<h2>[{platform}]:\"{count}\" Crashes Detected for \"{team}\"</h2>'.format(
 										platform=self.platform, 
 										count=self.total_issue_count, 
 										team=self.team
 										)
 		#for issue in issue_list 
 		for i in self.report_issue_content:
-			msg = msg + '<h2>{issue_title}|{issue_id}|{crash_count}|{total_user}|{total_user}|</h2>'.format(
+			msg = msg + '<H4>{issue_title}|{issue_id}|{crash_count}|{total_user}|{total_user}|</H4>'.format(
 																	issue_title=i['issue_title'],
 																	issue_id=i['issue_id'],
 																	crash_count=i['crash_count'],
@@ -157,7 +157,7 @@ class Report:
 																	app_version=i['app_version'][0:20]
 																)
 		# if total_issue > 3 
-		msg = msg + "<br>More Crashes' <a href='{}'>Detail</a><br><br>".format(self.url_userconfig)
+		msg = msg + "<H3><br>More Crashes' <a href='{}'>Detail</a><br><br></H3>".format(self.url_userconfig)
 
 		bookingValue = "<H3>Think Customer First. </H4><H4>Own it.</H4> <H4>------Booking Value</H3>"
 		msg = msg + bookingValue
