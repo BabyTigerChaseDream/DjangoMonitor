@@ -3,9 +3,9 @@ import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 import requests
+import dblib
 
 class EmailHelper:
-
     def send_email(self, sender, psw, receiver, smtpserver, port,title,msgBody):
         recvList = []
 
@@ -70,3 +70,99 @@ class EmailHelper:
             print(resp)
         except Exception as e:
             print("error when sending message")
+
+class Report:
+	url_userconfig_template = "https://firebase-app-crash.dqs.booking.com/crashdetail_user/{userconfig_id}/"
+	mydb=dblib.DB(database='chinaqa',acc_mode='rw',user='crashmonitorbotfire_chinaqa_rw0',password='Ugzdq7E3PDzJ1wBp')
+	# default db 
+
+	# pass database as parameters
+	SELECT_ISSUE_ID_LIST_IN_USERCONFIG='''
+		SELECT id,team,platform,issue_id_list
+		FROM {userconfig_table}
+		WHERE id={config_id}
+	'''	
+	GET_CRASHISSUE_CONTENT_SQLCMD = '''
+		select 
+			issue_id, 
+			issue_title, 
+			platform,
+			crash_count,
+			total_user,	
+			app_version
+		from `{crash_table}` 
+		where 
+			issue_id= '{issue_id}'
+	''' 
+	def __init__(self,config_id, mydb=None):
+		if mydb:
+			self.mydb = mydb
+		self.url_userconfig = self.url_userconfig_template.format(userconfig_id=config_id)
+		# issue_id, title , crash_count, user_total, app_version	
+		self.report_issue_content= []
+		self.userconfig_table='userconfig_config'
+		self.crash_table='CrashIssuesDbg'
+		self.order_issue = False 
+		self.config_id = config_id
+
+		self.select_issue_id_list_in_userconfig = self.SELECT_ISSUE_ID_LIST_IN_USERCONFIG.format(
+											userconfig_table=self.userconfig_table,
+											config_id=self.config_id
+											)
+		self.curs=self.mydb.execute(self.select_issue_id_list_in_userconfig)
+		self.userconfig = self.curs.fetchone()
+		self.id=self.userconfig['id']
+		self.team=self.userconfig['team']
+		self.platform=self.userconfig['platform']
+		self.issue_id_list=self.userconfig['issue_id_list']
+		self.total_issue_count=len(self.issue_id_list.split(','))
+
+		# check total issue_id < 3 then display all ; >3 need to order them based on crash		
+		if self.total_issue_count > 5:
+			self.order_issue = True
+
+	def get_report_issue_content(self):
+		self.report_issue_content = []
+		for issue_id in self.issue_id_list.split(",")[:5]:
+			self.get_crashissue_content_sqlcmd=self.GET_CRASHISSUE_CONTENT_SQLCMD.format(
+							crash_table=self.crash_table,
+							issue_id=issue_id
+						)
+			self.curs=self.mydb.execute(self.get_crashissue_content_sqlcmd)
+			try:
+				self.report_issue_content.append(self.curs.fetchone())
+			except:
+				print("[Abort Issue ID]", issue_id)
+				continue
+		return self.report_issue_content
+
+	def generateNotificationMsg(self):
+		if not self.report_issue_content:
+			self.get_report_issue_content()
+		# TODO: read data in database 
+		msg = ""	
+		# order issue by user count 
+		msg = '<h1>[{platform}]:Total {count} Crashes Detected for {team}</h1>'.format(
+										platform=self.platform, 
+										count=self.total_issue_count, 
+										team=self.team
+										)
+		#for issue in issue_list 
+		for i in self.report_issue_content:
+			msg = msg + '<h2>{issue_title}|{issue_id}|{crash_count}|{total_user}|{total_user}|</h2>'.format(
+																	issue_title=i['issue_title'],
+																	issue_id=i['issue_id'],
+																	crash_count=i['crash_count'],
+																	total_user=i['total_user'],
+																	app_version=i['app_version'][0:20]
+																)
+		# if total_issue > 3 
+		msg = msg + "<br>More Crashes' <a href='{}'>Detail</a><br><br>".format(self.url_userconfig)
+
+		bookingValue = "<H3>Think Customer First. </H4><H4>Own it.</H4> <H4>------Booking Value</H3>"
+		msg = msg + bookingValue
+		return msg
+	
+	def generateSlackMsg(expId):
+    	#return msg
+		pass

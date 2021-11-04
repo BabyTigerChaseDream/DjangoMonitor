@@ -7,7 +7,7 @@ import firebase_db_common_lib
 from datetime import datetime, timedelta
 import userconfig
 
-from email_helper import EmailHelper
+from email_helper import EmailHelper,Report
 
 import jsmod
 import json
@@ -174,17 +174,20 @@ def EmailMsg():
     return msg
 
 def send_notification(**userconfig_notification):
+	config_id = userconfig_notification['id']
 	email_address = userconfig_notification['email_address']
 	slack_channel = userconfig_notification['slack_channel']
 	print("[Email Type] ",type(email_address))
 
 	email = EmailHelper()
+	report = Report(config_id=config_id)
 	title = 'Crash Monitor Notification'
 	#email.booking_send_email("China.Quality@booking.com", email_address, title, EmailMsg() )
 	if 'booking.com' in email_address:
 		for e in email_address.replace(" ","").split(","):
 			print("email is :",e)
-			email.booking_send_email("Crash.Monitor@booking.com", e, title, EmailMsg() )
+			email.booking_send_email("Crash.Monitor@booking.com", e, title, report.generateNotificationMsg() )
+			#email.booking_send_email("Crash.Monitor@booking.com", e, title, EmailMsg() )
 	
 	if slack_channel is not None:
 		for s in slack_channel.replace(" ","").split(","):
@@ -192,6 +195,7 @@ def send_notification(**userconfig_notification):
 
 SELECT_EMAIL_SLACK_FROM_USERCONFIG_ID ='''
 	SELECT 
+		id,
 		slack_channel,
 		email_address
 	FROM {userconfig_table}
@@ -263,9 +267,8 @@ def job_test():
 if __name__ == '__main__':
 	end_date =datetime.utcnow() 
 	print('[job_get_android_crash] collect crash data within 7 days, end at : ', end_date)
-	#schedule.every().day.at("03:30").do(job_get_android_crash)
-	#schedule.every(180).minutes.at(":20").do(job_get_android_crash)
-	schedule.every(180).minutes.at(":20").do(job_get_all_crash)
+	#schedule.every(180).minutes.at(":20").do(job_get_all_crash)
+	schedule.every(5).minutes.at(":20").do(job_get_all_crash)
 	#print('[job_test]')
 	#schedule.every(35).minutes.at(":20").do(job_test)
 
