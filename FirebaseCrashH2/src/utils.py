@@ -181,17 +181,19 @@ def send_notification(**userconfig_notification):
 
 	email = EmailHelper()
 	report = Report(config_id=config_id)
+	msg = report.generateNotificationMsg()
 	title = 'Crash Monitor Notification'
 	#email.booking_send_email("China.Quality@booking.com", email_address, title, EmailMsg() )
 	if 'booking.com' in email_address:
 		for e in email_address.replace(" ","").split(","):
 			print("email is :",e)
-			email.booking_send_email("Crash.Monitor@booking.com", e, title, report.generateNotificationMsg() )
+			email.booking_send_email("Crash.Monitor@booking.com", e, title, msg)
 			#email.booking_send_email("Crash.Monitor@booking.com", e, title, EmailMsg() )
 	
 	if slack_channel is not None:
 		for s in slack_channel.replace(" ","").split(","):
-			email.booking_send_slack("Crash.Monitor",s, EmailMsg())
+			email.booking_send_slack("Crash.Monitor",s, msg)
+			#email.booking_send_slack("Crash.Monitor",s, EmailMsg())
 
 SELECT_EMAIL_SLACK_FROM_USERCONFIG_ID ='''
 	SELECT 

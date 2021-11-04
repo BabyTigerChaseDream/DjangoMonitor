@@ -148,8 +148,9 @@ class Report:
 										team=self.team
 										)
 		#for issue in issue_list 
+		msg = '<H4>    issue_title    |    issue_id    |crash_count|total_user|app_version|</H4>'
 		for i in self.report_issue_content:
-			msg = msg + '<H4>{issue_title}|{issue_id}|{crash_count}|{total_user}|{total_user}|</H4>'.format(
+			msg = msg + '<H4>{issue_title}|{issue_id}|{crash_count}|{total_user}|{app_version}|</H4>'.format(
 																	issue_title=i['issue_title'],
 																	issue_id=i['issue_id'],
 																	crash_count=i['crash_count'],
