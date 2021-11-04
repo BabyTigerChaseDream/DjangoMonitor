@@ -183,6 +183,7 @@ def send_notification(**userconfig_notification):
 	#email.booking_send_email("China.Quality@booking.com", email_address, title, EmailMsg() )
 	if 'booking.com' in email_address:
 		for e in email_address.replace(" ","").split(","):
+			print("email is :",e)
 			email.booking_send_email("Crash.Monitor@booking.com", e, title, EmailMsg() )
 	
 	if slack_channel is not None:
@@ -264,7 +265,7 @@ if __name__ == '__main__':
 	print('[job_get_android_crash] collect crash data within 7 days, end at : ', end_date)
 	#schedule.every().day.at("03:30").do(job_get_android_crash)
 	#schedule.every(180).minutes.at(":20").do(job_get_android_crash)
-	schedule.every(15).minutes.at(":20").do(job_get_all_crash)
+	schedule.every(180).minutes.at(":20").do(job_get_all_crash)
 	#print('[job_test]')
 	#schedule.every(35).minutes.at(":20").do(job_test)
 
