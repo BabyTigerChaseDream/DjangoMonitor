@@ -164,6 +164,35 @@ class Report:
 		msg = msg + bookingValue
 		return msg
 	
-	def generateSlackMsg(expId):
-    	#return msg
-		pass
+	def generateSlackMsg(self):
+		if not self.report_issue_content:
+			self.get_report_issue_content()
+		# TODO: read data in database 
+		msg = ""	
+
+		'''
+		if len(self.report_issue_content) == 0:
+			return msg
+		'''
+		# order issue by user count 
+		msg = '*[{platform}]:\"{count}\" Crashes Detected for \"{team}\"*\\n'.format(
+										platform=self.platform, 
+										count=self.total_issue_count, 
+										team=self.team
+										)
+		#for issue in issue_list 
+		msg = msg + '*    issue_title    |    issue_id    |crash_count|total_user|app_version    *\\n'
+		for i in self.report_issue_content:
+			msg = msg + '{issue_title}|{issue_id}|{crash_count}|{total_user}|{app_version}\\n'.format(
+																	issue_title=i['issue_title'],
+																	issue_id=i['issue_id'],
+																	crash_count=i['crash_count'],
+																	total_user=i['total_user'],
+																	app_version=i['app_version'][0:20]
+																)
+		# if total_issue > 3 
+		msg = msg + "*More Crashes Detail:'{}'*\\n".format(self.url_userconfig)
+
+		bookingValue = "Think Customer First. \\n Own it.\\n------Booking Value"
+		msg = msg + bookingValue
+		return msg
