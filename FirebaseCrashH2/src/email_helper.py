@@ -161,7 +161,7 @@ class Report:
 																	app_version=i['app_version'][0:20]
 																)
 		# if total_issue > 3 
-		msg = msg + "<H3><br>More Crashes' <a href='{}'>Detail</a><br><br></H3>".format(self.url_userconfig)
+		msg = msg + "<H3><br>More Crashes' <a href='{url_userconfig}'>Detail</a><br><br></H3>".format(url_userconfig=self.url_userconfig)
 
 		bookingValue = "<H3>Think Customer First. </H4><H4>Own it.</H4> <H4>------Booking Value</H3>"
 		msg = msg + bookingValue
@@ -185,7 +185,7 @@ class Report:
 		#for issue in issue_list 
 		#msg = msg + '*    issue_subtitle    |    issue_id    |crash_count|total_user|app_version    *\\n'
 		for i in self.report_issue_content:
-			msg = msg + '*issue_subtitle* {issue_subtitle} \\n \
+			msg = msg + 'issue_subtitle: *{issue_subtitle}* \\n \
 						*issue_id* {issue_id} \\n \
 						*crash count* {crash_count} \\n \
 						*total user affected* {total_user} \\n \
@@ -197,8 +197,8 @@ class Report:
 													app_version=len(i['app_version'].split(','))
 													)
 		# if total_issue > 3 
-		msg = msg + "<{url_userconfig}|*Crashes Detail*>".format(url_userconfig=self.url_userconfig)
+		msg = msg + "<{url_userconfig}|*Crashes Detail*>\\n".format(url_userconfig=self.url_userconfig)
 
-		bookingValue = "Think Customer First. \\n Own it.\\n------Booking Value"
+		bookingValue = "\\nThink Customer First. \\n Own it.\\n------Booking Value"
 		msg = msg + bookingValue
 		return msg
