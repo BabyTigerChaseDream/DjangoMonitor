@@ -88,6 +88,7 @@ class Report:
 		select 
 			issue_id, 
 			issue_title, 
+			issue_sub_title, 
 			platform,
 			crash_count,
 			total_user,	
@@ -152,8 +153,8 @@ class Report:
 		#for issue in issue_list 
 		msg = '<H4>    issue_title    |    issue_id    |crash_count|total_user|app_version|</H4>'
 		for i in self.report_issue_content:
-			msg = msg + '<H4>{issue_title}|{issue_id}|{crash_count}|{total_user}|{app_version}|</H4>'.format(
-																	issue_title=i['issue_title'],
+			msg = msg + '<H4>{issue_sub_title}|{issue_id}|{crash_count}|{total_user}|{app_version}|</H4>'.format(
+																	issue_sub_title=i['issue_sub_title'],
 																	issue_id=i['issue_id'],
 																	crash_count=i['crash_count'],
 																	total_user=i['total_user'],
@@ -171,29 +172,32 @@ class Report:
 			self.get_report_issue_content()
 		# TODO: read data in database 
 		msg = ""	
-
 		'''
 		if len(self.report_issue_content) == 0:
 			return msg
 		'''
 		# order issue by user count 
-		msg = '*[{platform}]:\"{count}\" Crashes Detected for \"{team}\"*\\n'.format(
+		msg = '*[{platform}]* has *{count}* Crashes Detected for *{team}*\\n'.format(
 										platform=self.platform, 
 										count=self.total_issue_count, 
 										team=self.team
 										)
 		#for issue in issue_list 
-		msg = msg + '*    issue_title    |    issue_id    |crash_count|total_user|app_version    *\\n'
+		#msg = msg + '*    issue_sub_title    |    issue_id    |crash_count|total_user|app_version    *\\n'
 		for i in self.report_issue_content:
-			msg = msg + '{issue_title}|{issue_id}|{crash_count}|{total_user}|{app_version}\\n'.format(
-																	issue_title=i['issue_title'],
-																	issue_id=i['issue_id'],
-																	crash_count=i['crash_count'],
-																	total_user=i['total_user'],
-																	app_version=i['app_version'][0:20]
-																)
+			msg = msg + '*issue_sub_title* {issue_sub_title} \\n \
+						*issue_id* {issue_id} \\n \
+						*crash count* {crash_count} \\n \
+						*total user affected* {total_user} \\n \
+						*app versions in total* {app_version}\\n\\n'.format(
+													issue_sub_title=i['issue_sub_title'],
+													issue_id=i['issue_id'],
+													crash_count=i['crash_count'],
+													total_user=i['total_user'],
+													app_version=len(i['app_version'].split(','))
+													)
 		# if total_issue > 3 
-		msg = msg + "*More Crashes Detail:'{}'*\\n".format(self.url_userconfig)
+		msg = msg + "<{url_userconfig}|*Crashes Detail*>".format(self.url_userconfig)
 
 		bookingValue = "Think Customer First. \\n Own it.\\n------Booking Value"
 		msg = msg + bookingValue
