@@ -135,28 +135,35 @@ class Report:
 				print("[Abort Issue ID]", issue_id)
 				continue
 		return self.report_issue_content
-
+	
 	def generateNotificationMsg(self):
 		if not self.report_issue_content:
 			self.get_report_issue_content()
-		# TODO: read data in database 
-		msg = ""	
+
+		if not any(self.report_issue_content):
+			msg = ""
+			return msg
 		# order issue by user count 
-		msg = '<h2>[{platform}]:\"{count}\" Crashes Detected for \"{team}\"</h2>'.format(
+		msg = '<H3>[{platform}]:\"{count}\" Crashes Detected for \"{team}\"</H3>'.format(
 										platform=self.platform, 
 										count=self.total_issue_count, 
 										team=self.team
 										)
 		#for issue in issue_list 
-		msg = '<H4>    issue_title    |    issue_id    |crash_count|total_user|app_version|</H4>'
+		msg = msg + '<H4>    issue_title    |    issue_id    |crash_count|total_user|app_version|</H4>'
 		for i in self.report_issue_content:
-			msg = msg + '<H4>{issue_title}|{issue_id}|{crash_count}|{total_user}|{app_version}|</H4>'.format(
-																	issue_title=i['issue_title'],
-																	issue_id=i['issue_id'],
-																	crash_count=i['crash_count'],
-																	total_user=i['total_user'],
-																	app_version=i['app_version'][0:20]
-																)
+			try:
+				msg = msg + '<h4>{issue_title}|{issue_id}|{crash_count}|{total_user}|{app_version}|</h4>'.format(
+																		issue_title=i['issue_title'],
+																		issue_id=i['issue_id'],
+																		crash_count=i['crash_count'],
+																		total_user=i['total_user'],
+																		app_version=i['app_version'][0:20]
+																		)
+			except:
+				print("[Exceptions]")
+				print("[Issue content]",i)
+				continue
 		# if total_issue > 3 
 		msg = msg + "<H3><br>More Crashes' <a href='{}'>Detail</a><br><br></H3>".format(self.url_userconfig)
 
@@ -167,13 +174,10 @@ class Report:
 	def generateSlackMsg(self):
 		if not self.report_issue_content:
 			self.get_report_issue_content()
-		# TODO: read data in database 
-		msg = ""	
 
-		'''
-		if len(self.report_issue_content) == 0:
-			return msg
-		'''
+		if not any(self.report_issue_content):
+			msg = ""
+			return msg	
 		# order issue by user count 
 		msg = '*[{platform}]:\"{count}\" Crashes Detected for \"{team}\"*\\n'.format(
 										platform=self.platform, 

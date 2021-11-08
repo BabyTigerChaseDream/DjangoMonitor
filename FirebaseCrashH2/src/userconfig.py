@@ -26,7 +26,7 @@ class ConfigGroup:
 	# local database info
 	database = 'chinaqa'
 	userconfig_table = 'userconfig_config'
-	crash_table = 'CrashIssuesDbg'
+	crash_table = 'CrashIssues'
 	acc_mode = 'rw'
 
 	def __init__(self, database=database, userconfig_table=userconfig_table, 
@@ -130,7 +130,7 @@ class ConfigGroup:
 class ConfigUser:
 	database = 'chinaqa'
 	userconfig_table = 'userconfig_config'
-	crash_table = 'CrashIssuesDbg'
+	crash_table = 'CrashIssues'
 	acc_mode = 'rw'
 
 	SAVE_MATCH_ISSUE_ID_LIST_TO_USERCONFIG='''

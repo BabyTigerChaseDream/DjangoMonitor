@@ -141,16 +141,18 @@ class Report:
 			self.get_report_issue_content()
 		# TODO: read data in database 
 		msg = ""	
+		if len(self.report_issue_content) == 0:
+			return msg
 		# order issue by user count 
-		msg = '<h2>[{platform}]:\"{count}\" Crashes Detected for \"{team}\"</h2>'.format(
+		msg = '<H3>[{platform}]:\"{count}\" Crashes Detected for \"{team}\"</H3>'.format(
 										platform=self.platform, 
 										count=self.total_issue_count, 
 										team=self.team
 										)
 		#for issue in issue_list 
-		msg = '<H4>    issue_title    |    issue_id    |crash_count|total_user|app_version|</H4>'
+		msg = msg + '<H4>    issue_title    |    issue_id    |crash_count|total_user|app_version|</H4>'
 		for i in self.report_issue_content:
-			msg = msg + '<H4>{issue_title}|{issue_id}|{crash_count}|{total_user}|{app_version}|</H4>'.format(
+			msg = msg + '<h4>{issue_title}|{issue_id}|{crash_count}|{total_user}|{app_version}|</h4>'.format(
 																	issue_title=i['issue_title'],
 																	issue_id=i['issue_id'],
 																	crash_count=i['crash_count'],
