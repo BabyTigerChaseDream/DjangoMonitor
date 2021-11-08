@@ -285,10 +285,15 @@ def crashissues_list_user(request, userconfig_id):
 		for issue_id in issue_id_list.split(','):
 			try:
 				one_issue = Crashissues.objects.filter(issue_id=issue_id)
+				print('[crashissues_list_user] one_issue',one_issue)
 			except:
 				messages.error(request,'[missing crash id in database] ', issue_id)	
 				continue
-			issue_table_user.append(one_issue[0])
+			try:
+				print('[crashissues_list_user] one_issue',one_issue)
+				issue_table_user.append(one_issue[0])
+			except:
+				print('[crashissues_list_user] one_issue type:',type(one_issue),one_issue)
 
 		print("Total issue for this user : ", len(issue_table_user))
 
