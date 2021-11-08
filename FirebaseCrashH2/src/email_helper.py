@@ -186,9 +186,7 @@ class Report:
 		#msg = msg + '*    issue_subtitle    |    issue_id    |crash_count|total_user|app_version    *\\n'
 		for i in self.report_issue_content:
 			msg = msg + '*issue_subtitle*:{issue_subtitle}\
-						*crash count*:{crash_count}\
-						*users affected*:{total_user}\
-						*app versions in total*:{app_version}\\n'.format(
+						*crash count*:{crash_count}|*users affected*:{total_user}|*app versions in total*:{app_version}\\n'.format(
 													issue_subtitle=i['issue_subtitle'],
 													issue_id=i['issue_id'],
 													crash_count=i['crash_count'],
