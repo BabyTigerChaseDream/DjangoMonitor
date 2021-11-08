@@ -197,7 +197,7 @@ class Report:
 													app_version=len(i['app_version'].split(','))
 													)
 		# if total_issue > 3 
-		msg = msg + "<{url_userconfig}|*Crashes Detail*>".format(self.url_userconfig)
+		msg = msg + "<{url_userconfig}|*Crashes Detail*>".format(url_userconfig=self.url_userconfig)
 
 		bookingValue = "Think Customer First. \\n Own it.\\n------Booking Value"
 		msg = msg + bookingValue
