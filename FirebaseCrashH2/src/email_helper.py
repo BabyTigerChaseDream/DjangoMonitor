@@ -37,7 +37,7 @@ class EmailHelper:
     def booking_send_email(self, sender, receiver, title,msgBody):
         recvList = []
         requestUrl = "https://notifications.booking.com/api/v1/notify/email"
-
+        print("[in email_helper:::booking_send_email ]")
         if receiver.find(';') != -1:
             recvList = receiver.split(';')
         else:
@@ -50,16 +50,18 @@ class EmailHelper:
                 requests.post(url=requestUrl, data=postBody.encode(), verify=False)
             except Exception as e:
                 print("error when sending message")
+        print("[End email_helper:::booking_send_email ]")
 
     def booking_send_slack(self, sender, receiver, msgBody):
         requestUrl = "https://notifications.booking.com/api/v1/notify/slack"
-
+        print("[in email_helper:::booking_send_slack ]")
         try:
             postBody = '''{"channel_name": "''' + receiver + '''","text":"''' + msgBody + '''","username":"''' + sender + '''"}'''
             resp = requests.post(url=requestUrl, data=postBody.encode('utf-8'), verify=False)
             print(resp)
         except Exception as e:
             print("error when sending message")
+        print("[End email_helper:::booking_send_slack ]")
 
     def booking_send_workplace_group(self, receiver, msgBody):
         requestUrl = "https://notifications.booking.com/api/v1/notify/workplace_group_chat"

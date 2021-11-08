@@ -169,8 +169,10 @@ acc_mode = 'rw'
 
 def EmailMsg():
     msg = '<h1>Crash Monitor Retrieved </h1>'
-    bookingValue = "<H3>Cron Job Completed !Check your crash lists</H3>"
-    msg = msg + bookingValue
+    return msg
+
+def SlackMsg():
+    msg = '*[Crash Monitor]\* Retrieved \n'
     return msg
 
 def send_notification(**userconfig_notification):
@@ -182,18 +184,17 @@ def send_notification(**userconfig_notification):
 	email = EmailHelper()
 	report = Report(config_id=config_id)
 	emailmsg = report.generateNotificationMsg()
-	emailmsg = report.generateSlackMsg()
+	slackmsg = report.generateSlackMsg()
 	title = 'Crash Monitor Notification'
 	#email.booking_send_email("China.Quality@booking.com", email_address, title, EmailMsg() )
 	if 'booking.com' in email_address:
 		for e in email_address.replace(" ","").split(","):
-			print("email is :",e)
+			print("[send_notification] email is :",e)
 			email.booking_send_email("Crash.Monitor@booking.com", e, title, emailmsg)
 			#email.booking_send_email("Crash.Monitor@booking.com", e, title, EmailMsg() )
 	if slack_channel is not None:
 		for s in slack_channel.replace(" ","").split(","):
-			email.booking_send_slack("Crash.Monitor",s, emailmsg)
-			#email.booking_send_slack("Crash.Monitor",s, EmailMsg())
+			email.booking_send_slack("Crash.Monitor",s, slackmsg)
 
 SELECT_EMAIL_SLACK_FROM_USERCONFIG_ID ='''
 	SELECT 
