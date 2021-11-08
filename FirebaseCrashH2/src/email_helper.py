@@ -185,11 +185,10 @@ class Report:
 		#for issue in issue_list 
 		#msg = msg + '*    issue_subtitle    |    issue_id    |crash_count|total_user|app_version    *\\n'
 		for i in self.report_issue_content:
-			msg = msg + 'issue_subtitle: *{issue_subtitle}* \\n \
-						*issue_id* {issue_id} \\n \
-						*crash count* {crash_count} \\n \
-						*total user affected* {total_user} \\n \
-						*app versions in total* {app_version}\\n\\n'.format(
+			msg = msg + '*issue_subtitle*:{issue_subtitle}\\n\
+						*crash count*:{crash_count}\
+						*users affected*:{total_user}\
+						*app versions in total*:{app_version}\\n'.format(
 													issue_subtitle=i['issue_subtitle'],
 													issue_id=i['issue_id'],
 													crash_count=i['crash_count'],
@@ -199,6 +198,6 @@ class Report:
 		# if total_issue > 3 
 		msg = msg + "<{url_userconfig}|*Crashes Detail*>\\n".format(url_userconfig=self.url_userconfig)
 
-		bookingValue = "\\nThink Customer First. \\n Own it.\\n------Booking Value"
+		bookingValue = "Think Customer First. Own it. ------Booking Value"
 		msg = msg + bookingValue
 		return msg

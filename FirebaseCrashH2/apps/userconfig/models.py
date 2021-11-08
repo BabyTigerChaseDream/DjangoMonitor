@@ -110,4 +110,4 @@ class Crashissues(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'CrashIssuesDbg'
+        db_table = 'CrashIssues'
