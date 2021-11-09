@@ -104,6 +104,7 @@ class Report:
 			platform,
 			crash_count,
 			total_user,	
+			app_version_list,
 			app_version
 		from `{crash_table}` 
 		where 
@@ -202,6 +203,7 @@ class Report:
 		#for issue in issue_list 
 		#msg = msg + '*    issue_subtitle    |    issue_id    |crash_count|total_user|app_version    *\\n'
 		for i in self.report_issue_content:
+			print("['app_version']:",i['app_version'],len(i['app_version'].split(',')))
 			url_firebase = self.url_firebase_template.format(
 				issue_id=i['issue_id'],	
 				bookingApp=self.bookingApp,
@@ -209,13 +211,15 @@ class Report:
 			)
 			msg = msg + '<{url_firebase}|{issue_title}>\
 						\\n>{issue_subtitle}\
-						\\n>crash *{crash_count}* times,affects *{total_user}* users,on {app_version} versions\\n'.format(
+						\\n>crash *{crash_count}* times,affects *{total_user}* users,\
+						\\n>lastest failure on *{app_version}* total fail on {version_count} versions\\n'.format(
 													issue_title=i['issue_title'],
 													issue_subtitle=i['issue_subtitle'],
 													issue_id=i['issue_id'],
 													crash_count=i['crash_count'],
 													total_user=i['total_user'],
-													app_version=len(i['app_version'].split(',')),
+													app_version=i['app_version'].split(',')[0],
+													version_count=len(i['app_version_list'].split(',')),
 													url_firebase=url_firebase
 													)
 		# if total_issue > 3 
