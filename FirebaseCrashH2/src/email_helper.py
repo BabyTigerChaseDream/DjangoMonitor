@@ -225,10 +225,9 @@ class Report:
 													url_firebase=url_firebase
 													)
 		# if total_issue > 3 
-		msg = msg + '''
-			Crashes retrieved based on your configuration on <{url_crashlist}|*Crash Monitor*>.
-			If you'd like unsubscribe some crashes above please go <{url_userconfig}|Crashes Lists> and click *\'Ignore\'* btn after Issue ID 
-		'''.format(url_crashlist=self.url_crashlist,url_userconfig=self.url_userconfig)
+		msg = msg + '\\n>Crashes retrieved based on configuration on <{url_crashlist}|userconfig>\\n\
+			\\n>If you want to unsubscribe some crashes above please go <{url_userconfig}|Here>\
+			\\n>and click *Ignore* btn'.format(url_crashlist=self.url_crashlist,url_userconfig=self.url_userconfig)
 		msg = msg + '---------------------------------------------------\\n'
 
 		#bookingValue = "Think Customer First. Own it. ------Booking Value"
