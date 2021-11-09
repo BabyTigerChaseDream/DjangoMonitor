@@ -10,6 +10,7 @@ bookingApp = {
 	'ios':'ios:com.booking.BookingApp',
 	'default': 'not-there'
 }
+MAX_DISPLAY_NOTIFY = 5+1
 
 class EmailHelper:
     def send_email(self, sender, psw, receiver, smtpserver, port,title,msgBody):
@@ -165,26 +166,39 @@ class Report:
 		# TODO: read data in database 
 		msg = ""	
 		# order issue by user count 
-		msg = '<h2>[{platform}]:\"{count}\" Crashes Detected for \"{team}\"</h2>'.format(
+		msg = '<h2>[{platform}] has \"{count}\" Issues Detected for \"{team}\" during {timeslot}</h2>'.format(
 										platform=self.platform, 
 										count=self.total_issue_count, 
-										team=self.team
+										team=self.team,
+										timeslot = 'last-7-days'
 										)
 		#for issue in issue_list 
-		msg = '<H4>    issue_title    |    issue_id    |crash_count|total_user|app_version|</H4>'
-		for i in self.report_issue_content:
-			msg = msg + '<H4>{issue_subtitle}|{issue_id}|{crash_count}|{total_user}|{app_version}|</H4>'.format(
-																	issue_subtitle=i['issue_subtitle'],
-																	issue_id=i['issue_id'],
-																	crash_count=i['crash_count'],
-																	total_user=i['total_user'],
-																	app_version=i['app_version'][0:20]
-																)
+		#msg = '<H4>    issue_title    |    issue_id    |crash_count|total_user|app_version|</H4>'
+		for i in self.report_issue_content[:MAX_DISPLAY_NOTIFY]:
+			url_firebase = self.url_firebase_template.format(
+				issue_id=i['issue_id'],	
+				bookingApp=self.bookingApp,
+				timeslot=self.timeslot	
+			)
+			#<a href='{url_crashlist}'>Detail</a>
+			msg = msg + '''<H4><a href='{url_firebase}'>{issue_title}</a>\
+				\n>{issue_subtitle}\
+				\n>crash {crash_count} times,affects {total_user} users,\
+				\n>lastest failure on {app_version} total fail on {version_count} versions<\H4>'''.format(
+											issue_title=i['issue_title'],
+											issue_subtitle=i['issue_subtitle'],
+											issue_id=i['issue_id'],
+											crash_count=i['crash_count'],
+											total_user=i['total_user'],
+											app_version=i['app_version'].split(',')[0],
+											version_count=len(i['app_version_list'].split(',')),
+											url_firebase=url_firebase
+											)
 		# if total_issue > 3 
-		msg = msg + "<H3><br>More Crashes' <a href='{url_crashlist}'>Detail</a><br><br></H3>".format(url_crashlist=self.url_crashlist)
-
-		bookingValue = "<H3>Think Customer First. </H4><H4>Own it.</H4> <H4>------Booking Value</H3>"
-		msg = msg + bookingValue
+		msg = msg + '''[Notes] Crashes retrieved based on you(team) <a href='{url_firebase}'>configurations</a>\
+			\n>If you want to unsubscribe some crashes above please go <a href='<{url_crashlist}'>Here</a>\
+			\n>and click *Ignore* btn'''.format(url_crashlist=self.url_crashlist,url_userconfig=self.url_userconfig)
+		msg = msg + '---------------------------------------------------\\n'
 		return msg
 	
 	def generateSlackMsg(self):
@@ -205,7 +219,7 @@ class Report:
 										)
 		#for issue in issue_list 
 		#msg = msg + '*    issue_subtitle    |    issue_id    |crash_count|total_user|app_version    *\\n'
-		for i in self.report_issue_content:
+		for i in self.report_issue_content[:MAX_DISPLAY_NOTIFY]:
 			print("['app_version']:",i['app_version'],len(i['app_version'].split(',')))
 			url_firebase = self.url_firebase_template.format(
 				issue_id=i['issue_id'],	
