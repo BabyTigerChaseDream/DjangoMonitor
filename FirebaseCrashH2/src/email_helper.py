@@ -207,7 +207,8 @@ class Report:
 				bookingApp=self.bookingApp,
 				timeslot=self.timeslot	
 			)
-			msg = msg + '<{url_firebase}|{issue_title}*{issue_subtitle}*>\
+			msg = msg + '<{url_firebase}|{issue_title}>\\n\
+						{issue_subtitle}\\n\
 						crash *{crash_count}* times,affects *{total_user}* users,on {app_version} versions\\n'.format(
 													issue_title=i['issue_title'],
 													issue_subtitle=i['issue_subtitle'],
@@ -219,7 +220,8 @@ class Report:
 													)
 		# if total_issue > 3 
 		msg = msg + "<{url_userconfig}|*Crashes Lists*>\\n".format(url_userconfig=self.url_userconfig)
+		msg = msg + '---------------------------------------------------\\n'
 
-		bookingValue = "Think Customer First. Own it. ------Booking Value"
-		msg = msg + bookingValue
+		#bookingValue = "Think Customer First. Own it. ------Booking Value"
+		#msg = msg + bookingValue
 		return msg
