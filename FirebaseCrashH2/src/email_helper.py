@@ -195,7 +195,7 @@ class Report:
 											url_firebase=url_firebase
 											)
 		# if total_issue > 3 
-		msg = msg + '''[Notes] Crashes retrieved based on you(team) <a href='{url_firebase}'>configurations</a>\
+		msg = msg + '''[Notes] Crashes retrieved based on you(team) <a href='{url_userconfig}'>configurations</a>\
 			\n>If you want to unsubscribe some crashes above please go <a href='<{url_crashlist}'>Here</a>\
 			\n>and click *Ignore* btn'''.format(url_crashlist=self.url_crashlist,url_userconfig=self.url_userconfig)
 		msg = msg + '---------------------------------------------------\\n'
