@@ -308,10 +308,24 @@ def firebase(request,platform,issue_id):
 		platform = 'Android' 
 
 	print('[Firebase] ', platform , issue_id)
+
+	bookingApp = {
+		'android':'android:com.booking',
+		'ios':'ios:com.booking.BookingApp',
+		'default': 'not-there'
+	}
+	timeslot = 'last-twenty-four-hours'
+
 	#return render(request, 'userconfig/firebase.html')
-	url='https://ota.booking.com/crashes/{platform}/{issue_id}'.format(platform=platform, issue_id=issue_id) 
-	print('[URL] ',url)	
-	return redirect(url)
+	#url='https://ota.booking.com/crashes/{platform}/{issue_id}'.format(platform=platform, issue_id=issue_id) 
+	url_firebase_template = "https://console.firebase.google.com/u/0/project/booking-oauth/crashlytics/app/{bookingApp}/issues/{issue_id}?time={timeslot}"
+	url_firebase = url_firebase_template.format(
+		issue_id=issue_id,	
+		bookingApp=bookingApp[platform.lower()],
+		timeslot=timeslot	
+	)
+	print('[URL] ',url_firebase)	
+	return redirect(url_firebase)
 
 '''
 ############################
