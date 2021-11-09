@@ -85,8 +85,9 @@ class Report:
 	#[ios]"https://console.firebase.google.com/u/0/project/booking-oauth/crashlytics/app/ios:com.booking.BookingApp/issues/{issue_id}?time=last-twenty-four-hours"
 	# {bookingApp} ios:com.booking.BookingApp 
 	### {timeslot}last-twenty-four-hours
-	url_userconfig_template = "https://firebase-app-crash.dqs.booking.com/crashdetail_user/{userconfig_id}/"
+	url_crashlist_template = "https://firebase-app-crash.dqs.booking.com/crashdetail_user/{userconfig_id}/"
 	url_firebase_template = "https://console.firebase.google.com/u/0/project/booking-oauth/crashlytics/app/{bookingApp}/issues/{issue_id}?time={timeslot}"
+	url_userconfig_template = 'https://firebase-app-crash.dqs.booking.com/config/{userconfig_id}/'
 	mydb=dblib.DB(database='chinaqa',acc_mode='rw',user='crashmonitorbotfire_chinaqa_rw0',password='Ugzdq7E3PDzJ1wBp')
 	# default db 
 
@@ -113,6 +114,7 @@ class Report:
 	def __init__(self,config_id, mydb=None):
 		if mydb:
 			self.mydb = mydb
+		self.url_crashlist= self.url_crashlist_template.format(userconfig_id=config_id)
 		self.url_userconfig = self.url_userconfig_template.format(userconfig_id=config_id)
 		# issue_id, title , crash_count, user_total, app_version	
 		self.report_issue_content= []
@@ -179,7 +181,7 @@ class Report:
 																	app_version=i['app_version'][0:20]
 																)
 		# if total_issue > 3 
-		msg = msg + "<H3><br>More Crashes' <a href='{url_userconfig}'>Detail</a><br><br></H3>".format(url_userconfig=self.url_userconfig)
+		msg = msg + "<H3><br>More Crashes' <a href='{url_crashlist}'>Detail</a><br><br></H3>".format(url_crashlist=self.url_crashlist)
 
 		bookingValue = "<H3>Think Customer First. </H4><H4>Own it.</H4> <H4>------Booking Value</H3>"
 		msg = msg + bookingValue
@@ -223,7 +225,10 @@ class Report:
 													url_firebase=url_firebase
 													)
 		# if total_issue > 3 
-		msg = msg + "More Info Go To: <{url_userconfig}|*Crashes Lists*>\\n".format(url_userconfig=self.url_userconfig)
+		msg = msg + '''
+			Crashes retrieved based on your configuration on <{url_crashlist}|*Crash Monitor*>.
+			If you'd like unsubscribe some crashes above please go <{url_userconfig}|Crashes Lists> and click *\'Ignore\'* btn after Issue ID 
+		'''.format(url_crashlist=self.url_crashlist,url_userconfig=self.url_userconfig)
 		msg = msg + '---------------------------------------------------\\n'
 
 		#bookingValue = "Think Customer First. Own it. ------Booking Value"
