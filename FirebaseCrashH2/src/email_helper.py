@@ -86,7 +86,7 @@ class Report:
 	# {bookingApp} ios:com.booking.BookingApp 
 	### {timeslot}last-twenty-four-hours
 	url_userconfig_template = "https://firebase-app-crash.dqs.booking.com/crashdetail_user/{userconfig_id}/"
-	url_firebase_template = "https://console.firebase.google.com/u/0/project/booking-oauth/crashlytics/app/{BookingApp}/issues/{issue_id}?time={timeslot}"
+	url_firebase_template = "https://console.firebase.google.com/u/0/project/booking-oauth/crashlytics/app/{bookingApp}/issues/{issue_id}?time={timeslot}"
 	mydb=dblib.DB(database='chinaqa',acc_mode='rw',user='crashmonitorbotfire_chinaqa_rw0',password='Ugzdq7E3PDzJ1wBp')
 	# default db 
 
