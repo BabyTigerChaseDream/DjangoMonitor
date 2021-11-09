@@ -5,6 +5,12 @@ from email.mime.multipart import MIMEMultipart
 import requests
 import dblib
 
+bookingApp = {
+	'android':'android:com.booking',
+	'ios':'ios:com.booking.BookingApp',
+	'default': 'not-there'
+}
+
 class EmailHelper:
     def send_email(self, sender, psw, receiver, smtpserver, port,title,msgBody):
         recvList = []
@@ -74,7 +80,13 @@ class EmailHelper:
             print("error when sending message")
 
 class Report:
+	#[android]https://console.firebase.google.com/u/0/project/booking-oauth/crashlytics/app/android:com.booking/issues/{issue_id}?time=last-seven-days
+	# {bookingApp} android:com.booking 
+	#[ios]"https://console.firebase.google.com/u/0/project/booking-oauth/crashlytics/app/ios:com.booking.BookingApp/issues/{issue_id}?time=last-twenty-four-hours"
+	# {bookingApp} ios:com.booking.BookingApp 
+	### {timeslot}last-twenty-four-hours
 	url_userconfig_template = "https://firebase-app-crash.dqs.booking.com/crashdetail_user/{userconfig_id}/"
+	url_firebase_template = "https://console.firebase.google.com/u/0/project/booking-oauth/crashlytics/app/{BookingApp}/issues/{issue_id}?time={timeslot}"
 	mydb=dblib.DB(database='chinaqa',acc_mode='rw',user='crashmonitorbotfire_chinaqa_rw0',password='Ugzdq7E3PDzJ1wBp')
 	# default db 
 
@@ -119,6 +131,11 @@ class Report:
 		self.platform=self.userconfig['platform']
 		self.issue_id_list=self.userconfig['issue_id_list']
 		self.total_issue_count=len(self.issue_id_list.split(','))
+
+		# get bookingApp / timeslot , generate url template
+		self.bookingApp = bookingApp[self.platform.lower()]
+		print("[bookingApp] platform:",self.platform,self.bookingApp)
+		self.timeslot = 'last-twenty-four-hours'
 
 		# check total issue_id < 3 then display all ; >3 need to order them based on crash		
 		if self.total_issue_count > 5:
@@ -177,7 +194,7 @@ class Report:
 			return msg
 		'''
 		# order issue by user count 
-		msg = '*[{platform}]* has *{count}* Crashes Detected for *{team}*\\n'.format(
+		msg = '*[{platform}]* has *{count}* Issues Detected for *{team}*\\n'.format(
 										platform=self.platform, 
 										count=self.total_issue_count, 
 										team=self.team
@@ -185,16 +202,23 @@ class Report:
 		#for issue in issue_list 
 		#msg = msg + '*    issue_subtitle    |    issue_id    |crash_count|total_user|app_version    *\\n'
 		for i in self.report_issue_content:
-			msg = msg + '*issue_subtitle*:{issue_subtitle}\
-						*crash count*:{crash_count}|*users affected*:{total_user}|*app versions in total*:{app_version}\\n'.format(
+			url_firebase = self.url_firebase_template.format(
+				issue_id=i['issue_id'],	
+				bookingApp=self.bookingApp,
+				timeslot=self.timeslot	
+			)
+			msg = msg + '<{url_firebase}|{issue_title}*{issue_subtitle}*>\
+						crash *{crash_count}* times,affects *{total_user}* users,on {app_version} versions\\n'.format(
+													issue_title=i['issue_title'],
 													issue_subtitle=i['issue_subtitle'],
 													issue_id=i['issue_id'],
 													crash_count=i['crash_count'],
 													total_user=i['total_user'],
-													app_version=len(i['app_version'].split(','))
+													app_version=len(i['app_version'].split(',')),
+													url_firebase=url_firebase
 													)
 		# if total_issue > 3 
-		msg = msg + "<{url_userconfig}|*Crashes Detail*>\\n".format(url_userconfig=self.url_userconfig)
+		msg = msg + "<{url_userconfig}|*Crashes Lists*>\\n".format(url_userconfig=self.url_userconfig)
 
 		bookingValue = "Think Customer First. Own it. ------Booking Value"
 		msg = msg + bookingValue
