@@ -208,8 +208,8 @@ class Report:
 				timeslot=self.timeslot	
 			)
 			msg = msg + '<{url_firebase}|{issue_title}>\\n\
-						{issue_subtitle}\\n\
-						crash *{crash_count}* times,affects *{total_user}* users,on {app_version} versions\\n'.format(
+						\\n>{issue_subtitle}\\n\
+						\\n>crash *{crash_count}* times,affects *{total_user}* users,on {app_version} versions\\n'.format(
 													issue_title=i['issue_title'],
 													issue_subtitle=i['issue_subtitle'],
 													issue_id=i['issue_id'],
