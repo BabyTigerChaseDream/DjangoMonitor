@@ -197,10 +197,11 @@ class Report:
 			return msg
 		'''
 		# order issue by user count 
-		msg = '*[{platform}]* has *{count}* Issues Detected for *{team}*\\n'.format(
+		msg = '*[{platform}]* has *{count}* Issues Detected for *{team}* during {timeslot}\\n'.format(
 										platform=self.platform, 
 										count=self.total_issue_count, 
-										team=self.team
+										team=self.team,
+										timeslot = 'last-7-days'
 										)
 		#for issue in issue_list 
 		#msg = msg + '*    issue_subtitle    |    issue_id    |crash_count|total_user|app_version    *\\n'
@@ -225,9 +226,9 @@ class Report:
 													url_firebase=url_firebase
 													)
 		# if total_issue > 3 
-		msg = msg + '\\n>Crashes retrieved based on configuration on <{url_crashlist}|userconfig>\\n\
+		msg = msg + '*[Notes]* Crashes retrieved based on you(team) <{url_crashlist}|configurations>\
 			\\n>If you want to unsubscribe some crashes above please go <{url_userconfig}|Here>\
-			\\n>and click *Ignore* btn'.format(url_crashlist=self.url_crashlist,url_userconfig=self.url_userconfig)
+			\\n>and click *Ignore* btn\\n'.format(url_crashlist=self.url_crashlist,url_userconfig=self.url_userconfig)
 		msg = msg + '---------------------------------------------------\\n'
 
 		#bookingValue = "Think Customer First. Own it. ------Booking Value"
