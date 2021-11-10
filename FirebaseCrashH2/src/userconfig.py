@@ -286,8 +286,16 @@ class ConfigUser:
 	def writeback_issue_id_list_to_userconfig(self,final_issue_id_hit_list=None):
 		if not final_issue_id_hit_list:
 			final_issue_id_hit_list = self.final_issue_id_hit_list
+		
+		'''
+		# exclude ignore issue id
+		ignore_issue_set = set(self.issue_id_blacklist.split(','))
+		final_issue_id_hit_list_set = set(final_issue_id_hit_list)
+		self.final_issue_id_hit_list =list(final_issue_id_hit_list_set-ignore_issue_set)
+		'''
 
 		if len(self.final_issue_id_hit_list):
+
 			match_issue_id_list = ",".join([i for i in self.final_issue_id_hit_list])
 			print(match_issue_id_list)		
 		else:

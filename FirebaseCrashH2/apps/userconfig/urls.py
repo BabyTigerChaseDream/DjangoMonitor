@@ -11,6 +11,7 @@ from .views import (
 	#TableView,
 	crashissues_list,
 	crashissues_list_user,
+	ignore_issue_id,
 	#crashlist,
 	firebase,
 	send_notification
@@ -43,6 +44,9 @@ urlpatterns = [
 	path('crashdetail/', crashissues_list, name='crash-detail'),
 	re_path('crashdetail_user/(?P<userconfig_id>\d+)/$', crashissues_list_user, name='crash-detail-user'),
 
+	# ignore issue_id
+	re_path('crashdetail_user/(?P<userconfig_id>\d+)/ignore-issue-id/(?P<issue_id>\w+)/$', ignore_issue_id, name='ignore-issue-id'),
+
 	# redirect to firebase for any issue_id
     re_path('firebase/(?P<platform>\w+)/(?P<issue_id>\w+)/$',
         #RedirectView.as_view(url='https://ota.booking.com/crashes/%(platform)s/%(issue_id)s'),
@@ -51,4 +55,5 @@ urlpatterns = [
 
 	# redirect to firebase for any issue_id
 	re_path('notification/(?P<userconfig_id>\d+)/$', send_notification, name='config-detail-notify'),
+
 ]

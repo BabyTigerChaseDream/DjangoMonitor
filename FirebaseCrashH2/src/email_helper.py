@@ -134,7 +134,14 @@ class Report:
 		self.team=self.userconfig['team']
 		self.platform=self.userconfig['platform']
 		self.issue_id_list=self.userconfig['issue_id_list']
-		self.total_issue_count=len(self.issue_id_list.split(','))
+		self.issue_id_blacklist=self.userconfig['issue_id_blacklist']
+
+		# exclude ignore issue id
+		issue_id_blacklist_set = set(self.issue_id_blacklist.split(','))
+		issue_id_list_set = set(self.issue_id_list.split(','))
+		self.notify_issue_list=list(issue_id_list_set-issue_id_blacklist_set)
+
+		self.total_issue_count=len(self.notify_issue_list)
 
 		# get bookingApp / timeslot , generate url template
 		self.bookingApp = bookingApp[self.platform.lower()]
@@ -147,7 +154,8 @@ class Report:
 
 	def get_report_issue_content(self):
 		self.report_issue_content = []
-		for issue_id in self.issue_id_list.split(",")[:5]:
+		#for issue_id in self.issue_id_list.split(",")[:5]:
+		for issue_id in self.notify_issue_list:
 			self.get_crashissue_content_sqlcmd=self.GET_CRASHISSUE_CONTENT_SQLCMD.format(
 							crash_table=self.crash_table,
 							issue_id=issue_id

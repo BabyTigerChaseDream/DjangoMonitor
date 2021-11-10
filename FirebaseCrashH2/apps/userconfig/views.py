@@ -299,6 +299,43 @@ def crashissues_list_user(request, userconfig_id):
 				{ "tables": issue_table_user , 'platform':platform, 'userconfig_id':userconfig_id}
 			)
 
+def ignore_issue_id(request, userconfig_id,issue_id):
+	print('In ignore_issue_id: ', userconfig_id, issue_id)
+	UserConfig = Config.objects.filter(id=userconfig_id)
+	#print(UserConfig)
+	issue_id_list = UserConfig[0].issue_id_list
+	issue_id_blacklist = UserConfig[0].issue_id_blacklist
+	#team = UserConfig[0].team
+
+	platform = UserConfig[0].platform
+
+	print('In issue_id_list >> ', issue_id_list)
+	print('In issue_id_blacklist >> ', issue_id_blacklist)
+
+	issue_table_user = []
+
+	# get crash issue id in UserConfig 
+	if issue_id in issue_id_blacklist:
+		# TODO : remove from ignore could be implement here
+		messages.info(request,'issue ID already blocked ', issue_id)	
+		return 
+	else: 
+		try:
+			issue_id_blacklist = issue_id_blacklist + ',' + issue_id	
+			# write back to DB
+			Config.objects.update(issue_id_blacklist=issue_id_blacklist)
+		except:
+			messages.error(request,'[missing crash id in database] ', issue_id)	
+			print('[ERROR] userconfig ',userconfig_id,' cannot ignore:',issue_id)
+
+	print("Total issue for this user : ", len(issue_table_user))
+
+	messages.info(request, "Crash Detected for your configuration !")
+	return render(request,
+				"userconfig/crashissues_list.html", 
+				{ "tables": issue_table_user , 'platform':platform, 'userconfig_id':userconfig_id}
+			)
+
 def firebase(request,platform,issue_id):
 	if 'ios' in platform.lower():
 		platform = 'iOS'
