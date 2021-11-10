@@ -1,49 +1,38 @@
-{%extends 'userconfig/base.html' %}
-{% load static %}}
-{% block css %}
-	<link rel="stylesheet" type="text/css" href="{% static 'userconfig/sort-table.css' %}">
-{% endblock %}
-{% block content %}
+{%extends 'userconfig/base.html' %} {% load static %}} {% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'userconfig/sort-table.css' %}"> {% endblock %} {% block content %}
 
-	<h1>Crash Issue List of <a href=" {% url 'config-detail' userconfig_id %}">#{{userconfig_id}}</a> </h1> 
-	
-	<div class="table-responsive-sm">
-		<table id="dtBasicExample" class="table table-hover table-striped table-bordered" cellspacing="0" width="100%">
- 			 <thead>
- 			   <tr>
- 			     <th class="th-sm">Issue ID</th>
- 			     <th class="th-sm">Platform</th>
- 			     <th class="th-sm">Title</th>
- 			     <th class="th-sm">crash_count</th>
- 			     <th class="th-sm">total_user</th>
-				 <th class="th-sm">app_versions</th>
- 			   </tr>
- 			 </thead>
- 			 <tbody>
-			 {% if tables|length > 0 %}
-				{% for item in tables %}
-				<tr>
-					<th scope="row">
-						{% if platform == "Android" %}
-							<a href="{% url 'firebase' platform item.issue_id %}">{{item.issue_id}}</a>
-						{% elif platform == "iOS" %}
-							<a href="{% url 'firebase' platform item.issue_id %}">{{item.issue_id}}</a>
-						{% else %}
-							<a href="#">{{item.issue_id}}</a>
-						{% endif %}
-					</th>
-					<td>{{ platform }}</td>
-					<td style="min-width: 80px;">{{item.issue_title}}</td>
-					<td>{{item.crash_count}}</td>
-					<td>{{item.total_user}}</td>
-					<td style="min-width: 300px;">{{item.app_version_list}}</td
-				</tr>
-				{% endfor %}
-			 {% else %}
-			 {% endif %}
- 			 </tbody>
-		</table>	
-	</div>
+<h1>Crash Issue List of <a href=" {% url 'config-detail' userconfig_id %}">#{{userconfig_id}}</a> </h1>
+
+<div class="table-responsive-sm">
+    <table id="dtBasicExample" class="table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th class="th-sm">Issue ID</th>
+                <th class="th-sm">Platform</th>
+                <th class="th-sm">Title</th>
+                <th class="th-sm">crash_count</th>
+                <th class="th-sm">total_user</th>
+                <th class="th-sm">app_versions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if tables|length > 0 %} {% for item in tables %}
+            <tr>
+                <th scope="row">
+                    {% if platform == "Android" %}
+                    <a href="{% url 'firebase' platform item.issue_id %}">{{item.issue_id}}</a> {% elif platform == "iOS" %}
+                    <a href="{% url 'firebase' platform item.issue_id %}">{{item.issue_id}}</a> {% else %}
+                    <a href="#">{{item.issue_id}}</a> {% endif %}
+                </th>
+                <td>{{ platform }}</td>
+                <td style="min-width: 80px;">{{item.issue_title}}</td>
+                <td>{{item.crash_count}}</td>
+                <td>{{item.total_user}}</td>
+                <td style="min-width: 300px;">{{item.app_version_list}}</td>
+                <a class="btn btn-sm btn-outline-info" href="{% url 'config-detail-notify' config.id %}">Ignore</a>
+            </tr>
+            {% endfor %} {% else %} {% endif %}
+        </tbody>
+    </table>
+</div>
 {% endblock content%}
-
-
