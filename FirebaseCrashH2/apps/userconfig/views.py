@@ -324,6 +324,7 @@ def ignore_issue_id(request, userconfig_id,issue_id):
 			issue_id_blacklist = issue_id_blacklist + ',' + issue_id	
 			# write back to DB
 			Config.objects.update(issue_id_blacklist=issue_id_blacklist)
+			messages.success(request,'issue ID added to blocked ', issue_id)	
 		except:
 			messages.error(request,'[missing crash id in database] ', issue_id)	
 			print('[ERROR] userconfig ',userconfig_id,' cannot ignore:',issue_id)
