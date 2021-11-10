@@ -29,7 +29,7 @@
                 <td>{{item.crash_count}}</td>
                 <td>{{item.total_user}}</td>
                 <td style="min-width: 300px;">{{item.app_version_list}}</td>
-                <a class="btn btn-sm btn-outline-info" href="{% url 'config-detail-notify' config.id %}">Ignore</a>
+                <td> <a class="btn btn-sm btn-outline-info" href="#">Ignore</a></td>
             </tr>
             {% endfor %} {% else %} {% endif %}
         </tbody>
