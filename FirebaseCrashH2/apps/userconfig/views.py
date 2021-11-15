@@ -322,26 +322,25 @@ def ignore_issue_id(request, userconfig_id,issue_id):
 			one_issue = Crashissues.objects.filter(issue_id=issue_id)
 			issue_table_user.append(one_issue[0])	
 		except:
-			messages.error(request,'[missing crash id in database] ', issue_id)	
+			messages.error(request,'[lack of crash id for issue:%s]' % issue_id)	
 			print('[ERROR: crashissues_list_user]  issue_id wrong:',type(one_issue),issue_id)
 			continue
 
 	# get crash issue id in UserConfig 
 	if issue_id in issue_id_blacklist:
 		# TODO : remove from ignore could be implement here
-		messages.info(request,'issue ID already blocked ', issue_id)	
+		messages.info(request,'Issue ID:%s already blocked ' % issue_id)	
 	else: 
 		try:
 			issue_id_blacklist = issue_id_blacklist + ',' + issue_id	
 			# write back to DB
 			Config.objects.update(issue_id_blacklist=issue_id_blacklist)
-			messages.success(request,'issue ID',issue_id,'added to blocked')	
+			messages.success(request,'Issue ID %s added to blocked' % issue_id)	
 		except:
-			messages.error(request,'[missing crash id in database] ', issue_id)	
+			messages.error(request,'[lack of crash id for issue:%s]' % issue_id)	
 			print('[ERROR] userconfig ',userconfig_id,' cannot ignore:',issue_id)
 	print("Total issue for this user : ", len(issue_table_user))
 
-	messages.info(request, "Issue",issue_id,"Added to Ignore ID List")
 	return render(request,
 				"userconfig/crashissues_list.html", 
 				{ "tables": issue_table_user , 'platform':platform, 'userconfig_id':userconfig_id}
