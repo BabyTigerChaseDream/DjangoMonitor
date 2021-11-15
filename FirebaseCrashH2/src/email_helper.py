@@ -89,6 +89,7 @@ class Report:
 	url_crashlist_template = "https://firebase-app-crash.dqs.booking.com/crashdetail_user/{userconfig_id}/"
 	url_firebase_template = "https://console.firebase.google.com/u/0/project/booking-oauth/crashlytics/app/{bookingApp}/issues/{issue_id}?time={timeslot}"
 	url_userconfig_template = 'https://firebase-app-crash.dqs.booking.com/config/{userconfig_id}/'
+	url_ignore_issue_id_template = 'https://firebase-app-crash.dqs.booking.com/crashdetail_user/{userconfig_id}/ignore-issue-id/{issue_id}/'
 	mydb=dblib.DB(database='chinaqa',acc_mode='rw',user='crashmonitorbotfire_chinaqa_rw0',password='Ugzdq7E3PDzJ1wBp')
 	# default db 
 
@@ -200,7 +201,7 @@ class Report:
 											total_user=i['total_user'],
 											app_version=i['app_version'].split(',')[0],
 											version_count=len(i['app_version_list'].split(',')),
-											url_firebase=url_firebase
+											url_firebase=url_firebase,
 											)
 		# if total_issue > 3 
 		msg = msg + '''[Notes] Crashes retrieved based on you(team) <a href='{url_userconfig}'>configurations</a>\
@@ -229,6 +230,10 @@ class Report:
 		#msg = msg + '*    issue_subtitle    |    issue_id    |crash_count|total_user|app_version    *\\n'
 		for i in self.report_issue_content[:MAX_DISPLAY_NOTIFY]:
 			print("['app_version']:",i['app_version'],len(i['app_version'].split(',')))
+			url_ignore_issue_id = self.url_ignore_issue_id_template.format(
+				issue_id=i['issue_id'],	
+				userconfig_id=self.config_id
+			)
 			url_firebase = self.url_firebase_template.format(
 				issue_id=i['issue_id'],	
 				bookingApp=self.bookingApp,
@@ -237,7 +242,8 @@ class Report:
 			msg = msg + '<{url_firebase}|{issue_title}>\
 						\\n>{issue_subtitle}\
 						\\n>crash *{crash_count}* times,affects *{total_user}* users,\
-						\\n>lastest failure on *{app_version}* total fail on {version_count} versions\\n'.format(
+						\\n>lastest failure on *{app_version}* total fail on {version_count} versions\\n\
+						\\n><{url_ignore_issue_id}|*Ignore This Issue*>'.format(
 													issue_title=i['issue_title'],
 													issue_subtitle=i['issue_subtitle'],
 													issue_id=i['issue_id'],
@@ -245,7 +251,9 @@ class Report:
 													total_user=i['total_user'],
 													app_version=i['app_version'].split(',')[0],
 													version_count=len(i['app_version_list'].split(',')),
-													url_firebase=url_firebase
+													url_firebase=url_firebase,
+													# btn to ignore issue id in slack 
+													url_ignore_issue_id=url_ignore_issue_id,
 													)
 		# if total_issue > 3 
 		msg = msg + '*[Notes]* Crashes retrieved based on you(team) <{url_userconfig}|configurations>\
