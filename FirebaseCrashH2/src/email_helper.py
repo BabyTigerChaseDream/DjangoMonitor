@@ -243,7 +243,7 @@ class Report:
 						\\n>{issue_subtitle}\
 						\\n>crash *{crash_count}* times,affects *{total_user}* users,\
 						\\n>lastest failure on *{app_version}* total fail on {version_count} versions\\n\
-						\\n><{url_ignore_issue_id}|*Ignore This Issue*>'.format(
+						\\n><{url_ignore_issue_id}|IgnoreIssue>'.format(
 													issue_title=i['issue_title'],
 													issue_subtitle=i['issue_subtitle'],
 													issue_id=i['issue_id'],
@@ -261,6 +261,7 @@ class Report:
 			\\n>and click *Ignore* btn\\n'.format(url_crashlist=self.url_crashlist,url_userconfig=self.url_userconfig)
 		msg = msg + '---------------------------------------------------\\n'
 
+		print("*****************\n",msg,"******************\n")
 		#bookingValue = "Think Customer First. Own it. ------Booking Value"
 		#msg = msg + bookingValue
 		return msg

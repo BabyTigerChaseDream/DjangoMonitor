@@ -24,6 +24,16 @@ from .email_helper import EmailHelper
 from datetime import datetime
 
 
+def check_platform(platform)->str:
+	if platform.lower() == 'ios':
+		platform = 'iOS'
+	elif platform.lower() == 'android':
+		platform = 'Android'
+	else:
+		platform = 'Android' 
+	print('[Detect Platform] ',platform)
+	return platform
+
 def home(request):
 	context = {
 		'configs':Config.objects.all()
@@ -265,14 +275,7 @@ def crashissues_list_user(request, userconfig_id):
 	issue_id_list = UserConfig[0].issue_id_list
 	#team = UserConfig[0].team
 
-	platform = UserConfig[0].platform
-
-	if platform == 'ios':
-		platform = 'iOS'
-	elif platform == 'android':
-		platform = 'Android'
-	else:
-		platform = 'Android' 
+	platform = check_platform(UserConfig[0].platform)
 
 	print('In issue_id_list >> ', issue_id_list)
 
@@ -308,8 +311,7 @@ def ignore_issue_id(request, userconfig_id,issue_id):
 	issue_id_blacklist = UserConfig[0].issue_id_blacklist
 	#team = UserConfig[0].team
 
-	platform = UserConfig[0].platform
-
+	platform = check_platform(UserConfig[0].platform)
 	print('In issue_id_list >> ', issue_id_list)
 	print('In issue_id_blacklist >> ', issue_id_blacklist)
 
@@ -346,15 +348,8 @@ def ignore_issue_id(request, userconfig_id,issue_id):
 			)
 
 def firebase(request,platform,issue_id):
-	if 'ios' in platform.lower():
-		platform = 'iOS'
-	elif 'android' in platform.lower():
-		platform = 'Android'
-	else:
-		platform = 'Android' 
-
+	platform = check_platform(platform)
 	print('[Firebase] ', platform , issue_id)
-
 	bookingApp = {
 		'android':'android:com.booking',
 		'ios':'ios:com.booking.BookingApp',

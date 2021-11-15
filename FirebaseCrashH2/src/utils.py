@@ -24,8 +24,8 @@ import time
 #################################################################
 # Configurable matrix: 
 #################################################################
-crash_count_max = '500'
-total_user_max = '200'
+crash_count_max = '100'
+total_user_max = '50'
 issue_count_max = '100'
 
 table_index = 'android'
