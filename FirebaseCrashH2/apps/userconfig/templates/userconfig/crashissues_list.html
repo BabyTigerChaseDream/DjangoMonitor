@@ -33,18 +33,18 @@
                     <a href="#">{{item.issue_id}}</a> {% endif %}
                 </th>
                 <!-- <td>{{ platform }}</td> -->
-                <td style="min-width: 80px;">{{item.issue_title}}</td>
-                <td style="min-width: 80px;">{{item.issue_subtitle}}</td>
+                <td style="min-width: 50px;">{{item.issue_title}}</td>
+                <td style="max-width: 60px;">{{item.issue_subtitle}}</td>
                 <td>{{item.crash_count}}</td>
                 <td>{{item.total_user}}</td>
                 <td style="max-width: 50px;">{{item.app_version}}</td>
                 <!-- <td style="min-width: 300px;">{{item.app_version_list}}</td> -->
                 {% if item.issue_id in issue_id_blacklist %}
-                <td> <a class="btn btn-sm btn-outline-info btn-disabled" href=" {% url 'ignore-issue-id' userconfig_id item.issue_id%}">Ignore</a></td>
+                <td> <a class="btn btn-sm btn-outline-info disabled" href=" {% url 'ignore-issue-id' userconfig_id item.issue_id%}">Ignore</a></td>
                 <td> <a class="btn btn-sm btn-outline-info" href=" {% url 'addback-issue-id' userconfig_id item.issue_id%}">Add Back</a></td>
                 {% else %}
                 <td> <a class="btn btn-sm btn-outline-info" href=" {% url 'ignore-issue-id' userconfig_id item.issue_id%}">Ignore</a></td>
-                <td> <a class="btn btn-sm btn-outline-info btn-disabled" href=" {% url 'addback-issue-id' userconfig_id item.issue_id%}">Add Back</a></td>
+                <td> <a class="btn btn-sm btn-outline-info disabled" href=" {% url 'addback-issue-id' userconfig_id item.issue_id%}">Add Back</a></td>
                 {% endif %}
             </tr>
             {% endfor %} {% else %} {% endif %}
