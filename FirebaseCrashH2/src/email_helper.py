@@ -100,18 +100,7 @@ class Report:
 		WHERE id={config_id}
 	'''	
 	GET_CRASHISSUE_CONTENT_SQLCMD = '''
-		select 
-			issue_id, 
-			issue_title, 
-			issue_subtitle, 
-			platform,
-			crash_count,
-			total_user,	
-			app_version_list,
-			app_version
-		from `{crash_table}` 
-		where 
-			issue_id= '{issue_id}'
+		select * from `{crash_table}` where issue_id= '{issue_id}'
 	''' 
 	def __init__(self,config_id, mydb=None):
 		if mydb:
