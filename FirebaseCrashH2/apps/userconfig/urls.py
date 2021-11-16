@@ -12,6 +12,7 @@ from .views import (
 	crashissues_list,
 	crashissues_list_user,
 	ignore_issue_id,
+	addback_issue_id,
 	#crashlist,
 	firebase,
 	send_notification
@@ -46,6 +47,8 @@ urlpatterns = [
 
 	# ignore issue_id
 	re_path('crashdetail_user/(?P<userconfig_id>\d+)/ignore-issue-id/(?P<issue_id>\w+)/$', ignore_issue_id, name='ignore-issue-id'),
+	# addback issue_id
+	re_path('crashdetail_user/(?P<userconfig_id>\d+)/addback-issue-id/(?P<issue_id>\w+)/$', addback_issue_id, name='addback-issue-id'),
 
 	# redirect to firebase for any issue_id
     re_path('firebase/(?P<platform>\w+)/(?P<issue_id>\w+)/$',
