@@ -46,9 +46,9 @@ urlpatterns = [
 	re_path('crashdetail_user/(?P<userconfig_id>\d+)/$', crashissues_list_user, name='crash-detail-user'),
 
 	# ignore issue_id
-	re_path('crashdetail_user/(?P<userconfig_id>\d+)/ignore-issue-id/(?P<issue_id>\w+)/$', ignore_issue_id, name='ignore-issue-id'),
+	re_path('crashdetail_user/(?P<userconfig_id>\d+)/ignore-issue-id/(?P<issue_id_block>\w+)/$', ignore_issue_id, name='ignore-issue-id'),
 	# addback issue_id
-	re_path('crashdetail_user/(?P<userconfig_id>\d+)/addback-issue-id/(?P<issue_id>\w+)/$', addback_issue_id, name='addback-issue-id'),
+	re_path('crashdetail_user/(?P<userconfig_id>\d+)/addback-issue-id/(?P<issue_id_addback>\w+)/$', addback_issue_id, name='addback-issue-id'),
 
 	# redirect to firebase for any issue_id
     re_path('firebase/(?P<platform>\w+)/(?P<issue_id>\w+)/$',
