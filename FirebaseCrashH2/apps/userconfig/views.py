@@ -273,6 +273,7 @@ def crashissues_list_user(request, userconfig_id):
 	UserConfig = Config.objects.filter(id=userconfig_id)
 	#print(UserConfig)
 	issue_id_list = UserConfig[0].issue_id_list
+	issue_id_blacklist = UserConfig[0].issue_id_blacklist
 	#team = UserConfig[0].team
 
 	platform = check_platform(UserConfig[0].platform)
@@ -300,11 +301,65 @@ def crashissues_list_user(request, userconfig_id):
 
 	return render(request,
 				"userconfig/crashissues_list.html", 
-				{ "tables": issue_table_user , 'platform':platform, 'userconfig_id':userconfig_id}
+				{ 
+					"tables": issue_table_user , 
+					'platform':platform, 
+					'userconfig_id':userconfig_id,
+					'issue_id_blacklist':issue_id_blacklist}
 			)
 
-def ignore_issue_id(request, userconfig_id,issue_id):
-	print('In ignore_issue_id: ', userconfig_id, issue_id)
+def ignore_issue_id(request, userconfig_id,issue_id_block):
+	print('In ignore_issue_id: ', userconfig_id, issue_id_block)
+	UserConfig = Config.objects.filter(id=userconfig_id)
+	#print(UserConfig)
+	issue_id_list = UserConfig[0].issue_id_list
+	issue_id_blacklist = UserConfig[0].issue_id_blacklist
+	#team = UserConfig[0].team
+
+	platform = check_platform(UserConfig[0].platform)
+	print('In issue_id_list >> ', issue_id_list)
+	print('In issue_id_blacklist >> ', issue_id_blacklist)
+
+	issue_table_user = []
+	# still need to display full crash ID list
+	for issue_id in issue_id_list.split(','):
+		try:
+			one_issue = Crashissues.objects.filter(issue_id=issue_id)
+			issue_table_user.append(one_issue[0])	
+		except:
+			messages.error(request,'[lack of crash id for issue:%s]' % issue_id)	
+			print('[ERROR: crashissues_list_user]  issue_id wrong:',type(one_issue),issue_id)
+			continue
+
+	# get crash issue id in UserConfig 
+	if issue_id_block in issue_id_blacklist:
+		# TODO : remove from ignore could be implement here
+		messages.info(request,'Issue ID:%s already blocked ' % issue_id_block)	
+	else: 
+		try:
+			issue_id_blacklist = issue_id_blacklist + ',' + issue_id_block	
+
+			print("[ignore:issue_id_blacklist] :",issue_id_blacklist)
+			# write back to DB
+			Config.objects.filter(id=userconfig_id).update(issue_id_blacklist=issue_id_blacklist)
+
+			messages.success(request,'Issue ID %s added to blocked' % issue_id_block)	
+		except:
+			messages.error(request,'[lack of crash id for issue:%s]' % issue_id_block)	
+			print('[ERROR] userconfig ',userconfig_id,' cannot ignore:',issue_id_block)
+	print("Total issue for this user : ", len(issue_table_user))
+
+	return render(request,
+				"userconfig/crashissues_list.html", 
+				{ 
+					"tables": issue_table_user , 
+					'platform':platform, 
+					'userconfig_id':userconfig_id,
+					'issue_id_blacklist':issue_id_blacklist}
+			)
+
+def addback_issue_id(request, userconfig_id,issue_id_addback):
+	print('In addback_issue_id: ', userconfig_id, issue_id_addback)
 	UserConfig = Config.objects.filter(id=userconfig_id)
 	#print(UserConfig)
 	issue_id_list = UserConfig[0].issue_id_list
@@ -329,21 +384,29 @@ def ignore_issue_id(request, userconfig_id,issue_id):
 	# get crash issue id in UserConfig 
 	if issue_id in issue_id_blacklist:
 		# TODO : remove from ignore could be implement here
-		messages.info(request,'Issue ID:%s already blocked ' % issue_id)	
+		new_issue_id_blacklist = []
+
+		for issue_id in issue_id_blacklist.split(','):
+			if (issue_id_addback == issue_id):
+				continue
+			new_issue_id_blacklist.append(issue_id)
+		issue_id_blacklist = ','.join(new_issue_id_blacklist)
+
+		print("[addback:issue_id_blacklist] :",new_issue_id_blacklist)
+		# write back to DB
+		Config.objects.filter(id=userconfig_id).update(issue_id_blacklist=issue_id_blacklist)
+
+		messages.success(request,'Issue ID:%s Add Back' % issue_id_addback)	
 	else: 
-		try:
-			issue_id_blacklist = issue_id_blacklist + ',' + issue_id	
-			# write back to DB
-			Config.objects.update(issue_id_blacklist=issue_id_blacklist)
-			messages.success(request,'Issue ID %s added to blocked' % issue_id)	
-		except:
-			messages.error(request,'[lack of crash id for issue:%s]' % issue_id)	
-			print('[ERROR] userconfig ',userconfig_id,' cannot ignore:',issue_id)
-	print("Total issue for this user : ", len(issue_table_user))
+		messages.info(request,'Issue ID %s was not blocked' % issue_id_addback)	
 
 	return render(request,
 				"userconfig/crashissues_list.html", 
-				{ "tables": issue_table_user , 'platform':platform, 'userconfig_id':userconfig_id}
+				{ 
+					"tables": issue_table_user , 
+					'platform':platform, 
+					'userconfig_id':userconfig_id,
+					'issue_id_blacklist':issue_id_blacklist}
 			)
 
 def firebase(request,platform,issue_id):
