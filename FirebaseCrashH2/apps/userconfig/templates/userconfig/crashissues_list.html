@@ -13,8 +13,9 @@
                 <th class="th-sm">Subtitle</th>
                 <th class="th-sm">crash_count</th>
                 <th class="th-sm">total_user</th>
-                <th class="th-sm">lastest_app_versions</th>
-                <th class="th-sm">Action</th>
+                <th class="th-sm" style="max-width: 30px;">lastest_app_versions</th>
+                <th class="th-sm">Ignore</th>
+                <th class="th-sm">AddBack</th>
             </tr>
         </thead>
         <tbody>
@@ -39,6 +40,7 @@
                 <td style="min-width: 300px;">{{item.app_version}}</td>
                 <!-- <td style="min-width: 300px;">{{item.app_version_list}}</td> -->
                 <td> <a class="btn btn-sm btn-outline-info" href=" {% url 'ignore-issue-id' userconfig_id item.issue_id%}">Ignore</a></td>
+                <td> <a class="btn btn-sm btn-outline-info" disabled href=" {% url 'ignore-issue-id' userconfig_id item.issue_id%}">Add Back</a></td>
             </tr>
             {% endfor %} {% else %} {% endif %}
         </tbody>
