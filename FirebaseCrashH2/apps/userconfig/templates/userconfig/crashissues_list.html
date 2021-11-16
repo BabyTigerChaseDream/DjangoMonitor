@@ -7,13 +7,14 @@
     <table id="dtBasicExample" class="table table-hover table-striped table-bordered" cellspacing="0" width="100%">
         <thead>
             <tr>
-                <th class="th-sm">IssueLink</th>
+                <!-- <th class="th-sm">IssueLink</th> -->
                 <!-- <th class="th-sm">Platform</th> -->
                 <th class="th-sm">Title</th>
                 <th class="th-sm">Subtitle</th>
                 <th class="th-sm">crash_count</th>
                 <th class="th-sm">total_user</th>
                 <th class="th-sm">lastest_app_versions</th>
+                <th class="th-sm">Status</th>
                 <th class="th-sm">Ignore</th>
                 <th class="th-sm">AddBack</th>
             </tr>
@@ -21,28 +22,30 @@
         <tbody>
             {% if tables|length > 0 %} {% for item in tables %}
             <tr>
-                <th scope="row">
-                    <!-- {% if platform == "Android" %}
+                <!-- <th scope="row"> -->
+                <!-- {% if platform == "Android" %}
                     <a href="{% url 'firebase' platform item.issue_id %}">{{item.issue_id}}</a> {% elif platform == "iOS" %} 
                     <a href="{% url 'firebase' platform item.issue_id %}">{{item.issue_id}}</a> {% else %} 
                     <a href="#">{{item.issue_id}}</a> {% endif %} -->
-
-                    {% if platform == "Android" %}
-                    <a href="{% url 'firebase' platform item.issue_id %}">IssueLink</a> {% elif platform == "iOS" %}
-                    <a href="{% url 'firebase' platform item.issue_id %}">IssueLink</a> {% else %}
-                    <a href="#">{{item.issue_id}}</a> {% endif %}
-                </th>
                 <!-- <td>{{ platform }}</td> -->
-                <td style="min-width: 60px;">{{item.issue_title}}</td>
-                <td style="min-width: 80px;">{{item.issue_subtitle}}</td>
+                {% if platform == "Android" %}
+                <td style="min-width: 60px;"><a href="{% url 'firebase' platform item.issue_id %}">{{item.issue_title}}</a></td>
+                {% elif platform == "iOS" %}
+                <td style="min-width: 60px;"><a href="{% url 'firebase' platform item.issue_id %}">{{item.issue_title}}</a></td>
+                {% else %}
+                <a href="#">{{item.issue_title}}</a> {% endif %}
+
+                <td style="min-width: 70px;">{{item.issue_subtitle}}</td>
                 <td>{{item.crash_count}}</td>
                 <td>{{item.total_user}}</td>
-                <td style="max-width: 50px;">{{item.app_version}}</td>
+                <td style="max-width: 30px;">{{item.app_version}}</td>
                 <!-- <td style="min-width: 300px;">{{item.app_version_list}}</td> -->
                 {% if item.issue_id in issue_id_blacklist %}
+                <td>ignore</td>
                 <td> <a class="btn btn-sm btn-outline-info disabled" href=" {% url 'ignore-issue-id' userconfig_id item.issue_id%}">Ignore</a></td>
                 <td> <a class="btn btn-sm btn-outline-info" href=" {% url 'addback-issue-id' userconfig_id item.issue_id%}">Add Back</a></td>
                 {% else %}
+                <td>active</td>
                 <td> <a class="btn btn-sm btn-outline-info" href=" {% url 'ignore-issue-id' userconfig_id item.issue_id%}">Ignore</a></td>
                 <td> <a class="btn btn-sm btn-outline-info disabled" href=" {% url 'addback-issue-id' userconfig_id item.issue_id%}">Add Back</a></td>
                 {% endif %}

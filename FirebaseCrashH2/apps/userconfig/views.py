@@ -316,6 +316,10 @@ def ignore_issue_id(request, userconfig_id,issue_id_block):
 	issue_id_blacklist = UserConfig[0].issue_id_blacklist
 	#team = UserConfig[0].team
 
+	# get userconfig
+	issue_id_block_config = Crashissues.objects.filter(issue_id=issue_id_block)
+	issue_id_title =issue_id_block_config[0].issue_title
+
 	platform = check_platform(UserConfig[0].platform)
 	print('In issue_id_list >> ', issue_id_list)
 	print('In issue_id_blacklist >> ', issue_id_blacklist)
@@ -333,8 +337,7 @@ def ignore_issue_id(request, userconfig_id,issue_id_block):
 
 	# get crash issue id in UserConfig 
 	if issue_id_block in issue_id_blacklist:
-		# TODO : remove from ignore could be implement here
-		messages.info(request,'Issue ID:%s already blocked ' % issue_id_block)	
+		messages.success(request,'Already Blocked:%s' % issue_id_title)	
 	else: 
 		try:
 			issue_id_blacklist = issue_id_blacklist + ',' + issue_id_block	
@@ -343,7 +346,7 @@ def ignore_issue_id(request, userconfig_id,issue_id_block):
 			# write back to DB
 			Config.objects.filter(id=userconfig_id).update(issue_id_blacklist=issue_id_blacklist)
 
-			messages.success(request,'Issue ID %s added to blocked' % issue_id_block)	
+			messages.info(request,'Added to blocked :%s' % issue_id_title)	
 		except:
 			messages.error(request,'[lack of crash id for issue:%s]' % issue_id_block)	
 			print('[ERROR] userconfig ',userconfig_id,' cannot ignore:',issue_id_block)
@@ -364,6 +367,10 @@ def addback_issue_id(request, userconfig_id,issue_id_addback):
 	#print(UserConfig)
 	issue_id_list = UserConfig[0].issue_id_list
 	issue_id_blacklist = UserConfig[0].issue_id_blacklist
+
+	# get userconfig
+	issue_id_addback_config = Crashissues.objects.filter(issue_id=issue_id_addback)
+	issue_id_title =issue_id_addback_config[0].issue_title
 	#team = UserConfig[0].team
 
 	platform = check_platform(UserConfig[0].platform)
@@ -396,9 +403,9 @@ def addback_issue_id(request, userconfig_id,issue_id_addback):
 		# write back to DB
 		Config.objects.filter(id=userconfig_id).update(issue_id_blacklist=issue_id_blacklist)
 
-		messages.success(request,'Issue ID:%s Add Back' % issue_id_addback)	
+		messages.success(request,'Add Back:%s' % issue_id_title)	
 	else: 
-		messages.info(request,'Issue ID %s was not blocked' % issue_id_addback)	
+		messages.info(request,'Being Active:%s' % issue_id_title)	
 
 	return render(request,
 				"userconfig/crashissues_list.html", 
