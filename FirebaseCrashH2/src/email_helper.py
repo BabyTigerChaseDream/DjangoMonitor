@@ -250,7 +250,7 @@ class Report:
 						\\n>{issue_subtitle}\
 						\\n>crash *{crash_count}* times,affects *{total_user}* users,\
 						\\n>lastest failure on *{app_version}* fail on {version_count} versions in total\
-						\\n><{url_ignore_issue_id}|*Click*> to Ignore Issue\\n>'.format(
+						\\n<{url_ignore_issue_id}|*Click*> to Ignore Issue Above\\n'.format(
 													issue_title=i['issue_title'],
 													issue_subtitle=i['issue_subtitle'],
 													issue_id=i['issue_id'],
