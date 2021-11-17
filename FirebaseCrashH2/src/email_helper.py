@@ -227,7 +227,7 @@ class Report:
 			return msg
 		'''
 		# order issue by user count 
-		msg = '*[{platform}]* has *{count}* Issues Detected for *{team}* during {timeslot}\\n'.format(
+		msg = ':monitoring-1410: *[{platform}]* has *{count}* Issues Detected for *{team}* during {timeslot}\\n'.format(
 										platform=self.platform, 
 										count=self.total_issue_count, 
 										team=self.team,
