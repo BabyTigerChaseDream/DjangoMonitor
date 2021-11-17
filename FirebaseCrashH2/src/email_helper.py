@@ -170,8 +170,14 @@ class Report:
 	def generateNotificationMsg(self):
 		if not self.report_issue_content:
 			self.get_report_issue_content()
+		
 		# TODO: read data in database 
 		msg = ""	
+		
+		if self.total_issue_count == 0:
+			print('generateNotificationMsg Empty Content\n')
+			return msg
+
 		# order issue by user count 
 		msg = '<h2>[{platform}] has \"{count}\" Issues Detected for \"{team}\" during {timeslot}</h2>'.format(
 										platform=self.platform, 
@@ -213,6 +219,9 @@ class Report:
 			self.get_report_issue_content()
 		# TODO: read data in database 
 		msg = ""	
+		if self.total_issue_count == 0:
+			print('generateSlackMsg Empty Content\n')
+			return msg
 		'''
 		if len(self.report_issue_content) == 0:
 			return msg
@@ -240,8 +249,8 @@ class Report:
 			msg = msg + '<{url_firebase}|{issue_title}>\
 						\\n>{issue_subtitle}\
 						\\n>crash *{crash_count}* times,affects *{total_user}* users,\
-						\\n>lastest failure on *{app_version}* total fail on {version_count} versions\\n\
-						\\n><{url_ignore_issue_id}|IgnoreIssue>'.format(
+						\\n>lastest failure on *{app_version}* fail on {version_count} versions in total\
+						\\n><{url_ignore_issue_id}|*Click*> to Ignore Issue\\n>'.format(
 													issue_title=i['issue_title'],
 													issue_subtitle=i['issue_subtitle'],
 													issue_id=i['issue_id'],
