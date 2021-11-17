@@ -95,7 +95,7 @@ class Report:
 
 	# pass database as parameters
 	SELECT_ISSUE_ID_LIST_IN_USERCONFIG='''
-		SELECT id,team,platform,issue_id_list
+		SELECT * 
 		FROM {userconfig_table}
 		WHERE id={config_id}
 	'''	
@@ -114,17 +114,26 @@ class Report:
 		self.order_issue = False 
 		self.config_id = config_id
 
-		self.select_issue_id_list_in_userconfig = self.SELECT_ISSUE_ID_LIST_IN_USERCONFIG.format(
-											userconfig_table=self.userconfig_table,
-											config_id=self.config_id
-											)
-		self.curs=self.mydb.execute(self.select_issue_id_list_in_userconfig)
-		self.userconfig = self.curs.fetchone()
-		self.id=self.userconfig['id']
-		self.team=self.userconfig['team']
-		self.platform=self.userconfig['platform']
-		self.issue_id_list=self.userconfig['issue_id_list']
-		self.issue_id_blacklist=self.userconfig['issue_id_blacklist']
+		try:
+			self.select_issue_id_list_in_userconfig = self.SELECT_ISSUE_ID_LIST_IN_USERCONFIG.format(
+												userconfig_table=self.userconfig_table,
+												config_id=self.config_id
+												)
+		except Exception as e:
+			print("[Exceptions] :",str(e))
+			print(" >>> select_issue_id_list_in_userconfig content: ", self.select_issue_id_list_in_userconfig)
+
+		try:
+			self.curs=self.mydb.execute(self.select_issue_id_list_in_userconfig)
+			self.userconfig = self.curs.fetchone()
+			self.id=self.userconfig['id']
+			self.team=self.userconfig['team']
+			self.platform=self.userconfig['platform']
+			self.issue_id_list=self.userconfig['issue_id_list']
+			self.issue_id_blacklist=self.userconfig['issue_id_blacklist']
+		except Exception as e:
+			print("[Exceptions] :",str(e))
+			print(" >>> self.userconfig content: ", self.userconfig)
 
 		# exclude ignore issue id
 		issue_id_blacklist_set = set(self.issue_id_blacklist.split(','))
