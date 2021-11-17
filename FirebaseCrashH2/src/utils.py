@@ -248,7 +248,6 @@ def job_get_android_crash():
 	print("done android: get_crash_lists \n")
 	write_issues_to_crashissue_database(issue_id_list=issue_id_list,acc_mode='rw',table_index=table_index)
 	print("done android: write_issues_to_crashissue_database \n")
-	update_hit_issue_id_list_to_userconfig()
 
 def job_get_ios_crash():
 	table_index ='iOS'
@@ -257,11 +256,11 @@ def job_get_ios_crash():
 	print("done iOS: get_crash_lists \n")
 	write_issues_to_crashissue_database(issue_id_list=issue_id_list,acc_mode='rw',table_index=table_index)
 	print("done iOS:write_issues_to_crashissue_database \n")
-	update_hit_issue_id_list_to_userconfig()
 
 def job_get_all_crash():
 	job_get_android_crash()
 	job_get_ios_crash()
+	update_hit_issue_id_list_to_userconfig()
 
 def job_test():
 	print('VarTime: ',start_timestamp_str)
