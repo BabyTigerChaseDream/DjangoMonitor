@@ -111,6 +111,7 @@ DATABASES = {
 #			'OPTIONS': {
 #            'connect_timeout': 5,
 #        }
+	# database info on production deployment 
     'default': {
         'ENGINE': 'django.db.backends.mysql',   # 数据库引擎
         'NAME': 'chinaqa',  # 数据库名，先前创建的
