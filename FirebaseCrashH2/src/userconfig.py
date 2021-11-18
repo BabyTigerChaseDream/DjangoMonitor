@@ -222,10 +222,10 @@ class ConfigUser:
 			for f in self.files.replace(' ','').split(','):
 				if str(f) in issue_logs:
 					self.issue_id_files_hit_list.append(issue_content['issue_id'])
-					print(issue_content['issue_id'])
+					#print(issue_content['issue_id'])
 		
 		match_issue_id_list = ",".join([i for i in self.issue_id_files_hit_list])
-		print(match_issue_id_list)
+		#print(match_issue_id_list)
 
 		if write:
 			self.writeback_issue_id_list_to_userconfig(self.issue_id_files_hit_list)
@@ -256,10 +256,10 @@ class ConfigUser:
 			for k in self.keywords.replace(' ','').split(','):
 				if str(k) in issue_logs:
 					self.issue_id_keywords_hit_list.append(issue_content['issue_id'])
-					print(issue_content['issue_id'])
+					#print(issue_content['issue_id'])
 		
 		match_issue_id_list = ",".join([i for i in self.issue_id_keywords_hit_list])
-		print(match_issue_id_list)
+		#print(match_issue_id_list)
 
 		if write:
 			self.writeback_issue_id_list_to_userconfig(self.issue_id_keywords_hit_list)

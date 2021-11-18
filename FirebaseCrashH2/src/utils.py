@@ -137,7 +137,7 @@ def write_issues_to_crashissue_database(issue_id_list, acc_mode, table_index, ta
 			#conn.execute(insert_data_sql_cmd)
 			curs=mydb.execute(insert_data_sql_cmd)
 			print('[sql_cmd]: ',insert_data_sql_cmd)
-			print('>>> inserted item <<< ', curs.fetchone()['issue_logs'])
+			#print('>>> inserted item <<< ', curs.fetchone()['issue_logs'])
 		except:
 			print('[IGNORE issue]: ',issue_id )
 			skip_num+=1
