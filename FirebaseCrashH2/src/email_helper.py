@@ -86,10 +86,18 @@ class Report:
 	#[ios]"https://console.firebase.google.com/u/0/project/booking-oauth/crashlytics/app/ios:com.booking.BookingApp/issues/{issue_id}?time=last-twenty-four-hours"
 	# {bookingApp} ios:com.booking.BookingApp 
 	### {timeslot}last-twenty-four-hours
-	url_crashlist_template = "https://firebase-app-crash.dqs.booking.com/crashdetail_user/{userconfig_id}/"
+	# DQS url :
+	#url_crashlist_template = "https://firebase-app-crash.dqs.booking.com/crashdetail_user/{userconfig_id}/"
+	#url_userconfig_template = 'https://firebase-app-crash.dqs.booking.com/config/{userconfig_id}/'
+	#url_ignore_issue_id_template = 'https://firebase-app-crash.dqs.booking.com/crashdetail_user/{userconfig_id}/ignore-issue-id/{issue_id}/'
+
+	# PROD url :
+	url_crashlist_template = "https://firebase-app-crash.prod.booking.com/crashdetail_user/{userconfig_id}/"
+	url_userconfig_template = 'https://firebase-app-crash.prod.booking.com/config/{userconfig_id}/'
+	url_ignore_issue_id_template = 'https://firebase-app-crash.prod.booking.com/crashdetail_user/{userconfig_id}/ignore-issue-id/{issue_id}/'
+
 	url_firebase_template = "https://console.firebase.google.com/u/0/project/booking-oauth/crashlytics/app/{bookingApp}/issues/{issue_id}?time={timeslot}"
-	url_userconfig_template = 'https://firebase-app-crash.dqs.booking.com/config/{userconfig_id}/'
-	url_ignore_issue_id_template = 'https://firebase-app-crash.dqs.booking.com/crashdetail_user/{userconfig_id}/ignore-issue-id/{issue_id}/'
+
 	mydb=dblib.DB(database='chinaqa',acc_mode='rw',user='crashmonitorbotfire_chinaqa_rw0',password='Ugzdq7E3PDzJ1wBp')
 	# default db 
 
