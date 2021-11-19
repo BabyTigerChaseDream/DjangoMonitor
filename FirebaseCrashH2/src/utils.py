@@ -190,7 +190,7 @@ def send_notification(**userconfig_notification):
 	#email.booking_send_email("China.Quality@booking.com", email_address, title, EmailMsg() )
 	if 'booking.com' in email_address:
 		for e in email_address.replace(" ","").split(","):
-			print('CALLING send_notification:email_channel ....',config_id,s)
+			print('CALLING send_notification:email_channel ....',config_id,e)
 			print("[send_notification] email is :",e)
 			email.booking_send_email("Crash.Monitor@booking.com", e, title, emailmsg)
 			#email.booking_send_email("Crash.Monitor@booking.com", e, title, EmailMsg() )
