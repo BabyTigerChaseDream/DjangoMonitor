@@ -309,11 +309,15 @@ def crashissues_list_user(request, userconfig_id):
 			)
 
 def ignore_issue_id(request, userconfig_id,issue_id_block):
+
+	print('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')
 	print('In ignore_issue_id: ', userconfig_id, issue_id_block)
+	print("[*** Org data and read back ***]")
 	UserConfig = Config.objects.filter(id=userconfig_id)
 	#print(UserConfig)
 	issue_id_list = UserConfig[0].issue_id_list
 	issue_id_blacklist = UserConfig[0].issue_id_blacklist
+	print("[*****************************]")
 	#team = UserConfig[0].team
 
 	# get userconfig
@@ -345,7 +349,7 @@ def ignore_issue_id(request, userconfig_id,issue_id_block):
 			print("[ignore:issue_id_blacklist] :",issue_id_blacklist)
 			# write back to DB
 			Config.objects.filter(id=userconfig_id).update(issue_id_blacklist=issue_id_blacklist)
-
+			Config.save()
 			messages.warning(request,'Added to blocked :%s' % issue_id_title)	
 		except:
 			messages.error(request,'[lack of crash id for issue:%s]' % issue_id_block)	
@@ -362,12 +366,14 @@ def ignore_issue_id(request, userconfig_id,issue_id_block):
 			)
 
 def addback_issue_id(request, userconfig_id,issue_id_addback):
+	print('BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB')
 	print('In addback_issue_id: ', userconfig_id, issue_id_addback)
+	print("[*** Org data and read back ***]")
 	UserConfig = Config.objects.filter(id=userconfig_id)
 	#print(UserConfig)
 	issue_id_list = UserConfig[0].issue_id_list
 	issue_id_blacklist = UserConfig[0].issue_id_blacklist
-
+	print("[*****************************]")
 	# get userconfig
 	issue_id_addback_config = Crashissues.objects.filter(issue_id=issue_id_addback)
 	issue_id_title =issue_id_addback_config[0].issue_title
@@ -402,10 +408,19 @@ def addback_issue_id(request, userconfig_id,issue_id_addback):
 		print("[addback:issue_id_blacklist] :",new_issue_id_blacklist)
 		# write back to DB
 		Config.objects.filter(id=userconfig_id).update(issue_id_blacklist=issue_id_blacklist)
+		Config.save()
 
 		messages.warning(request,'Add Back:%s' % issue_id_title)	
 	else: 
 		messages.warning(request,'Being Active:%s' % issue_id_title)	
+
+	print("[*** Updated data and read back ***]")
+	UserConfig = Config.objects.filter(id=userconfig_id)
+	#print(UserConfig)
+	issue_id_list = UserConfig[0].issue_id_list
+	issue_id_blacklist = UserConfig[0].issue_id_blacklist
+	print("[*** Updated data and read back ***]")
+
 
 	return render(request,
 				"userconfig/crashissues_list.html", 
