@@ -3,6 +3,7 @@
 import os
 import sys
 
+setup_cron_job_completion = False 
 
 def main():
     """Run administrative tasks."""
@@ -22,7 +23,6 @@ def main():
     #CronCommand="python FirebaseCrashH2/src/utils.py &"
     #os.system(CronCommand)
     #print(">>>> Launched Cron Job\n")
-
     execute_from_command_line(sys.argv)
 
 if __name__ == '__main__':
