@@ -1,4 +1,5 @@
 import logging
+import os
 
 from django.http import HttpResponse, HttpResponseServerError
 
@@ -8,7 +9,11 @@ class HealthCheckMiddleware(object):
     def __init__(self, get_response):
         print(">>>>>>> JIA") 
         self.get_response = get_response
-        # One-time configuration and initialization.
+        os.system("pwd")
+        print(">>>> Start Cron Job\n")
+        CronCommand="python FirebaseCrashH2/src/utils.py &"
+        os.system(CronCommand)
+        print(">>>> Cron Job Running\n")
 
     def __call__(self, request):
         if request.method == "GET":

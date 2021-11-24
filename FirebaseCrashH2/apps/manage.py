@@ -16,10 +16,13 @@ def main():
             "forget to activate a virtual environment?"
         ) from exc
 
-    print(">>>> Start Cron Job\n")
-    CronCommand="python FirebaseCrashH2/src/utils.py &"
-    os.system(CronCommand)
-    print(">>>> Launched Cron Job\n")
+    print(">>>> Skip Cron Job in manage.py\n")
+	### calling twice comment out 
+    #print(">>>> Start Cron Job\n")
+    #CronCommand="python FirebaseCrashH2/src/utils.py &"
+    #os.system(CronCommand)
+    #print(">>>> Launched Cron Job\n")
+
     execute_from_command_line(sys.argv)
 
 if __name__ == '__main__':
