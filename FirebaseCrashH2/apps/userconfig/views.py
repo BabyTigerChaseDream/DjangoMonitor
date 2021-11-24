@@ -349,7 +349,7 @@ def ignore_issue_id(request, userconfig_id,issue_id_block):
 			print("[ignore:issue_id_blacklist] :",issue_id_blacklist)
 			# write back to DB
 			Config.objects.filter(id=userconfig_id).update(issue_id_blacklist=issue_id_blacklist)
-			Config.save()
+			Config.objects.save()
 			messages.warning(request,'Added to blocked :%s' % issue_id_title)	
 		except:
 			messages.error(request,'[lack of crash id for issue:%s]' % issue_id_block)	
@@ -408,7 +408,7 @@ def addback_issue_id(request, userconfig_id,issue_id_addback):
 		print("[addback:issue_id_blacklist] :",new_issue_id_blacklist)
 		# write back to DB
 		Config.objects.filter(id=userconfig_id).update(issue_id_blacklist=issue_id_blacklist)
-		Config.save()
+		Config.objects.save()
 
 		messages.warning(request,'Add Back:%s' % issue_id_title)	
 	else: 
