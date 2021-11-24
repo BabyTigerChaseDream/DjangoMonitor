@@ -3,6 +3,7 @@
 import os
 import sys
 
+setup_cron_job_completion = False 
 
 def main():
     """Run administrative tasks."""
@@ -16,7 +17,8 @@ def main():
             "forget to activate a virtual environment?"
         ) from exc
 
-    print(">>>> skip main() Cron Job\n")
+    print(">>>> Skip Cron Job in manage.py\n")
+	### calling twice comment out 
     #print(">>>> Start Cron Job\n")
     #CronCommand="python FirebaseCrashH2/src/utils.py &"
     #os.system(CronCommand)
