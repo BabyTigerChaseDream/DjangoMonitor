@@ -396,12 +396,13 @@ def addback_issue_id(request, userconfig_id,issue_id_addback):
 			continue
 
 	# get crash issue id in UserConfig 
-	if issue_id in issue_id_blacklist:
+	if issue_id_addback in issue_id_blacklist:
 		# TODO : remove from ignore could be implement here
 		new_issue_id_blacklist = []
 
 		for issue_id in issue_id_blacklist.split(','):
 			if (issue_id_addback == issue_id):
+				print('MMMMMMMM [Matching issue detected, already there]',issue_id_addback)
 				continue
 			new_issue_id_blacklist.append(issue_id)
 		issue_id_blacklist = ','.join(new_issue_id_blacklist)
@@ -417,10 +418,10 @@ def addback_issue_id(request, userconfig_id,issue_id_addback):
 		messages.warning(request,'Being Active:%s' % issue_id_title)	
 
 	print("[*** Updated data and read back ***]")
-	UserConfig = Config.objects.filter(id=userconfig_id)
+	oneconfig = Config.objects.get(id=userconfig_id)
 	#print(UserConfig)
-	issue_id_list = UserConfig[0].issue_id_list
-	issue_id_blacklist = UserConfig[0].issue_id_blacklist
+	issue_id_list = oneconfig.issue_id_list
+	issue_id_blacklist = oneconfig.issue_id_blacklist
 	print("[*** Updated data and read back ***]")
 
 
