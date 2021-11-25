@@ -1,14 +1,14 @@
 from datetime import datetime, timedelta
-
+import common_config 
 class timestamp:
 	DATE_FORMAT = "%Y-%m-%d %H:%M:%S"
 	def __init__(self,date_format=DATE_FORMAT):
 		self.date_format = date_format
 
-	def timeslot(self, end_date=datetime.utcnow(), delta=15):
+	def timeslot(self, end_date=datetime.utcnow(), delta=common_config.delta_timeslot):
 		date_format =  self.DATE_FORMAT 
 		end_datetime = (datetime.utcnow() - timedelta(days=1))
-		start_datetime = (datetime.utcnow() - timedelta(days=8))
+		start_datetime = (datetime.utcnow() - timedelta(days=1+delta))
 		self.start_timestamp_str = start_datetime.strftime(date_format)
 		self.end_timestamp_str = end_datetime.strftime(date_format) 
 		return self.start_timestamp_str,self.end_timestamp_str

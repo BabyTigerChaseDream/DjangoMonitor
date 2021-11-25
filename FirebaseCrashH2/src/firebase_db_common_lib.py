@@ -12,6 +12,8 @@ from datetime import datetime, timedelta
 import json
 
 import sys
+import common_config
+
 #################################################################
 # Configurable matrix: 
 #################################################################
@@ -24,7 +26,7 @@ table_index = 'android'
 ############################
 # timelib 
 ############################
-
+# user default time slot common_config.delta_timeslot=1
 start_timestamp_str, end_timestamp_str = timelib.timestamp().timeslot()
 
 ############################

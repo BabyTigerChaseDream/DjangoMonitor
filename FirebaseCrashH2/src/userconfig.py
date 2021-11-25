@@ -12,7 +12,7 @@ import issues
 import utils
 
 import timelib
-from datetime import datetime, timedelta
+from datetime import datetime
 
 ISSUE_LIMIT = 50
 DATE_FORMAT = "%Y-%m-%d %H:%M:%S"

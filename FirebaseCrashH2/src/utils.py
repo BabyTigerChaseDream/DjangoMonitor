@@ -16,6 +16,8 @@ import os
 import schedule
 import time
 
+import common_config
+
 '''
 #########################
 #   API to Crash class  #
@@ -33,10 +35,10 @@ table_index = 'android'
 acc_mode = 'rw'
 
 # api for user input timing 
-def setup_timeslot(end_date=datetime.utcnow(), delta=7):
+def setup_timeslot(end_date=datetime.utcnow(), delta=common_config.delta_timeslot):
 	return timelib.timestamp().timeslot(end_date=end_date,delta=delta)
 
-start_timestamp_str, end_timestamp_str = setup_timeslot(end_date=datetime.utcnow(), delta=7)
+start_timestamp_str, end_timestamp_str = setup_timeslot(end_date=datetime.utcnow(), delta=delta_timeslot)
 
 # single entry to decide crash_count/total_user to retrieve !!!
 def get_crash_lists(table_index, start_timestamp_str=start_timestamp_str, end_timestamp_str=end_timestamp_str, 
@@ -271,7 +273,7 @@ def job_test():
 
 if __name__ == '__main__':
 	end_date =datetime.utcnow() 
-	print('[job_get_android_crash] collect crash data within 7 days, end at : ', end_date)
+	#print('[job_get_android_crash] collect crash data within 7 days, end at : ', end_date)
 	#job_get_all_crash()	
 	#schedule.every(240).minutes.at(":20").do(job_get_all_crash)
 	schedule.every(180).minutes.at(":20").do(job_get_all_crash)
