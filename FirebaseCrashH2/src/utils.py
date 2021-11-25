@@ -26,8 +26,8 @@ import common_config
 #################################################################
 # Configurable matrix: 
 #################################################################
-crash_count_max = '100'
-total_user_max = '50'
+crash_count_max = '35'
+total_user_max = '35'
 issue_count_max = '100'
 
 table_index = 'android'
@@ -109,6 +109,9 @@ def write_issues_to_crashissue_database(issue_id_list, acc_mode, table_index, ta
 			app_version_list = {app_version_list},
 			last_update_timestamp = {last_update_timestamp};	
 	'''
+
+	# get daily 
+	
 	issue_num = len(issue_id_list)
 	skip_num = 0
 	skip_issue_list = []

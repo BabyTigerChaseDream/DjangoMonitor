@@ -12,6 +12,8 @@ bookingApp = {
 }
 MAX_DISPLAY_NOTIFY = 5+1
 
+timeslot = 'last-twenty-four-hours'
+
 class EmailHelper:
     def send_email(self, sender, psw, receiver, smtpserver, port,title,msgBody):
         recvList = []
@@ -145,7 +147,7 @@ class Report:
 		# get bookingApp / timeslot , generate url template
 		self.bookingApp = bookingApp[self.platform.lower()]
 		print("[bookingApp] platform:",self.platform,self.bookingApp)
-		self.timeslot = 'last-twenty-four-hours'
+		self.timeslot = timeslot
 
 		# check total issue_id < 3 then display all ; >3 need to order them based on crash		
 		if self.total_issue_count > 5:
@@ -183,7 +185,7 @@ class Report:
 										platform=self.platform, 
 										count=self.total_issue_count, 
 										team=self.team,
-										timeslot = 'last-7-days'
+										timeslot = timeslot
 										)
 		#for issue in issue_list 
 		#msg = '<H4>    issue_title    |    issue_id    |crash_count|total_user|app_version|</H4>'
@@ -233,7 +235,7 @@ class Report:
 										platform=self.platform, 
 										count=self.total_issue_count, 
 										team=self.team,
-										timeslot = 'last-7-days'
+										timeslot = timeslot
 										)
 		#for issue in issue_list 
 		#msg = msg + '*    issue_subtitle    |    issue_id    |crash_count|total_user|app_version    *\\n'
