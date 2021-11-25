@@ -38,7 +38,7 @@ acc_mode = 'rw'
 def setup_timeslot(end_date=datetime.utcnow(), delta=common_config.delta_timeslot):
 	return timelib.timestamp().timeslot(end_date=end_date,delta=delta)
 
-start_timestamp_str, end_timestamp_str = setup_timeslot(end_date=datetime.utcnow(), delta=delta_timeslot)
+start_timestamp_str, end_timestamp_str = setup_timeslot(end_date=datetime.utcnow(), delta=common_config.delta_timeslot)
 
 # single entry to decide crash_count/total_user to retrieve !!!
 def get_crash_lists(table_index, start_timestamp_str=start_timestamp_str, end_timestamp_str=end_timestamp_str, 
