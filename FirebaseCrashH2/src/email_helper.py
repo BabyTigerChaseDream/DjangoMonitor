@@ -194,10 +194,10 @@ class Report:
 				timeslot=self.timeslot	
 			)
 			#<a href='{url_crashlist}'>Detail</a>
-			msg = msg + '''<a href='{url_firebase}'>{issue_title}</a>\
-				{issue_subtitle}\
-				crash {crash_count} times,affects {total_user} users,\
-				lastest failure on {app_version} total fail on {version_count} versions'''.format(
+			msg = msg + '''<h3><a href='{url_firebase}'>{issue_title}</a><\h3>\
+				<h4>{issue_subtitle}<\h4>\
+				<h4>crash {crash_count} times,affects {total_user} users,<\h4>\
+				<h4>lastest failure on {app_version} total fail on {version_count} versions<\h4>'''.format(
 											issue_title=i['issue_title'],
 											issue_subtitle=i['issue_subtitle'],
 											issue_id=i['issue_id'],
@@ -208,9 +208,9 @@ class Report:
 											url_firebase=url_firebase,
 											)
 		# if total_issue > 3 
-		msg = msg + '''[Notes] Crashes retrieved based on you(team) <a href='{url_userconfig}'>configurations</a>\
+		msg = msg + '''<h2>[Notes] Crashes retrieved based on you(team) <a href='{url_userconfig}'>configurations</a>\
 			If you want to unsubscribe some crashes above please go <a href='<{url_crashlist}'>Here</a>\
-			and click *Ignore* btn'''.format(url_crashlist=self.url_crashlist,url_userconfig=self.url_userconfig)
+			and click *Ignore* btn<\h2>'''.format(url_crashlist=self.url_crashlist,url_userconfig=self.url_userconfig)
 		msg = msg + '---------------------------------------------------'
 		print("[Email Message] >>>> \n",msg)
 		print("[Email End]>>>>>>>>>>>>>>>>>>>>> \n",msg)
