@@ -211,15 +211,14 @@ class Report:
 			msg = msg + '''<a href='{url_firebase}'>{issue_title}</a>\
 				crash {crash_count} times,affects {total_user} users '''.format(
 											issue_title=i['issue_title'],
-											issue_id=i['issue_id'],
 											crash_count=i['crash_count'],
 											total_user=i['total_user'],
 											url_firebase=url_firebase,
 											)
 		# if total_issue > 3 
-		msg = msg + '''[Notes] Crashes retrieved based on you(team) <a href='{url_userconfig}'>configurations</a>\
+		msg = msg + '''<h2>[Notes] Crashes retrieved based on you(team) <a href='{url_userconfig}'>configurations</a>\
 			If you want to unsubscribe some crashes above please go <a href='<{url_crashlist}'>Here</a>\
-			and click *Ignore* btn'''.format(url_crashlist=self.url_crashlist,url_userconfig=self.url_userconfig)
+			and click *Ignore* btn<\h2>'''.format(url_crashlist=self.url_crashlist,url_userconfig=self.url_userconfig)
 		msg = msg + '---------------------------------------------------'
 		print("[Email Message] >>>> \n",msg)
 		print("[Email End]>>>>>>>>>>>>>>>>>>>>> \n",msg)
