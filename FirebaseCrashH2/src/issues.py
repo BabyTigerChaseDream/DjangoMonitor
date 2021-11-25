@@ -53,7 +53,7 @@ class Issue:
 			count(distinct installation_uuid) as total_user 
 		from `{table}` 
 		where 
-			event_timestamp >= '{start_timestamp_str}' and event_timestamp <= '{end_timestamp_str}' and issue_id='{end_timestamp_str}'
+			event_timestamp >= '{start_timestamp_str}' and event_timestamp <= '{end_timestamp_str}' and issue_id='{issue_id}'
 	''' 
 
 	RETRIEVE_STACKTRACES_BY_ISSUE_ID = '''

@@ -53,7 +53,7 @@ def dump_issues(issue_id_list, filename = 'issues.json'):
 	'''
 	IssueList = []
 	for issue_id in issue_id_list:
-		I=issues.Issue(issue_id=issue_id)
+		I=issues.Issue(issue_id=issue_id, table_index=table_index)
 		try:
 			IssueList.append(I.modelize_issue())
 		except:
@@ -111,7 +111,7 @@ def write_issues_to_crashissue_database(issue_id_list, acc_mode, table_index, ta
 	'''
 
 	# get daily 
-	
+
 	issue_num = len(issue_id_list)
 	skip_num = 0
 	skip_issue_list = []
