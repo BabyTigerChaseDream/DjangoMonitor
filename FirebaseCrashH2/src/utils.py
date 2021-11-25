@@ -184,7 +184,7 @@ def send_notification(**userconfig_notification):
 
 	email = EmailHelper()
 	report = Report(config_id=config_id)
-	emailmsg = report.generateNotificationMsg()
+	emailmsg = report.generateEmailMsg()
 	slackmsg = report.generateSlackMsg()
 	title = 'Crash Monitor Notification'
 	#email.booking_send_email("China.Quality@booking.com", email_address, title, EmailMsg() )

@@ -167,7 +167,7 @@ class Report:
 				continue
 		return self.report_issue_content
 
-	def generateNotificationMsg(self):
+	def generateEmailMsg(self):
 		if not self.report_issue_content:
 			self.get_report_issue_content()
 		
@@ -175,11 +175,11 @@ class Report:
 		msg = ""	
 		
 		if self.total_issue_count == 0:
-			print('generateNotificationMsg Empty Content\n')
+			print('generateEmailMsg Empty Content\n')
 			return msg
 
 		# order issue by user count 
-		msg = '<h2>[{platform}] has \"{count}\" Issues Detected for \"{team}\" during {timeslot}</h2>'.format(
+		msg = '<h2>[{platform}] has {count} Issues Detected for {team} during {timeslot}</h2>'.format(
 										platform=self.platform, 
 										count=self.total_issue_count, 
 										team=self.team,
@@ -194,10 +194,10 @@ class Report:
 				timeslot=self.timeslot	
 			)
 			#<a href='{url_crashlist}'>Detail</a>
-			msg = msg + '''<H4><a href='{url_firebase}'>{issue_title}</a>\
-				\n>{issue_subtitle}\
-				\n>crash {crash_count} times,affects {total_user} users,\
-				\n>lastest failure on {app_version} total fail on {version_count} versions<\H4>'''.format(
+			msg = msg + '''<a href='{url_firebase}'>{issue_title}</a>\
+				{issue_subtitle}\
+				crash {crash_count} times,affects {total_user} users,\
+				lastest failure on {app_version} total fail on {version_count} versions'''.format(
 											issue_title=i['issue_title'],
 											issue_subtitle=i['issue_subtitle'],
 											issue_id=i['issue_id'],
@@ -209,9 +209,11 @@ class Report:
 											)
 		# if total_issue > 3 
 		msg = msg + '''[Notes] Crashes retrieved based on you(team) <a href='{url_userconfig}'>configurations</a>\
-			\n>If you want to unsubscribe some crashes above please go <a href='<{url_crashlist}'>Here</a>\
-			\n>and click *Ignore* btn'''.format(url_crashlist=self.url_crashlist,url_userconfig=self.url_userconfig)
-		msg = msg + '---------------------------------------------------\\n'
+			If you want to unsubscribe some crashes above please go <a href='<{url_crashlist}'>Here</a>\
+			and click *Ignore* btn'''.format(url_crashlist=self.url_crashlist,url_userconfig=self.url_userconfig)
+		msg = msg + '---------------------------------------------------'
+		print("[Email Message] >>>> \n",msg)
+		print("[Email End]>>>>>>>>>>>>>>>>>>>>> \n",msg)
 		return msg
 	
 	def generateSlackMsg(self):

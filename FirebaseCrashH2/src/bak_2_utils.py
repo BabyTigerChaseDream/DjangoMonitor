@@ -181,7 +181,7 @@ def send_notification(**userconfig_notification):
 
 	email = EmailHelper()
 	report = Report(config_id=config_id)
-	msg = report.generateNotificationMsg()
+	msg = report.generateEmailMsg()
 	title = 'Crash Monitor Notification'
 
 	if not msg:

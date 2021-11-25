@@ -136,7 +136,7 @@ class Report:
 				continue
 		return self.report_issue_content
 	
-	def generateNotificationMsg(self):
+	def generateEmailMsg(self):
 		if not self.report_issue_content:
 			self.get_report_issue_content()
 
