@@ -238,6 +238,11 @@ class Issue:
 			try:
 				self.get_stacktraces()
 				frames = []
+				# first get subtitle,title,exception messages as a whole 
+				frames.extend(s['title'] for s in self.stacktraces)
+				frames.extend(s['subtitle'] for s in self.stacktraces)
+				frames.extend(s['exception_message'] for s in self.stacktraces)
+				# add issue frames 
 				frames.extend(s['frames'] for s in self.stacktraces)
 				self.frames = frames[0]
 			except Exception as e:
