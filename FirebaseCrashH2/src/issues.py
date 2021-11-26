@@ -240,8 +240,7 @@ class Issue:
 
 			# add issue frames 
 			frames.extend(s['frames'] for s in self.stacktraces)
-			#self.frames = frames[0]
-			self.frames = frames
+			self.frames = frames[0]
 			print("	>>> stacktraces content <<<",self.stacktraces)
 			print("	[11/11/11]>>> frames content <<<\n\n",self.frames)
 		except Exception as e:
