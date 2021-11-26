@@ -237,13 +237,7 @@ class Issue:
 		try:
 			self.get_stacktraces()
 			frames = []
-			# first get subtitle,title,exception messages as a whole 
-			#frames.extend(self.stacktraces[0]['title'])
-			#frames.extend(self.stacktraces[0]['subtitle'])
-			#frames.extend(self.stacktraces[0]['exception_message'])
-			frames.extend(s['title'] for s in self.stacktraces)
-			frames.extend(s['subtitle'] for s in self.stacktraces)
-			frames.extend(s['exception_message'] for s in self.stacktraces)
+
 			# add issue frames 
 			frames.extend(s['frames'] for s in self.stacktraces)
 			#self.frames = frames[0]
@@ -303,5 +297,13 @@ class Issue:
 			file_name = frame['file'] or 'NA' 
 			symbol_name = frame['symbol'] or 'NA'	
 			self.logs += file_name + sep + symbol_name + '\n'
-		
+
+		# first get subtitle,title,exception messages as a whole 
+		#frames.extend(self.stacktraces[0]['title'])
+		#frames.extend(self.stacktraces[0]['subtitle'])
+		#frames.extend(self.stacktraces[0]['exception_message'])
+
+		self.logs =self.logs+''.join([s['title'] for s in self.stacktraces])
+		self.logs =self.logs+''.join([s['subtitle'] for s in self.stacktraces])
+		self.logs =self.logs+''.join([s['exception_message'] for s in self.stacktraces])
 		return self.logs
