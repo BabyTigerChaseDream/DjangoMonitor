@@ -239,12 +239,14 @@ class Issue:
 				self.get_stacktraces()
 				frames = []
 				# first get subtitle,title,exception messages as a whole 
-				frames.extend(s['title'] for s in self.stacktraces)
-				frames.extend(s['subtitle'] for s in self.stacktraces)
-				frames.extend(s['exception_message'] for s in self.stacktraces)
+				frames.extend(self.stacktraces[0]['title'])
+				frames.extend(self.stacktraces[0]['subtitle'])
+				frames.extend(self.stacktraces[0]['exception_message'])
 				# add issue frames 
 				frames.extend(s['frames'] for s in self.stacktraces)
 				self.frames = frames[0]
+				print("	>>> stacktraces content <<<",self.stacktraces)
+				print("	[11/11/11]>>> frames content <<<",self.frames)
 			except Exception as e:
 				print("[Exceptions] :",str(e))		
 				print("	>>> stacktraces content <<<",self.stacktraces)
