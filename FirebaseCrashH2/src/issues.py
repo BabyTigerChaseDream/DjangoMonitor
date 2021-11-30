@@ -8,6 +8,9 @@ import dblib
 import timelib
 from datetime import datetime 
 
+import firebase_db_common_lib
+
+
 #DBEngine = dblib.DB().DBEngine
 conn = dblib.DB().conn
 #DB name
@@ -17,6 +20,7 @@ database = 'android'
 # local database used for debugging 
 
 class Issue:
+	### issue for a specific uuid 
 	RETRIEVE_ISSUE_CONTENT_BY_ISSUE_ID ='''
 		select 
 			issue_id,
@@ -39,6 +43,18 @@ class Issue:
 		from `{table}` 
 		where issue_id='{issue_id}';
 	'''
+	### collect issue data per time slot
+	### we still need table : firebase_crash_table
+
+	COLLECT_ISSUE_BY_CRASH_AND_USER_COUNT_PER_TIMESLOT ='''
+		select 
+			application->'$.display_version' as app_version, 
+			count(distinct event_id) as crash_count, 
+			count(distinct installation_uuid) as total_user 
+		from `{table}` 
+		where 
+			event_timestamp >= '{start_timestamp_str}' and event_timestamp <= '{end_timestamp_str}' and issue_id='{issue_id}'
+	''' 
 
 	RETRIEVE_STACKTRACES_BY_ISSUE_ID = '''
 		select 
@@ -48,6 +64,8 @@ class Issue:
 	'''
 
 	stacktrace_table = 'firebase_crashlytics_stacktraces'
+	start_timestamp_str =firebase_db_common_lib.start_timestamp_str
+	end_timestamp_str =firebase_db_common_lib.end_timestamp_str 
 
 	def __init__(self, issue_id, table_index, database=database, simulate=False):
 		# tables in database above
@@ -57,7 +75,7 @@ class Issue:
 
 		#self.DBEngine = DBEngine
 		self.conn = dblib.DB(simulate=simulate).connect()
-		#self.issue_id = str(issue_id)
+		self.issue_id = str(issue_id)
 		# specify both database and table , in order to access right
 		self.table = table
 		self.database = database 
@@ -114,6 +132,29 @@ class Issue:
 			print('[ERROR] failed to get cursor from sql_cmd')
 
 		return self.cursor
+	
+	def get_timeslot_static_data(self,start_timestamp_str=None, end_timestamp_str=None):
+		if not start_timestamp_str:
+			start_timestamp_str=self.start_timestamp_str
+
+		if not end_timestamp_str:
+			end_timestamp_str=self.end_timestamp_str
+
+		self.collect_issue_by_crash_and_user_count_per_timeslot = self.COLLECT_ISSUE_BY_CRASH_AND_USER_COUNT_PER_TIMESLOT.format(
+				table = self.table,
+				start_timestamp_str=start_timestamp_str,
+				end_timestamp_str = end_timestamp_str,
+				issue_id = self.issue_id
+			)
+		print("[get_timeslot_static_data sql_cmd] \
+				", self.collect_issue_by_crash_and_user_count_per_timeslot)
+
+		self.get_cursor(self.collect_issue_by_crash_and_user_count_per_timeslot)
+
+		self.issue_static_data = self.cursor.fetchone()
+		return self.issue_static_data 
+
+		
 
 	def get_cursor_app_versions(self,sql_cmd_app_versions=None):
 		if not sql_cmd_app_versions:
@@ -166,6 +207,12 @@ class Issue:
 		app_version_str = str(app_version_set).strip('{').strip('}')
 		self.content['app_version_list'] = app_version_str 
 
+		# get crash count / total user
+		static_data = self.get_timeslot_static_data()
+		self.content['crash_count']=static_data['crash_count'] 
+		self.content['total_user']=static_data['total_user'] 	
+		self.content['app_version']=static_data['app_version'] 	
+
 		# issue last updated timestamp
 		self.content['last_update_timestamp'] = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")
 
@@ -187,15 +234,18 @@ class Issue:
 		return self.stacktraces
 
 	def get_issue_frames(self)->list:
-		if not self.stacktraces:
-			try:
-				self.get_stacktraces()
-				frames = []
-				frames.extend(s['frames'] for s in self.stacktraces)
-				self.frames = frames[0]
-			except Exception as e:
-				print("[Exceptions] :",str(e))		
-				print("	>>> stacktraces content <<<",self.stacktraces)
+		try:
+			self.get_stacktraces()
+			frames = []
+
+			# add issue frames 
+			frames.extend(s['frames'] for s in self.stacktraces)
+			self.frames = frames[0]
+			print("	>>> stacktraces content <<<",self.stacktraces)
+			print("	[11/11/11]>>> frames content <<<\n\n",self.frames)
+		except Exception as e:
+			print("[Exceptions] :",str(e))		
+			print("	>>> stacktraces content <<<\n",self.stacktraces)
 		
 		return self.frames
 
@@ -246,5 +296,13 @@ class Issue:
 			file_name = frame['file'] or 'NA' 
 			symbol_name = frame['symbol'] or 'NA'	
 			self.logs += file_name + sep + symbol_name + '\n'
-		
+
+		# first get subtitle,title,exception messages as a whole 
+		#frames.extend(self.stacktraces[0]['title'])
+		#frames.extend(self.stacktraces[0]['subtitle'])
+		#frames.extend(self.stacktraces[0]['exception_message'])
+
+		self.logs =self.logs+''.join([s['title'] for s in self.stacktraces])
+		self.logs =self.logs+''.join([s['subtitle'] for s in self.stacktraces])
+		self.logs =self.logs+''.join([s['exception_message'] for s in self.stacktraces])
 		return self.logs

@@ -16,6 +16,8 @@ import os
 import schedule
 import time
 
+import common_config
+
 '''
 #########################
 #   API to Crash class  #
@@ -24,8 +26,8 @@ import time
 #################################################################
 # Configurable matrix: 
 #################################################################
-crash_count_max = '100'
-total_user_max = '50'
+crash_count_max = '35'
+total_user_max = '35'
 issue_count_max = '100'
 
 table_index = 'android'
@@ -33,10 +35,10 @@ table_index = 'android'
 acc_mode = 'rw'
 
 # api for user input timing 
-def setup_timeslot(end_date=datetime.utcnow(), delta=7):
+def setup_timeslot(end_date=datetime.utcnow(), delta=common_config.delta_timeslot):
 	return timelib.timestamp().timeslot(end_date=end_date,delta=delta)
 
-start_timestamp_str, end_timestamp_str = setup_timeslot(end_date=datetime.utcnow(), delta=7)
+start_timestamp_str, end_timestamp_str = setup_timeslot(end_date=datetime.utcnow(), delta=common_config.delta_timeslot)
 
 # single entry to decide crash_count/total_user to retrieve !!!
 def get_crash_lists(table_index, start_timestamp_str=start_timestamp_str, end_timestamp_str=end_timestamp_str, 
@@ -51,7 +53,7 @@ def dump_issues(issue_id_list, filename = 'issues.json'):
 	'''
 	IssueList = []
 	for issue_id in issue_id_list:
-		I=issues.Issue(issue_id=issue_id)
+		I=issues.Issue(issue_id=issue_id, table_index=table_index)
 		try:
 			IssueList.append(I.modelize_issue())
 		except:
@@ -107,6 +109,9 @@ def write_issues_to_crashissue_database(issue_id_list, acc_mode, table_index, ta
 			app_version_list = {app_version_list},
 			last_update_timestamp = {last_update_timestamp};	
 	'''
+
+	# get daily 
+
 	issue_num = len(issue_id_list)
 	skip_num = 0
 	skip_issue_list = []
@@ -184,7 +189,7 @@ def send_notification(**userconfig_notification):
 
 	email = EmailHelper()
 	report = Report(config_id=config_id)
-	emailmsg = report.generateNotificationMsg()
+	emailmsg = report.generateEmailMsg()
 	slackmsg = report.generateSlackMsg()
 	title = 'Crash Monitor Notification'
 	#email.booking_send_email("China.Quality@booking.com", email_address, title, EmailMsg() )
@@ -271,8 +276,7 @@ def job_test():
 
 if __name__ == '__main__':
 	end_date =datetime.utcnow() 
-	print('[job_get_android_crash] collect crash data within 7 days, end at : ', end_date)
-	#schedule.every().hour.at(":25").do(job_get_all_crash)
+	#print('[job_get_android_crash] collect crash data within 7 days, end at : ', end_date)
 	#job_get_all_crash()	
 	#schedule.every(240).minutes.at(":20").do(job_get_all_crash)
 	schedule.every(180).minutes.at(":20").do(job_get_all_crash)
