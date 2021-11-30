@@ -13,6 +13,14 @@ class timestamp:
 		self.end_timestamp_str = end_datetime.strftime(date_format) 
 		return self.start_timestamp_str,self.end_timestamp_str
 
+	def timeslotbymin(self, end_date=datetime.utcnow(), delta=30):
+		date_format =  self.DATE_FORMAT 
+		end_datetime = (datetime.utcnow())
+		start_datetime = (datetime.utcnow() - timedelta(minites=delta))
+		self.start_timestamp_str = start_datetime.strftime(date_format)
+		self.end_timestamp_str = end_datetime.strftime(date_format) 
+		return self.start_timestamp_str,self.end_timestamp_str
+
 	def strp2date(self,timestr:str,date_format=None)->datetime:
 		''' string to datetime '''
 		if not date_format:

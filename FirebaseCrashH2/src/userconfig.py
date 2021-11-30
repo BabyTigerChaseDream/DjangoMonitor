@@ -70,6 +70,10 @@ class ConfigGroup:
 
 	# generate sql_cmd from 'get_userconfig_param' 
 	def get_configuser_issue_content_list(self, crash_table=None):
+		# only retrieve latest crashes : check by last updated timestamp 
+		start_timestamp_str, end_timestamp_str = timelib.timestamp().timeslotbymin(delta=1440)
+		print("##### [get_configuser_issue_content_list] ",start_timestamp_str, end_timestamp_str)
+
 		GET_USERCONFIG_CRASHISSUE_SQLCMD = '''
 			select 
 				issue_id, 
@@ -79,7 +83,8 @@ class ConfigGroup:
 				issue_logs
 			from `{crash_table}` 
 			where 
-				platform = '{platform}' and crash_count >= {crash_count} and total_user >= {total_user}
+					platform = '{platform}' and crash_count >= {crash_count} and total_user >= {total_user} 
+					and last_update_timestamp >= '{start_timestamp_str}' and last_update_timestamp <= '{end_timestamp_str}'
 			order by total_user desc;
 		''' 
 		self.configuser_list=[]
@@ -99,7 +104,9 @@ class ConfigGroup:
 																crash_table=crash_table,
 																platform = platform,
 																crash_count=crash_count,
-																total_user=total_user
+																total_user=total_user,
+																start_timestamp_str=start_timestamp_str,
+																end_timestamp_str=end_timestamp_str
 															)
 
 				# TODO: replace with 'config in self.cursor.fetchall()' 
