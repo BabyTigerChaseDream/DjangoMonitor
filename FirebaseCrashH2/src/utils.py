@@ -266,6 +266,8 @@ def job_get_ios_crash():
 	print("done iOS:write_issues_to_crashissue_database \n")
 
 def job_get_all_crash():
+	end_date =datetime.utcnow() 
+	print("[job_get_all_crash] [WWWWW] Start all job retrieve at:{end_date}\n".format(end_date=end_date))
 	job_get_android_crash()
 	job_get_ios_crash()
 	update_hit_issue_id_list_to_userconfig()
@@ -276,10 +278,11 @@ def job_test():
 
 if __name__ == '__main__':
 	end_date =datetime.utcnow() 
+	print("[main] [WWWWW] Start retrieve at:{end_date}\n".format(end_date=end_date))
 	#print('[job_get_android_crash] collect crash data within 7 days, end at : ', end_date)
 	#job_get_all_crash()	
 	#schedule.every(240).minutes.at(":20").do(job_get_all_crash)
-	schedule.every(180).minutes.at(":20").do(job_get_all_crash)
+	schedule.every(5).minutes.at(":20").do(job_get_all_crash)
 	#print('[job_test]')
 	#schedule.every(35).minutes.at(":20").do(job_test)
 	#while True:
