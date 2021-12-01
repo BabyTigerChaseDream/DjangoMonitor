@@ -282,9 +282,9 @@ if __name__ == '__main__':
 	#print('[job_get_android_crash] collect crash data within 7 days, end at : ', end_date)
 	#job_get_all_crash()	
 	#schedule.every(240).minutes.at(":20").do(job_get_all_crash)
-	schedule.every(5).minutes.at(":20").do(job_get_all_crash)
+	schedule.every(60).minutes.at(":20").do(job_get_all_crash)
 	#print('[job_test]')
 	#schedule.every(35).minutes.at(":20").do(job_test)
-	#while True:
-	#	schedule.run_pending()
-	#	time.sleep(1)
+	while True:
+		schedule.run_pending()
+		time.sleep(1)
