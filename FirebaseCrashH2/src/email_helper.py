@@ -88,7 +88,7 @@ class Report:
 	#[ios]"https://console.firebase.google.com/u/0/project/booking-oauth/crashlytics/app/ios:com.booking.BookingApp/issues/{issue_id}?time=last-twenty-four-hours"
 	# {bookingApp} ios:com.booking.BookingApp 
 	### {timeslot}last-twenty-four-hours
-	# DQS url :
+	## DQS url :
 	#url_crashlist_template = "https://firebase-app-crash.dqs.booking.com/crashdetail_user/{userconfig_id}/"
 	#url_userconfig_template = 'https://firebase-app-crash.dqs.booking.com/config/{userconfig_id}/'
 	#url_ignore_issue_id_template = 'https://firebase-app-crash.dqs.booking.com/crashdetail_user/{userconfig_id}/ignore-issue-id/{issue_id}/'
@@ -212,25 +212,15 @@ class Report:
 											crash_count=i['crash_count'],
 											total_user=i['total_user']	
 										)
-			
-			#msg = msg + '''<a href='{url_firebase}'>{issue_title}</a>\
-			#	{issue_subtitle}\
-			#	crash {crash_count} times,affects {total_user} users,\
-			#	lastest failure on {app_version} total fail on {version_count} versions'''.format(
-			#								issue_title=i['issue_title'],
-			#								issue_subtitle=i['issue_subtitle'],
-			#								issue_id=i['issue_id'],
-			#								crash_count=i['crash_count'],
-			#								total_user=i['total_user'],
-			#								app_version=i['app_version'].split(',')[0],
-			#								version_count=len(i['app_version_list'].split(',')),
-			#								url_firebase=url_firebase,
-			#								)
-		# if total_issue > 3 
-		msg = msg + "<h4>[Notes] Crashes retrieved based on you(team) <a href='{url_userconfig}'>configurations</a>\
-			If you want to unsubscribe some crashes above please go <a href='<{url_crashlist}'>Here</a>\
-			and click *Ignore* btn</h4>".format(url_crashlist=self.url_crashlist,url_userconfig=self.url_userconfig)
-		msg = msg + '---------------------------------------------------'
+			msg = msg + "<h4>lastest failure on {app_version} total fail on {version_count} versions</h4>".format(
+											app_version=i['app_version'].split(',')[0],
+											version_count=len(i['app_version_list'].split(','))
+										)
+		# if total_issue > 3
+		msg = msg + "<h3>Crashes retrieved based on you(team) <a href='{url_userconfig}'>configurations</a></h3>\
+			<h3>If you want to unsubscribe some crashes above please go <a href='{url_crashlist}'>Here</a></h3>\
+			<h3>and click Ignore btn</h3>".format(url_crashlist=self.url_crashlist,url_userconfig=self.url_userconfig)
+
 		print("[Email Message] >>>> \n",msg)
 		print("[Email End]>>>>>>>>>>>>>>>>>>>>> \n",msg)
 		return msg
