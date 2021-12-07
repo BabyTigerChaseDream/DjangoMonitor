@@ -278,13 +278,13 @@ def job_test():
 
 if __name__ == '__main__':
 	end_date =datetime.utcnow() 
-	print("[main] [WWWWW] Start retrieve at:{end_date}\n".format(end_date=end_date))
-	#print('[job_get_android_crash] collect crash data within 7 days, end at : ', end_date)
+	print("[main] Start retrieve at:{end_date}\n".format(end_date=end_date))
 	#job_get_all_crash()	
-	#schedule.every(240).minutes.at(":20").do(job_get_all_crash)
-	schedule.every(180).minutes.at(":20").do(job_get_all_crash)
-	#print('[job_test]')
-	#schedule.every(35).minutes.at(":20").do(job_test)
+	#schedule.every(180).minutes.at(":20").do(job_get_all_crash)
+	#schedule.every().day.at("09:00").do(job_get_all_crash)
+	schedule.every().day.at("15:30").do(job_get_all_crash)
+	schedule.every().day.at("16:30").do(job_get_all_crash)
+	schedule.every().day.at("17:30").do(job_get_all_crash)
 	while True:
 		schedule.run_pending()
 		time.sleep(1)

@@ -74,9 +74,11 @@ class ConfigGroup:
 		start_timestamp_str, end_timestamp_str = timelib.timestamp().timeslotbymin(delta=1440)
 		print("##### [get_configuser_issue_content_list] ",start_timestamp_str, end_timestamp_str)
 
+		# [20211207] Add issue_title to filter files in issue_title 
 		GET_USERCONFIG_CRASHISSUE_SQLCMD = '''
 			select 
 				issue_id, 
+				issue_title, 
 				platform,
 				crash_count,
 				total_user,	
@@ -204,7 +206,8 @@ class ConfigUser:
 		self.curvenow = self.get_cursor(user_sqlcmd=self.user_sqlcmd)
 		self.issue_content_list = self.curvenow.fetchall() 
 		return self.issue_content_list 
-	
+
+	# filtering logic happens here 	
 	def filter_issue_id_with_files(self,user_sqlcmd=None,write=False):
 		if not self.issue_content_list:
 			if not user_sqlcmd:
@@ -219,9 +222,13 @@ class ConfigUser:
 		# clean state
 		self.issue_id_files_hit_list=[]
 		#target_file_set = set()
+
 		for issue_content in self.issue_content_list:
 			try:
-				issue_logs=issue_content['issue_logs']		
+				## filter file names according to issue logs 
+				#issue_logs=issue_content['issue_logs']		
+				# filter file names according to issue title 
+				issue_logs=issue_content['issue_title']		
 			except Exception as e:
 				print("[Exceptions] :",str(e))			
 				print(">>> user_sqlcmd:",issue_content)			
