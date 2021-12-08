@@ -26,8 +26,8 @@ import common_config
 #################################################################
 # Configurable matrix: 
 #################################################################
-crash_count_max = '35'
-total_user_max = '35'
+crash_count_max = '25'
+total_user_max = '25'
 issue_count_max = '100'
 
 table_index = 'android'
@@ -281,10 +281,9 @@ if __name__ == '__main__':
 	print("[main] Start retrieve at:{end_date}\n".format(end_date=end_date))
 	#job_get_all_crash()	
 	#schedule.every(180).minutes.at(":20").do(job_get_all_crash)
-	#schedule.every().day.at("09:00").do(job_get_all_crash)
-	schedule.every().day.at("15:30").do(job_get_all_crash)
-	schedule.every().day.at("16:30").do(job_get_all_crash)
-	schedule.every().day.at("17:30").do(job_get_all_crash)
+	#schedule.every().day.at("3:00").do(job_get_all_crash)
+	schedule.every().day.at("6:00").do(job_get_all_crash)
+	#schedule.every().day.at("12:00").do(job_get_all_crash)
 	while True:
 		schedule.run_pending()
 		time.sleep(1)
