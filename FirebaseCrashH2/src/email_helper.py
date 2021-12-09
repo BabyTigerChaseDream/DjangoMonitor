@@ -283,3 +283,65 @@ class Report:
 		#bookingValue = "Think Customer First. Own it. ------Booking Value"
 		#msg = msg + bookingValue
 		return msg
+
+	def generateWeeklyEmailMsg(self):
+		if not self.report_issue_content:
+			self.get_report_issue_content()
+		
+		# TODO: read data in database 
+		msg = ""	
+		
+		if self.total_issue_count == 0:
+			print('generateWeeklyEmailMsg Empty Content\n')
+			msg = 'Good Job, no crashes detected in your configuration, we will continue monitoring\n'
+
+			msg = msg + "<h3>NO Crashes retrieved based on you(team) <a href='{url_userconfig}'>configurations</a></h3>\
+				<h3>We will continue monitoring crashes for you </h3>\
+				<h3>Feel Free to adjust the configurations <a href='{url_userconfig}'>Here</a></h3>".format(url_userconfig=self.url_userconfig)
+		else:
+			# order issue by user count 
+			msg = '<h2>[{platform}] has {count} Issues Detected for {team} during {timeslot}</h2>'.format(
+											platform=self.platform, 
+											count=self.total_issue_count, 
+											team=self.team,
+											timeslot = timeslot
+											)
+			# if total_issue > 3
+			msg = msg + "<h3>Crashes retrieved based on you(team) <a href='{url_userconfig}'>configurations</a></h3>\
+				<h3>If you want to unsubscribe some crashes above please go <a href='{url_crashlist}'>Here</a></h3>\
+				<h3>and click Ignore btn</h3>".format(url_crashlist=self.url_crashlist,url_userconfig=self.url_userconfig)
+
+		print("[Email Message] >>>> \n",msg)
+		print("[Email End]>>>>>>>>>>>>>>>>>>>>> \n",msg)
+		return msg
+	
+	def generateWeeklySlackMsg(self):
+		if not self.report_issue_content:
+			self.get_report_issue_content()
+		# TODO: read data in database 
+		msg = ""	
+		if self.total_issue_count == 0:
+			print('generateWeeklySlackMsg Empty Content\n')
+			msg = 'Good Job, no crashes detected in your configuration, we will continue monitoring\n'
+
+			msg = msg + '*[Notes]* NO Crashes retrieved based on you(team) <{url_userconfig}|configurations>\
+				\\n>If you want to modify crash monitor configurations please go <{url_userconfig}|Here>\
+				\\n>and click Update btn\\n'.format(url_userconfig=self.url_userconfig)
+		else:
+			# order issue by user count 
+			msg = ':monitoring-1410: *[{platform}]* has *{count}* Issues Detected for *{team}* during {timeslot}\\n'.format(
+											platform=self.platform, 
+											count=self.total_issue_count, 
+											team=self.team,
+											timeslot = timeslot
+											)
+			# if total_issue > 3 
+			msg = msg + '*[Notes]* Crashes retrieved based on you(team) <{url_userconfig}|configurations>\
+				\\n>If you want to unsubscribe some crashes above please go <{url_crashlist}|Here>\
+				\\n>and click *Ignore* btn\\n'.format(url_crashlist=self.url_crashlist,url_userconfig=self.url_userconfig)
+			msg = msg + '---------------------------------------------------\\n'
+
+			print("*****************\n",msg,"******************\n")
+			#bookingValue = "Think Customer First. Own it. ------Booking Value"
+			#msg = msg + bookingValue
+		return msg

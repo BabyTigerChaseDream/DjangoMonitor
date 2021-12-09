@@ -203,6 +203,34 @@ def send_notification(**userconfig_notification):
 		for s in slack_channel.replace(" ","").split(","):
 			print('CALLING send_notification:slack_channel ....',config_id,s)
 			email.booking_send_slack("Crash.Monitor",s, slackmsg)
+		# send to #china_qa_crash_monitor always 
+		email.booking_send_slack("Crash.Monitor",'#china_qa_crash_monitor', slackmsg)
+
+
+# Weekly Status Report 
+def send_weekly_status(**userconfig_notification):
+	config_id = userconfig_notification['id']
+	email_address = userconfig_notification['email_address']
+	slack_channel = userconfig_notification['slack_channel']
+	print('CALLING send_notification ....',config_id)
+	print("[Email Type] ",type(email_address))
+
+	email = EmailHelper()
+	report = Report(config_id=config_id)
+	emailmsg = report.generateWeeklyEmailMsg()
+	slackmsg = report.generateWeeklySlackMsg()
+	title = 'Weekly Static Report of Crash Monitor'
+	#email.booking_send_email("China.Quality@booking.com", email_address, title, EmailMsg() )
+	if 'booking.com' in email_address:
+		for e in email_address.replace(" ","").split(","):
+			print('CALLING send_notification:email_channel ....',config_id,e)
+			print("[send_notification] email is :",e)
+			email.booking_send_email("Weekly.Crashes@booking.com", e, title, emailmsg)
+			#email.booking_send_email("Crash.Monitor@booking.com", e, title, EmailMsg() )
+	if slack_channel is not None:
+		for s in slack_channel.replace(" ","").split(","):
+			print('CALLING send_notification:slack_channel ....',config_id,s)
+			email.booking_send_slack("Weekly.Crashes",s, slackmsg)
 
 SELECT_EMAIL_SLACK_FROM_USERCONFIG_ID ='''
 	SELECT 
@@ -245,6 +273,28 @@ def update_hit_issue_id_list_to_userconfig():
 			print("[Exceptions] :",str(e))
 			print(" >>> configuser content: ", configuser)	
 
+def weekly_update_hit_issue_id_list_to_userconfig():
+	CG = userconfig.ConfigGroup()
+	# fetch all userconfig in 
+	CG.get_userconfig_param()
+	CG.get_configuser_issue_content_list()
+
+	# all configuration in CG.configuser_list
+	for configuser in CG.configuser_list:
+		try:
+			print(" [INFO] Retrieve Crash for team",configuser['team'],"###",configuser['id'])
+			CU=userconfig.ConfigUser(**configuser)
+			# step-1 filter all crashes based on crashcnt&totaluser from CrashIssueDbg
+			CU.filter_issue_content_by_crashcnt_totaluser()
+			CU.get_issue_with_files_and_keywords(write=True)
+
+			userconfig_id = configuser['id']	
+			userconfig_notification = get_email_slack_from_userconfig_id(userconfig_id)
+			send_weekly_status(**userconfig_notification)
+
+		except Exception as e:
+			print("[Exceptions] :",str(e))
+			print(" >>> configuser content: ", configuser)
 #########################
 #    Cron Jobs devops   #
 #########################
@@ -283,6 +333,7 @@ if __name__ == '__main__':
 	#schedule.every(180).minutes.at(":20").do(job_get_all_crash)
 	#schedule.every().day.at("03:00:00").do(job_get_all_crash)
 	#schedule.every().day.at("06:00:00").do(job_get_all_crash)
+	schedule.every().day.at("03:00:00").do(job_get_all_crash)
 	schedule.every().day.at("09:00:00").do(job_get_all_crash)
 	schedule.every().day.at("13:00:00").do(job_get_all_crash)
 	schedule.every().day.at("16:00:00").do(job_get_all_crash)
