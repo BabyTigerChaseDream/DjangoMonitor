@@ -231,6 +231,8 @@ def send_weekly_status(**userconfig_notification):
 		for s in slack_channel.replace(" ","").split(","):
 			print('CALLING send_notification:slack_channel ....',config_id,s)
 			email.booking_send_slack("Weekly.Crashes",s, slackmsg)
+		# send to #china_qa_crash_monitor always 
+		email.booking_send_slack("Crash.Monitor",'#china_qa_crash_monitor', slackmsg)
 
 SELECT_EMAIL_SLACK_FROM_USERCONFIG_ID ='''
 	SELECT 
