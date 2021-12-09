@@ -281,9 +281,10 @@ if __name__ == '__main__':
 	print("[main] Start retrieve at:{end_date}\n".format(end_date=end_date))
 	#job_get_all_crash()	
 	#schedule.every(180).minutes.at(":20").do(job_get_all_crash)
-	#schedule.every().day.at("3:00").do(job_get_all_crash)
+	schedule.every().day.at("3:00:00").do(job_get_all_crash)
+	schedule.every().day.at("6:00:00").do(job_get_all_crash)
+	schedule.every().day.at("9:00:00").do(job_get_all_crash)
 	schedule.every().day.at("13:00:00").do(job_get_all_crash)
-	#schedule.every().day.at("12:00").do(job_get_all_crash)
 	while True:
 		schedule.run_pending()
 		time.sleep(1)
