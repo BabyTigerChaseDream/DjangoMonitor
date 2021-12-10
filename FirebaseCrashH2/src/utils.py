@@ -212,7 +212,7 @@ def send_weekly_status(**userconfig_notification):
 	config_id = userconfig_notification['id']
 	email_address = userconfig_notification['email_address']
 	slack_channel = userconfig_notification['slack_channel']
-	print('CALLING send_notification ....',config_id)
+	print('CALLING send_weekly_status ....',config_id)
 	print("[Email Type] ",type(email_address))
 
 	email = EmailHelper()
@@ -232,7 +232,7 @@ def send_weekly_status(**userconfig_notification):
 			print('CALLING send_notification:slack_channel ....',config_id,s)
 			email.booking_send_slack("Weekly.Crashes",s, slackmsg)
 		# send to #china_qa_crash_monitor always 
-		email.booking_send_slack("Crash.Monitor",'#china_qa_crash_monitor', slackmsg)
+		email.booking_send_slack("Weekly.Crash.Monitor",'#china_qa_crash_monitor', slackmsg)
 
 SELECT_EMAIL_SLACK_FROM_USERCONFIG_ID ='''
 	SELECT 
@@ -252,7 +252,8 @@ def get_email_slack_from_userconfig_id(userconfig_id,userconfig_database=usercon
 	curs=mydb.execute(select_email_slack_from_userconfig_id)
 	return curs.fetchone()
 
-def update_hit_issue_id_list_to_userconfig():
+def update_hit_issue_id_list_to_userconfig(configuser_id=None):
+	print('Daily:update_hit_issue_id_list_to_userconfig :',configuser_id)
 	CG = userconfig.ConfigGroup()
 	# fetch all userconfig in 
 	CG.get_userconfig_param()
@@ -260,6 +261,10 @@ def update_hit_issue_id_list_to_userconfig():
 
 	# all configuration in CG.configuser_list
 	for configuser in CG.configuser_list:
+		if configuser_id:
+			if str(configuser_id) != (configuser['id']):
+				print('Daily: Skip NONE Expect configuser_id:',configuser_id)
+				continue
 		try:
 			print(" [INFO] Retrieve Crash for team",configuser['team'],"###",configuser['id'])
 			CU=userconfig.ConfigUser(**configuser)
@@ -275,7 +280,8 @@ def update_hit_issue_id_list_to_userconfig():
 			print("[Exceptions] :",str(e))
 			print(" >>> configuser content: ", configuser)	
 
-def weekly_update_hit_issue_id_list_to_userconfig():
+def weekly_update_hit_issue_id_list_to_userconfig(configuser_id=None):
+	print('Daily:update_hit_issue_id_list_to_userconfig :',configuser_id)
 	CG = userconfig.ConfigGroup()
 	# fetch all userconfig in 
 	CG.get_userconfig_param()
@@ -283,6 +289,10 @@ def weekly_update_hit_issue_id_list_to_userconfig():
 
 	# all configuration in CG.configuser_list
 	for configuser in CG.configuser_list:
+		if configuser_id:
+			if str(configuser_id) != (configuser['id']):
+				print('Weekly: Skip NONE Expect configuser_id:',configuser_id)
+				continue		
 		try:
 			print(" [INFO] Retrieve Crash for team",configuser['team'],"###",configuser['id'])
 			CU=userconfig.ConfigUser(**configuser)
@@ -333,12 +343,7 @@ if __name__ == '__main__':
 	print("[main] Start retrieve at:{end_date}\n".format(end_date=end_date))
 	#job_get_all_crash()	
 	#schedule.every(180).minutes.at(":20").do(job_get_all_crash)
-	#schedule.every().day.at("03:00:00").do(job_get_all_crash)
-	#schedule.every().day.at("06:00:00").do(job_get_all_crash)
-	schedule.every().day.at("03:00:00").do(job_get_all_crash)
-	schedule.every().day.at("09:00:00").do(job_get_all_crash)
-	schedule.every().day.at("13:00:00").do(job_get_all_crash)
-	schedule.every().day.at("16:00:00").do(job_get_all_crash)
+	schedule.every().day.at("10:00:00").do(job_get_all_crash)
 	while True:
 		schedule.run_pending()
 		time.sleep(1)
