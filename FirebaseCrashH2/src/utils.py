@@ -262,7 +262,7 @@ def update_hit_issue_id_list_to_userconfig(configuser_id=None):
 	# all configuration in CG.configuser_list
 	for configuser in CG.configuser_list:
 		if configuser_id:
-			if str(configuser_id) != (configuser['id']):
+			if str(configuser_id) != str(configuser['id']):
 				print('Daily: Skip NONE Expect configuser_id:',configuser_id)
 				continue
 		try:
@@ -290,7 +290,7 @@ def weekly_update_hit_issue_id_list_to_userconfig(configuser_id=None):
 	# all configuration in CG.configuser_list
 	for configuser in CG.configuser_list:
 		if configuser_id:
-			if str(configuser_id) != (configuser['id']):
+			if str(configuser_id) != str(configuser['id']):
 				print('Weekly: Skip NONE Expect configuser_id:',configuser_id)
 				continue		
 		try:
