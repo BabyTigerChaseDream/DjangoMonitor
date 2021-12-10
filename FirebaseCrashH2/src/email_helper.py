@@ -293,7 +293,7 @@ class Report:
 		
 		if self.total_issue_count == 0:
 			print('Weekly: generateWeeklyEmailMsg Empty Content\n')
-			msg = 'Good Job, no crashes detected in your configuration, we will continue monitoring\n'
+			msg = '<h3>Good Job, no crashes detected in your configuration, we will continue monitoring</h3>'
 
 			msg = msg + "<h3>NO Crashes retrieved based on you(team) <a href='{url_userconfig}'>configurations</a></h3>\
 				<h3>We will continue monitoring crashes for you </h3>\
@@ -323,7 +323,7 @@ class Report:
 		msg = ""	
 		if self.total_issue_count == 0:
 			print('generateWeeklySlackMsg Empty Content\n')
-			msg = 'Good Job, no crashes detected in your configuration, we will continue monitoring\n'
+			msg = ':memo: Good Job, no crashes detected in your configuration, we will continue monitoring\\n'
 
 			msg = msg + '*[Notes]* NO Crashes retrieved based on you(team) <{url_userconfig}|configurations>\
 				\\n>If you want to modify crash monitor configurations please go <{url_userconfig}|Here>\

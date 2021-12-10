@@ -199,12 +199,15 @@ def send_notification(**userconfig_notification):
 			print("[send_notification] email is :",e)
 			email.booking_send_email("Crash.Monitor@booking.com", e, title, emailmsg)
 			#email.booking_send_email("Crash.Monitor@booking.com", e, title, EmailMsg() )
+		if not 'jia.guo' in email_address:
+			email.booking_send_email("WatchOnU.Daily.Crashes",'#china_qa_crash_monitor', emailmsg)
 	if slack_channel is not None:
 		for s in slack_channel.replace(" ","").split(","):
 			print('CALLING send_notification:slack_channel ....',config_id,s)
 			email.booking_send_slack("Crash.Monitor",s, slackmsg)
 		# send to #china_qa_crash_monitor always 
-		email.booking_send_slack("Crash.Monitor",'#china_qa_crash_monitor', slackmsg)
+		if not 'china_qa_crash_monitor' in slack_channel:
+			email.booking_send_slack("WatchOnU.Daily.Crashes",'#china_qa_crash_monitor', slackmsg)
 
 
 # Weekly Status Report 
@@ -227,12 +230,15 @@ def send_weekly_status(**userconfig_notification):
 			print("[send_notification] email is :",e)
 			email.booking_send_email("Weekly.Crashes@booking.com", e, title, emailmsg)
 			#email.booking_send_email("Crash.Monitor@booking.com", e, title, EmailMsg() )
+		if not 'jia.guo' in email_address:
+			email.booking_send_email("WatchOnU.Weekly.Crashes",'#china_qa_crash_monitor', emailmsg)
 	if slack_channel is not None:
 		for s in slack_channel.replace(" ","").split(","):
 			print('CALLING send_notification:slack_channel ....',config_id,s)
 			email.booking_send_slack("Weekly.Crashes",s, slackmsg)
 		# send to #china_qa_crash_monitor always 
-		email.booking_send_slack("Weekly.Crash.Monitor",'#china_qa_crash_monitor', slackmsg)
+		if not 'china_qa_crash_monitor' in slack_channel:
+			email.booking_send_slack("WatchOnU.Weekly.Crashes",'#china_qa_crash_monitor', slackmsg)
 
 SELECT_EMAIL_SLACK_FROM_USERCONFIG_ID ='''
 	SELECT 
