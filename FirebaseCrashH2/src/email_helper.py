@@ -293,7 +293,9 @@ class Report:
 		
 		if self.total_issue_count == 0:
 			print('Weekly: generateWeeklyEmailMsg Empty Content\n')
-			msg = '<h3>Good Job, no crashes detected in your configuration, we will continue monitoring</h3>'
+			msg = '<h3>Good Job, no crashes detected for configuration  {team} , we will continue monitoring</h3>'.format(
+				team=self.team	
+			)
 
 			msg = msg + "<h3>NO Crashes retrieved based on you(team) <a href='{url_userconfig}'>configurations</a></h3>\
 				<h3>We will continue monitoring crashes for you </h3>\
@@ -323,7 +325,9 @@ class Report:
 		msg = ""	
 		if self.total_issue_count == 0:
 			print('generateWeeklySlackMsg Empty Content\n')
-			msg = ':memo: Good Job, no crashes detected in your configuration, we will continue monitoring\\n'
+			msg = ':memo: Good Job, no crashes detected for configuration *{team}*, we will continue monitoring\\n'.format(
+				team=self.team	
+			)
 
 			msg = msg + '*[Notes]* NO Crashes retrieved based on you(team) <{url_userconfig}|configurations>\
 				\\n>If you want to modify crash monitor configurations please go <{url_userconfig}|Here>\
@@ -331,7 +335,7 @@ class Report:
 		else:
 			print('Weekly: generateWeeklySlackMsg NA Empty Content\n')
 			# order issue by user count 
-			msg = ':monitoring-1410: *[{platform}]* has *{count}* Issues Detected for *{team}* during {timeslot}\\n'.format(
+			msg = ':memo: *[{platform}]* has *{count}* Issues Detected for *{team}* during {timeslot}\\n'.format(
 											platform=self.platform, 
 											count=self.total_issue_count, 
 											team=self.team,
