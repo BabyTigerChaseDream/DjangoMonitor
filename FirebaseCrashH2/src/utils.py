@@ -247,18 +247,28 @@ def update_hit_issue_id_list_to_userconfig(configuser_id=None):
     CG = userconfig.ConfigGroup()
 	# fetch all userconfig in 
     CG.get_userconfig_param()
+    CG.get_configuser_issue_content_list()
+
 	# all configuration in CG.configuser_list
     for configuser in CG.configuser_list:
         if configuser_id:
-            if str(configuser_id) != (configuser['id']):
+            if str(configuser_id) != str(configuser['id']):
                 print('Daily: Skip NONE Expect configuser_id:',configuser_id)
                 continue
-            else:
-                print(" [INFO] Retrieve Crash for team",configuser['team'],"###",configuser['id'])
-                CU=userconfig.ConfigUser(**configuser)
-                print("[Exceptions] :",str(e))
-                print(" >>> configuser content: ", configuser)
-	
+        try:
+            print(" [INFO] Retrieve Crash for team",configuser['team'],"###",configuser['id'])
+            CU=userconfig.ConfigUser(**configuser)
+			# step-1 filter all crashes based on crashcnt&totaluser from CrashIssueDb
+            CU.filter_issue_content_by_crashcnt_totaluser()
+            CU.get_issue_with_files_and_keywords(write=True)
+
+            userconfig_id = configuser['id']	
+            userconfig_notification = get_email_slack_from_userconfig_id(userconfig_id)
+            send_notification(**userconfig_notification)
+
+        except Exception as e:
+            print("[Exceptions] :",str(e))
+            print(" >>> configuser content: ", configuser)	
 
 #########################
 #    Cron Jobs devops   #
