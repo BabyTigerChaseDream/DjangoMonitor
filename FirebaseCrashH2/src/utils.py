@@ -1,10 +1,9 @@
 #/usr/local/bin/python3
-#from FirebaseCrashH2.src.userconfig import CUser
 import issues
 import timelib 
 import dblib
 import firebase_db_common_lib 
-from datetime import datetime, timedelta
+from datetime import datetime, date, timedelta
 import userconfig
 
 from email_helper import EmailHelper,Report
@@ -17,6 +16,7 @@ import schedule
 import time
 
 import common_config
+import statics
 
 '''
 #########################
@@ -66,10 +66,8 @@ def dump_issues(issue_id_list, filename = 'issues.json'):
 
 	print('[Issues dump to ]:', os.path.abspath(filename))
 
-def write_issues_to_crashissue_database(issue_id_list, acc_mode, table_index, table='CrashIssues', database='chinaqa'):
-	#mydb = dblib.DB(database=database,acc_mode=acc_mode)
+def write_issues_to_crashissue_database(issue_id_list, acc_mode, table_index, table='CrashIssuesDbg', database='chinaqa'):
 	mydb = dblib.DB(database=database,acc_mode=acc_mode)
-	#conn=mydb.connect()
 	
 	INSERT_ISSUE_TO_DATABASE = '''
 		insert into {table}
@@ -84,6 +82,7 @@ def write_issues_to_crashissue_database(issue_id_list, acc_mode, table_index, ta
 				event_timestamp, 
 				issue_logs, 
 				app_version_list, 
+				first_retrieve_timestamp,
 				last_update_timestamp
 			)
 		values
@@ -98,6 +97,7 @@ def write_issues_to_crashissue_database(issue_id_list, acc_mode, table_index, ta
 				{event_timestamp},
 				{issue_logs}, 
 				{app_version_list}, 
+				{first_retrieve_timestamp},
 				{last_update_timestamp}
 			)
 		on duplicate key update	
@@ -135,6 +135,7 @@ def write_issues_to_crashissue_database(issue_id_list, acc_mode, table_index, ta
 				event_timestamp= '"'+str(row['event_timestamp'])+'"',
 				issue_logs = '"'+str(row['issue_logs'])+'"',
 				app_version_list= '"'+str(row['app_version_list'])+'"',
+				first_retrieve_timestamp = '"'+str(row['first_retrieve_timestamp'])+'"',
 				last_update_timestamp= '"'+str(row['last_update_timestamp'])+'"'
 			)
 
@@ -144,7 +145,7 @@ def write_issues_to_crashissue_database(issue_id_list, acc_mode, table_index, ta
 			print('[sql_cmd]: ',insert_data_sql_cmd)
 			#print('>>> inserted item <<< ', curs.fetchone()['issue_logs'])
 		except:
-			print('[IGNORE issue]: ',issue_id )
+			print('[IGNORE issue commandline]: ', insert_data_sql_cmd)
 			skip_num+=1
 			skip_issue_list.append(issue_id)
 			continue
@@ -188,57 +189,40 @@ def send_notification(**userconfig_notification):
 	print("[Email Type] ",type(email_address))
 
 	email = EmailHelper()
-	report = Report(config_id=config_id)
-	emailmsg = report.generateEmailMsg()
-	slackmsg = report.generateSlackMsg()
-	title = 'Crash Monitor Notification'
-	#email.booking_send_email("China.Quality@booking.com", email_address, title, EmailMsg() )
-	if 'booking.com' in email_address:
-		for e in email_address.replace(" ","").split(","):
-			print('CALLING send_notification:email_channel ....',config_id,e)
-			print("[send_notification] email is :",e)
-			email.booking_send_email("Crash.Monitor@booking.com", e, title, emailmsg)
-			#email.booking_send_email("Crash.Monitor@booking.com", e, title, EmailMsg() )
-		if not 'jia.guo' in email_address:
-			email.booking_send_email("WatchOnU.Daily.Crashes",'#china_qa_crash_monitor', emailmsg)
-	if slack_channel is not None:
-		for s in slack_channel.replace(" ","").split(","):
-			print('CALLING send_notification:slack_channel ....',config_id,s)
-			email.booking_send_slack("Crash.Monitor",s, slackmsg)
-		# send to #china_qa_crash_monitor always 
-		if not 'china_qa_crash_monitor' in slack_channel:
-			email.booking_send_slack("WatchOnU.Daily.Crashes",'#china_qa_crash_monitor', slackmsg)
-
-
-# Weekly Status Report 
-def send_weekly_status(**userconfig_notification):
-	config_id = userconfig_notification['id']
-	email_address = userconfig_notification['email_address']
-	slack_channel = userconfig_notification['slack_channel']
-	print('CALLING send_weekly_status ....',config_id)
-	print("[Email Type] ",type(email_address))
-
-	email = EmailHelper()
-	report = Report(config_id=config_id)
-	emailmsg = report.generateWeeklyEmailMsg()
-	slackmsg = report.generateWeeklySlackMsg()
-	title = 'Weekly Static Report of Crash Monitor'
-	#email.booking_send_email("China.Quality@booking.com", email_address, title, EmailMsg() )
-	if 'booking.com' in email_address:
-		for e in email_address.replace(" ","").split(","):
-			print('CALLING send_notification:email_channel ....',config_id,e)
-			print("[send_notification] email is :",e)
-			email.booking_send_email("Weekly.Crashes@booking.com", e, title, emailmsg)
-			#email.booking_send_email("Crash.Monitor@booking.com", e, title, EmailMsg() )
-		if not 'jia.guo' in email_address:
-			email.booking_send_email("WatchOnU.Weekly.Crashes",'#china_qa_crash_monitor', emailmsg)
-	if slack_channel is not None:
-		for s in slack_channel.replace(" ","").split(","):
-			print('CALLING send_notification:slack_channel ....',config_id,s)
-			email.booking_send_slack("Weekly.Crashes",s, slackmsg)
-		# send to #china_qa_crash_monitor always 
-		if not 'china_qa_crash_monitor' in slack_channel:
-			email.booking_send_slack("WatchOnU.Weekly.Crashes",'#china_qa_crash_monitor', slackmsg)
+	DayofToday = datetime.today().strftime("%A")
+	if 'Sunday' in DayofToday:
+		print('Sunday weekly report')
+		print('Collecting weekly data ... ing ')
+		Wdata = statics.Wdata(config_id=config_id)
+		Wdata.get_weekly_new_issue()
+		Wdata.get_weekly_ignore_issue()
+		Wdata.get_weekly_itermittant_issue()
+  
+		slackmsg = Wdata.generateSlackMsg()
+		title = 'Weekly Report for Crashes'		
+		if slack_channel is not None:
+			for s in slack_channel.replace(" ","").split(","):
+				print('CALLING send_notification:slack_channel ....',config_id,s)
+				email.booking_send_slack("Weekly.Crash.Report",s, slackmsg)		
+	elif 'Saturday' in DayofToday:
+		print('Saturday do nothing ')
+	else:
+		# 'Asia/Shanghai'
+		report = Report(config_id=config_id)
+		emailmsg = report.generateEmailMsg()
+		slackmsg = report.generateSlackMsg()
+		title = 'Crash Monitor Notification'
+		#email.booking_send_email("China.Quality@booking.com", email_address, title, EmailMsg() )
+		if 'booking.com' in email_address:
+			for e in email_address.replace(" ","").split(","):
+				print('CALLING send_notification:email_channel ....',config_id,e)
+				print("[send_notification] email is :",e)
+				email.booking_send_email("Crash.Monitor@booking.com", e, title, emailmsg)
+				#email.booking_send_email("Crash.Monitor@booking.com", e, title, EmailMsg() )
+		if slack_channel is not None:
+			for s in slack_channel.replace(" ","").split(","):
+				print('CALLING send_notification:slack_channel ....',config_id,s)
+				email.booking_send_slack("Crash.Monitor",s, slackmsg)
 
 SELECT_EMAIL_SLACK_FROM_USERCONFIG_ID ='''
 	SELECT 
@@ -258,8 +242,7 @@ def get_email_slack_from_userconfig_id(userconfig_id,userconfig_database=usercon
 	curs=mydb.execute(select_email_slack_from_userconfig_id)
 	return curs.fetchone()
 
-def update_hit_issue_id_list_to_userconfig(configuser_id=None):
-	print('Daily:update_hit_issue_id_list_to_userconfig :',configuser_id)
+def update_hit_issue_id_list_to_userconfig():
 	CG = userconfig.ConfigGroup()
 	# fetch all userconfig in 
 	CG.get_userconfig_param()
@@ -267,10 +250,6 @@ def update_hit_issue_id_list_to_userconfig(configuser_id=None):
 
 	# all configuration in CG.configuser_list
 	for configuser in CG.configuser_list:
-		if configuser_id:
-			if str(configuser_id) != str(configuser['id']):
-				print('Daily: Skip NONE Expect configuser_id:',configuser_id)
-				continue
 		try:
 			print(" [INFO] Retrieve Crash for team",configuser['team'],"###",configuser['id'])
 			CU=userconfig.ConfigUser(**configuser)
@@ -286,33 +265,6 @@ def update_hit_issue_id_list_to_userconfig(configuser_id=None):
 			print("[Exceptions] :",str(e))
 			print(" >>> configuser content: ", configuser)	
 
-def weekly_update_hit_issue_id_list_to_userconfig(configuser_id=None):
-	print('Daily:update_hit_issue_id_list_to_userconfig :',configuser_id)
-	CG = userconfig.ConfigGroup()
-	# fetch all userconfig in 
-	CG.get_userconfig_param()
-	CG.get_configuser_issue_content_list()
-
-	# all configuration in CG.configuser_list
-	for configuser in CG.configuser_list:
-		if configuser_id:
-			if str(configuser_id) != str(configuser['id']):
-				print('Weekly: Skip NONE Expect configuser_id:',configuser_id)
-				continue		
-		try:
-			print(" [INFO] Retrieve Crash for team",configuser['team'],"###",configuser['id'])
-			CU=userconfig.ConfigUser(**configuser)
-			# step-1 filter all crashes based on crashcnt&totaluser from CrashIssueDbg
-			CU.filter_issue_content_by_crashcnt_totaluser()
-			CU.get_issue_with_files_and_keywords(write=True)
-
-			userconfig_id = configuser['id']	
-			userconfig_notification = get_email_slack_from_userconfig_id(userconfig_id)
-			send_weekly_status(**userconfig_notification)
-
-		except Exception as e:
-			print("[Exceptions] :",str(e))
-			print(" >>> configuser content: ", configuser)
 #########################
 #    Cron Jobs devops   #
 #########################
@@ -349,7 +301,9 @@ if __name__ == '__main__':
 	print("[main] Start retrieve at:{end_date}\n".format(end_date=end_date))
 	#job_get_all_crash()	
 	#schedule.every(180).minutes.at(":20").do(job_get_all_crash)
-	schedule.every().day.at("10:00:00").do(job_get_all_crash)
+	#schedule.every().day.at("3:00").do(job_get_all_crash)
+	schedule.every().day.at("6:00").do(job_get_all_crash)
+	#schedule.every().day.at("12:00").do(job_get_all_crash)
 	while True:
 		schedule.run_pending()
 		time.sleep(1)

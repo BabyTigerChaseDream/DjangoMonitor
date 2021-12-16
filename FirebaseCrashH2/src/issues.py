@@ -214,6 +214,7 @@ class Issue:
 		self.content['app_version']=static_data['app_version'] 	
 
 		# issue last updated timestamp
+		self.content['first_retrieve_timestamp'] = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")
 		self.content['last_update_timestamp'] = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")
 
 		# dict of issues
