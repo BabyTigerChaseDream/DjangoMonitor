@@ -242,28 +242,23 @@ def get_email_slack_from_userconfig_id(userconfig_id,userconfig_database=usercon
 	curs=mydb.execute(select_email_slack_from_userconfig_id)
 	return curs.fetchone()
 
-def update_hit_issue_id_list_to_userconfig():
-	CG = userconfig.ConfigGroup()
+def update_hit_issue_id_list_to_userconfig(configuser_id=None):
+    print('Daily:update_hit_issue_id_list_to_userconfig :',configuser_id)
+    CG = userconfig.ConfigGroup()
 	# fetch all userconfig in 
-	CG.get_userconfig_param()
-	CG.get_configuser_issue_content_list()
-
+    CG.get_userconfig_param()
 	# all configuration in CG.configuser_list
-	for configuser in CG.configuser_list:
-		try:
-			print(" [INFO] Retrieve Crash for team",configuser['team'],"###",configuser['id'])
-			CU=userconfig.ConfigUser(**configuser)
-			# step-1 filter all crashes based on crashcnt&totaluser from CrashIssueDbg
-			CU.filter_issue_content_by_crashcnt_totaluser()
-			CU.get_issue_with_files_and_keywords(write=True)
-
-			userconfig_id = configuser['id']	
-			userconfig_notification = get_email_slack_from_userconfig_id(userconfig_id)
-			send_notification(**userconfig_notification)
-
-		except Exception as e:
-			print("[Exceptions] :",str(e))
-			print(" >>> configuser content: ", configuser)	
+    for configuser in CG.configuser_list:
+        if configuser_id:
+            if str(configuser_id) != (configuser['id']):
+                print('Daily: Skip NONE Expect configuser_id:',configuser_id)
+                continue
+            else:
+                print(" [INFO] Retrieve Crash for team",configuser['team'],"###",configuser['id'])
+                CU=userconfig.ConfigUser(**configuser)
+                print("[Exceptions] :",str(e))
+                print(" >>> configuser content: ", configuser)
+	
 
 #########################
 #    Cron Jobs devops   #
@@ -301,9 +296,7 @@ if __name__ == '__main__':
 	print("[main] Start retrieve at:{end_date}\n".format(end_date=end_date))
 	#job_get_all_crash()	
 	#schedule.every(180).minutes.at(":20").do(job_get_all_crash)
-	#schedule.every().day.at("3:00").do(job_get_all_crash)
-	schedule.every().day.at("6:00").do(job_get_all_crash)
-	#schedule.every().day.at("12:00").do(job_get_all_crash)
+	schedule.every().day.at("10:00:00").do(job_get_all_crash)
 	while True:
 		schedule.run_pending()
 		time.sleep(1)
