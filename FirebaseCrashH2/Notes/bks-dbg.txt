@@ -1,0 +1,353 @@
+import utils
+issue_id_list=utils.get_crash_lists(table_index='android')
+utils.write_issues_to_crashissue_database(issue_id_list=issue_id_list,acc_mode='rw',table_index='android')
+utils.update_hit_issue_id_list_to_userconfig()
+utils.weekly_update_hit_issue_id_list_to_userconfig()
+
+>>> curs=mydb.execute("select issue_id,issue_logs from CrashIssues where issue_logs!='NA';")
+
+>>> import userconfig
+>>> CG=userconfig.ConfigGroup()
+>>> CG.get_userconfig_param()
+Total userconfig read:  2
+>>> CG.userparams
+>>> CG.get_configuser_issue_content_list()
+>>> CG.configuser_list
+>>> CU=userconfig.ConfigUser(**CG.configuser_list[2])
+>>> CU.filter_issue_content_by_crashcnt_totaluser()
+
+>>> CU.get_issue_with_files_and_keywords(write=True)
+>>> CU.filter_issue_id_with_files()
+>>> CU.filter_issue_id_with_keywords()
+
+CU.save_match_issue_id_list_to_userconfig=CU.SAVE_MATCH_ISSUE_ID_LIST_TO_USERCONFIG.format(
+ userconfig_table = CU.userconfig_table,
+ config_id= CU.id,
+ match_issue_id_list='2e3d5f745275b18ffa44fb179b7bc61e'
+)
+===========
+!!!!!!! DELETE 
+>>> curs=mydb.execute('select count(*) from CrashIssues;')
+>>> curs=mydb.execute('select last_update_timestamp from CrashIssues;') 
+>>> mydb.execute('delete from CrashIssues;')
+===============
+>>> import dblib
+# DQS data 
+>>> mydb=dblib.DB(database='chinaqa',acc_mode='rw',user='crashmonitorbotfire_chinaqa_rw0',password='Ugzdq7E3PDzJ1wBp')
+# PROD data
+>>> mydb=dblib.DB(database='chinaqa',acc_mode='rw',user='crashmonitorbotfire_chinaqa_rw1',password='Vw5VYYxcP_udQoQj')
+
+
+>>> curs=mydb.execute('select issue_id,crash_count,total_user,issue_logs from CrashIssues;')
+curs=mydb.execute('select issue_id,crash_count,total_user,issue_logs from CrashIssues where crash_count>5000;')
+>>> curs=mydb.execute('select issue_logs from CrashIssues;')
+>>> curs=mydb.execute('select count(*) from CrashIssuesDbg;')
+>>> curs=mydb.execute("select * from CrashIssues where issue_id='d3f4ef19f0c13d46b0815ac855553e29';")
+>>> curs=mydb.execute("select issue_logs from CrashIssues where issue_id='d3f4ef19f0c13d46b0815ac855553e29';")
+
+###############################################################
+cd FirebaseCrashH2/src/
+python 
+import statics
+import email_helper
+w=statics.Wdata(15)
+w.get_weekly_ignore_issue()
+w.get_weekly_new_issue()
+w.get_weekly_itermittant_issue()
+slackmsg=w.slackmsg=w.generateWeeklySlackMsg()
+E=email_helper.EmailHelper()
+E.booking_send_slack('Foodie','#dqs_cqa_crashmonitor',slackmsg)
+###############################################################
+
+python -m json.tool /var/run/secrets/booking.com/db.json
+{
+    "database": {
+        "android": {
+            "ro": {
+                "database": "android",
+                "driver": "mysql",
+                "host": "androidmdb-vip.dbmaster.booking.com",
+                "password": "cdbU8dZF5iiY5kWg",
+                "username": "crashmonitorbotfire_android_ro1"
+            }
+        },
+        "chinaqa": {
+            "ro": {
+                "database": "chinaqa",
+                "driver": "mysql",
+                "password": "dFJUfn34bWOQ7LsD",
+                "roster": "inttool-misc",
+                "username": "crashmonitorbotfire_chinaqa_ro1"
+            },
+            "rw": {
+                "database": "chinaqa",
+                "driver": "mysql",
+                "host": "inttoolmdb-vip.dbmaster.booking.com",
+                "password": "Vw5VYYxcP_udQoQj",
+                "username": "crashmonitorbotfire_chinaqa_rw1"
+            }
+        }
+    }
+}
+
+###############################################################
+
+>>> curs=mydb.execute("delete from CrashIssues;")
+>>> curs=mydb.execute("select * from CrashIssues;")
+===============
+def iter_issues(issue_id_list,platform='iOS'):
+	for issue_id in issue_id_list:
+	    I=issues.Issue(issue_id,table_index=platform)
+	    try:
+	         I.modelize_issue()
+	    except:
+	         print("ignore:",issue_id)
+	         continue
+===============
+
+>>> for c in curs.fetchall():
+...     print("==========\n")
+...     print(c)
+...     print("==========\n")
+==========
+
+('ChinaPreinstallInitializable.java@com.booking.startup.appinitialization.initializables.ChinaPreinstallInitializable.initialize\nBookingApplication.ja ... (552 characters truncated) ... .Method.invoke\nZygoteInit.java@com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run\nZygoteInit.java@com.android.internal.os.ZygoteInit.main\n',)
+==========
+('ObservableTimeoutTimed.java@io.reactivex.internal.operators.observable.ObservableTimeoutTimed$TimeoutObserver.onTimeout\nObservableTimeoutTimed.java@ ... (438 characters truncated) ... ncurrent.ThreadPoolExecutor.runWorker\nThreadPoolExecutor.java@java.util.concurrent.ThreadPoolExecutor$Worker.run\nThread.java@java.lang.Thread.run\n',)
+==========
+('ExploreByTouchHelper.java@androidx.customview.widget.ExploreByTouchHelper.createNodeForChild\nExploreByTouchHelper.java@androidx.customview.widget.Ex ... (1003 characters truncated) ... ethod.invoke\nRuntimeInit.java@com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run\nZygoteInit.java@com.android.internal.os.ZygoteInit.main\n',)
+==========
+('FragmentStateManager.java@androidx.fragment.app.FragmentStateManager.createView\nFragmentStateManager.java@androidx.fragment.app.FragmentStateManager ... (1616 characters truncated) ... ethod.invoke\nRuntimeInit.java@com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run\nZygoteInit.java@com.android.internal.os.ZygoteInit.main\n',)
+==========
+('FragmentStore.java@androidx.fragment.app.FragmentStore.addFragment\nFragmentManager.java@androidx.fragment.app.FragmentManager.addFragment\nBackStack ... (670 characters truncated) ... ethod.invoke\nRuntimeInit.java@com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run\nZygoteInit.java@com.android.internal.os.ZygoteInit.main\n',)
+==========
+('CacheWishlistedProperties.java@com.booking.wishlist.model.CacheWishlistedProperties.lambda$asSingle$0\nCacheWishlistedProperties.java@com.booking.wis ... (1121 characters truncated) ... ncurrent.ThreadPoolExecutor.runWorker\nThreadPoolExecutor.java@java.util.concurrent.ThreadPoolExecutor$Worker.run\nThread.java@java.lang.Thread.run\n',)
+==========
+('InstayUploader.java@com.booking.ugc.instayratings.InstayUploader.uploadRating\nInstayUploadJobService.java@com.booking.ugc.instayratings.InstayUpload ... (460 characters truncated) ... ncurrent.ThreadPoolExecutor.runWorker\nThreadPoolExecutor.java@java.util.concurrent.ThreadPoolExecutor$Worker.run\nThread.java@java.lang.Thread.run\n',)
+==========
+('SqlExceptionUtil.java@com.j256.ormlite.misc.SqlExceptionUtil.create\nDaoManager.java@com.j256.ormlite.dao.DaoManager.doCreateDao\nDaoManager.java@com ... (2218 characters truncated) ... ncurrent.ThreadPoolExecutor.runWorker\nThreadPoolExecutor.java@java.util.concurrent.ThreadPoolExecutor$Worker.run\nThread.java@java.lang.Thread.run\n',)
+==========
+('OkHttpRequest.java@com.booking.assistant.network.OkHttpRequest.wrapRequestRelease\nOkHttpRequest.java@com.booking.assistant.network.OkHttpRequest.exe ... (2261 characters truncated) ... ncurrent.ThreadPoolExecutor.runWorker\nThreadPoolExecutor.java@java.util.concurrent.ThreadPoolExecutor$Worker.run\nThread.java@java.lang.Thread.run\n',)
+==========
+('ReportUtils.java@com.booking.commons.debug.ReportUtils.toastOrSqueak\nMarketingRewardsManager.java@com.booking.marketingrewardsservices.MarketingRewa ... (668 characters truncated) ... .reflect.Method.invoke\nZygote.java@com.android.internal.os.Zygote$MethodAndArgsCaller.run\nZygoteInit.java@com.android.internal.os.ZygoteInit.main\n',)
+==========
+('FlightsApiCall.java@com.booking.flights.services.api.retorfit.FlightsApiCall.handleException\nFlightsApiCall.java@com.booking.flights.services.api.re ... (2302 characters truncated) ... ncurrent.ThreadPoolExecutor.runWorker\nThreadPoolExecutor.java@java.util.concurrent.ThreadPoolExecutor$Worker.run\nThread.java@java.lang.Thread.run\n',)
+==========
+('NetworkingErrorsInterceptor.java@com.booking.network.interceptors.NetworkingErrorsInterceptor.maybeBackendException\nNetworkingErrorsInterceptor.java ... (1282 characters truncated) ... ncurrent.ThreadPoolExecutor.runWorker\nThreadPoolExecutor.java@java.util.concurrent.ThreadPoolExecutor$Worker.run\nThread.java@java.lang.Thread.run\n',)
+==========
+('HotelFragment.java@com.booking.property.detail.fragments.HotelFragment.lambda$setupOnViewTracking$17\nHotelFragment.java@com.booking.property.detail. ... (595 characters truncated) ... ethod.invoke\nRuntimeInit.java@com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run\nZygoteInit.java@com.android.internal.os.ZygoteInit.main\n',)
+==========
+('SqueaksJsonCourier.java@com.booking.squeaks.SqueaksJsonCourier.sendSqueaks\nDynamicSqueakScheduler.java@com.booking.squeaks.DynamicSqueakScheduler.di ... (819 characters truncated) ... ncurrent.ThreadPoolExecutor.runWorker\nThreadPoolExecutor.java@java.util.concurrent.ThreadPoolExecutor$Worker.run\nThread.java@java.lang.Thread.run\n',)
+==========
+('ActivityThread.java@android.app.ActivityThread$H.handleMessage\nHandler.java@android.os.Handler.dispatchMessage\nLooper.java@android.os.Looper.loop\n ... (84 characters truncated) ... ethod.invoke\nRuntimeInit.java@com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run\nZygoteInit.java@com.android.internal.os.ZygoteInit.main\n',)
+==========
+('OkHttpRequest.java@com.booking.assistant.network.OkHttpRequest.wrapRequestRelease\nOkHttpRequest.java@com.booking.assistant.network.OkHttpRequest.exe ... (1389 characters truncated) ... ncurrent.ThreadPoolExecutor.runWorker\nThreadPoolExecutor.java@java.util.concurrent.ThreadPoolExecutor$Worker.run\nThread.java@java.lang.Thread.run\n',)
+==========
+('Instrumentation.java@android.app.Instrumentation.checkStartActivityResult\nInstrumentation.java@android.app.Instrumentation.execStartActivity\nActivi ... (1287 characters truncated) ... .reflect.Method.invoke\nZygote.java@com.android.internal.os.Zygote$MethodAndArgsCaller.run\nZygoteInit.java@com.android.internal.os.ZygoteInit.main\n',)
+==========
+
+[expect output]
+3a6f4440814ecb745fd1ab632b8f8419
+63b00a39453a21263a179eb2f3d9778a
+
+
+>>> curs.fetchall()
+[
+('02f2e304b6241cbd782e703618d7ecb2',), 
+('1358445c1821a502fb88b72237b15263',), 
+('1f8554f58a3c262696ee32c27fd15e93',), 
+('23429ef7f87471febeadb59ba233e588',), 
+('2449075f9c7d6b93627f0c9dd5668d91',), 
+('2e3d5f745275b18ffa44fb179b7bc61e',), 
+('2ef6f16e6b3ed5c0908dc6af48e28d17',), 
+('3a6f4440814ecb745fd1ab632b8f8419',), 
+('3e70480ac4c51a5a28530625fdbe76a1',), 
+('42143266b87c2a56998932b27d88e253',), 
+('43e2161ef1430b65cde82f0a7bc6d956',), 
+('44acd3ab738c6ec374cc0887c710ea52',), 
+('49e2812930c6e068b749a36af8edb538',), 
+('4a81899a3d4ba0c3dda152c9c61b36f1',), ('4c7141236b38cbc5f6f17e2f3c024ac9',), 
+('55f5761ff5d3a7f76bfd68ee',), ('58d66898b0b8f1879627a0adca268f8e',),
+ ('5c06a163f8b88c296382cb87',), ('63b00a39453a21263a179eb2f3d9778a',),
+ ('655b1bab45d128b0e0d2c76dce7a301f',), ('6bfe4ae2d9019213979041875f84a5cd',),
+  ('6dd5f05f6be20963f0883d3b2efc5485',), ('770175bb81449a3a0bcdfb0b3ad23a1c',), 
+  ('7830e51af072f7d485b25a8426d094ec',), ('80f82eeaedf300d096b74bc812d7ab04',), 
+  ('85ebc5d61a9022debbd6633c18747c41',), ('8cad3210766cc1198d61fd43820f051e',), 
+('8fbf9fa572753f95b47cc0796abf0a61',), ('97206af03e38b4ffac607fa2e690e175',), 
+('97e020760ce0833bc4ffbdefa2b648bb',), ('9c0199b7c6ef215c64d7b30e9a3e4f9c',), 
+('a7d38d1760fdd66d66220d0a74657cad',), ('a90e5206fb185ba394bb890f4a0b74ba',), 
+('ad12cea21864606f5cfcb778c620ffcd',), ('ae2c21e4871b7d28d8f50cd0f9a310cc',), 
+('b1bd352efbd203aacf0147e737339106',), ('b94701dc1723c48689eb6c641e26b68b',), 
+('bf9a0e2e9557bdcdb00f131a4984df19',), ('c6ea7e4f1110017ed6e44f79f77f43ee',),
+ ('c7695f2bd09e0291e86ce2517f5a2bdc',), ('ca90adac4d707332e95a9b2768e61723',), 
+('cbe94e4b48ba247f657c10940cafb1f9',),
+ ('cc478c5e7ce2d7631f570a420b4346dc',), ('d3f4ef19f0c13d46b0815ac855553e29',),
+  ('d721ea96915daa54565531b28878aa00',), ('daf9dea450eefbd2b84fda478bafa71d',), 
+ ('dfe6f0d83f30323cde692b1ac962494e',), ('e175565466260e6ffd295ecbfec5a083',),
+  ('e2831723750bd5ddb78e091eeb4ed6d5',), ('e5f27c74436898e47453ade214dae5b4',),
+   ('f08df87e85ed1287176cf8eac0806ef3',), ('fb27cb4402a0456f49c342fb3954a0f5',), 
+   ('ffdc48e23a14ab31b9643c47f96c5b76',)]
+
+=========================================================
+>>> user_sqlcmd='''
+... UPDATE userconfig_config
+... SET issue_id_list=`63b00a39453a21263a179eb2f3d9778a,dfe6f0d83f30323cde692b1ac962494e,3a6f4440814ecb745fd1ab632b8f8419,97206af03e38b4ffac607fa2e690e175`
+... WHERE id=3
+... '''
+>>> 
+>>> curs=mydb.execute(user_sqlcmd)
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.7/site-packages/mysql/connector/connection_cext.py", line 520, in cmd_query
+    query_attrs=self._query_attrs)
+_mysql_connector.MySQLInterfaceError: The MySQL server is running with the --read-only option so it cannot execute this statement
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1800, in _execute_context
+    cursor, statement, parameters, context
+  File "/opt/venv/lib/python3.7/site-packages/sqlalchemy/engine/default.py", line 717, in do_execute
+    cursor.execute(statement, parameters)
+  File "/opt/venv/lib/python3.7/site-packages/mysql/connector/cursor_cext.py", line 272, in execute
+    raw_as_string=self._raw_as_string)
+  File "/opt/venv/lib/python3.7/site-packages/mysql/connector/connection_cext.py", line 523, in cmd_query
+    sqlstate=exc.sqlstate)
+mysql.connector.errors.DatabaseError: 1290 (HY000): The MySQL server is running with the --read-only option so it cannot execute this statement
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/workspace/FirebaseCrashH2/src/dblib.py", line 72, in execute
+    return self.conn.execute(sql_cmd)
+  File "<string>", line 2, in execute
+  File "/opt/venv/lib/python3.7/site-packages/sqlalchemy/util/deprecations.py", line 390, in warned
+    return fn(*args, **kwargs)
+  File "/opt/venv/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 3136, in execute
+    return connection.execute(statement, *multiparams, **params)
+  File "/opt/venv/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1276, in execute
+    future=False,
+  File "/opt/venv/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1582, in _exec_driver_sql
+    distilled_parameters,
+  File "/opt/venv/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1843, in _execute_context
+    e, statement, parameters, cursor, context
+  File "/opt/venv/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 2024, in _handle_dbapi_exception
+    sqlalchemy_exception, with_traceback=exc_info[2], from_=e
+  File "/opt/venv/lib/python3.7/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+  File "/opt/venv/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1800, in _execute_context
+    cursor, statement, parameters, context
+  File "/opt/venv/lib/python3.7/site-packages/sqlalchemy/engine/default.py", line 717, in do_execute
+    cursor.execute(statement, parameters)
+  File "/opt/venv/lib/python3.7/site-packages/mysql/connector/cursor_cext.py", line 272, in execute
+    raw_as_string=self._raw_as_string)
+  File "/opt/venv/lib/python3.7/site-packages/mysql/connector/connection_cext.py", line 523, in cmd_query
+    sqlstate=exc.sqlstate)
+sqlalchemy.exc.DatabaseError: (mysql.connector.errors.DatabaseError) 1290 (HY000): The MySQL server is running with the --read-only option so it cannot execute this statement
+[SQL: 
+UPDATE userconfig_config
+SET issue_id_list=`63b00a39453a21263a179eb2f3d9778a,dfe6f0d83f30323cde692b1ac962494e,3a6f4440814ecb745fd1ab632b8f8419,97206af03e38b4ffac607fa2e690e175`
+WHERE id=3
+]
+
+# slackmsg 
+slackmsg='''{issue_title}|{issue_id}|{crash_count}|{total_user}|{app_version}\n-'''
+slackmsg=slackmsg.format(
+	issue_title='T1',
+	issue_id='1',
+	crash_count='1',
+	total_user='1',
+	app_version='1.1.1'
+)
+slackmsg=slackmsg.format(
+	issue_title='T2',
+	issue_id='2',
+	crash_count='2',
+	total_user='2',
+	app_version='2.1.1'
+)
+msg=slackmsg
+
+# working templatetag 
+>>> msg='*Crash Bot Detected Crashes*\\n Issue ID: 8749d2611bea0b69a3ef4148d59f099f\\nTitle is: ReviewFormMainFragment.java line\\n'
+>>> E.booking_send_slack('FoodieGuo','#china_qa_crash_monitor',msg)
+>>> E.booking_send_slack('crashbot','#china_qa_crash_monitor',"<http://www.example.com|This message *is* a link>")
+>>> E.booking_send_slack('crashbot','#china_qa_crash_monitor',"<{url_userconfig}|*Crashes Detail*>".format(url_userconfig='http://www.example.com')
+>>> E.booking_send_slack('crashbot','@jiaguo',"Hey <@jiaguo>, thanks for your *FOOD*.")
+>>> msg='Crash Bot Detected *[Android] *\\n Issue ID: 8749d2611bea0b69a3ef4148d59f099f\\nTitle is: ReviewFormMainFragment.java line\\n'
+
+
+### 
+>>> import email_helper
+>>> R=email_helper.Report('4')
+[bookingApp] platform: android android:com.booking
+>>> E=email_helper.EmailHelper()
+>>> slackmsg=R.generateSlackMsg()
+['app_version']: 26.2.1 1
+['app_version']: 29.1 1
+['app_version']: 29.3 1
+['app_version']: 29.1 1
+['app_version']: 29.0 1
+>>> E.booking_send_slack('FoodieGuo','#china_qa_crash_monitor',slackmsg)
+
+
+# addback/ignore not working
+>>> for i in one[0]['issue_id_list'].split(','):
+...     print(i)
+... 
+c76da99e707969972750b2f9976e1cdb
+1f8554f58a3c262696ee32c27fd15e93
+58d66898b0b8f1879627a0adca268f8e
+3a6f4440814ecb745fd1ab632b8f8419
+daf9dea450eefbd2b84fda478bafa71d
+659b39413f6e0e32da568361ee0ad736
+5c63e39ff8b88c2963a80ddd
+8749d2611bea0b69a3ef4148d59f099f
+3e70480ac4c51a5a28530625fdbe76a1
+9c0199b7c6ef215c64d7b30e9a3e4f9c
+fb27cb4402a0456f49c342fb3954a0f5
+a90e5206fb185ba394bb890f4a0b74ba
+0b360d103ec1efbaccb14c40cc2c1940
+415994ff8c0efab737ce73a5a6b33247
+2449075f9c7d6b93627f0c9dd5668d91
+5c06a163f8b88c296382cb87
+8fbf9fa572753f95b47cc0796abf0a61
+827f1f3dc8716487d87145971bd19791
+6a566c4df800a3cd8b3e255f66792f1e
+dfe6f0d83f30323cde692b1ac962494e
+e5f27c74436898e47453ade214dae5b4
+97e020760ce0833bc4ffbdefa2b648bb
+1c8a0c0c82725268c29ec4a82ec2bdfb
+57d315f90aeb16625bf85353
+>>> 
+>>> for i in one[0]['issue_id_blacklist'].split(','):
+...     print(i)
+... 
+0000-0000-0000-0000
+1f8554f58a3c262696ee32c27fd15e93
+c76da99e707969972750b2f9976e1cdb
+58d66898b0b8f1879627a0adca268f8e
+0b360d103ec1efbaccb14c40cc2c1940
+>>> 
+
+======================
+
+for issue_id in W.total_issue_list:
+    W.get_crashissue_content_sqlcmd=W.GET_CRASHISSUE_CONTENT_SQLCMD.format(
+            crash_table=W.crash_table,
+            issue_id=issue_id
+          )
+    W.curs=W.mydb.execute(W.get_crashissue_content_sqlcmd)
+    try:
+        current_issue_content = W.curs.fetchone()
+        first_retrieve_timestamp = current_issue_content['first_retrieve_timestamp'] 
+        if timestamp_in_between(usertime=first_retrieve_timestamp,
+                                        start_time=W.start_time,
+                                        # if issue is intermittant : it was not updated last time 
+                                        end_time=W.end_time - timedelta(days=1)):
+          W.weekly_new_issue['issue_count'] +=1
+          W.weekly_new_issue['issue_list'].append(current_issue_content['issue_id'])
+    except Exception as e:
+          print("[Exception]", e)
+          print("[Abort Issue ID]", issue_id)
+return self.weekly_itermittant_issue

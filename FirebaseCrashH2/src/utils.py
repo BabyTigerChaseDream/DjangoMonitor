@@ -66,7 +66,7 @@ def dump_issues(issue_id_list, filename = 'issues.json'):
 
 	print('[Issues dump to ]:', os.path.abspath(filename))
 
-def write_issues_to_crashissue_database(issue_id_list, acc_mode, table_index, table='CrashIssuesDbg', database='chinaqa'):
+def write_issues_to_crashissue_database(issue_id_list, acc_mode, table_index, table='CrashIssues', database='chinaqa'):
 	mydb = dblib.DB(database=database,acc_mode=acc_mode)
 	
 	INSERT_ISSUE_TO_DATABASE = '''

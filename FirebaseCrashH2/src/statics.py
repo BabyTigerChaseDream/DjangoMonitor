@@ -76,7 +76,7 @@ class Wdata:
 		# issue_id, title , crash_count, user_total, app_version	
 		self.report_issue_content= []
 		self.userconfig_table='userconfig_config'
-		self.crash_table='CrashIssuesDbg'
+		self.crash_table='CrashIssues'
 		self.config_id = config_id
 		self.timslot = 'last-twenty-four-hours'
 
