@@ -1,0 +1,9 @@
+requests <2.26.0
+Django == 3.2 
+Flask-Caching <1.10.0
+pymysql==0.9.3
+django-crispy-forms==1.12.0
+django-filter==2.4.0
+sqlalchemy
+httpie
+django-tables2==2.4.0

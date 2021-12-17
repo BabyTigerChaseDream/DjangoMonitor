@@ -1,0 +1,44 @@
+{%extends 'userconfig/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+	<div>
+		<article class="media content-section">
+			<form method='GET'>
+				{{ filter.form.as_p }}
+				<button type="submit">Filter</button>	
+			</form>	
+		</article>	
+	</div>
+	<div>
+    {% for config in filter.qs %}
+        <article class="media content-section">
+			<div class="media-body">
+				<div class="article-metadata">
+				<p class="article-title"> </small>
+				<a class="mr-2" href=" {% url 'config-detail' config.id %}">Configuration ID(Unique):{{config.id}}</a>
+				<a class="btn btn-outline-secondary" href="{% url 'config-update' config.id %}">Update</a>
+				<a class="btn btn-outline-secondary" href="{% url 'config-delete' config.id %}">Delete</a>
+				<p class="article-title"> Team : {{config.team}}
+				<p class="article-title"> Platform : {{config.platform}}
+			</div>
+			<div class="article-metadata">
+				<small class="text-muted">Crash Time Slot :{{ config.timeslot }}</small>
+				<small class="text-muted"> | End Date:{{ config.end_date| date:"F d, Y" }}</small>
+			</div>
+			<div class="article-metadata">
+				<p class="article-title">Slack Channel: {{ config.slack_channel}}</p>
+				<p class="article-title">Email Address: {{ config.email_address }}</p>
+			</div>
+			<div class="article-metadata">
+				<p class="article-title">Crash Count Bar : {{ config.crash_count }}</p>
+				<sp class="article-title">Total User Affected :{{ config.total_user }}</p>
+			</div>
+			<div class="article-metadata">
+				<p class="article-content">Files to Monitor: {{ config.files}}</p>
+				<p class="article-content">Keywords to Check: {{ config.keywords}}</p>
+			</div>
+        </article>
+    {% endfor %}
+	</div>
+{% endblock content%}
+

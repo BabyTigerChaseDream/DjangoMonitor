@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -127,3 +128,14 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+=======
+__init__.py
+*.log
+*.pot
+*.pyc
+__pycache__/
+local_settings.py
+.env
+db.sqlite3
+crashmonitor-bot.code-workspace
+>>>>>>> crashmonitor/master

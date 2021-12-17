@@ -1,0 +1,54 @@
+
+android(ro)> select issue_id, count(distinct event_id) as crash_count, count(distinct installation_uuid) as total_users from `firebase_crashlytics_com_booking_ANDROID`
+               where event_timestamp >= '2021-07-22 09:58:50' and event_timestamp <= '2021-07-23 09:58:50' group by issue_id order by total_users desc limit 45;
++----------------------------------+-------------+-------------+
+| issue_id                         | crash_count | total_users |
++----------------------------------+-------------+-------------+
+| 5d2c6080e0c9ddb395fefb721174fdaf | 293         | 208         |
+| 5c06a163f8b88c296382cb87         | 119         | 119         |
+| a90e5206fb185ba394bb890f4a0b74ba | 136         | 101         |
+| 57d315f90aeb16625bf85353         | 99          | 98          |
+| 07097b4a18819ee555ab639dfc558b8f | 252         | 93          |
+| ae2c21e4871b7d28d8f50cd0f9a310cc | 110         | 39          |
+| a161fb36de87471568fafc656965f7ba | 156         | 33          |
+| f60005b8140e060a4111d9ba53ac18bb | 29          | 28          |
+| 8fbf9fa572753f95b47cc0796abf0a61 | 28          | 25          |
+| 4bc0978871cc4e7e29ee6398b786869f | 24          | 24          |
+| 0194d93e80614b77dc6413f32e295f14 | 24          | 23          |
+| fc75d9a8d821a077ab54aac9c6861b88 | 26          | 23          |
+| 08d4b83f00e615eba1aa74dca474e591 | 24          | 20          |
+| fa49a3e8e23c3c431b0b59e5b0d5d9e9 | 17          | 17          |
+| 5c93aa39f8b88c2963f3ed79         | 17          | 16          |
+| 806be9cc8fff2c3995a97bd84b7c6cd7 | 52          | 16          |
+| f60eca62f1e69ad7cfec88fddf5ead0b | 15          | 15          |
+| 2449075f9c7d6b93627f0c9dd5668d91 | 25          | 15          |
+| 762fc3222bf92210cf7e5367ff5033ce | 15          | 15          |
+| dcca12ec1160ae0bb5e837c9494ac6fb | 13          | 13          |
+| 50e66138cda184d34163245875fade35 | 13          | 13          |
+| 81078954a279a362b6703a92309ba8a1 | 12          | 12          |
+| dfe6f0d83f30323cde692b1ac962494e | 13          | 12          |
+| 55f4a034f5d3a7f76bfa8f66         | 12          | 12          |
+| 63e1f795dd85836fc925adef92005cfd | 12          | 12          |
+| ccce80ce60972ac82117117b0f1158f4 | 17          | 11          |
+| 5c63e39ff8b88c2963a80ddd         | 11          | 11          |
+| 827f1f3dc8716487d87145971bd19791 | 24          | 10          |
+| e5f27c74436898e47453ade214dae5b4 | 9           | 9           |
+| 7c13a15794eba278e1c5495b34ef1dca | 9           | 9           |
+| 9c1c6de70ca95902deb2d89ec9f1691e | 9           | 9           |
+| 95cda9f74c0bc744f7d8f7446124633f | 10          | 9           |
+| 0b360d103ec1efbaccb14c40cc2c1940 | 8           | 8           |
+| 72dd31f750bae9da570e9de7ef20f3a2 | 8           | 8           |
+| 227fecd089009d7a8c19b7dc194d9647 | 9           | 8           |
+| a81adc4be2d8dc99735172f64f382790 | 18          | 7           |
+| 717612d2d920edfb86f03b0cc6bc89c0 | 8           | 7           |
+| 1e0a60d8bbedc00b22645172a4f5a363 | 7           | 7           |
+| 55f9cdfaf5d3a7f76b12bf9d         | 7           | 7           |
+| b9a7b18f8fdb3ad33b61ea761ce18918 | 9           | 7           |
+| 7399104c8f4db64614e58ee43e82194e | 7           | 7           |
+| 5b9800a86007d59fcd5de3f5         | 7           | 6           |
+| 748ab2c4ab1a0bc36aad9de301ee2813 | 6           | 6           |
+| 98be089fd5756ce195806f9e11753ed7 | 39          | 6           |
+| 95ea638c55c3a18a5c4f990531a74336 | 17          | 6           |
++----------------------------------+-------------+-------------+
+45 rows in set
+Time: 0.214s

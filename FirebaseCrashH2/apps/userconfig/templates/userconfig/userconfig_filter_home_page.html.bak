@@ -1,0 +1,67 @@
+{%extends 'userconfig/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+	<button type="submit" class="btn btn-primary btn-block" style="width: 40rem;">Search Configuration</button>	
+	<p></p>
+	<div>
+		<!-- <article class="media content-section"> -->
+		<!-- <article class="form-group media content-section"> -->
+		<div class="form-group content-section" style="width: 40rem;">
+			<form method='GET'>
+				{{ filter.form.as_p }}
+			</form>	
+		<!-- </article>	-->
+		</div>
+	</div>
+	<div>
+    {% for config in configs %}
+		<div class="card card-fluid" style="width: 40rem;">
+			<h5 class="card-header">
+				<a class="card-link" href=" {% url 'config-detail' config.id %}">{{config.team}} Configuration</a>
+			</h5>
+			<div class="card-body">
+				<div class="form-row">
+					<label> Platform </label>
+					<input type="text" class="form-control" disabled value={{config.platform}}>
+					<label> Slack Channel: </label>
+					<input type="text" class="form-control" disabled value={{config.slack_channel}}>
+					<label> Email Address: </label>
+					<input type="text" class="form-control" disabled value={{config.email_address}}>
+					<label> Crash Count Bar : </label>
+					<input type="text" class="form-control" disabled value={{config.crash_count}}>
+					<label> Total User Affected: </label>
+					<input type="text" class="form-control" disabled value={{config.total_user}}>
+					<label> Files to Monitor: </label>
+					<input type="text" class="form-control" disabled value={{config.files}}>
+					<label> Keywords to Check: </label>
+					<input type="text" class="form-control" disabled value={{config.keywords}}>
+				</div>
+			</div>
+				<div class="card-body">
+					<a class="btn btn-primary" href="{% url 'config-update' config.id %}">Update</a>
+					<a class="btn btn-primary" href="{% url 'config-delete' config.id %}">Delete</a>
+				</div>
+			</div>
+		</div>
+	  	<blockquote class="blockquote mb-0">
+   	    <p></p>
+    	</blockquote>
+    {% endfor %}
+		<div class="pagination">
+			<span class="step-links">
+				{% if configs.has_previous %}
+					<a href="?page={{ configs.previous_page_number }}">previous</a>
+				{% endif %}
+
+				<span class="current">
+					Page {{ configs.number }} of {{ configs.paginator.num_pages }}.
+				</span>
+
+				{% if configs.has_next %}
+					<a href="?page={{ configs.next_page_number }}">next</a>
+				{% endif %}
+			</span>
+		</div>
+	</div>
+{% endblock content%}
+

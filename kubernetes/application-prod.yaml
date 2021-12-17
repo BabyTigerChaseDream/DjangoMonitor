@@ -1,0 +1,108 @@
+apiVersion: shipper.booking.com/v1
+kind: Application
+metadata:
+  name: firebase-app-crash 
+  owner: China Quality Assurance
+  labels:
+    service-directory.service: firebase-app-crash
+spec:
+  revisionHistoryLimit: 10
+  template:
+    clusterRequirements:
+      regions:
+      - name: eu-nl
+        # 'replicas' determines how many clusters your application should be
+        # scheduled on in this region.
+        replicas: 1
+      capabilities:
+      - dlb
+    chart:
+      name: java
+      version: 3.x.x
+      repoUrl: https://artifactory.booking.com/charts
+    #  name: python
+    #  version: ^3
+    #  repoUrl: https://artifactory.booking.com/charts
+
+    # The values listed below are a subset of all the available values. You can find the full list of
+    # values for java shipper applications in the values.yaml of the java chart in the core-charts repository
+    # https://gitlab.booking.com/bplatform/core-charts/blob/master/official/java/values.yaml
+    # - These values include things like the resource limits, service configuration, etc
+    values:
+      ports:
+        - 443
+        - 80
+        - 8000
+        #- 5000
+      dependencies:
+        mysql:
+          android: ro
+          chinaqa: rw
+      name: firebase-app-crash
+      replicaCount: 1
+      env:
+      - name: SERVER_ROLE
+        value: b-crashmonitor-bot-firebase-app-crash
+      service:
+        hostname: firebase-app-crash.prod.booking.com
+        hostpath: /
+        scope: internal
+      image:
+        repository: docker.artifactory.booking.com/projects/crashmonitor-bot/firebase-app-crash
+        # because DQS is like production (but for people developing against
+        # your service), it should have similar levels of care as prod. as
+        # such, we suggest building your docker images from a CI pipeline
+        # rather than by hand. the CI pipeline might use 'sed' to swap
+        # CI_COMMIT_SHA for the image produced by the pipeline.
+        tag: CI_COMMIT_SHA
+      sidecars:
+        nginx:
+          enabled: true
+          appPort: 8000
+          #appPort: 5000
+        sysctlv2:
+          enabled: false
+          dependencies:
+          - "Bookings::SysCtl::XML_Feature"
+          - "Bookings::SysCtl::SiteVars"
+          - "Bookings::SysCtl::AccessCtl::PenTestIPs"
+      keystoreInit:
+          enabled: false
+      readinessProbe:
+        httpGet:
+          path: /heartbeat
+          port: 8000
+          #path: /health_check
+          #port: 5000
+        periodSeconds: 30
+
+    strategy:
+      # DQS is a production-like environment, so we need a real rollout strategy just like prod
+      steps:
+        # this 'staging' step represents a release with 1 pod of capacity, but no production traffic
+      - name: staging
+        capacity:
+          # these values are percentages of the final capacity (# of pods) for
+          # that Release in other words, if my deployment has 10 pods, this is
+          # 100% (or 1%) of 10 pods. Always rounded up to the nearest whole
+          # pod.
+          incumbent: 100
+          contender: 1
+        traffic:
+          incumbent: 100
+          contender: 0
+      - name: vanguard
+        capacity:
+          incumbent: 90
+          contender: 10
+        traffic:
+          # these traffic values are weights, not percentages: they could just as well be '9' and '1' or '900' and '100'.
+          incumbent: 90
+          contender: 10
+      - name: full on
+        capacity:
+          incumbent: 0
+          contender: 100
+        traffic:
+          incumbent: 0
+          contender: 100

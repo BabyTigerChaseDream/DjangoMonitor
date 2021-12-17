@@ -1,0 +1,15 @@
+include:
+  - project: 'china/common-ci-cd'
+    ref: V2.4
+    # will provide template for python later
+    file: '/bplatform/gitlab-ci-java.yml'
+
+variables:
+  PROJECT_NAME: crashmonitor-bot
+  SHIPPER_APPLICATION: firebase-app-crash
+  JAVA_VERSION: 8
+  UNIT_TEST_SCRIPT: "echo"
+  SONARQUBE_ENABLE: "disable"
+  BUILD_SCRIPT: "echo"
+  BUILD_OUT_PATH: "/"
+  DQS_DEPLOYMENT_FOR_FEATURE_BRANCHES: "enable"

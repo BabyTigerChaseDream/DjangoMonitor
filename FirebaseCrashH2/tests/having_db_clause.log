@@ -1,0 +1,88 @@
+             having crash_count>100 and total_users>50 and
+             order by total_users desc limit 10
+(1064, "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'order by total_users desc limit 10' at line 6")
+android(ro)>
+android(ro)>
+android(ro)> select issue_id, application->'$.display_version' as app_version,count(distinct event_id) as crash_count, count(distinct installation_uuid) as total_use
+             rs
+             from `firebase_crashlytics_com_booking_ANDROID`
+             where event_timestamp >= '2021-07-26 00:00:00' and event_timestamp <= '2021-07-26 23:59:59'
+             group by issue_id
+             having crash_count>100 and total_users>50  and app_version>26
+             order by total_users desc limit 10
++----------------------------------+-------------+-------------+-------------+
+| issue_id                         | app_version | crash_count | total_users |
++----------------------------------+-------------+-------------+-------------+
+| 5d2c6080e0c9ddb395fefb721174fdaf | "28.1"      | 1127        | 778         |
+| 07097b4a18819ee555ab639dfc558b8f | "28.1"      | 1036        | 329         |
+| 5c06a163f8b88c296382cb87         | "28.1"      | 194         | 193         |
+| 57d315f90aeb16625bf85353         | "25.8"      | 156         | 154         |
+| a90e5206fb185ba394bb890f4a0b74ba | "28.1"      | 189         | 140         |
+| a161fb36de87471568fafc656965f7ba | "28.1"      | 418         | 65          |
+| ae2c21e4871b7d28d8f50cd0f9a310cc | "24.8.0.1"  | 177         | 63          |
++----------------------------------+-------------+-------------+-------------+
+7 rows in set
+Time: 0.538s
+android(ro)> desc `firebase_crashlytics_com_booking_ANDROID`;
++-------------------------+--------------+------+-----+---------+-------+
+| Field                   | Type         | Null | Key | Default | Extra |
++-------------------------+--------------+------+-----+---------+-------+
+| platform                | varchar(255) | YES  |     | <null>  |       |
+| bundle_identifier       | varchar(255) | YES  |     | <null>  |       |
+| event_id                | varchar(255) | NO   | PRI | <null>  |       |
+| is_fatal                | tinyint(1)   | YES  |     | <null>  |       |
+| issue_id                | varchar(255) | YES  |     | <null>  |       |
+| issue_title             | varchar(255) | YES  |     | <null>  |       |
+| issue_subtitle          | varchar(255) | YES  |     | <null>  |       |
+| event_timestamp         | timestamp    | YES  |     | <null>  |       |
+| received_timestamp      | timestamp    | YES  |     | <null>  |       |
+| device                  | json         | YES  |     | <null>  |       |
+| _memory                 | json         | YES  |     | <null>  |       |
+| _storage                | json         | YES  |     | <null>  |       |
+| operating_system        | json         | YES  |     | <null>  |       |
+| application             | json         | YES  |     | <null>  |       |
+| _user                   | json         | YES  |     | <null>  |       |
+| custom_keys             | json         | YES  |     | <null>  |       |
+| installation_uuid       | varchar(255) | YES  |     | <null>  |       |
+| crashlytics_sdk_version | varchar(255) | YES  |     | <null>  |       |
+| app_orientation         | varchar(255) | YES  |     | <null>  |       |
+| device_orientation      | varchar(255) | YES  |     | <null>  |       |
+| process_state           | varchar(255) | YES  |     | <null>  |       |
+| _logs                   | json         | YES  |     | <null>  |       |
+| breadcrumbs             | json         | YES  |     | <null>  |       |
+| blame_frame             | json         | YES  |     | <null>  |       |
+| exceptions              | json         | YES  |     | <null>  |       |
+| _errors                 | json         | YES  |     | <null>  |       |
+| threads                 | json         | YES  |     | <null>  |       |
+| experiments             | json         | YES  |     | <null>  |       |
++-------------------------+--------------+------+-----+---------+-------+
+28 rows in set
+Time: 0.027s
+android(ro)>
+android(ro)>
+android(ro)> select issue_id, application->'$.display_version' as app_version,count(distinct event_id) as crash_count, count(distinct installation_uuid) as total_users
+             from `firebase_crashlytics_com_booking_ANDROID`
+             where event_timestamp >= '2021-07-26 00:00:00' and event_timestamp <= '2021-07-26 23:59:59'
+             group by issue_id
+             having crash_count>100 and total_users>50  and CAST(app_version AS DECIMAL(10,3))>26
+             order by total_users desc limit 10;
++----------------------------------+-------------+-------------+-------------+
+| issue_id                         | app_version | crash_count | total_users |
++----------------------------------+-------------+-------------+-------------+
+| 5d2c6080e0c9ddb395fefb721174fdaf | "28.1"      | 1127        | 778         |
+| 07097b4a18819ee555ab639dfc558b8f | "28.1"      | 1036        | 329         |
+| 5c06a163f8b88c296382cb87         | "28.1"      | 194         | 193         |
+| a90e5206fb185ba394bb890f4a0b74ba | "28.1"      | 189         | 140         |
+| a161fb36de87471568fafc656965f7ba | "28.1"      | 418         | 65          |
++----------------------------------+-------------+-------------+-------------+
+5 rows in set
+Time: 0.786s
+android(ro)>
+
+
+
+
+
+
+
+ [F3] Multiline: OFF

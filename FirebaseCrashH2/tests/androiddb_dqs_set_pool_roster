@@ -1,0 +1,3 @@
+[jiaguo@jiaguo-devcronapp-01 (cron) ~]$ cat /etc/bookings/pool_roster/androiddb-dqs_set
+10.199.15.94    dc101androiddbrdb-01.ams4.dqs.booking.com       1
+[jiaguo@jiaguo-devcronapp-01 (cron) ~]$

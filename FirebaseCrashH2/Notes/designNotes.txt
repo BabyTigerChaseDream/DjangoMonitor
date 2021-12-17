@@ -1,0 +1,57 @@
+##################################
+# Local : database table design 
+###################################
+
+[Table 1 : collect all ios/android crash data]
+issue_id, issue_title, issue_subtitle, total_users, crash_count, exceptions(blame_frame), event_timestamp, [app version list ?]
+	>>> exceptions(blame_frame): just leave fields we need in table from orignal data  
+
+[Table 2 : tag issue id with teams]
+issue_id, team, owner, jira_ticket, priority, expire
+
+[Notes]
+when items will be expired , developers can mark it as invalid 
+
+#########################
+# cron retrieve logic 
+#########################
+[query crash data based on date_time]
+
+SELECT COUNT(DISTINCT issue_id) AS total_issues, COUNT(DISTINCT event_id) AS total_events, COUNT(DISTINCT installation_uuid) AS total_users
+FROM `firebase_crashlytics_com_booking_ANDROID`
+WHERE event_timestamp >= '2021-07-20 09:58:50' and event_timestamp <= '2021-07-20 19:58:50'
+'WHERE is_fatal=@is_fatal and event_timestamp >= '2021-07-20 09:58:50' and event_timestamp <= '2021-07-20 19:58:50' 
+
+[Only store items hit certain threshold - crash_count/total_user - need freshness daily]
+filter 
+	count(event_id) > 100 
+	count(installation_uuid) > 50 
+
+########################################
+# logic to remove dup/resolved issue_id  
+########################################
+
+[L-1: issue already in table and still hit alarm threshold, update counts]
+[L-2: issue already in table and resolved-disappeared next day , remove from table (cache layer?/buffer time)]
+[L-3: issue newly occur , add to table]
+
+####################################################
+# logic: filter items based on user configurations  
+####################################################
+[F-1: file name]
+[F-2: symbol]
+[F-3: committer name/commiter email if any]
+
+
+
+####################################################
+# DBG Draft  
+####################################################
+sql_cmd = dblib.TOP_ISSUE_BY_CRASH_AND_USER_COUNT.format(
+	table = 'firebase_crashlytics_com_booking_ANDROID',
+	start_timestamp=dblib.start_timestamp,
+	end_timestamp = dblib.end_timestamp,
+	crash_count_max = dblib.crash_count_max,
+	total_users_max = dblib.total_users_max,
+	issue_count_max = dblib.issue_count_max
+)

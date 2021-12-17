@@ -1,0 +1,1684 @@
+warning: reattach-to-user-namespace: unsupported new OS, trying as if it were 10.10
+
+The default interactive shell is now zsh.
+To update your account to use zsh, please run `chsh -s /bin/zsh`.
+For more details, please visit https://support.apple.com/kb/HT208050.
+C02ZL0QPLVDN:common_lib jiaguo$ ]bk version
+-bash: ]bk: command not found
+C02ZL0QPLVDN:common_lib jiaguo$ bk version
+@bookingcom/bk/12.1.8-latest-darwin-x64.0 darwin-x64 node-v12.16.1
+C02ZL0QPLVDN:common_lib jiaguo$ which bk
+/usr/local/bin/bk
+C02ZL0QPLVDN:common_lib jiaguo$ bk -h
+Booking-wide CLI
+
+VERSION
+  @bookingcom/bk/12.1.8-latest-darwin-x64.0 darwin-x64 node-v12.16.1
+
+USAGE
+  $ bk [COMMAND]
+
+TOPICS
+  auth     manage authentication
+  cloud    manage B.Platform Kubernetes Infrastructure
+  config   manage bk configuration
+  context  display information about current contexts
+  plugins  manage your CLI plugins
+  sd       manage Service Directory resources
+
+COMMANDS
+  completion  outputs shell completion code for the specified shell (bash or zsh).
+  context     display information about current contexts
+  plugins     list installed plugins
+  support     display who you should contact in case you need support with a command (works with aliases as well)
+  update      update the bk CLI
+
+C02ZL0QPLVDN:common_lib jiaguo$ bk plugins
+@bookingcom/cloud 11.2.8
+@bookingcom/sd 11.0.27
+C02ZL0QPLVDN:common_lib jiaguo$ bk update
+ ›   Notice: Do not forget to refresh your completion cache by restarting your shell or by running
+ ›
+ ›       $ source ~/.bashrc
+ ›       # OR
+ ›       $ source <(bk completion bash)
+
+ ›       # OR
+ ›       $ bk completion bash 1>/dev/null
+ ›       $ source ~/Library/Caches/@bookingcom/bk/completion/functions/bash ›
+ ›    More info for setting up completion on other shells can be found by running `bk completion --help`
+ ›
+Fetching information about CLI update [channel: latest] [dist-tag: latest-darwin-x64]... done
+Restarting CLI to update plugins with the new version
+Updating CLI from 12.1.8-latest-darwin-x64.0 to 13.2.2-latest-darwin-x64.0... done
+ ›   Notice: Do not forget to refresh your completion cache by restarting your shell or by running
+ ›
+ ›       $ source ~/.bashrc
+ ›       # OR
+ ›       $ source <(bk completion bash)
+
+ ›       # OR
+ ›       $ bk completion bash 1>/dev/null
+ ›       $ source ~/Library/Caches/@bookingcom/bk/completion/functions/bash ›
+ ›    More info for setting up completion on other shells can be found by running `bk completion --help`
+ ›
+Fetching information about CLI update [channel: latest] [dist-tag: latest-darwin-x64]... already up-to-date (13.2.2-latest-darwin-x64.0)
+@bookingcom/bk: Updating plugins... done
+C02ZL0QPLVDN:common_lib jiaguo$
+C02ZL0QPLVDN:common_lib jiaguo$
+C02ZL0QPLVDN:common_lib jiaguo$ source ~/.bashrc
+C02ZL0QPLVDN:common_lib jiaguo$
+C02ZL0QPLVDN:common_lib jiaguo$ vim !$
+vim ~/.bashrc
+C02ZL0QPLVDN:common_lib jiaguo$
+C02ZL0QPLVDN:common_lib jiaguo$ bk sd:projects
+CURRENT NAME             DESCRIPTION                INDIVIDUAL OWNERS TEAM OWNERS                        ACCESS ROLE
+        china-automation china-automation                             China Quality Assurance (60005847) admin
+*       jiaguo           personal project of jiaguo Jia Guo (jiaguo)                                     admin
+Warning: failed to send METRICS event for an unknown reason, if you are under VPN, maybe you should set BK_COULD_FORCE_PROXY_IF_NEEDED=false
+C02ZL0QPLVDN:common_lib jiaguo$ curl https://gitlab.pages.booking.com/artifactory-sd-syncer/scripts/setup-docker-credential-plugin | sh
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   619  100   619    0     0    456      0  0:00:01  0:00:01 --:--:--   456
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  2589  100  2589    0     0   2437      0  0:00:01  0:00:01 --:--:--  2437
+Password:
+C02ZL0QPLVDN:common_lib jiaguo$
+C02ZL0QPLVDN:common_lib jiaguo$
+C02ZL0QPLVDN:common_lib jiaguo$ locate setup-docker-credential-plugi
+^C
+C02ZL0QPLVDN:common_lib jiaguo$ locate setup-docker-credential-plugin
+C02ZL0QPLVDN:common_lib jiaguo$ ls ~/.docker/
+application-template    config.json             contexts                daemon.json             run                     scan
+C02ZL0QPLVDN:common_lib jiaguo$ cat ~/.docker/daemon.json
+{
+  "debug" : true,
+  "builder" : {
+    "gc" : {
+      "defaultKeepStorage" : "20GB",
+      "enabled" : true
+    }
+  },
+  "experimental" : false
+}
+C02ZL0QPLVDN:common_lib jiaguo$ cat ~/.docker/con
+config.json  contexts/
+C02ZL0QPLVDN:common_lib jiaguo$ cat ~/.docker/config.json
+{
+  "credHelpers": {
+    "docker.jfrog.booking.com": "iam",
+    "docker-dev.jfrog.booking.com": "iam",
+    "docker.artifactory.booking.com": "iam"
+  }
+}
+C02ZL0QPLVDN:common_lib jiaguo$ cat ~/.docker/contexts/
+cat: /Users/jiaguo/.docker/contexts/: Is a directory
+C02ZL0QPLVDN:common_lib jiaguo$ ls ~/.docker/contexts/
+
+meta
+C02ZL0QPLVDN:common_lib jiaguo$ ls ~/.docker/contexts/meta/
+C02ZL0QPLVDN:common_lib jiaguo$ ls -al ~/.docker/contexts/meta/
+total 0
+drwxr-xr-x  2 jiaguo  697783653  64 Sep 15  2020 .
+drwxr-xr-x  3 jiaguo  697783653  96 Sep 15  2020 ..
+C02ZL0QPLVDN:common_lib jiaguo$ ls -al ~/.docker/contexts/
+total 0
+drwxr-xr-x  3 jiaguo  697783653   96 Sep 15  2020 .
+drwxr-xr-x  8 jiaguo  697783653  256 Jul 28 08:54 ..
+drwxr-xr-x  2 jiaguo  697783653   64 Sep 15  2020 meta
+C02ZL0QPLVDN:common_lib jiaguo$
+C02ZL0QPLVDN:common_lib jiaguo$
+C02ZL0QPLVDN:common_lib jiaguo$ ls /usr/local/bin/docker
+docker                         docker-compose                 docker-credential-desktop      docker-credential-ecr-login    docker-credential-iam          docke
+r-credential-osxkeychain
+C02ZL0QPLVDN:common_lib jiaguo$ ls /usr/local/bin/docker-credential-
+docker-credential-desktop      docker-credential-ecr-login    docker-credential-iam          docker-credential-osxkeychain
+C02ZL0QPLVDN:common_lib jiaguo$ ls /usr/local/bin/docker-credential-
+docker-credential-desktop      docker-credential-ecr-login    docker-credential-iam          docker-credential-osxkeychain
+C02ZL0QPLVDN:common_lib jiaguo$ ls /usr/local/bin/docker-credential-iam
+/usr/local/bin/docker-credential-iam
+C02ZL0QPLVDN:common_lib jiaguo$ file /usr/local/bin/docker-credential-iam
+
+/usr/local/bin/docker-credential-iam: Bourne-Again shell script text executable, ASCII text
+C02ZL0QPLVDN:common_lib jiaguo$
+C02ZL0QPLVDN:common_lib jiaguo$ cat  /usr/local/bin/docker-credential-iam
+
+#!/bin/bash
+
+set -o errexit -o pipefail -o noclobber -o nounset
+
+# define global variables
+DOCKER_CRED_USER="anonymous";
+DOCKER_CRED_TOKEN="";
+BOOKING_USER="${BOOKING_USER:-$USER}"
+
+show_usage () {
+    if [[ "$#" -ge 1 ]]; then
+        echo "Error: "$@ >&2;
+    fi
+
+    PROGRAM=`basename "$0"`; # docker-credential-iam
+    echo -e "Docker credential helper for Booking Artifactory Docker Registry (docker.artifactory.booking.com)";
+    echo -e "\nUsage:";
+    echo -e "  $PROGRAM get";
+    echo -e "  $PROGRAM store";
+    echo -e "  $PROGRAM erase";
+    echo -e "\nEnvironment variables:";
+    echo -e "  BOOKING_USER               Used to form the username instead of \$USER\n";
+    echo -e "\nEnvironment variables (only applicable for service accounts):";
+    echo -e "  ARTIFACTORY_DOCKER_USER    Service account's username to use while doing docker push (default: $DOCKER_CRED_USER)";
+    echo -e "  ARTIFACTORY_DOCKER_TOKEN   Service account's API token to use while doing docker push (default: \"\")";
+    echo -e "More Info: https://docs.docker.com/engine/reference/commandline/login/#credential-helper-protocol";
+}
+
+init () {
+    if [[ -n "${ARTIFACTORY_DOCKER_USER-}" ]] && [[ "$ARTIFACTORY_DOCKER_USER" != "" ]] && [[ "$ARTIFACTORY_DOCKER_USER" = svc* ]]; then
+        DOCKER_CRED_USER=$ARTIFACTORY_DOCKER_USER;
+        if [[ -n "${ARTIFACTORY_DOCKER_TOKEN-}" ]] && [[ "$ARTIFACTORY_DOCKER_TOKEN" != "" ]]; then
+            DOCKER_CRED_TOKEN=$ARTIFACTORY_DOCKER_TOKEN;
+        else
+            echo "Error: missing value for ARTIFACTORY_DOCKER_TOKEN variable";
+            exit 1;
+        fi
+    elif command -v bk >/dev/null 2>&1 ; then
+        PASSPORT_USER_PREFIX="passport-user-";
+        DOCKER_CRED_USER="${PASSPORT_USER_PREFIX}${BOOKING_USER}";
+        DOCKER_CRED_TOKEN=`bk auth:issue-token`;
+    else
+        echo "Error: you should either";
+        echo "       - have bk CLI installed (https://gitlab.booking.com/devtools/bk#installation)";
+        echo "       - For service account: set ARTIFACTORY_DOCKER_USER and ARTIFACTORY_DOCKER_TOKEN environment variables";
+        exit 1;
+    fi
+}
+
+run () {
+    [[ $# -eq 0 ]] && show_usage;
+
+    while [[ $# -gt 0 ]]; do
+            case "$1" in
+                get)
+cat << EOF
+{
+    "Username": "${DOCKER_CRED_USER}",
+    "Secret": "${DOCKER_CRED_TOKEN}"
+}
+EOF
+                    exit 0;
+                    ;;
+                store|erase)
+                    exit 0;
+                    ;;
+                *) show_usage "Error: unknown argument $1";
+                   exit 1;
+            esac
+    done
+}
+
+init;
+run $@;
+C02ZL0QPLVDN:common_lib jiaguo$ :q
+-bash: :q: command not found
+C02ZL0QPLVDN:common_lib jiaguo$
+C02ZL0QPLVDN:common_lib jiaguo$
+C02ZL0QPLVDN:common_lib jiaguo$ bk context:use:project helloworld
+Switching to context helloworld:
+ ✖ Switching sd context to helloworld...
+   → project helloworld is unknown to Service Directory, cannot switch sd context to it [see error below]
+Error: project helloworld is unknown to Service Directory, cannot switch sd context to it
+    at ~/.local/share/@bookingcom/bk/node_modules/@bookingcom/sd/manager-c2ac5575.js:1025:39
+    at Generator.next (<anonymous>)
+    at fulfilled (~/.local/share/@bookingcom/bk/node_modules/@bookingcom/sd/node_modules/tslib/tslib.js:107:62)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+C02ZL0QPLVDN:common_lib jiaguo$ which kubectl
+/usr/local/bin/kubectl
+C02ZL0QPLVDN:common_lib jiaguo$ bk cloud:clusters
+NAME                               TYPE        ENVIRONMENT REGION      ZONE         CAPABILITIES                                                 STATUS K8S VERS
+ION
+bplatform-app-az1-bk-eu-west6-dqs  application dqs         bk-eu-west6 bk-eu-west6a hdd                                                          Ready  1.16.15
+
+bplatform-eu-nl-dqs-a              application dqs         eu-nl       a            alertapi,cluster-alerts,dlb,firewall,iscsi,nfs,quota-alerts… Ready  1.18.18-
+booking.0.el7
+bplatform-eu-uk-dqs-b              application dqs         eu-uk       b            alertapi,cluster-alerts,dlb,firewall,iscsi,quota-alerts,ros… Ready  1.18.18-
+booking.0.el7
+bplatform-app-az1-bk-eu-west6-prod application prod        bk-eu-west6 bk-eu-west6a hdd                                                          Ready  1.16.15
+
+bplatform-eu-de-prod-c             application prod        eu-de       c            alertapi,cluster-alerts,dlb,firewall,hdd,quota-alerts,roste… Ready  1.18.18-
+booking.0.el7
+bplatform-eu-nl-prod-c             application prod        eu-nl       c            alertapi,cluster-alerts,dlb,firewall,hdd,iscsi,nfs,quota-al… Ready  1.18.18-
+booking.0.el7
+bplatform-eu-uk-prod-c             application prod        eu-uk       c            alertapi,cluster-alerts,dlb,firewall,iscsi,nfs,quota-alerts… Ready  1.18.18-
+booking.0.el7
+bplatform-eu-nl-dev-a              development dev         eu-nl       a            alertapi,iscsi,nfs,roster,service-mesh-mgmt,shipper-app,shi… Ready  1.18.18-
+booking.0.el7
+bplatform-eu-nl-dev-b              development dev         eu-nl       b            alertapi,iscsi,nfs,roster,service-mesh-mgmt,shipper-app,shi… Ready  1.18.18-
+booking.0.el7
+bplatform-eu-uk-dev-a              development dev         eu-uk       a            alertapi,roster,service-mesh-mgmt,shipper-app,shipper-mgmt,… Ready  1.18.18-
+booking.0.el7
+bplatform-eu-nl-dqs-m              management  dqs         eu-nl       m            alertapi,aws-enablement,dlb,firewall,gcp-enablement,iscsi,n… Ready  1.18.18-
+booking.0.el7
+bplatform-eu-nl-prod-m             management  prod        eu-nl       m            alertapi,aws-enablement,dlb,firewall,gcp-enablement,hdd,isc… Ready  1.18.18-
+booking.0.el7
+C02ZL0QPLVDN:common_lib jiaguo$ bk context:use:cluster bplatform-eu-nl-dev-a
+ ✔ Cluster bplatform-eu-nl-dev-a exists
+ ✔ Installation jiaguo/playground/kubernetes-dev-jiaguo-9d4bd465 exists in cluster bplatform-eu-nl-dev-a
+ ✔ kubectl context set to bplatform-eu-nl-dev-a/jiaguo-jiaguo-9d4bd465
+   → namespace already set to jiaguo-jiaguo-9d4bd465
+   → cluster changed to bplatform-eu-nl-dev-a
+ ✔ sd context kubectl reference has been updated
+ ✔ Cluster bplatform-eu-nl-dev-a is healthy
+C02ZL0QPLVDN:common_lib jiaguo$ kubectl config current-context
+bplatform-eu-nl-dev-a/jiaguo-jiaguo-9d4bd465
+C02ZL0QPLVDN:common_lib jiaguo$ kubectl get pods
+No resources found in jiaguo-jiaguo-9d4bd465 namespace.
+C02ZL0QPLVDN:common_lib jiaguo$
+C02ZL0QPLVDN:common_lib jiaguo$
+C02ZL0QPLVDN:common_lib jiaguo$
+C02ZL0QPLVDN:common_lib jiaguo$
+C02ZL0QPLVDN:common_lib jiaguo$
+C02ZL0QPLVDN:common_lib jiaguo$ kubectl get svc
+No resources found in jiaguo-jiaguo-9d4bd465 namespace.
+C02ZL0QPLVDN:common_lib jiaguo$
+C02ZL0QPLVDN:common_lib jiaguo$
+C02ZL0QPLVDN:common_lib jiaguo$ kubectl get endpoints
+No resources found in jiaguo-jiaguo-9d4bd465 namespace.
+C02ZL0QPLVDN:common_lib jiaguo$
+C02ZL0QPLVDN:common_lib jiaguo$
+C02ZL0QPLVDN:common_lib jiaguo$ bk sd:playground
+Project jiaguo already exists
+Component jiaguo/playground already exists
+Provisioning DEV installation for KUBERNETES in Service Directory:
+ ✔ Validating parameters...
+ ✔ Installation jiaguo/playground/kubernetes-dev-jiaguo-ae498f53 created
+ ✔ Cluster bplatform-eu-uk-dev-a is now the preferred cluster for this installation
+ ✔ Namespace jiaguo-jiaguo-ae498f53 provisioned
+  → NOTE: It may take a bit of time to sync permissions to access the namespace
+ ✔ sd context set to jiaguo/playground/kubernetes-dev-jiaguo-ae498f53
+ ✔ kubectl context set to bplatform-eu-uk-dev-a/jiaguo-jiaguo-ae498f53
+   → namespace changed to jiaguo-jiaguo-ae498f53
+   → cluster changed to bplatform-eu-uk-dev-a
+ ✔ sd context kubectl reference has been updated
+You're good to go and run first kubectl command in the namespace!
+C02ZL0QPLVDN:common_lib jiaguo$ kubectl run --generator=run-pod/v1 --image=docker.jfrog.booking.com/projects/bplatform/booking-nginx:latest nginx
+Flag --generator has been deprecated, has no effect and will be removed in the future.
+pod/nginx created
+C02ZL0QPLVDN:common_lib jiaguo$ kubectl get pods -o yaml | grep podIP
+          f:podIP: {}
+          f:podIPs:
+    podIP: 10.230.181.113
+    podIPs:
+C02ZL0QPLVDN:common_lib jiaguo$ http_proxy= curl http://10.230.181.113/no_such_page
+
+<html>
+<head><title>404 Not Found</title></head>
+<body>
+<center><h1>404 Not Found</h1></center>
+<hr><center>nginx</center>
+</body>
+</html>
+C02ZL0QPLVDN:common_lib jiaguo$ bk sd:projects
+CURRENT NAME             DESCRIPTION                INDIVIDUAL OWNERS TEAM OWNERS                        ACCESS ROLE
+        china-automation china-automation                             China Quality Assurance (60005847) admin
+*       jiaguo           personal project of jiaguo Jia Guo (jiaguo)                                     admin
+C02ZL0QPLVDN:common_lib jiaguo$ kubectl get svc
+No resources found in jiaguo-jiaguo-ae498f53 namespace.
+C02ZL0QPLVDN:common_lib jiaguo$ kubectl get endpoints
+No resources found in jiaguo-jiaguo-ae498f53 namespace.
+C02ZL0QPLVDN:common_lib jiaguo$ bk sd:components
+CURRENT NAME       KIND    PROJECT DESCRIPTION                             PERSONA
+*       playground service jiaguo  personal playground component of jiaguo b-jiaguo-playground
+C02ZL0QPLVDN:common_lib jiaguo$ bk sd:components:bootstrap
+Welcome to bk cloud component bootstrapping wizard!
+
+This tool will walk you through creating a component.
+It covers the most common items, and tries to guess sensible defaults.
+
+The tool will ask you a couple of questions, please take them seriously and answer truthfully! :-)
+
+If you have questions like 'what is B.Platform Kubernetes Project?' or 'how did I end up here?',
+then please refer to B.Platform Kubernetes docs at https://docs.booking.com/kubernetes
+
+Press ^C at any time to quit.
+
+Shall we begin?
+
+
+? What kind of component are we creating today? Personal component
+Ok, cool, so we're exploring new ideas!
+This simplify initial setup a bit, but I still need to ask some questions!
+
+The first step would be to introduce a bit of hierarchy!
+
+At the top of this hierarchy, we have what we call a Project.
+A project is an abstract thing which is useful for administrative grouping, access control and later billing.
+For exploration purposes we recommend to use a personal project, i.e. a project which name is jiaguo.
+
+Beneath a Project, we have what we call a Component. The idea of a Component is quite simple:
+A component is a business function available for consumption by a human or a computer.
+Let me give you some of the examples of a component:
+  - api
+  - frontend
+  - database
+
+So, this way a 'soylent' Project may have multiple Components named 'api' or 'database'
+
+There are more things which you would need to get yourself familiar with, but it's irrelevant for now.
+If you're eager to learn, feel free to visit https://docs.booking.com/kubernetes/concepts/service-directory.html
+Let's start doing something useful now, right?!
+
+Since we're going to use a personal Project, we can jump to talk about a Component
+
+
+
+Ok, I've got all about the Project! Let's now talk about the Component!
+
+? How would you like to name the Component? (lowercase alphanumeric and '-' are allowed) firebase-crash-monitor
+? Component description is just a user-friendly explanation of function the component perform, something like: 'API component provides access to soylent AP
+I for storing PII data'
+Please describe the component in a short sentence crashmonitor
+Scanning dependencies of nearby folders:
+ ✔ Not relevant file found
+ ↓ Scanning dependencies inside files... [skipped]
+   → no file to scan
+
+All good so far! Let's see what I'm going to do:
+
+I'm going to reuse existing Project:
+name:            jiaguo
+
+I'm going to create new Component:
+name:            firebase-crash-monitor
+description:     crashmonitor
+
+I'm also going to create a DEV Installation.
+An Installation is a place where you can run code. This means a namespace for kubernetes.
+More about Installations at https://docs.booking.com/kubernetes/concepts/service-directory.html#installations
+
+I'm NOT going to register dependencies!
+Please register them later by using one of the following options:
+$ bk sd:dependencies:request -f dependencies.yaml
+$ bk sd:dependencies:request -f application.yaml
+
+? Everything looks good? No
+Sending error/warning to FLOG... sent successfully
+ ›   Error: ok, you could try again later if you want! Bye!
+C02ZL0QPLVDN:common_lib jiaguo$
+C02ZL0QPLVDN:common_lib jiaguo$
+C02ZL0QPLVDN:common_lib jiaguo$
+C02ZL0QPLVDN:common_lib jiaguo$ bk sd:components:bootstrap
+Welcome to bk cloud component bootstrapping wizard!
+
+This tool will walk you through creating a component.
+It covers the most common items, and tries to guess sensible defaults.
+
+The tool will ask you a couple of questions, please take them seriously and answer truthfully! :-)
+
+If you have questions like 'what is B.Platform Kubernetes Project?' or 'how did I end up here?',
+then please refer to B.Platform Kubernetes docs at https://docs.booking.com/kubernetes
+
+Press ^C at any time to quit.
+
+Shall we begin?
+
+
+? What kind of component are we creating today? Personal component
+Ok, cool, so we're exploring new ideas!
+This simplify initial setup a bit, but I still need to ask some questions!
+
+The first step would be to introduce a bit of hierarchy!
+
+At the top of this hierarchy, we have what we call a Project.
+A project is an abstract thing which is useful for administrative grouping, access control and later billing.
+For exploration purposes we recommend to use a personal project, i.e. a project which name is jiaguo.
+
+Beneath a Project, we have what we call a Component. The idea of a Component is quite simple:
+A component is a business function available for consumption by a human or a computer.
+Let me give you some of the examples of a component:
+  - api
+  - frontend
+  - database
+
+So, this way a 'soylent' Project may have multiple Components named 'api' or 'database'
+
+There are more things which you would need to get yourself familiar with, but it's irrelevant for now.
+If you're eager to learn, feel free to visit https://docs.booking.com/kubernetes/concepts/service-directory.html
+Let's start doing something useful now, right?!
+
+Since we're going to use a personal Project, we can jump to talk about a Component
+
+
+
+Ok, I've got all about the Project! Let's now talk about the Component!
+
+? How would you like to name the Component? (lowercase alphanumeric and '-' are allowed) crashmonitor
+? Component description is just a user-friendly explanation of function the component perform, something like: 'API component provides access to soylent AP
+I for storing PII data'
+Please describe the component in a short sentence crash monitor
+Scanning dependencies of nearby folders:
+ ✔ Not relevant file found
+ ↓ Scanning dependencies inside files... [skipped]
+   → no file to scan
+
+All good so far! Let's see what I'm going to do:
+
+I'm going to reuse existing Project:
+name:            jiaguo
+
+I'm going to create new Component:
+name:            crashmonitor
+description:     crash monitor
+
+I'm also going to create a DEV Installation.
+An Installation is a place where you can run code. This means a namespace for kubernetes.
+More about Installations at https://docs.booking.com/kubernetes/concepts/service-directory.html#installations
+
+I'm NOT going to register dependencies!
+Please register them later by using one of the following options:
+$ bk sd:dependencies:request -f dependencies.yaml
+$ bk sd:dependencies:request -f application.yaml
+
+? Everything looks good? Yes
+Creating component jiaguo/crashmonitor in Service Directory:
+ ✔ Validating parameters...
+   ✔ Project name is valid
+   ✔ Validating project jiaguo attributes...
+     ↓ Adding attribute kubernetes... [skipped]
+       → already there
+   ✔ Component name is valid
+   ✔ Component description is valid
+ ✔ Component jiaguo/crashmonitor created
+Provisioning DEV installation in Service Directory:
+ ✔ Validating parameters...
+ ✔ Installation jiaguo/crashmonitor/kubernetes-dev-jiaguo-9398a626 created
+ ✔ Cluster bplatform-eu-nl-dev-a is now the preferred cluster for this installation
+ ✔ Namespace jiaguo-jiaguo-9398a626 provisioned
+  → NOTE: It may take a bit of time to sync permissions to access the namespace
+ ✔ sd context set to jiaguo/crashmonitor/kubernetes-dev-jiaguo-9398a626
+ ✔ kubectl context set to bplatform-eu-nl-dev-a/jiaguo-jiaguo-9398a626
+   → namespace changed to jiaguo-jiaguo-9398a626
+   → cluster changed to bplatform-eu-nl-dev-a
+ ✔ sd context kubectl reference has been updated
+All in place! you're good to go and run first kubectl command in this namespace!
+
+Oh, btw, one last thing!
+If you want to scaffold Perl or Java Kubernetes configs, check out the following things:
+
+    # for Perl, using the Perl plugin
+    $ bk plugins:install @bookingcom/perl
+    $ bk perl:bootstrap
+
+    # for Java, using the Java plugin
+    $ bk plugins:install @bookingcom/java
+    $ bk java:bootstrap
+C02ZL0QPLVDN:common_lib jiaguo$ ls
+HTMLTestRunner.py                       email_helper.py                         reportLogger.py
+HTMLTestRunner_PY3.py                   logConfig.json                          reservation_util.py
+__init__.py                             logInfo.py                              utils_helper.py
+__pycache__                             logger.py
+db_helper.py                            redis_phone_verification_helper.py
+C02ZL0QPLVDN:common_lib jiaguo$ pwd
+/Users/jiaguo/workspace/b.api-testing/common_lib
+C02ZL0QPLVDN:common_lib jiaguo$ ls
+HTMLTestRunner.py                       email_helper.py                         reportLogger.py
+HTMLTestRunner_PY3.py                   logConfig.json                          reservation_util.py
+__init__.py                             logInfo.py                              utils_helper.py
+__pycache__                             logger.py
+db_helper.py                            redis_phone_verification_helper.py
+C02ZL0QPLVDN:common_lib jiaguo$ cd ../../
+C02ZL0QPLVDN:workspace jiaguo$ ls
+QAuto                           book-and-unlock-test-tools-auth geniuscredit-tool               mysql-data
+android                         crashmonitor-bot                gitlab-commit-fetcher           nightwatch
+app-auto-notes                  dev                             hacker2021                      release-page
+b-robot                         experiment-quality-tracking     main                            scripts
+b.api-testing                   genius-credit-client            mitmproxy                       tools
+bkng                            genius-credit-service           mri-client                      web-robot
+C02ZL0QPLVDN:workspace jiaguo$ pwd
+/Users/jiaguo/workspace
+C02ZL0QPLVDN:workspace jiaguo$ cd b
+b-robot/                         b.api-testing/                   bkng/                            book-and-unlock-test-tools-auth/
+C02ZL0QPLVDN:workspace jiaguo$
+C02ZL0QPLVDN:workspace jiaguo$ mkdir BPlatform
+C02ZL0QPLVDN:workspace jiaguo$ cd BPlatform/
+C02ZL0QPLVDN:BPlatform jiaguo$ ls
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$ bk sd:dependencies
+NAME PROPERTIES PROJECT COMPONENT INSTALLATION STATUS APPROVAL STATE PROVISION STATE MESSAGE
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$ bk sd:projects
+CURRENT NAME             DESCRIPTION                INDIVIDUAL OWNERS TEAM OWNERS                        ACCESS ROLE
+        china-automation china-automation                             China Quality Assurance (60005847) admin
+*       jiaguo           personal project of jiaguo Jia Guo (jiaguo)                                     admin
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$ bk sd:components
+CURRENT NAME         KIND    PROJECT DESCRIPTION                             PERSONA
+*       crashmonitor service jiaguo  crash monitor                           b-jiaguo-crashmonitor
+        playground   service jiaguo  personal playground component of jiaguo b-jiaguo-playground
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$ bk sd:projects
+CURRENT NAME             DESCRIPTION                INDIVIDUAL OWNERS TEAM OWNERS                        ACCESS ROLE
+        china-automation china-automation                             China Quality Assurance (60005847) admin
+*       jiaguo           personal project of jiaguo Jia Guo (jiaguo)                                     admin
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$ bk sd:projects:bootstrap
+
+ ›   Error: command sd:projects:bootstrap not found
+C02ZL0QPLVDN:BPlatform jiaguo$ bk sd:projects
+CURRENT NAME             DESCRIPTION                INDIVIDUAL OWNERS TEAM OWNERS                        ACCESS ROLE
+        china-automation china-automation                             China Quality Assurance (60005847) admin
+*       jiaguo           personal project of jiaguo Jia Guo (jiaguo)                                     admin
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$ bk context
+---------User----------
+login status                  SSO / logged in / token expires in 3h 32m 53s
+login as                      jiaguo
+
+---Service Directory---
+project                       jiaguo
+component                     crashmonitor
+installation                  kubernetes-dev-jiaguo-9398a626
+namespace                     jiaguo-jiaguo-9398a626
+
+sd context                    jiaguo/crashmonitor/kubernetes-dev-jiaguo-9398a626
+
+Flog (PROD)                   https://flog.booking.com/?persona=b-jiaguo-crashmonitor
+Grafana - Cluster View (PROD) https://grafana.booking.com/dashboard/db/app-pod-container-metrics-cluster-view?var-persona=b-jiaguo-crashmonitor
+Grafana - Pod View (PROD)     https://grafana.booking.com/dashboard/db/app-pod-container-metrics?var-persona=b-jiaguo-crashmonitor
+Logs (PROD)                   https://logs.booking.com/app/kibana#/discover?_a=(columns:!(extra.ContainerName,extra.text),index:'01344ff0-1a67-11e9-81aa-cfbc3c4
+d1e8b',interval:auto,query:(language:lucene,query:'extra.Persona:b-jiaguo-crashmonitor'),sort:!('@timestamp',desc))&_g=()
+
+--------kubectl--------
+kubectl context               bplatform-eu-nl-dev-a/jiaguo-jiaguo-9398a626
+sd & kubectl in-sync          true
+
+cluster                       bplatform-eu-nl-dev-a
+cluster type                  development
+cluster status                Ready
+
+kubernetes-dashboard          https://bplatform-eu-nl-dev-a-dashboard.ams4.dqs.booking.com/#/overview?namespace=jiaguo-jiaguo-9398a626
+C02ZL0QPLVDN:BPlatform jiaguo$ man bkl
+No manual entry for bkl
+C02ZL0QPLVDN:BPlatform jiaguo$ man bk
+No manual entry for bk
+C02ZL0QPLVDN:BPlatform jiaguo$ bk -help
+ ›   Error: command -help not found
+C02ZL0QPLVDN:BPlatform jiaguo$ bk --help
+Booking-wide CLI
+
+VERSION
+  @bookingcom/bk/13.2.2-latest-darwin-x64.0 darwin-x64 node-v16.3.0
+
+USAGE
+  $ bk [COMMAND]
+
+TOPICS
+  auth        manage authentication
+  cloud       manage B.Platform Kubernetes Infrastructure
+  completion  outputs shell completion code for the specified shell (bash or zsh).
+  config      manage bk configuration
+  context     display information about current contexts
+  plugins     manage your CLI plugins
+  sd          manage Service Directory resources
+
+COMMANDS
+  completion  outputs shell completion code for the specified shell (bash or zsh).
+  context     display information about current contexts
+  plugins     list installed plugins
+  support     display who you should contact in case you need support with a command (works with aliases as well)
+  update      update the bk CLI
+
+C02ZL0QPLVDN:BPlatform jiaguo$ bk plugins
+@bookingcom/cloud 11.2.10
+@bookingcom/sd 11.0.28
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$ bk context:use:project jiaguo
+
+Switching to context jiaguo:
+ ✔ sd context set to jiaguo
+ ✔ kubectl context is unset
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$ bk context:use:project china-automation
+Switching to context china-automation:
+ ✔ sd context set to china-automation
+ ✔ kubectl context is unset
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$ bk sd:projects
+CURRENT NAME             DESCRIPTION                INDIVIDUAL OWNERS TEAM OWNERS                        ACCESS ROLE
+*       china-automation china-automation                             China Quality Assurance (60005847) admin
+        jiaguo           personal project of jiaguo Jia Guo (jiaguo)                                     admin
+C02ZL0QPLVDN:BPlatform jiaguo$ bk sd:components
+CURRENT NAME                   KIND      PROJECT          DESCRIPTION                                          PERSONA
+        api-robot              service   china-automation API Testing by China QA Team                         b-china-automation-api-robot
+        bad-stop-dashboard-web webapp    china-automation bad-stop-dashboard-web                               b-china-automation-bad-stop-dashboard-web
+        database-handler       webapp    china-automation database-handler                                     b-china-automation-database-handler
+        demo                   service   china-automation demo purpose                                         b-china-automation-demo
+        jmeter-console         service   china-automation JMeter console                                       b-china-automation-jmeter-console
+        mysql_chinaqa          datastore china-automation 'mysql_chinaqa' represents schema 'chinaqa' of MySQL
+        qa-info-web-portal     webapp    china-automation test-info-web-portal                                 b-china-automation-qa-info-web-portal
+        quality-intelligence   service   china-automation Quality-Intelligence                                 b-china-automation-quality-intelligence
+C02ZL0QPLVDN:BPlatform jiaguo$ bk context
+---------User----------
+login status         SSO / logged in / token expires in 3h 27m 49s
+login as             jiaguo
+
+---Service Directory---
+project              china-automation
+component
+installation
+namespace
+
+sd context           china-automation
+
+--------kubectl--------
+kubectl context
+sd & kubectl in-sync false
+C02ZL0QPLVDN:BPlatform jiaguo$ bk context --help
+
+display information about current contexts
+
+USAGE
+  $ bk context
+
+OPTIONS
+  --[no-]extra            display additional information that requires external communication
+  --output=json|yaml|ps1  output format
+
+ALIASES
+  $ bk cloud:context
+  $ bk ctx
+
+TOPICS
+  context:use  switch bk context
+
+COMMANDS
+  context:use  switch bk context
+
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$ npm install -g yo
+npm WARN deprecated uuid@3.4.0: Please upgrade  to version 7 or higher.  Older versions may use Math.random() in certain circumstances, which is known to be pro
+blematic.  See https://v8.dev/blog/math-random for details.
+npm WARN deprecated request@2.88.2: request has been deprecated, see https://github.com/request/request/issues/3142
+npm WARN deprecated har-validator@5.1.5: this library is no longer supported
+/usr/local/bin/yo -> /usr/local/lib/node_modules/yo/lib/cli.js
+/usr/local/bin/yo-complete -> /usr/local/lib/node_modules/yo/lib/completion/index.js
+
+> core-js@3.16.0 postinstall /usr/local/lib/node_modules/yo/node_modules/core-js
+> node -e "try{require('./postinstall')}catch(e){}"
+
+Thank you for using core-js ( https://github.com/zloirock/core-js ) for polyfilling JavaScript standard library!
+
+The project needs your help! Please consider supporting of core-js:
+> https://opencollective.com/core-js
+> https://patreon.com/zloirock
+> https://paypal.me/zloirock
+> bitcoin: bc1qlea7544qtsmj2rayg0lthvza9fau63ux0fstcz
+
+Also, the author of core-js ( https://github.com/zloirock ) is looking for a good job -)
+
+
+> yo@4.3.0 postinstall /usr/local/lib/node_modules/yo
+> yodoctor
+
+
+Yeoman Doctor
+Running sanity checks on your system
+
+✔ No .bowerrc file in home directory
+✔ Global configuration file is valid
+✔ NODE_PATH matches the npm root
+✔ No .yo-rc.json file in home directory
+✔ Node.js version
+✔ npm version
+✔ yo version
+
+Everything looks all right!
++ yo@4.3.0
+added 3 packages from 7 contributors, removed 5 packages and updated 26 packages in 177.561s
+C02ZL0QPLVDN:BPlatform jiaguo$ npm set registry https://artifactory.booking.com/api/npm/npm/
+C02ZL0QPLVDN:BPlatform jiaguo$ npm install -g @booking/generator-bplatform
+npm WARN deprecated resolve-url@0.2.1: https://github.com/lydell/resolve-url#deprecated
+npm WARN deprecated urix@0.1.0: Please see https://github.com/lydell/urix#deprecated
++ @booking/generator-bplatform@0.5.0
+updated 5 packages in 56.461s
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$ vim ~/.bkcloud/c
+ca-bundle.crt  config
+C02ZL0QPLVDN:BPlatform jiaguo$ vim ~/.bkcloud/c
+ca-bundle.crt  config
+C02ZL0QPLVDN:BPlatform jiaguo$ vim ~/.bkcloud/config
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$ bk ctx -h
+display information about current contexts
+
+USAGE
+  $ bk context
+
+OPTIONS
+  --[no-]extra            display additional information that requires external communication
+  --output=json|yaml|ps1  output format
+
+ALIASES
+  $ bk cloud:context
+  $ bk ctx
+
+TOPICS
+  context:use  switch bk context
+
+COMMANDS
+  context:use  switch bk context
+
+Sending error/warning to FLOG... sent successfully
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$ bk ctx -h
+
+display information about current contexts
+
+USAGE
+  $ bk context
+
+OPTIONS
+  --[no-]extra            display additional information that requires external communication
+  --output=json|yaml|ps1  output format
+
+ALIASES
+  $ bk cloud:context
+  $ bk ctx
+
+TOPICS
+  context:use  switch bk context
+
+COMMANDS
+  context:use  switch bk context
+
+Sending error/warning to FLOG... sent successfully
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$ bk completion
+#!/usr/bin/env bash
+_bk()
+{
+__apply_custom_completion() {
+    if [[ ! -z ${cmd_output} ]]; then
+        out=($(echo "${cmd_output}" | awk '{print $1}'))
+        COMPREPLY=( $( compgen -W "${out[*]}" -- "$cur" ) )
+    fi
+}
+
+__custom_first_args() {
+    local cmd_output out
+    case ${last_command} in
+        context_use)
+            cmd_output=$(bk config:get-contexts --output=names 2>/dev/null)
+            ;;
+        cloud_use_context)
+            cmd_output=$(bk config:get-contexts --output=names 2>/dev/null)
+            ;;
+        ctx_use)
+            cmd_output=$(bk config:get-contexts --output=names 2>/dev/null)
+            ;;
+        context_use_cluster)
+            cmd_output=$(kubectl config get-clusters 2>/dev/null | grep "bplatform-")
+            ;;
+        cloud_use_cluster)
+            cmd_output=$(kubectl config get-clusters 2>/dev/null | grep "bplatform-")
+            ;;
+        ctx_use_cluster)
+            cmd_output=$(kubectl config get-clusters 2>/dev/null | grep "bplatform-")
+            ;;
+        cloud_clusters_use)
+            cmd_output=$(kubectl config get-clusters 2>/dev/null | grep "bplatform-")
+            ;;
+        context_use_component)
+            cmd_output=$(bk config:get-component-contexts --columns=component --no-header 2>/dev/null)
+            ;;
+        cloud_use_service)
+            cmd_output=$(bk config:get-component-contexts --columns=component --no-header 2>/dev/null)
+            ;;
+        cloud_use_component)
+            cmd_output=$(bk config:get-component-contexts --columns=component --no-header 2>/dev/null)
+            ;;
+        ctx_use_service)
+            cmd_output=$(bk config:get-component-contexts --columns=component --no-header 2>/dev/null)
+            ;;
+        ctx_use_component)
+            cmd_output=$(bk config:get-component-contexts --columns=component --no-header 2>/dev/null)
+            ;;
+        sd_services_use)
+            cmd_output=$(bk config:get-component-contexts --columns=component --no-header 2>/dev/null)
+            ;;
+        sd_components_use)
+            cmd_output=$(bk config:get-component-contexts --columns=component --no-header 2>/dev/null)
+            ;;
+        context_use_installation)
+            cmd_output=$(bk config:get-installation-contexts --columns=installation --no-header 2>/dev/null)
+            ;;
+        cloud_use_installation)
+            cmd_output=$(bk config:get-installation-contexts --columns=installation --no-header 2>/dev/null)
+            ;;
+        sd_installations_use)
+            cmd_output=$(bk config:get-installation-contexts --columns=installation --no-header 2>/dev/null)
+            ;;
+        ctx_use_installation)
+            cmd_output=$(bk config:get-installation-contexts --columns=installation --no-header 2>/dev/null)
+            ;;
+        context_use_project)
+            cmd_output=$(bk config:get-project-contexts --columns=project --no-header 2>/dev/null)
+            ;;
+        cloud_use_project)
+            cmd_output=$(bk config:get-project-contexts --columns=project --no-header 2>/dev/null)
+            ;;
+        sd_projects_use)
+            cmd_output=$(bk config:get-project-contexts --columns=project --no-header 2>/dev/null)
+            ;;
+        ctx_use_project)
+            cmd_output=$(bk config:get-project-contexts --columns=project --no-header 2>/dev/null)
+            ;;
+        *)
+            ;;
+    esac
+    __apply_custom_completion
+}
+
+__custom_flag() {
+    local cmd_output out
+    case ${last_command}${current_flag} in
+        sd_components--project)
+            cmd_output=$(bk config:get-project-contexts --columns=project --no-header 2>/dev/null)
+            ;;
+        cloud_get_components--project)
+            cmd_output=$(bk config:get-project-contexts --columns=project --no-header 2>/dev/null)
+            ;;
+        cloud_get_services--project)
+            cmd_output=$(bk config:get-project-contexts --columns=project --no-header 2>/dev/null)
+            ;;
+        sd_components_get--project)
+            cmd_output=$(bk config:get-project-contexts --columns=project --no-header 2>/dev/null)
+            ;;
+        sd_services_get--project)
+            cmd_output=$(bk config:get-project-contexts --columns=project --no-header 2>/dev/null)
+            ;;
+        sd_services--project)
+            cmd_output=$(bk config:get-project-contexts --columns=project --no-header 2>/dev/null)
+            ;;
+        *)
+            ;;
+    esac
+    __apply_custom_completion
+}
+
+  COMP_WORDBREAKS=${COMP_WORDBREAKS//:}
+  COMP_WORDBREAKS=${COMP_WORDBREAKS//=}
+  local prev="${COMP_WORDS[COMP_CWORD-1]}" opts IFS=$' \t\n'
+  local cur="${COMP_WORDS[COMP_CWORD]}" opts IFS=$' \t\n'
+  COMPREPLY=()
+
+  local commands="
+auth:issue-authxagent-user-token --output=exec-credentials
+cloud:auth:issue-authxagent-user-token --output=exec-credentials
+auth:issue-sso-access-token --output=exec-credentials
+cloud:auth:issue-sso-access-token --output=exec-credentials
+auth:issue-sso-refresh-token --output=exec-credentials
+cloud:auth:issue-sso-refresh-token --output=exec-credentials
+auth:issue-token --output=exec-credentials
+cloud:auth:issue-token --output=exec-credentials
+auth:login --mode=sso --mode=authxagent --cache-certificates --no-cache-certificates --check-version --no-check-version --check-obsolete-settings --no-check-obs
+olete-settings --check-cluster-status --no-check-cluster-status --update-clusters --no-update-clusters
+cloud:auth:login --mode=sso --mode=authxagent --cache-certificates --no-cache-certificates --check-version --no-check-version --check-obsolete-settings --no-che
+ck-obsolete-settings --check-cluster-status --no-check-cluster-status --update-clusters --no-update-clusters
+auth:vault-login --check-vault-addr --no-check-vault-addr
+cloud:auth:vault-login --check-vault-addr --no-check-vault-addr
+completion --force -f --aliases --no-aliases
+completion:commands --columns --sort --filter --csv --output=csv --output=json --output=yaml --extended -x --truncate --no-truncate --header --no-header --alias
+es --no-aliases
+config:certificates:cache
+config:current-context
+cloud:config:current-context
+config:get-contexts --columns --sort --filter --csv --output=names --output=table --extended -x --truncate --no-truncate --header --no-header
+cloud:config:get-contexts --columns --sort --filter --csv --output=names --output=table --extended -x --truncate --no-truncate --header --no-header
+config:view
+cloud:config:view
+context --extra --no-extra --output=json --output=yaml --output=ps1
+cloud:context --extra --no-extra --output=json --output=yaml --output=ps1
+ctx --extra --no-extra --output=json --output=yaml --output=ps1
+context:use
+cloud:use:context
+ctx:use
+plugins:discover --columns --filter --csv --output=csv --output=json --output=yaml --extended -x --truncate --no-truncate --header --no-header --sort
+plugins:versions
+plugins:versions:latest --dist-tag
+support
+update
+cloud:clusters --columns --sort --filter --csv --output=csv --output=json --output=yaml --extended -x --truncate --no-truncate --header --no-header --all
+cloud:cluster:list --columns --sort --filter --csv --output=csv --output=json --output=yaml --extended -x --truncate --no-truncate --header --no-header --all
+cloud:cluster:links --columns --sort --filter --csv --output=csv --output=json --output=yaml --extended -x --truncate --no-truncate --header --no-header --all
+cloud:subscribe:cluster-alerts --component --project
+cloud:subscribe:quota-alerts --component --project
+cloud:subscribe:rollout-info --component --project
+context:use:cluster --check-cluster-status --no-check-cluster-status --set-as-preferred-cluster --allow-testing-clusters --check-if-installation-provisioned-in-
+cluster --no-check-if-installation-provisioned-in-cluster --check-if-cluster-exists --no-check-if-cluster-exists --namespace
+cloud:use:cluster --check-cluster-status --no-check-cluster-status --set-as-preferred-cluster --allow-testing-clusters --check-if-installation-provisioned-in-cl
+uster --no-check-if-installation-provisioned-in-cluster --check-if-cluster-exists --no-check-if-cluster-exists --namespace
+ctx:use:cluster --check-cluster-status --no-check-cluster-status --set-as-preferred-cluster --allow-testing-clusters --check-if-installation-provisioned-in-clus
+ter --no-check-if-installation-provisioned-in-cluster --check-if-cluster-exists --no-check-if-cluster-exists --namespace
+cloud:clusters:use --check-cluster-status --no-check-cluster-status --set-as-preferred-cluster --allow-testing-clusters --check-if-installation-provisioned-in-c
+luster --no-check-if-installation-provisioned-in-cluster --check-if-cluster-exists --no-check-if-cluster-exists --namespace
+config:get-component-contexts --columns --sort --filter --csv --output=names --output=table --output=component-names --extended -x --header --no-header --trunca
+te --no-truncate
+cloud:config:get-component-contexts --columns --sort --filter --csv --output=names --output=table --output=component-names --extended -x --header --no-header --
+truncate --no-truncate
+cloud:config:get-service-contexts --columns --sort --filter --csv --output=names --output=table --output=component-names --extended -x --header --no-header --tr
+uncate --no-truncate
+config:get-service-contexts --columns --sort --filter --csv --output=names --output=table --output=component-names --extended -x --header --no-header --truncate
+ --no-truncate
+config:get-installation-contexts --columns --sort --filter --csv --output=names --output=table --output=installation-names --extended -x --header --no-header --
+truncate --no-truncate
+cloud:config:get-installation-contexts --columns --sort --filter --csv --output=names --output=table --output=installation-names --extended -x --header --no-hea
+der --truncate --no-truncate
+config:get-project-contexts --columns --sort --filter --csv --output=names --output=table --output=project-names --extended -x --header --no-header --truncate -
+-no-truncate
+cloud:config:get-project-contexts --columns --sort --filter --csv --output=names --output=table --output=project-names --extended -x --header --no-header --trun
+cate --no-truncate
+context:use:component --project
+cloud:use:service --project
+cloud:use:component --project
+ctx:use:service --project
+ctx:use:component --project
+sd:services:use --project
+sd:components:use --project
+context:use:installation --project --component
+cloud:use:installation --project --component
+sd:installations:use --project --component
+ctx:use:installation --project --component
+context:use:project
+cloud:use:project
+sd:projects:use
+ctx:use:project
+sd:components --columns --sort --filter --csv --output=csv --output=json --output=yaml --extended -x --header --no-header --truncate --no-truncate --project
+cloud:get:components --columns --sort --filter --csv --output=csv --output=json --output=yaml --extended -x --header --no-header --truncate --no-truncate --proj
+ect
+cloud:get:services --columns --sort --filter --csv --output=csv --output=json --output=yaml --extended -x --header --no-header --truncate --no-truncate --projec
+t
+sd:components:get --columns --sort --filter --csv --output=csv --output=json --output=yaml --extended -x --header --no-header --truncate --no-truncate --project
+sd:services:get --columns --sort --filter --csv --output=csv --output=json --output=yaml --extended -x --header --no-header --truncate --no-truncate --project
+sd:services --columns --sort --filter --csv --output=csv --output=json --output=yaml --extended -x --header --no-header --truncate --no-truncate --project
+sd:components:bootstrap --update-configs --no-update-configs
+cloud:bootstrap:component --update-configs --no-update-configs
+cloud:bootstrap:service --update-configs --no-update-configs
+sd:services:bootstrap --update-configs --no-update-configs
+sd:components:create --project --service-level=L1 --service-level=L2 --service-level=L3 --business-impact=high --business-impact=low --business-impact=medium --
+attributes=kubernetes --attributes=gcp --update-configs --no-update-configs --kind=service --kind=webapp
+cloud:create:component --project --service-level=L1 --service-level=L2 --service-level=L3 --business-impact=high --business-impact=low --business-impact=medium
+--attributes=kubernetes --attributes=gcp --update-configs --no-update-configs --kind=service --kind=webapp
+cloud:create:service --project --service-level=L1 --service-level=L2 --service-level=L3 --business-impact=high --business-impact=low --business-impact=medium --
+attributes=kubernetes --attributes=gcp --update-configs --no-update-configs --kind=service --kind=webapp
+sd:services:create --project --service-level=L1 --service-level=L2 --service-level=L3 --business-impact=high --business-impact=low --business-impact=medium --at
+tributes=kubernetes --attributes=gcp --update-configs --no-update-configs --kind=service --kind=webapp
+sd:components:delete --project --update-configs --no-update-configs
+cloud:delete:service --project --update-configs --no-update-configs
+cloud:delete:component --project --update-configs --no-update-configs
+sd:services:delete --project --update-configs --no-update-configs
+sd:dependencies --columns --sort --filter --csv --output=csv --output=json --output=yaml --extended -x --header --no-header --truncate --no-truncate --component
+ --project --installation
+cloud:get:dependencies --columns --sort --filter --csv --output=csv --output=json --output=yaml --extended -x --header --no-header --truncate --no-truncate --co
+mponent --project --installation
+sd:dependencies:get --columns --sort --filter --csv --output=csv --output=json --output=yaml --extended -x --header --no-header --truncate --no-truncate --compo
+nent --project --installation
+sd:dependencies:delete --project --component --installation
+cloud:delete:dependency --project --component --installation
+sd:dependencies:request --project --component --installation --filename -f
+cloud:create:dependency-request --project --component --installation --filename -f
+sd:installations --columns --sort --filter --csv --output=csv --output=json --output=yaml --extended -x --header --no-header --truncate --no-truncate --project
+--component
+cloud:get:installations --columns --sort --filter --csv --output=csv --output=json --output=yaml --extended -x --header --no-header --truncate --no-truncate --p
+roject --component
+sd:installations:get --columns --sort --filter --csv --output=csv --output=json --output=yaml --extended -x --header --no-header --truncate --no-truncate --proj
+ect --component
+sd:installations:bootstrap --update-configs --no-update-configs
+cloud:bootstrap:installation --update-configs --no-update-configs
+sd:installations:create --project --component --personal --no-personal --update-configs --no-update-configs --provider=kubernetes --provider=gcp --gcp-network-t
+ype=sandboxed --gcp-network-type=vpc --gcp-resource-management=gcp-web-console --gcp-resource-management=bplatform
+cloud:create:installation --project --component --personal --no-personal --update-configs --no-update-configs --provider=kubernetes --provider=gcp --gcp-network
+-type=sandboxed --gcp-network-type=vpc --gcp-resource-management=gcp-web-console --gcp-resource-management=bplatform
+sd:installations:delete --project --component --update-configs --no-update-configs --assume-yes -y
+cloud:delete:installation --project --component --update-configs --no-update-configs --assume-yes -y
+sd:members --columns --sort --filter --csv --output=csv --output=json --output=yaml --extended -x --header --no-header --truncate --no-truncate --project
+cloud:get:members --columns --sort --filter --csv --output=csv --output=json --output=yaml --extended -x --header --no-header --truncate --no-truncate --project
+sd:members:get --columns --sort --filter --csv --output=csv --output=json --output=yaml --extended -x --header --no-header --truncate --no-truncate --project
+sd:members:create --project --role=admin --role=editor --role=viewer --role=contributor --orgunit-id --username
+cloud:create:member --project --role=admin --role=editor --role=viewer --role=contributor --orgunit-id --username
+sd:members:delete --project --orgunit-id --username
+cloud:delete:member --project --orgunit-id --username
+sd:playground --update-configs --no-update-configs
+cloud:bootstrap:playground --update-configs --no-update-configs
+sd:projects --columns --sort --filter --csv --output=csv --output=json --output=yaml --extended -x --header --no-header --truncate --no-truncate --all --show-pe
+rsonal
+cloud:get:projects --columns --sort --filter --csv --output=csv --output=json --output=yaml --extended -x --header --no-header --truncate --no-truncate --all --
+show-personal
+sd:projects:get --columns --sort --filter --csv --output=csv --output=json --output=yaml --extended -x --header --no-header --truncate --no-truncate --all --sho
+w-personal
+sd:projects:create --individual-owners --team-owners --individual-members --team-members --update-configs --no-update-configs
+cloud:create:project --individual-owners --team-owners --individual-members --team-members --update-configs --no-update-configs
+sd:projects:delete --update-configs --no-update-configs
+cloud:delete:project --update-configs --no-update-configs
+plugins --core
+plugins:install --help -h --verbose -v --force -f
+plugins:add --help -h --verbose -v --force -f
+plugins:link --help -h --verbose -v
+plugins:uninstall --help -h --verbose -v
+plugins:unlink --help -h --verbose -v
+plugins:remove --help -h --verbose -v
+plugins:update --help -h --verbose -v
+"
+
+  if [[ "${COMP_CWORD}" -eq 1 ]] ; then
+      opts=$(printf "$commands" | grep -Eo '^[a-zA-Z0-9:_-]+')
+      COMPREPLY=( $(compgen -W "${opts}" -- ${cur}) )
+  else
+      if [[ $prev == "-"* ]] && [[ $cur != "-"* ]] ; then
+        # flag value completion
+        local last_command=$(echo "${COMP_WORDS[1]}" | tr ':' '_')
+        local current_flag=$prev
+        __custom_flag
+      elif [[ $cur == "-"* ]] ; then
+        # flag completion
+        opts=$(printf "$commands" | grep "${COMP_WORDS[1]}" | sed -n "s/^${COMP_WORDS[1]} //p")
+        COMPREPLY=( $(compgen -W  "${opts}" -- ${cur}) )
+      elif [[ "${COMP_CWORD}" -gt 1 ]] ; then
+           # autocompleting using custom functions
+           local last_command=$(echo "${COMP_WORDS[1]}" | tr ':' '_')
+           __custom_first_args
+      fi
+  fi
+
+  if [[ -z $COMPREPLY ]] ; then
+    # falling back to get all matching files and directories
+    COMPREPLY=($(compgen -f  -- "${COMP_WORDS[$COMP_CWORD]}"))
+
+    for ((ff=0; ff<${#COMPREPLY[@]}; ff++)); do
+        [[ -d ${COMPREPLY[$ff]} ]] && COMPREPLY[$ff]+='/'
+        [[ -f ${COMPREPLY[$ff]} ]] && COMPREPLY[$ff]+=' '
+    done
+  fi
+  return 0
+}
+
+complete -o bashdefault -o default -o nospace -F _bk bk
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$ bk completion >~/.bk_completionrc
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$ gvim !$
+gvim ~/.bk_completionrc
+C02ZL0QPLVDN:BPlatform jiaguo$ sudo gvim ~/.bashrc
+Password:
+C02ZL0QPLVDN:BPlatform jiaguo$ source !$
+source ~/.bashrc
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$ source ~/.bash
+.bash_history   .bash_profile   .bash_sessions/ .bashrc
+C02ZL0QPLVDN:BPlatform jiaguo$ source ~/.bash_profile
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$ pwd
+/Users/jiaguo/workspace/BPlatform
+C02ZL0QPLVDN:BPlatform jiaguo$ ls
+C02ZL0QPLVDN:BPlatform jiaguo$ bk sd:projects
+Sending error/warning to FLOG... sent successfully
+ ›   Error: failed to get list of projects from Service Directory:
+ ›   Error: provided token expired 55793 seconds ago, please re-login using `bk auth:login`
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$ bk auth:login
+Running some sanity checks:
+ ✔ Booking certificates cached
+ ✔ Checking some `kubectl` things...
+   ✔ Checking kubectl version
+   ✔ Updating clusters in config
+   ✔ Checking obsolete settings
+   ↓ Checking current cluster status [skipped]
+     → no kubectl context found
+Trying to login:
+ ✔ Authentication mode is sso
+ ✖ Authenticating through SSO...
+    → your browser has been opened to visit:
+      https://corpsso.booking.com/SSO/staff/auth?redirect_to=https://bk-authentication-sso.prod.booking.com/v1/redirect?redir
+ect_to=http://localhost:8980
+    → if you see "403 - Forbidden" in the browser you need to connect to VPN and rerun the command
+ · Setting default authentication info in kubectl config
+
+
+
+
+
+
+
+Sending error/warning to FLOG... sent successfully
+TypeError: Cannot create property 'context' on string 'timed out after 20000ms waiting for `authentication-sso` to send the 'refresh_token'
+You could run `export BK_AUTH_SSO_TIMEOUT=600000` (increase the SSO timeout to 10min) and retry the `bk` command`.
+If none of those two work, please contact #bkcli on Slack.'
+    at ~/.local/share/@bookingcom/bk/client/13.2.2-latest-darwin-x64.0/node_modules/listr/index.js:112:19
+C02ZL0QPLVDN:BPlatform jiaguo$ bk auth:login
+Running some sanity checks:
+ ✔ Booking certificates cached
+ ✔ Checking some `kubectl` things...
+   ✔ Checking kubectl version
+   ✔ Updating clusters in config
+   ✔ Checking obsolete settings
+   ↓ Checking current cluster status [skipped]
+     → no kubectl context found
+Trying to login:
+ ✔ Authentication mode is sso
+ ✔ Authenticating through SSO...
+    → your browser has been opened to visit:
+      https://corpsso.booking.com/SSO/staff/auth?redirect_to=https://bk-authentication-sso.prod.booking.com/v1/redirect?redir
+ect_to=http://localhost:8980
+    → if you see "403 - Forbidden" in the browser you need to connect to VPN and rerun the command
+    ✔ Token received through SSO for user "jiaguo"
+ ✔ Setting default authentication info in kubectl config
+You're all set!
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$ bk sd:projects
+CURRENT NAME             DESCRIPTION                INDIVIDUAL OWNERS TEAM OWNERS                        ACCESS ROLE
+*       china-automation china-automation                             China Quality Assurance (60005847) admin
+        jiaguo           personal project of jiaguo Jia Guo (jiaguo)                                     admin
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$ bk sd:projects -h
+show projects in Service Directory
+
+USAGE
+  $ bk sd:projects
+
+OPTIONS
+  -x, --extended          show extra columns
+  --all                   display all projects excluding personal projects
+  --columns=columns       only show provided columns (comma-separated)
+  --csv                   output is csv format [alias: --output=csv]
+  --filter=filter         filter property by partial string matching, ex: name=foo
+  --[no-]header           whether or not to show table header from output
+  --output=csv|json|yaml  output in a more machine friendly format
+  --show-personal         include personal projects in the output, works only together with --all
+  --sort=sort             property to sort by (prepend '-' for descending)
+  --[no-]truncate         whether or not to truncate output to fit screen
+
+ALIASES
+  $ bk cloud:get:projects
+  $ bk sd:projects:get
+
+EXAMPLES
+  # show projects registered in Service Directory which you have access to
+  # this command will also include additional column - ACCESS ROLE
+  $ bk sd:projects
+
+  # show all projects from Service Directory but exclude personal projects
+  $ bk sd:projects --all
+
+  # show everything
+  $ bk sd:projects --all --show-personal
+
+COMMANDS
+  sd:projects:create  create new project in Service Directory
+  sd:projects:delete  delete existing project in Service Directory
+
+Sending error/warning to FLOG... sent successfully
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$ bk sd:projects:create crashmonitor-bot
+Sending error/warning to FLOG... sent successfully
+ ›   Error: Missing 1 required arg:
+ ›   projectDescription  description of the project to create
+ ›   See more help with --help
+C02ZL0QPLVDN:BPlatform jiaguo$ bk sd:projects:create -h
+create new project in Service Directory
+
+USAGE
+  $ bk sd:projects:create PROJECTNAME PROJECTDESCRIPTION
+
+ARGUMENTS
+  PROJECTNAME         name of the project to create
+  PROJECTDESCRIPTION  description of the project to create
+
+OPTIONS
+  --individual-members=individual-members  the individual members of the project.
+
+  --individual-owners=individual-owners    individual owner (a person) that owns that project, e.g. tbion, can be specified
+                                           multiple times
+
+  --team-members=team-members              the team members of the project.
+
+  --team-owners=team-owners                team owner that owns that project, e.g. 60002698, can be specified multiple times
+
+  --[no-]update-configs                    whether or not to update context information in configs
+
+ALIASES
+  $ bk cloud:create:project
+
+EXAMPLES
+  # Simple project creation
+  $ bk sd:projects:create $USER "personal project of $USER"
+
+  # Multiple owners project
+  $ bk sd:projects:create $USER "personal project of $USER" --individual-owners=mceron --individual-owners=ipana
+
+Sending error/warning to FLOG... sent successfully
+C02ZL0QPLVDN:BPlatform jiaguo$ bk sd:projects:create crashmonitor-bot crash-monitor-firebase
+Creating a project in Service Directory:
+ ✔ Validating parameters...
+ ✔ Project crashmonitor-bot created
+ ✔ sd context set to crashmonitor-bot
+ ✔ kubectl context is unset
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$ bk sd:projects
+CURRENT NAME             DESCRIPTION                INDIVIDUAL OWNERS TEAM OWNERS                        ACCESS ROLE
+        china-automation china-automation                             China Quality Assurance (60005847) admin
+*       crashmonitor-bot crash-monitor-firebase                       China Quality Assurance (60005847) admin
+        jiaguo           personal project of jiaguo Jia Guo (jiaguo)                                     admin
+C02ZL0QPLVDN:BPlatform jiaguo$ bk sd:projects -h
+show projects in Service Directory
+
+USAGE
+  $ bk sd:projects
+
+OPTIONS
+  -x, --extended          show extra columns
+  --all                   display all projects excluding personal projects
+  --columns=columns       only show provided columns (comma-separated)
+  --csv                   output is csv format [alias: --output=csv]
+  --filter=filter         filter property by partial string matching, ex: name=foo
+  --[no-]header           whether or not to show table header from output
+  --output=csv|json|yaml  output in a more machine friendly format
+  --show-personal         include personal projects in the output, works only together with --all
+  --sort=sort             property to sort by (prepend '-' for descending)
+  --[no-]truncate         whether or not to truncate output to fit screen
+
+ALIASES
+  $ bk cloud:get:projects
+  $ bk sd:projects:get
+
+EXAMPLES
+  # show projects registered in Service Directory which you have access to
+  # this command will also include additional column - ACCESS ROLE
+  $ bk sd:projects
+
+  # show all projects from Service Directory but exclude personal projects
+  $ bk sd:projects --all
+
+  # show everything
+  $ bk sd:projects --all --show-personal
+
+COMMANDS
+  sd:projects:create  create new project in Service Directory
+  sd:projects:delete  delete existing project in Service Directory
+
+Sending error/warning to FLOG... sent successfully
+C02ZL0QPLVDN:BPlatform jiaguo$ bk sd:projects:delete crashmonitor-bot
+Deleting crashmonitor-bot in Service Directory:
+ ✔ Project crashmonitor-bot deleted
+ ✔ sd context is unset
+  → bk removed some sd contexts:
+      - crashmonitor-bot
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$ bk sd:ctx jiaguo
+ ›   Error: command sd:ctx not found
+C02ZL0QPLVDN:BPlatform jiaguo$ bk ctx -h
+display information about current contexts
+
+USAGE
+  $ bk context
+
+OPTIONS
+  --[no-]extra            display additional information that requires external communication
+  --output=json|yaml|ps1  output format
+
+ALIASES
+  $ bk cloud:context
+  $ bk ctx
+
+TOPICS
+  context:use  switch bk context
+
+COMMANDS
+  context:use  switch bk context
+
+Sending error/warning to FLOG... sent successfully
+C02ZL0QPLVDN:BPlatform jiaguo$ bk context
+context                   context:use:cluster       context:use:installation
+context:use               context:use:component     context:use:project
+C02ZL0QPLVDN:BPlatform jiaguo$ bk context:use:project jiaguo
+Switching to context jiaguo:
+ ✔ sd context set to jiaguo
+ ✔ kubectl context is unset
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$ bk sd:projects:delete crashmonitor-bot 'crash monitor in private project'
+Sending error/warning to FLOG... sent successfully
+ ›   Error: Unexpected argument: crash monitor in private project
+ ›   See more help with --help
+C02ZL0QPLVDN:BPlatform jiaguo$ bk sd:projects:delete crashmonitor-bot 'crash-monitor'
+Sending error/warning to FLOG... sent successfully
+ ›   Error: Unexpected argument: crash-monitor
+ ›   See more help with --help
+C02ZL0QPLVDN:BPlatform jiaguo$ bk sd:projects:delete crashmonitor-bot crash-monitor
+Sending error/warning to FLOG... sent successfully
+ ›   Error: Unexpected argument: crash-monitor
+ ›   See more help with --help
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$ bk sd:projects:delete crashmonitor-bot crashmonitor
+Sending error/warning to FLOG... sent successfully
+ ›   Error: Unexpected argument: crashmonitor
+ ›   See more help with --help
+C02ZL0QPLVDN:BPlatform jiaguo$ bk sd:projects:create crashmonitor-bot 'crash monitor in private project'
+Creating a project in Service Directory:
+ ✔ Validating parameters...
+ ✔ Project crashmonitor-bot created
+ ✔ sd context set to crashmonitor-bot
+ ✔ kubectl context is unset
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$ bk sd:projects
+CURRENT NAME             DESCRIPTION                      INDIVIDUAL OWNERS TEAM OWNERS                        ACCESS ROLE
+        china-automation china-automation                                   China Quality Assurance (60005847) admin
+*       crashmonitor-bot crash monitor in private project                   China Quality Assurance (60005847) admin
+        jiaguo           personal project of jiaguo       Jia Guo (jiaguo)                                     admin
+C02ZL0QPLVDN:BPlatform jiaguo$ bk sd:projects:delete crashmonitor-bot
+Deleting crashmonitor-bot in Service Directory:
+ ✔ Project crashmonitor-bot deleted
+ ✔ sd context is unset
+  → bk removed some sd contexts:
+      - crashmonitor-bot
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$ bk context
+---------User----------
+login status         SSO / logged in / token expires in 7h 52m 13s
+login as             jiaguo
+
+---Service Directory---
+project
+component
+installation
+namespace
+
+sd context
+
+--------kubectl--------
+kubectl context
+sd & kubectl in-sync false
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$ bk sd:projects:jiaguo
+ ›   Error: command sd:projects:jiaguo not found
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$ bk sd:projects
+CURRENT NAME             DESCRIPTION                INDIVIDUAL OWNERS TEAM OWNERS                        ACCESS ROLE
+        china-automation china-automation                             China Quality Assurance (60005847) admin
+        jiaguo           personal project of jiaguo Jia Guo (jiaguo)                                     admin
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$ bk sd:projects:create -h
+create new project in Service Directory
+
+USAGE
+  $ bk sd:projects:create PROJECTNAME PROJECTDESCRIPTION
+
+ARGUMENTS
+  PROJECTNAME         name of the project to create
+  PROJECTDESCRIPTION  description of the project to create
+
+OPTIONS
+  --individual-members=individual-members  the individual members of the project.
+  --individual-owners=individual-owners    individual owner (a person) that owns that project, e.g. tbion, can be specified multiple times
+  --team-members=team-members              the team members of the project.
+  --team-owners=team-owners                team owner that owns that project, e.g. 60002698, can be specified multiple times
+  --[no-]update-configs                    whether or not to update context information in configs
+
+ALIASES
+  $ bk cloud:create:project
+
+EXAMPLES
+  # Simple project creation
+  $ bk sd:projects:create $USER "personal project of $USER"
+
+  # Multiple owners project
+  $ bk sd:projects:create $USER "personal project of $USER" --individual-owners=mceron --individual-owners=ipana
+
+Sending error/warning to FLOG... sent successfully
+C02ZL0QPLVDN:BPlatform jiaguo$ bk sd:projects:create crashmonitor-bot 'crash monitor in private project' --individual-owners='jiaguo'
+Creating a project in Service Directory:
+ ✔ Validating parameters...
+ ✔ Project crashmonitor-bot created
+ ✔ sd context set to crashmonitor-bot
+ ✔ kubectl context is unset
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$ bk sd:projects
+CURRENT NAME             DESCRIPTION                      INDIVIDUAL OWNERS TEAM OWNERS                        ACCESS ROLE
+        china-automation china-automation                                   China Quality Assurance (60005847) admin
+*       crashmonitor-bot crash monitor in private project                   China Quality Assurance (60005847) admin
+        jiaguo           personal project of jiaguo       Jia Guo (jiaguo)                                     admin
+C02ZL0QPLVDN:BPlatform jiaguo$ bk ctx:use
+ctx:use               ctx:use:cluster       ctx:use:component     ctx:use:installation  ctx:use:project       ctx:use:service
+C02ZL0QPLVDN:BPlatform jiaguo$ bk ctx:use
+ctx:use               ctx:use:cluster       ctx:use:component     ctx:use:installation  ctx:use:project       ctx:use:service
+C02ZL0QPLVDN:BPlatform jiaguo$ bk ctx:use:project jiaguo
+Switching to context jiaguo:
+ ✔ sd context set to jiaguo
+ ✔ kubectl context is unset
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$ bk sd:projects
+CURRENT NAME             DESCRIPTION                      INDIVIDUAL OWNERS TEAM OWNERS                        ACCESS ROLE
+        china-automation china-automation                                   China Quality Assurance (60005847) admin
+        crashmonitor-bot crash monitor in private project                   China Quality Assurance (60005847) admin
+*       jiaguo           personal project of jiaguo       Jia Guo (jiaguo)                                     admin
+C02ZL0QPLVDN:BPlatform jiaguo$ bk sd:projects:create crashmonitor-bot 'crash monitor in private project' --individual-owners='jiaguo'
+Creating a project in Service Directory:
+ ✔ Validating parameters...
+ ↓ Creating project crashmonitor-bot... [skipped]
+   → project crashmonitor-bot already exists in Service Directory
+ ✔ sd context set to crashmonitor-bot
+ ✔ kubectl context is unset
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$ bk sd:projects
+CURRENT NAME             DESCRIPTION                      INDIVIDUAL OWNERS TEAM OWNERS                        ACCESS ROLE
+        china-automation china-automation                                   China Quality Assurance (60005847) admin
+*       crashmonitor-bot crash monitor in private project                   China Quality Assurance (60005847) admin
+        jiaguo           personal project of jiaguo       Jia Guo (jiaguo)                                     admin
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$ bk sd:projects:delete crashmonitor-bot
+Deleting crashmonitor-bot in Service Directory:
+ ✔ Project crashmonitor-bot deleted
+ ✔ sd context is unset
+  → bk removed some sd contexts:
+      - crashmonitor-bot
+C02ZL0QPLVDN:BPlatform jiaguo$ bk sd:projects
+CURRENT NAME             DESCRIPTION                INDIVIDUAL OWNERS TEAM OWNERS                        ACCESS ROLE
+        china-automation china-automation                             China Quality Assurance (60005847) admin
+        jiaguo           personal project of jiaguo Jia Guo (jiaguo)                                     admin
+C02ZL0QPLVDN:BPlatform jiaguo$ bk sd:
+sd:components               sd:dependencies:delete      sd:installations:get        sd:projects                 sd:services:create
+sd:components:bootstrap     sd:dependencies:get         sd:installations:use        sd:projects:create          sd:services:delete
+sd:components:create        sd:dependencies:request     sd:members                  sd:projects:delete          sd:services:get
+sd:components:delete        sd:installations            sd:members:create           sd:projects:get             sd:services:use
+sd:components:get           sd:installations:bootstrap  sd:members:delete           sd:projects:use
+sd:components:use           sd:installations:create     sd:members:get              sd:services
+sd:dependencies             sd:installations:delete     sd:playground               sd:services:bootstrap
+C02ZL0QPLVDN:BPlatform jiaguo$ bk sd:jiaguo
+ ›   Error: command sd:jiaguo not found
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$ bk sd:projects
+CURRENT NAME             DESCRIPTION                INDIVIDUAL OWNERS TEAM OWNERS                        ACCESS ROLE
+        china-automation china-automation                             China Quality Assurance (60005847) admin
+        jiaguo           personal project of jiaguo Jia Guo (jiaguo)                                     admin
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$ bk sd:projects:create
+sd:projects:create
+C02ZL0QPLVDN:BPlatform jiaguo$ bk sd:projects:create -h
+create new project in Service Directory
+
+USAGE
+  $ bk sd:projects:create PROJECTNAME PROJECTDESCRIPTION
+
+ARGUMENTS
+  PROJECTNAME         name of the project to create
+  PROJECTDESCRIPTION  description of the project to create
+
+OPTIONS
+  --individual-members=individual-members  the individual members of the project.
+  --individual-owners=individual-owners    individual owner (a person) that owns that project, e.g. tbion, can be specified multiple times
+  --team-members=team-members              the team members of the project.
+  --team-owners=team-owners                team owner that owns that project, e.g. 60002698, can be specified multiple times
+  --[no-]update-configs                    whether or not to update context information in configs
+
+ALIASES
+  $ bk cloud:create:project
+
+EXAMPLES
+  # Simple project creation
+  $ bk sd:projects:create $USER "personal project of $USER"
+
+  # Multiple owners project
+  $ bk sd:projects:create $USER "personal project of $USER" --individual-owners=mceron --individual-owners=ipana
+
+Sending error/warning to FLOG... sent successfully
+C02ZL0QPLVDN:BPlatform jiaguo$ bk sd:projects:create crashmonitor-bot 'crash monitor in private project' --individual-owners='jiaguo' --update-configs
+Creating a project in Service Directory:
+ ✔ Validating parameters...
+ ✔ Project crashmonitor-bot created
+ ✔ sd context set to crashmonitor-bot
+ ✔ kubectl context is unset
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$ bk sd:projects
+CURRENT NAME             DESCRIPTION                      INDIVIDUAL OWNERS TEAM OWNERS                        ACCESS ROLE
+        china-automation china-automation                                   China Quality Assurance (60005847) admin
+*       crashmonitor-bot crash monitor in private project                   China Quality Assurance (60005847) admin
+        jiaguo           personal project of jiaguo       Jia Guo (jiaguo)                                     admin
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$ bk sd:projects:create jiaguo jiaguo
+Creating a project in Service Directory:
+ ✔ Validating parameters...
+ ↓ Creating project jiaguo... [skipped]
+   → project jiaguo already exists in Service Directory
+ ✔ sd context set to jiaguo
+ ✔ kubectl context is unset
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$ bk sd:projects
+CURRENT NAME             DESCRIPTION                      INDIVIDUAL OWNERS TEAM OWNERS                        ACCESS ROLE
+        china-automation china-automation                                   China Quality Assurance (60005847) admin
+        crashmonitor-bot crash monitor in private project                   China Quality Assurance (60005847) admin
+*       jiaguo           personal project of jiaguo       Jia Guo (jiaguo)                                     admin
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$ bk sd:projects:china_quality
+ ›   Error: command sd:projects:china_quality not found
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$ bk sd:projects:delete crashmonitor-bo
+Deleting crashmonitor-bo in Service Directory:
+ ✖
+   → failed to delete project crashmonitor-bo in Service Directory:
+Error: HTTP Error 403 for DELETE https://service-directory-api.prod.booking.com/v2/project/crashmonitor-bo
+{
+  errors: [
+    {
+      message: "You either need to authenticate, or don't have permissions for this operation.",
+      details: [Array],
+      status: 'NOT_AUTHORISED',
+      code: 403
+    }
+  ]
+} [see error below]
+Sending error/warning to FLOG... sent successfully
+ ›   Error: failed to delete project crashmonitor-bo in Service Directory:
+ ›   Error: HTTP Error 403 for DELETE https://service-directory-api.prod.booking.com/v2/project/crashmonitor-bo
+ ›   {
+ ›      errors: [
+ ›        {
+ ›          message: "You either need to authenticate, or don't have permissions for this operation.",
+ ›          details: [Array],
+ ›          status: 'NOT_AUTHORISED',
+ ›          code: 403
+ ›        }
+ ›      ]
+ ›   }
+C02ZL0QPLVDN:BPlatform jiaguo$ bk sd:projects:delete crashmonitor-bot
+Deleting crashmonitor-bot in Service Directory:
+ ✔ Project crashmonitor-bot deleted
+ ✔ sd context set to jiaguo
+  → bk removed some sd contexts:
+      - crashmonitor-bot
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$ bk context:use:project jiaguo
+Switching to context jiaguo:
+ ↓ Switching sd context to jiaguo... [skipped]
+   → sd context is already set to jiaguo
+ ✔ kubectl context is unset
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$ bk context
+---------User----------
+login status         SSO / logged in / token expires in 7h 23m 18s
+login as             jiaguo
+
+---Service Directory---
+project              jiaguo
+component
+installation
+namespace
+
+sd context           jiaguo
+
+--------kubectl--------
+kubectl context
+sd & kubectl in-sync false
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$ bk sd:projects:create crashmonitor-bot 'crash monitor in jia's project' --individual-owners='jiaguo'
+
+>
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$ bk sd:projects:create crashmonitor-bot 'crash monitor project' --individual-owners='jiaguo'
+
+Creating a project in Service Directory:
+ ✔ Validating parameters...
+ ✔ Project crashmonitor-bot created
+ ✔ sd context set to crashmonitor-bot
+ ✔ kubectl context is unset
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$
+C02ZL0QPLVDN:BPlatform jiaguo$ bk sd:projects
+CURRENT NAME             DESCRIPTION                INDIVIDUAL OWNERS TEAM OWNERS                        ACCESS ROLE
+        china-automation china-automation                             China Quality Assurance (60005847) admin
+*       crashmonitor-bot crash monitor project                        China Quality Assurance (60005847) admin
+        jiaguo           personal project of jiaguo Jia Guo (jiaguo)                                     admin
+C02ZL0QPLVDN:BPlatform jiaguo$ bk sd:components --project=jiaguo
+CURRENT NAME         KIND    PROJECT DESCRIPTION                             PERSONA
+        crashmonitor service jiaguo  crash monitor                           b-jiaguo-crashmonitor
+        playground   service jiaguo  personal playground component of jiaguo b-jiaguo-playground
+C02ZL0QPLVDN:BPlatform jiaguo$
